@@ -16,6 +16,11 @@ using namespace std;
 	};	
 
 
+	void mouse :: eatcheese()
+	{
+		cout << "Yummy." << endl;
+	};
+
 	int mouse :: distance(int time, int speed)
 	{
 			

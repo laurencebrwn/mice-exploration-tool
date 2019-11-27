@@ -13,6 +13,7 @@ using namespace std;
 	void mouse :: noise()
 	{
 		cout << "I also make a squeaky noise." << endl;
+		cout << "I makea lot of noise." << endl;
 	};	
 
 

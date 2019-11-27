@@ -15,6 +15,7 @@ using namespace std;
 		cout << "I also make a squeaky noise." << endl;
 	};	
 
+
 	int mouse :: distance(int time, int speed)
 	{
 			

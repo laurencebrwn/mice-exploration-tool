@@ -10,8 +10,17 @@ using namespace std;
 		cout << "I can run at " << speed << " kmh." << endl;
 	};
 
-	void mouse :: squeak()
+	void mouse :: noise()
 	{
 		cout << "I also make a squeaky noise." << endl;
 	};	
+
+	int mouse :: distance(int time, int speed)
+	{
+			
+	int distance = time * speed;
+
+	return distance;
+	}	
+
 

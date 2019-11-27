@@ -4,7 +4,9 @@ class mouse
 		
 		void run (int speed);
 
-		void squeak();
+		void noise();
+
+		int distance(int time, int speed);
 
 	private:
 

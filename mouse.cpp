@@ -7,13 +7,13 @@ using namespace std;
 
 	void mouse :: run(int speed)
 	{
-		cout << "I can run at " << speed << " kmh." << endl;
+		cout << "I like to run at " << speed << " kmh." << endl;
 	};
 
 	void mouse :: noise()
 	{
 		cout << "I also make a squeaky noise." << endl;
-		cout << "I makea lot of noise." << endl;
+		cout << "I make a lot of noise." << endl;
 	};	
 
 

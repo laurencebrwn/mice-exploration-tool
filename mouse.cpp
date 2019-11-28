@@ -7,7 +7,7 @@ using namespace std;
 
 	void mouse :: run(int speed)
 	{
-		cout << "I can run at " << speed << " kmh." << endl;
+		cout << "I want to run at " << speed << " kmh." << endl;
 	};
 
 	void mouse :: noise()

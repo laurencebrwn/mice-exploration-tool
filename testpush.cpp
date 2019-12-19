@@ -27,6 +27,10 @@ cout << " ... how many hrs can I run (e.g. 2): ";
 cin >> time;
 cout << " I have ran " << mouse.distance(time, speed) << " km." << endl;
 
+cout << "i am tired from my running and eating cheese." << endl;
+
+cout << "give me something to do ..." << endl;
+
 
 //add you new lines below to test pushing etc. Let's see what story we can create !!
 

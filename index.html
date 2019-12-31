@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>IMPC</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Courier+Prime&display=swap" rel="stylesheet">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+	<!--cornerstone library -->
+	<script src="https://unpkg.com/cornerstone-wado-image-loader@3.0.6/dist/cornerstoneWADOImageLoader.min.js"></script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/cornerstone.min.css" rel="stylesheet">
+
+	<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+
+    <!-- // Header section -->
+
+<header>
+	<div id="header-img"><img src="assets/dna.jpg" alt="map" style="width:100vw; height:300px;"></div>
+	</div><div id="header-intro1">
+		<p>DICOM Image of Mice</p></div>
+	<div id="twitter-img"><a href="https://twitter.com/impc" target="_blank"><img src="assets/IMPC_logo.svg" alt="Logo" style="width:100px; height:100px; border:0;"></a></div>
+</header>
+
+    <!-- // Image slideshow section -->
+
+<Section = class="images">	
+
+<div id="images-background"><img src="assets/imagesBackground.jpg" alt="map" style="width:100vw; height:510px;"></div>
+
+<div class="container">
+
+    <div id="dicomImage" style="width:450px;height:450px;top:335px;left:55vw; position:absolute"></div>
+
+    <div class="dicomData">
+        <div id="dicomData">
+            <span>Transfer Syntax: </span><span id="transferSyntax"></span><br>
+            <span>SOP Class: </span><span id="sopClass"></span><br>
+            <span>Samples Per Pixel: </span><span id="samplesPerPixel"></span><br>
+            <span>Photometric Interpretation: </span><span id="photometricInterpretation"></span><br>
+            <span>Number Of Frames: </span><span id="numberOfFrames"></span><br>
+            <span>Planar Configuration: </span><span id="planarConfiguration"></span><br>
+            <span>Rows: </span><span id="rows"></span><br>
+            <span>Columns: </span><span id="columns"></span><br>
+            <span>Pixel Spacing: </span><span id="pixelSpacing"></span><br>
+            <span>Bits Allocated: </span><span id="bitsAllocated"></span><br>
+            <span>Bits Stored: </span><span id="bitsStored"></span><br>
+            <span>High Bit: </span><span id="highBit"></span><br>
+            <span>Pixel Representation: </span><span id="pixelRepresentation"></span><br>
+            <span>WindowCenter: </span><span id="windowCenter"></span><br>
+            <span>WindowWidth: </span><span id="windowWidth"></span><br>
+            <span>RescaleIntercept: </span><span id="rescaleIntercept"></span><br>
+            <span>RescaleSlope: </span><span id="rescaleSlope"></span><br>
+            <span>Basic Offset Table Entries: </span><span id="basicOffsetTable"></span><br>
+            <span>Fragments: </span><span id="fragments"></span><br>
+            <span>Min Stored Pixel Value: </span><span id="minStoredPixelValue"></span><br>
+            <span>Max Stored Pixel Value: </span><span id="maxStoredPixelValue"></span><br>
+            <span>Total Time: </span><span id="totalTime"></span><br>
+            <span>Load Time: </span><span id="loadTime"></span><br>
+            <span>Decode Time: </span><span id="decodeTime"></span><br>
+        </div>
+    </div> 
+
+</div>
+
+</Section>
+
+    <!-- // IMPC overview section -->
+
+<Section class="impc">	
+	<div id="impc">
+		<h1>IMPC OVERVIEW</h1>
+		<div id="underline"></div>
+		<div id="impc-img"><img src="assets/impc.jpg" alt="map" style="width:100vw; height:615px;"></div>
+		
+		<div id="video">
+			<iframe width="80%" height="400px" src="https://www.youtube.com/embed/LQ2nk9Keebw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+
+        <div id="demo-element" class="corernstone-element" oncontextmenu="return false"
+            onmousedown="return false;">
+            <canvas width="429" height="280" style="width: 529px; height: 280px;">
+
+	</div>
+</Section>
+
+
+    <!-- // Footer -->
+
+</body>
+
+<!-- include the cornerstone library -->
+<script src="js/cornerstone.min.js"></script>
+<SCRIPT src="js/cornerstoneMath.min.js"></SCRIPT>
+<SCRIPT src="js/cornerstoneTools.min.js"></SCRIPT>
+
+<!-- include the dicomParser library as the WADO image loader depends on it -->
+<script src="js/dicomParser.min.js"></script>
+
+<!-- include the cornerstoneWADOImageLoader library -->
+<script src="js/cornerstoneWADOImageLoader.js"></script>
+
+<!-- uids -->
+<script src="js/uids.js"></script>
+
+<!-- Lines ONLY required for this example to run without building the project -->
+<script>window.cornerstoneWADOImageLoader || document.write('<script src="https://unpkg.com/cornerstone-wado-image-loader">\x3C/script>')</script>
+<script src="js/initializeWebWorkers.js"></script>
+
+<script src = "js/jquery.js"></script>
+<script src = "js/javascript.js"></script>
+
+<!-- javascript to show dicom image -->
+
+<script>
+cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+
+    const element = document.getElementById('dicomImage');
+    cornerstone.enable(element);
+
+    window.onload = function downloadAndView() {
+            // prefix the url with wadouri: so cornerstone can find the image loader
+            var url1 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest1.dcm";
+            var url2 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest2.dcm";
+            var url3 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest3.dcm";
+            var url4 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest4.dcm";
+            var url5 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest5.dcm";
+            var url6 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest6.dcm";
+            var url7 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest7.dcm";
+            var url8 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest8.dcm";
+
+            // Image url test function    
+            // let imageId = "wadouri:" + url8;
+            // console.log(imageId);
+            // loadAndViewImage(imageId)
+
+            //displays a new dicom image from the urls above every x seconds interval
+            setInterval(function()
+            {   
+            var ranNum = Math.floor((Math.random()*80)+1);
+            console.log(ranNum);
+    
+                if (ranNum < 10)
+                {
+                    let imageId = "wadouri:" + url1;
+                    // image enable the dicomImage element and activate a few tools
+                    loadAndViewImage(imageId);
+                } else if (ranNum > 9 && ranNum < 20)
+                {
+                    let imageId = "wadouri:" + url2;
+                    // image enable the dicomImage element and activate a few tools
+                    loadAndViewImage(imageId);
+                } else if (ranNum > 19 && ranNum < 30)
+                {
+                    let imageId = "wadouri:" + url3;
+                    // image enable the dicomImage element and activate a few tools
+                    loadAndViewImage(imageId);
+                } else if (ranNum > 29 && ranNum < 40)
+                {
+                    let imageId = "wadouri:" + url4;
+                    // image enable the dicomImage element and activate a few tools
+                    loadAndViewImage(imageId);
+                } else if (ranNum > 39 && ranNum < 50)
+                {
+                    let imageId = "wadouri:" + url5;
+                    // image enable the dicomImage element and activate a few tools
+                    loadAndViewImage(imageId);
+                } else if (ranNum > 49 && ranNum < 60)
+                {
+                    let imageId = "wadouri:" + url6;
+                    // image enable the dicomImage element and activate a few tools
+                    loadAndViewImage(imageId);
+                } else if (ranNum > 59 && ranNum < 70)
+                {
+                    let imageId = "wadouri:" + url7;
+                    // image enable the dicomImage element and activate a few tools
+                    loadAndViewImage(imageId);
+                } else 
+                {
+                    let imageId = "wadouri:" + url8;
+                    // image enable the dicomImage element and activate a few tools
+                    loadAndViewImage(imageId);
+                }
+            }, 3000);  
+            
+        }
+        let loaded = false;
+    function loadAndViewImage(imageId) {
+        const element = document.getElementById('dicomImage');
+        const start = new Date().getTime();
+        cornerstone.loadImage(imageId).then(function(image) {
+            console.log(image);
+            cornerstone.displayImage(element, image);
+            if(loaded === false) {
+                cornerstoneTools.mouseInput.enable(element);
+                cornerstoneTools.mouseWheelInput.enable(element);
+                cornerstoneTools.wwwc.activate(element, 1); // ww/wc is the default tool for left mouse button
+                cornerstoneTools.pan.activate(element, 2); // pan is the default tool for middle mouse button
+                cornerstoneTools.zoom.activate(element, 4); // zoom is the default tool for right mouse button
+                cornerstoneTools.zoomWheel.activate(element); // zoom is the default tool for middle mouse wheel
+                cornerstoneTools.imageStats.enable(element);
+            loaded = true;
+            }
+            function getTransferSyntax() {
+                const value = image.data.string('x00020010');
+                return value + ' [' + uids[value] + ']';
+            }
+            function getSopClass() {
+                const value = image.data.string('x00080016');
+                return value + ' [' + uids[value] + ']';
+            }
+            function getPixelRepresentation() {
+                const value = image.data.uint16('x00280103');
+                if(value === undefined) {
+                    return;
+                }
+                return value + (value === 0 ? ' (unsigned)' : ' (signed)');
+            }
+            function getPlanarConfiguration() {
+                const value = image.data.uint16('x00280006');
+                if(value === undefined) {
+                    return;
+                }
+                return value + (value === 0 ? ' (pixel)' : ' (plane)');
+            }
+            document.getElementById('transferSyntax').textContent = getTransferSyntax();
+            document.getElementById('sopClass').textContent = getSopClass();
+            document.getElementById('samplesPerPixel').textContent = image.data.uint16('x00280002');
+            document.getElementById('photometricInterpretation').textContent = image.data.string('x00280004');
+            document.getElementById('numberOfFrames').textContent = image.data.string('x00280008');
+            document.getElementById('planarConfiguration').textContent = getPlanarConfiguration();
+            document.getElementById('rows').textContent = image.data.uint16('x00280010');
+            document.getElementById('columns').textContent = image.data.uint16('x00280011');
+            document.getElementById('pixelSpacing').textContent = image.data.string('x00280030');
+            document.getElementById('bitsAllocated').textContent = image.data.uint16('x00280100');
+            document.getElementById('bitsStored').textContent = image.data.uint16('x00280101');
+            document.getElementById('highBit').textContent = image.data.uint16('x00280102');
+            document.getElementById('pixelRepresentation').textContent = getPixelRepresentation();
+            document.getElementById('windowCenter').textContent = image.data.string('x00281050');
+            document.getElementById('windowWidth').textContent = image.data.string('x00281051');
+            document.getElementById('rescaleIntercept').textContent = image.data.string('x00281052');
+            document.getElementById('rescaleSlope').textContent = image.data.string('x00281053');
+            document.getElementById('basicOffsetTable').textContent = image.data.elements.x7fe00010 && image.data.elements.x7fe00010.basicOffsetTable ? image.data.elements.x7fe00010.basicOffsetTable.length : '';
+            document.getElementById('fragments').textContent = image.data.elements.x7fe00010 && image.data.elements.x7fe00010.fragments ? image.data.elements.x7fe00010.fragments.length : '';
+            document.getElementById('minStoredPixelValue').textContent = image.minPixelValue;
+            document.getElementById('maxStoredPixelValue').textContent = image.maxPixelValue;
+            const end = new Date().getTime();
+            const time = end - start;
+            document.getElementById('totalTime').textContent = time + "ms";
+            document.getElementById('loadTime').textContent = image.loadTimeInMS + "ms";
+            document.getElementById('decodeTime').textContent = image.decodeTimeInMS + "ms";
+
+        }, function(err) {
+            alert(err);
+        });
+    }
+
+
+
+</script>
+
+</html>

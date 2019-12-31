@@ -9,6 +9,8 @@ First draft web app showing DICOM images from .dcm and JPEG2000 files and parsed
 A random image from a set of 8 images is show every 2 seconds. 
 Move your mouse over the image to change contrast of image and also zoom in and out.
 
+
+-------------------------------------------------------------------------------------
 Acknowledgements:
 1. Cornerstonejs library by Chris Hafey: https://github.com/cornerstonejs
 

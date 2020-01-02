@@ -131,15 +131,27 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
     cornerstone.enable(element);
 
     window.onload = function downloadAndView() {
-            // prefix the url with wadouri: so cornerstone can find the image loader
-            var url1 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest1.dcm";
-            var url2 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest2.dcm";
-            var url3 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest3.dcm";
-            var url4 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest4.dcm";
-            var url5 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest5.dcm";
-            var url6 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest6.dcm";
-            var url7 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest7.dcm";
-            var url8 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomTest8.dcm";
+            //// prefix the url with wadouri: so cornerstone can find the image loader
+            // // test images
+            // var url1 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/dicomTest1.dcm";
+            // var url2 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/dicomTest2.dcm";
+            // var url3 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/dicomTest3.dcm";
+            // var url4 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/dicomTest4.dcm";
+            // var url5 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/dicomTest5.dcm";
+            // var url6 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/dicomTest6.dcm";
+            // var url7 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/dicomTest7.dcm";
+            // var url8 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/dicomTest8.dcm";
+
+
+            // prefix the url with wadouri: so cornerstone can find the right image loader (.dcm or jpeg etc)
+            var url1 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm";
+            var url2 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm";
+            var url3 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm";
+            var url4 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm";
+            var url5 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm";
+            var url6 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm";
+            var url7 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm";
+            var url8 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm";
 
             // Image url test function    
             // let imageId = "wadouri:" + url8;

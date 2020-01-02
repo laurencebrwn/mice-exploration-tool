@@ -28,7 +28,7 @@
     <!-- // Header section -->
 
 <header>
-	<div id="header-img"><img src="assets/dna.jpg" alt="map" style="width:100vw; height:300px;"></div>
+	<div id="header-img"><img src="assets/dna.jpg" alt="map" style="width:100vw; height:295px;"></div>
 	</div><div id="header-intro1">
 		<p>DICOM Image of Mice</p></div>
 	<div id="twitter-img"><a href="https://twitter.com/impc" target="_blank"><img src="assets/IMPC_logo.svg" alt="Logo" style="width:100px; height:100px; border:0;"></a></div>
@@ -42,14 +42,15 @@
 
 <div class="container">
 
-    <div id="dicomImage" style="width:450px;height:450px;top:335px;left:55vw; position:absolute"></div>
+    <div id="dicomImage" style="width:450px;height:450px;top:335px;left:53vw; position:absolute"></div>
 
-    <div class="dicomData">
+    <!-- <div class="dicomData">
         <div id="dicomData">
             <span>Transfer Syntax: </span><span id="transferSyntax"></span><br>
             <span>SOP Class: </span><span id="sopClass"></span><br>
             <span>Samples Per Pixel: </span><span id="samplesPerPixel"></span><br>
             <span>Photometric Interpretation: </span><span id="photometricInterpretation"></span><br>
+            <span>Sex: </span><span id="sex"></span><br>
             <span>Number Of Frames: </span><span id="numberOfFrames"></span><br>
             <span>Planar Configuration: </span><span id="planarConfiguration"></span><br>
             <span>Rows: </span><span id="rows"></span><br>
@@ -71,7 +72,45 @@
             <span>Load Time: </span><span id="loadTime"></span><br>
             <span>Decode Time: </span><span id="decodeTime"></span><br>
         </div>
-    </div> 
+    </div>  -->
+
+
+        <!-- // dicom data metadata tags -->
+        <div class="dicomData">
+            <div id="dicomData">
+                <span>STUDY DETAILS:<br>
+                <span>Transfer Syntax: </span><span id="transferSyntax"></span><br>
+                <span>SOP Class: </span><span id="sopClass"></span><br>
+                <span>Study Instance UID: </span><span id="studyInstanceUID"></span><br>
+                <span>Image ID: </span><span id="imageID"></span><br> 
+                <span>Study Date: </span><span id="studyDate"></span><br>
+                <span>Series Date: </span><span id="seriesDate"></span><br>
+                <span>Context Date: </span><span id="contextDate"></span><br>
+                <span>Study Time: </span><span id="studyTime"></span><br>
+                <span>Series Time: </span><span id="seriesTime"></span><br>
+                <span>Context Time: </span><span id="contextTime"></span><br><br>
+
+                <span>EQUIPMENT DETAILS:<br>
+                <span>Manufacturer: </span><span id="manufacturer"></span><br>
+                <span>Manufacturer Model: </span><span id="manufacturerModel"></span><br>
+                <span>Station Name: </span><span id="stationName"></span><br>
+                <span>Device SN: </span><span id="deviceSN"></span><br>
+                <span>Software Version: </span><span id="softwareVersion"></span><br>
+                <span>Date of calibration: </span><span id="DateOfCalibration"></span><br>
+                <span>Detector Manufacturer: </span><span id="detectorManufacturer"></span><br>
+                <span>Detector Type: </span><span id="detectorType"></span><br>
+                <span>Dectector Model: </span><span id="detectorModel"></span><br><br>
+
+                <span>PATIENT DETAILS:<br>     
+                <span>Patient Name: </span><span id="patientName"></span><br>
+                <span>Patient ID: </span><span id="patientID"></span><br>
+                <span>Patient DOB: </span><span id="patientDOB"></span><br>
+                <span>Patient Sex: </span><span id="patientSex"></span><br>
+
+            </div>
+        </div> 
+
+
 
 </div>
 
@@ -153,10 +192,10 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
             var url7 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm";
             var url8 = "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm";
 
-            // Image url test function    
-            // let imageId = "wadouri:" + url8;
+            //// Image url test function    
+            //let imageId = "wadouri:" + url8;
             // console.log(imageId);
-            // loadAndViewImage(imageId)
+            //loadAndViewImage(imageId)
 
             //displays a new dicom image from the urls above every x seconds interval
             setInterval(function()
@@ -247,32 +286,61 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
                 }
                 return value + (value === 0 ? ' (pixel)' : ' (plane)');
             }
+            //// Additionaldicom metdata tags
+            // document.getElementById('transferSyntax').textContent = getTransferSyntax();
+            // document.getElementById('sopClass').textContent = getSopClass();
+            // document.getElementById('samplesPerPixel').textContent = image.data.uint16('x00280002');
+            // document.getElementById('photometricInterpretation').textContent = image.data.string('x00280004');
+            // document.getElementById('sex').textContent = image.data.string('x00100040'); //patient sex
+            // document.getElementById('numberOfFrames').textContent = image.data.string('x00280008');
+            // document.getElementById('planarConfiguration').textContent = getPlanarConfiguration();
+            // document.getElementById('rows').textContent = image.data.uint16('x00280010');
+            // document.getElementById('columns').textContent = image.data.uint16('x00280011');
+            // document.getElementById('pixelSpacing').textContent = image.data.string('x00280030');
+            // document.getElementById('bitsAllocated').textContent = image.data.uint16('x00280100');
+            // document.getElementById('bitsStored').textContent = image.data.uint16('x00280101');
+            // document.getElementById('highBit').textContent = image.data.uint16('x00280102');
+            // document.getElementById('pixelRepresentation').textContent = getPixelRepresentation();
+            // document.getElementById('windowCenter').textContent = image.data.string('x00281050');
+            // document.getElementById('windowWidth').textContent = image.data.string('x00281051');
+            // document.getElementById('rescaleIntercept').textContent = image.data.string('x00281052');
+            // document.getElementById('rescaleSlope').textContent = image.data.string('x00281053');
+            // document.getElementById('basicOffsetTable').textContent = image.data.elements.x7fe00010 && image.data.elements.x7fe00010.basicOffsetTable ? image.data.elements.x7fe00010.basicOffsetTable.length : '';
+            // document.getElementById('fragments').textContent = image.data.elements.x7fe00010 && image.data.elements.x7fe00010.fragments ? image.data.elements.x7fe00010.fragments.length : '';
+            // document.getElementById('minStoredPixelValue').textContent = image.minPixelValue;
+            // document.getElementById('maxStoredPixelValue').textContent = image.maxPixelValue;
+            // const end = new Date().getTime();
+            // const time = end - start;
+            // document.getElementById('totalTime').textContent = time + "ms";
+            // document.getElementById('loadTime').textContent = image.loadTimeInMS + "ms";
+            // document.getElementById('decodeTime').textContent = image.decodeTimeInMS + "ms";
+
+            //chosen DICOM tags from image metadata
             document.getElementById('transferSyntax').textContent = getTransferSyntax();
             document.getElementById('sopClass').textContent = getSopClass();
-            document.getElementById('samplesPerPixel').textContent = image.data.uint16('x00280002');
-            document.getElementById('photometricInterpretation').textContent = image.data.string('x00280004');
-            document.getElementById('numberOfFrames').textContent = image.data.string('x00280008');
-            document.getElementById('planarConfiguration').textContent = getPlanarConfiguration();
-            document.getElementById('rows').textContent = image.data.uint16('x00280010');
-            document.getElementById('columns').textContent = image.data.uint16('x00280011');
-            document.getElementById('pixelSpacing').textContent = image.data.string('x00280030');
-            document.getElementById('bitsAllocated').textContent = image.data.uint16('x00280100');
-            document.getElementById('bitsStored').textContent = image.data.uint16('x00280101');
-            document.getElementById('highBit').textContent = image.data.uint16('x00280102');
-            document.getElementById('pixelRepresentation').textContent = getPixelRepresentation();
-            document.getElementById('windowCenter').textContent = image.data.string('x00281050');
-            document.getElementById('windowWidth').textContent = image.data.string('x00281051');
-            document.getElementById('rescaleIntercept').textContent = image.data.string('x00281052');
-            document.getElementById('rescaleSlope').textContent = image.data.string('x00281053');
-            document.getElementById('basicOffsetTable').textContent = image.data.elements.x7fe00010 && image.data.elements.x7fe00010.basicOffsetTable ? image.data.elements.x7fe00010.basicOffsetTable.length : '';
-            document.getElementById('fragments').textContent = image.data.elements.x7fe00010 && image.data.elements.x7fe00010.fragments ? image.data.elements.x7fe00010.fragments.length : '';
-            document.getElementById('minStoredPixelValue').textContent = image.minPixelValue;
-            document.getElementById('maxStoredPixelValue').textContent = image.maxPixelValue;
-            const end = new Date().getTime();
-            const time = end - start;
-            document.getElementById('totalTime').textContent = time + "ms";
-            document.getElementById('loadTime').textContent = image.loadTimeInMS + "ms";
-            document.getElementById('decodeTime').textContent = image.decodeTimeInMS + "ms";
+            document.getElementById('studyInstanceUID').textContent = image.data.string('x00080018');
+            document.getElementById('imageID').textContent = image.data.string('x00540400');
+            document.getElementById('studyDate').textContent = image.data.string('x00080020');
+            document.getElementById('seriesDate').textContent = image.data.string('x00080021');
+            document.getElementById('contextDate').textContent = image.data.string('x00080023');
+            document.getElementById('studyTime').textContent = image.data.string('x00080030');
+            document.getElementById('seriesTime').textContent = image.data.string('x00080031');
+            document.getElementById('contextTime').textContent = image.data.string('x00080033');
+
+            document.getElementById('manufacturer').textContent = image.data.string('x00080070');
+            document.getElementById('manufacturerModel').textContent = image.data.string('x00081090');
+            document.getElementById('stationName').textContent = image.data.string('x00081010');
+            document.getElementById('deviceSN').textContent = image.data.string('x00181000');
+            document.getElementById('softwareVersion').textContent = image.data.string('x00181020');
+            document.getElementById('DateOfCalibration').textContent = image.data.string('x00181200');
+            document.getElementById('detectorManufacturer').textContent = image.data.string('x0018702a');
+            document.getElementById('detectorType').textContent = image.data.string('x00187004');
+            document.getElementById('detectorModel').textContent = image.data.string('x0018702b');
+
+            document.getElementById('patientName').textContent = image.data.string('x00100010');
+            document.getElementById('patientID').textContent = image.data.string('x00100020');
+            document.getElementById('patientDOB').textContent = image.data.string('x00100030');
+            document.getElementById('patientSex').textContent = image.data.string('x00100040');
 
         }, function(err) {
             alert(err);

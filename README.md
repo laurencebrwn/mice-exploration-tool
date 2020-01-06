@@ -8,7 +8,7 @@ This repository is the work of the Group 34 TSE team creating a data visulauliti
 This weblink works bets in chrome. there is a delay of 2 seconds before the firts imaage shows (it's just ane example site).
 There eis also a few links on the site to navigate to a page that displays a Base64 image.
 
-Link: https://18685030.github.io/DicomTestImages/
+https://18685030.github.io/DicomTestImages/
 
 # Acknowledgements
 The DICOM images and parsing tools to support the site is the JS library by Chris Hafey and the Cornerstone tools.

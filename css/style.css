@@ -42,6 +42,52 @@ header{
 	font-family: Raleway, sans-serif;
 }
 
+nav{
+	color: white;
+	position: absolute;
+	top:175px;
+	bottom:0;
+	left:20vw;
+	right:0;
+	margin: 15px;
+	text-align: center;
+	width: 600px;
+	height:	30px;
+}
+
+#nav1 a {
+	text-decoration: none;
+	color: white;
+	font-size: 8px;
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-bottom: 5px;
+	letter-spacing: 2px;
+	font-family: arial, serif;
+}
+
+#nav1 a:hover {
+	color: #00BFFF;
+}
+
+a, a:visited {
+  text-decoration: none;
+  position: relative;
+  color: #00BFFF;
+}
+a:after, a:visited:after {
+  content: '';
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  background: #00BFFF;
+  transition: 0.5s;
+}
+a:hover:after, a:visited:hover:after {
+  width: 100%;
+}
 
 /* dicom data styles 
 ------------------------------------*/

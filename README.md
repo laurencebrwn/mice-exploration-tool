@@ -6,7 +6,7 @@ This repository is the work of the Group 34 TSE team creating a data visulauliti
 
 # Experimental web app link
 This weblink works bets in chrome. there is a delay of 2 seconds before the firts imaage shows (it's just ane example site).
-There eis also a few links on the site to navigate to a page that displays a Base64 image.
+There is also a link on the site to navigate to a page that displays a Base64 image.
 
 https://18685030.github.io/DicomTestImages/
 

@@ -8,7 +8,7 @@ This repository is the work of the Group 34 TSE team creating a data visulauliti
 Link: https://18685030.github.io/DicomTestImages/
 
 # Acknowledgements
-DICOM images and parsing used the JS libarry created by Chris Hafey and the Cornberstone tools.
+The DICOM images and parsing tools to support the site is the JS library by Chris Hafey and the Cornerstone tools.
 https://github.com/cornerstonejs/cornerstone
 
 

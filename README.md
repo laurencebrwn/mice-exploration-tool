@@ -2,7 +2,7 @@
 Visual Data Exploration tool for musculoskeletal phenotyping in mice.
 
 # Repo Details
-This repository is the work of the Group 34 TSE team creating a data visulaulition tool for DICOM ismages to supoprt the work of the IMPC. 
+This repository is the work of the Group 34 TSE team creating a data visualisation tool for DICOM images to support the work of the IMPC. 
 
 # Experimental web app link
 This weblink works bets in chrome. there is a delay of 2 seconds before the firts imaage shows (it's just ane example site).

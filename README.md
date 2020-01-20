@@ -5,8 +5,7 @@ Visual Data Exploration tool for musculoskeletal phenotyping in mice.
 This repository is the work of the Group 34 TSE team creating a data visualisation tool for DICOM images to support the work of the IMPC. 
 
 # Experimental web app link
-This weblink works bets in chrome. there is a delay of 2 seconds before the first imaage shows (it's just ane example site).
-There is also a link on the site to navigate to a page that displays a Base64 image.
+This weblink works besy in Chrome. There is a delay of 2 seconds before the first image shows (it's just ane example site). It may take circa 10 seconds for the first image to show. There is also a link on the site header to navigate to a page that displays a Base64 image. 
 
 https://laurencebrwn.github.io/mice-exploration-tool/
 

@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <div id="Header">The number of images depends on ImageArray variable length (currently 8).</div>
+    <div id="Header">The number of images depends on ImageArray variable length (currently 24 Images).</div>
     <div id="Header">Use your mouse to zoom in or change the contrast of each image individually.</div>
     <div id="dicomImage"></div>
 
@@ -36,7 +36,23 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
     'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm',
     'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm',
     'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm',
-    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm'];
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm', 
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm', 
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm', 
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm', 
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm',];
 
     //Forloop through image set and appends image to end of previous image
     for (var i = 0; i < ImageArray.length; i++) {
@@ -45,7 +61,7 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
         //Create new div element for each DICOM image and insert it befor the dicomImage div in body
         const imageDiv = document.createElement("div");
-        imageDiv.style = "width:30vw; height:30vw; border: thin solid white; display:inline-block";
+        imageDiv.style = "width:32vw; height:32vw; border: thin solid white; display:inline-block";
         var currentDiv = document.getElementById("dicomImage"); 
         document.body.insertBefore(imageDiv, currentDiv); 
         cornerstone.enable(imageDiv);

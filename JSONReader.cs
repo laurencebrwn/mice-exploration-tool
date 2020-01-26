@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections;
 
 namespace JSON_Converter
 {
@@ -7,6 +8,7 @@ namespace JSON_Converter
     {
         static void readIn(string Filepath)
         {
+            ArrayList StringLists = new ArrayList();
             StreamReader Reader = new StreamReader(Filepath);
             try
             {
@@ -15,13 +17,24 @@ namespace JSON_Converter
                     string LineIn;
                     while((LineIn = Reader.ReadLine()) != null)
                     {
-                        Console.WriteLine(LineIn);
+                        StringLists.Add(LineIn);
                     }
+                    Console.WriteLine("Done");
                 }
             }
-            catch
+            catch(IOException MissingInputError)
             {
+                Console.WriteLine(MissingInputError);
+                Console.WriteLine("Input File cannot be found!");
+            }
 
+            string[] UnSortedArray = (string[])StringLists.ToArray();
+            int i = UnSortedArray.Length;
+            string[][] SortedArray = new string[i][i];
+            string[] Split = new string[2];
+            foreach(string info in UnSortedArray){
+                Split = info.Split(":");
+                
             }
         }
         static void Main(string[] args)

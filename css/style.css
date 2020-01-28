@@ -13,6 +13,19 @@ body
 /* Header section styles 
 ------------------------------------*/
 
+#Header {
+    color: black;
+    text-align: center;
+	letter-spacing: 2px;
+    width: 100vw;
+    background: rgba(204, 204, 204, 0.2);
+    padding: 20px;
+	font-weight:lighter;
+	line-height: 10px;
+	font-size: 20px;
+	font-family: Raleway, sans-serif;
+}
+
 header{
 	width: 100vw;
 	height:300px;

@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+	<title>Grid</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="Header">The number of images depends on ImageArray variable length (currently 24 Images).</div>
+    <div id="Header">Use your mouse to zoom in or change the contrast of each image individually.</div>
+    <div id="dicomImage"></div>
+
+    
+</body>
+
+<!-- include the cornerstone library -->
+<script src="https://unpkg.com/cornerstone-wado-image-loader@3.0.6/dist/cornerstoneWADOImageLoader.min.js"></script>
+<script src="js/cornerstone.min.js"></script>
+<script src="js/cornerstoneMath.min.js"></script>
+<script src="js/cornerstoneTools.min.js"></script>
+<script src="js/dicomParser.min.js"></script>
+<script src="js/cornerstoneWADOImageLoader.js"></script>
+
+<!-- javascript to show dicom image in grid -->
+
+<script>
+
+cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+
+    //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
+    var ImageArray = [
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm', 
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm', 
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm', 
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm', 
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm', 
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm', 
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm',
+    'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm',];
+
+    //Forloop through image set and appends image to end of previous image
+    for (var i = 0; i < ImageArray.length; i++) {
+        var imageNum = ImageArray[i];
+        let imageId = "wadouri:" + imageNum;
+
+        //Create new div element for each DICOM image and insert it befor the dicomImage div in body
+        const imageDiv = document.createElement("div");
+        imageDiv.style = "width:32vw; height:32vw; border: thin solid white; display:inline-block";
+        var currentDiv = document.getElementById("dicomImage"); 
+        document.body.insertBefore(imageDiv, currentDiv); 
+        cornerstone.enable(imageDiv);
+
+        //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
+        cornerstone.loadImage(imageId).then(function(image) {
+        cornerstone.displayImage(imageDiv, image);
+        cornerstoneTools.mouseInput.enable(imageDiv);
+        cornerstoneTools.mouseWheelInput.enable(imageDiv);
+        cornerstoneTools.wwwc.activate(imageDiv, 1); // ww/wc is the default tool for left mouse button
+        cornerstoneTools.pan.activate(imageDiv, 2); // pan is the default tool for middle mouse button
+        cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
+        cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
+        //cornerstoneTools.imageStats.enable(imageElement);
+        console.log("image loaded");
+        });    
+          
+    }
+
+    // //Forloop through jpg image set in assets folder and appends image to end of previous image
+    // for (var i = 0; i < 3; i++) {
+    // var jpgImg = document.createElement("img");
+    // jpgImg.style = "width:300px; height:300px";
+    // jpgImg.src = "assets/image" + i +".jpg";
+    // document.body.appendChild(jpgImg);
+    // }
+
+console.log("Page Loaded");
+
+</script>
+
+</html>

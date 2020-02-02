@@ -9,7 +9,7 @@
         <State name="__root__">
           <Node name="MiceDatabaseConnection" expanded="True">
             <Node name="MiceDataBaseConnection" expanded="True">
-              <Node name="Program.cs" selected="True" />
+              <Node name="Dependencies" selected="True" />
             </Node>
           </Node>
         </State>

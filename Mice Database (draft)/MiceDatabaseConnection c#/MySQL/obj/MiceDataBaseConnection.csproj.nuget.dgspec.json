@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/garryclawson/Desktop/MiceDatabaseConnection/MySQL/MiceDataBaseConnection.csproj": {}
+    "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/Mice Database (draft)/MiceDatabaseConnection c#/MySQL/MiceDataBaseConnection.csproj": {}
   },
   "projects": {
-    "/Users/garryclawson/Desktop/MiceDatabaseConnection/MySQL/MiceDataBaseConnection.csproj": {
+    "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/Mice Database (draft)/MiceDatabaseConnection c#/MySQL/MiceDataBaseConnection.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/garryclawson/Desktop/MiceDatabaseConnection/MySQL/MiceDataBaseConnection.csproj",
+        "projectUniqueName": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/Mice Database (draft)/MiceDatabaseConnection c#/MySQL/MiceDataBaseConnection.csproj",
         "projectName": "MiceDataBaseConnection",
-        "projectPath": "/Users/garryclawson/Desktop/MiceDatabaseConnection/MySQL/MiceDataBaseConnection.csproj",
+        "projectPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/Mice Database (draft)/MiceDatabaseConnection c#/MySQL/MiceDataBaseConnection.csproj",
         "packagesPath": "/Users/garryclawson/.nuget/packages/",
-        "outputPath": "/Users/garryclawson/Desktop/MiceDatabaseConnection/MySQL/obj/",
+        "outputPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/Mice Database (draft)/MiceDatabaseConnection c#/MySQL/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

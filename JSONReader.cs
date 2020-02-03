@@ -45,8 +45,23 @@ namespace JSON_Converter
             string[] NeededTags = {"biological_sample_id","phenotyping_center","date_of_birth","sex","age_in_weeks","weight (g)","biological_sample_group",
             "gene_symbol","gene_accession_id","zygosity", "parameter_name", "observation_type","category","download_url","jpeg_url","biological_sample_id",
             "parameter_name"};
+             ArrayList Info = new ArrayList();//ArrayList used to account for input size
             int x_length = Input.GetLength(0);
-            int y_length = Input.GetLength(1);
+            for(int i = 0; i<x_length; i++){
+                foreach (string Tag in NeededTags)
+                {
+                    if(Input[i][0].Contains(Tag)){
+                        Info.Add(Input[i][0]);
+                    }
+                }
+            }
+
+            int SortedLenth =  Info.Count/NeededTags.GetLength();
+            string[][] InfoArray = new string[NeededTags.GetLength()][SortedLenth];
+
+            for(int i = 0; i<Info.Count; i+=8){
+
+            }
         }
         static void Main(string[] args)
         {

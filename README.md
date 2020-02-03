@@ -7,7 +7,7 @@ This repository is the work of the Group 34 TSE team creating a data visualisati
 # How to run experimental web app
 cd into directory
 
-terminal - dotnet 
+terminal - dotnet run
 
 visit localhost:5000
 

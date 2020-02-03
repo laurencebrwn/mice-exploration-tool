@@ -1,0 +1,55 @@
+﻿@page
+@model base64ToImageModel
+@{
+    //ViewData["Title"] = "base64ToImage";
+}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Base64 Image</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+   <body>
+      <div id="Header">Image taken from a URL, converted to Base64 and then converted back to an Image.</div>
+   </body>
+
+      <script>
+
+         // >>>>>>> Part A: Convert image to Base64
+
+         var imageURL = 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg'
+
+         //The cuntion with image link to translate to Base64
+         toDataURL(imageURL, function(dataUrl) {
+         //document.write('Result in string:', dataUrl)
+
+         var image = new Image();
+         //Just getting the source from the span. It was messy in JS.
+         //image.src = document.getElementById('source').innerHTML;
+
+         //console.log(dataUrl);
+         image.src = dataUrl;
+         image.style = "width:300px;height:300px;display:inline-block";
+         document.body.appendChild(image);
+         console.log('base64 image loaded');
+         })
+
+         // >>>>>>> Part B: Converts Base64 to image
+
+         //GETs image from location and converts to base64 using 'readAsDataURL' function
+         function toDataURL(url, callback) {
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onload = function() {
+               var fileReader = new FileReader();
+                  fileReader.onloadend = function() {
+                     callback(fileReader.result);
+                  }
+                  fileReader.readAsDataURL(httpRequest.response);
+            };
+            httpRequest.open('GET', url);
+            httpRequest.responseType = 'blob';
+            httpRequest.send();
+         }
+
+      </script>
+</html>

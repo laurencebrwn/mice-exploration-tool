@@ -61,9 +61,9 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
         //Create new div element for each DICOM image and insert it befor the dicomImage div in body
         const imageDiv = document.createElement("div");
-        imageDiv.style = "width:32vw; height:32vw; border: thin solid white; display:inline-block";
+        imageDiv.style = "width:30vw; height:30vw; border: thin solid white; display:inline-block";
         var currentDiv = document.getElementById("dicomImage"); 
-        document.body.insertBefore(imageDiv, currentDiv); 
+        currentDiv.parentNode.insertBefore(imageDiv, currentDiv); 
         cornerstone.enable(imageDiv);
 
         //Load the DICOM image and allow supoprt tools for image zoom and contrast etc

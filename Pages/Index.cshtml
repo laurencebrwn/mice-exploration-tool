@@ -32,7 +32,7 @@
 
 <header>
 	<div id="header-img"><img src="assets/dna.jpg" style="width:100vw; height:100vw;" alt="map"></div>
-	</div><div id="header-intro1">
+	<div id="header-intro1">
 		<p>DICOM Images of Mice</p></div>
     <nav id="nav1">
         <a asp-area="" asp-page="/base64ToImage">Base64 To Image</a> |
@@ -46,7 +46,7 @@
 
     <!-- // Image slideshow section -->
 
-<Section = class="images">	
+<Section class="images">	
 
 <div id="images-background"><img src="assets/imagesBackground.jpg" alt="map" style="width:100vw; height:510px;"></div>
 
@@ -57,7 +57,7 @@
         <!-- // dicom data metadata tags -->
         <div class="dicomData">
             <div id="dicomData">
-                <span>STUDY DETAILS:<br>
+                <span>STUDY DETAILS:</span><br>
                 <span>Transfer Syntax: </span><span id="transferSyntax"></span><br>
                 <span>SOP Class: </span><span id="sopClass"></span><br>
                 <span>Study Instance UID: </span><span id="studyInstanceUID"></span><br>
@@ -69,7 +69,7 @@
                 <span>Series Time: </span><span id="seriesTime"></span><br>
                 <span>Context Time: </span><span id="contextTime"></span><br><br>
 
-                <span>EQUIPMENT DETAILS:<br>
+                <span>EQUIPMENT DETAILS:</span><br>
                 <span>Manufacturer: </span><span id="manufacturer"></span><br>
                 <span>Manufacturer Model: </span><span id="manufacturerModel"></span><br>
                 <span>Station Name: </span><span id="stationName"></span><br>
@@ -80,7 +80,7 @@
                 <span>Detector Type: </span><span id="detectorType"></span><br>
                 <span>Dectector Model: </span><span id="detectorModel"></span><br><br>
 
-                <span>PATIENT DETAILS:<br>     
+                <span>PATIENT DETAILS:</span><br>     
                 <span>Patient Name: </span><span id="patientName"></span><br>
                 <span>Patient ID: </span><span id="patientID"></span><br>
                 <span>Patient DOB: </span><span id="patientDOB"></span><br>
@@ -93,6 +93,7 @@
     
 </Section>
 </body>
+
     <!-- // Footer -->
 
 <!-- include the cornerstone library -->

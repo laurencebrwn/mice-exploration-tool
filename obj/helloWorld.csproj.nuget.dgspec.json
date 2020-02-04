@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/Users/laurencebrown/Documents/GitHub/asp-mice-exploration-tool/helloWorld.csproj": {}
+    "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/helloWorld.csproj": {}
   },
   "projects": {
-    "/Users/laurencebrown/Documents/GitHub/asp-mice-exploration-tool/helloWorld.csproj": {
+    "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/helloWorld.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/laurencebrown/Documents/GitHub/asp-mice-exploration-tool/helloWorld.csproj",
+        "projectUniqueName": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/helloWorld.csproj",
         "projectName": "helloWorld",
-        "projectPath": "/Users/laurencebrown/Documents/GitHub/asp-mice-exploration-tool/helloWorld.csproj",
-        "packagesPath": "/Users/laurencebrown/.nuget/packages/",
-        "outputPath": "/Users/laurencebrown/Documents/GitHub/asp-mice-exploration-tool/obj/",
+        "projectPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/helloWorld.csproj",
+        "packagesPath": "/Users/garryclawson/.nuget/packages/",
+        "outputPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/laurencebrown/.nuget/NuGet/NuGet.Config"
+          "/Users/garryclawson/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
@@ -48,6 +48,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-x64",
+              "version": "[3.0.2, 3.0.2]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -56,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
         }
       }
     }

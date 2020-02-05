@@ -22,6 +22,27 @@ namespace MySQL
     {
         static void Main(string[] args)
         {
+
+            //Console.WriteLine("Please select what gender you would like to search for: M or F");
+            //string selection = Console.ReadLine();
+
+            //string cmdText;
+            //switch (selection)
+            //{
+            //    case "M":
+            //        cmdText = @"
+            //        SELECT urlString FROM url WHERE patient_id IN 
+            //        (SELECT patient_id FROM mice WHERE patient_sex = 'M');";
+            //        PrintQuery(cmdText);
+            //        break;
+            //    case "F":
+            //        cmdText = @"
+            //        SELECT urlString FROM url WHERE patient_id IN 
+            //        (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
+            //        PrintQuery(cmdText);
+            //        break;
+            //}
+
             string cmdText;
 
             cmdText = @"
@@ -32,7 +53,6 @@ namespace MySQL
 
             Console.Read();
         }
-
 
 
         public static void PrintQuery(string cmdText)

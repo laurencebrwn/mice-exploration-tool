@@ -24,13 +24,14 @@ USE MICE;
 CREATE TABLE IF NOT EXISTS `mice` (
   `patient_id` varchar(50) NOT NULL,
   `patient_sex` varchar(50) NOT NULL,
-  `patient_group` varchar(50) NOT NULL,
+  `phenotyping_center` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_id`), 
   KEY `patient_id` (`patient_id`) 
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
 
 CREATE TABLE IF NOT EXISTS `url` (
   `patient_id` varchar(100) NOT NULL,
+  `parameter_name` varchar(100) NOT NULL,
   `urlString` varchar(100) NOT NULL,
   PRIMARY KEY (`urlString`),
   KEY `patient_id` (`patient_id`),
@@ -42,29 +43,29 @@ CREATE TABLE IF NOT EXISTS `url` (
 -- Add Items to mice table
 -- 
 
-insert into `mice` (`patient_id`,`patient_sex`,`patient_group`) values 
-('AA123456789','F','A'),
-('BB123456789','F','A'),
-('CC123456789','M','A'),
-('DD123456789','M','B'),
-('EE123456789','M','B'),
-('FF123456789','F','B'),
-('GG123456789','F','C'),
-('HH123456789','F','C');
+insert into `mice` (`patient_id`,`patient_sex`,`phenotyping_center`) values 
+('AA123456789','F','WTSI'),
+('BB123456789','F','TCP'),
+('CC123456789','M','ICS'),
+('DD123456789','M','ICS'),
+('EE123456789','M','TCP'),
+('FF123456789','F','WTSI'),
+('GG123456789','F','TCS'),
+('HH123456789','F','ICS');
 
 --
 -- Add Items to url table
 -- 
 
-insert into `url` (`patient_id`,`urlString`) values 
-('AA123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm'),
-('BB123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm'),
-('CC123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm'),
-('DD123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm'),
-('EE123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm'),
-('FF123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm'),
-('GG123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm'),
-('HH123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm');
+insert into `url` (`patient_id`,`parameter_name`,`urlString`) values 
+('AA123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm'),
+('BB123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm'),
+('CC123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm'),
+('DD123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm'),
+('EE123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm'),
+('FF123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm'),
+('GG123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm'),
+('HH123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm');
 
 --
 -- END

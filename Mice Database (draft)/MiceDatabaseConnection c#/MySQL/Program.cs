@@ -22,6 +22,22 @@ namespace MySQL
     {
         static void Main(string[] args)
         {
+            string cmdText;
+
+            cmdText = @"
+                SELECT urlString FROM url WHERE patient_id IN 
+                (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
+
+            PrintQuery(cmdText);
+
+            Console.Read();
+        }
+
+
+
+        public static void PrintQuery(string cmdText)
+        {
+
             //Opens a db connection using localhost database connection. Could also have used 127.0.0.1
             String str = @"server=localhost; database=MICE; userid=root; password=TSEGroup34;";
             MySqlConnection conn = null;
@@ -34,15 +50,9 @@ namespace MySQL
                 conn.Open(); //opens the database connection
                 Console.WriteLine("Localhost MySQL Database Connected"); //If the database opens it presents this messsge. 
 
-                //Assigns a query to cmdText which will be passed to the MySql database
-                //Returns URLs of all female mice where the patient_id's match (because data is in 2 tables)
-                string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
-
                 //Creates object and passes all returned values to it
                 MySqlCommand cmd = new MySqlCommand(cmdText, conn);
-                reader = cmd.ExecuteReader(); 
+                reader = cmd.ExecuteReader();
 
                 //Loops through the returned values and writes them to screen
                 while (reader.Read())
@@ -51,19 +61,21 @@ namespace MySQL
                 }
 
             }
-            catch(MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
+            catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
             {
-                Console.WriteLine(errorMessage); 
+                Console.WriteLine(errorMessage);
             }
             finally //Once the try-ctach block is complete the connection is closed
             {
-                if(conn != null)
+                if (conn != null)
                 {
                     conn.Close();
                 }
             }
 
-            Console.Read();
+
         }
     }
+
+
 }

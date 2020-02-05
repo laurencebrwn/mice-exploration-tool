@@ -14,7 +14,7 @@
 //if the Mouse is a Female.
 
 using System;
-using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient; //library to connect to local MySql database. This reuires a NuGet (right click on Dependencies in solution folder > Manage NuGets
 
 namespace MySQL
 {
@@ -23,39 +23,51 @@ namespace MySQL
         static void Main(string[] args)
         {
 
-            //Console.WriteLine("Please select what gender you would like to search for: M or F");
-            //string selection = Console.ReadLine();
+            string cmdText; //string for mySql statement
+            string exit = null; //string value for user input do-while loop
 
-            //string cmdText;
-            //switch (selection)
-            //{
-            //    case "M":
-            //        cmdText = @"
-            //        SELECT urlString FROM url WHERE patient_id IN 
-            //        (SELECT patient_id FROM mice WHERE patient_sex = 'M');";
-            //        PrintQuery(cmdText);
-            //        break;
-            //    case "F":
-            //        cmdText = @"
-            //        SELECT urlString FROM url WHERE patient_id IN 
-            //        (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
-            //        PrintQuery(cmdText);
-            //        break;
-            //}
+            //do-while loop for a user to keep selecting mySql queries until they decide to exit
+            do
+            {
+                //Gets user input to choose their wanted MySql query serach parameter
+                Console.WriteLine("\nPlease select what gender of search or 'e' for exit: m or f");
+                string selection = Console.ReadLine(); //assigns user input to string
 
-            string cmdText;
+                //Assigns user input to switch-case statement
+                switch (selection)//passes user input 'selection' to the switch statement
+                {
+                    case "m":
+                        //MySql query for finding males 'M'
+                        cmdText = @"
+                        SELECT urlString FROM url WHERE patient_id IN 
+                        (SELECT patient_id FROM mice WHERE patient_sex = 'M');";
+                        PrintMySqlQuery(cmdText);//Passes MySql statement and prints 
+                        break;
 
-            cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
+                    case "f":
+                        //MySql query for finding females 'F'
+                        cmdText = @"
+                        SELECT urlString FROM url WHERE patient_id IN 
+                        (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
+                        PrintMySqlQuery(cmdText); //Passes MySql statement and prints 
+                        break;
 
-            PrintQuery(cmdText);
+                    case "e":
+                        Console.WriteLine("You have exited the search.");
+                        exit = selection;
+                        break;
+
+                    default:
+                        Console.WriteLine("You have entered an incorrect value. Please try again");
+                        break;
+                }
+            } while (exit != "e"); //Exits do-while loop when user selects 'e' at anytime
 
             Console.Read();
         }
 
 
-        public static void PrintQuery(string cmdText)
+        public static void PrintMySqlQuery(string cmdText)
         {
 
             //Opens a db connection using localhost database connection. Could also have used 127.0.0.1
@@ -68,7 +80,7 @@ namespace MySQL
                 //Create a object with 'str' connection values passed. This uses the inbuilt library of MySql which is required
                 conn = new MySqlConnection(str);
                 conn.Open(); //opens the database connection
-                Console.WriteLine("Localhost MySQL Database Connected"); //If the database opens it presents this messsge. 
+                //Console.WriteLine("Localhost MySQL Database Connected"); //Shows this message if we have connected to the database
 
                 //Creates object and passes all returned values to it
                 MySqlCommand cmd = new MySqlCommand(cmdText, conn);
@@ -79,7 +91,6 @@ namespace MySQL
                 {
                     Console.WriteLine(reader.GetString(0));
                 }
-
             }
             catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
             {

@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{44A4C5D8-E3F2-4F2D-A0BA-E3F8BEA5B936}|Default">
+  <MonoDevelop.Ide.ItemProperties.MiceDataBaseConnection PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MySQL/Program.cs">
+    <Files>
+      <File FileName="MySQL/Program.cs" Line="8" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MiceDatabaseConnection" expanded="True">
+            <Node name="MiceDataBaseConnection" expanded="True">
+              <Node name="Dependencies" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -6,69 +6,88 @@ namespace JSON_Converter
 {
     class JSONRead
     {
-        static string[][] readIn(string Filepath)
+        string[,] readIn(string Filepath)
         {
             ArrayList StringLists = new ArrayList();//ArrayList used to account for input size
-            StreamReader Reader = new StreamReader(Filepath);//Initiates reader for file location
+            StreamReader Reader = new StreamReader(@Filepath);//Initiates reader for file location
             try//error handling
             {
                 using (Reader)//using the reader class
                 {
                     string LineIn;//holder string
-                    while((LineIn = Reader.ReadLine()) != null)//iterates until it reaches the end of the file
+                    while ((LineIn = Reader.ReadLine()) != null)//iterates until it reaches the end of the file
                     {
                         StringLists.Add(LineIn);//adds to array object
                     }
                     Console.WriteLine("Done");
                 }
             }
-            catch(IOException MissingInputError)//catches error
+            catch (IOException MissingInputError)//catches error
             {
                 Console.WriteLine(MissingInputError);
                 Console.WriteLine("Input File cannot be found!");
             }
 
-            string[] UnSortedArray = (string[])StringLists.ToArray();//converts the object arrayList into a string array
-            int i = UnSortedArray.Length;//gets length
-            string[][] SortedArray = new string[i][1];//generates a 2d array 
-            string[] Split = new string[2];
-            for(int i = 0; i<UnSortedArray.Length; i++){//iterates through
-                Split = UnSortedArray[i].Split(":");//Splits it based upon the : character
-                SortedArray[i][0] = Split[0];//Stored in new array
-                SortedArray[i][1] = Split[1];
+            string[] UnSortedArray = (string[])StringLists.ToArray(typeof(string));//converts the object arrayList into a string array
+            int le = UnSortedArray.Length;//gets length
+            string[,] SortedArray = new string[le, 2];//generates a 2d array 
+
+            for (int i = 0; i < UnSortedArray.Length; i++)
+            {//iterates through
+                Console.WriteLine(UnSortedArray[i]);
+                if (UnSortedArray[i].Contains(':') == false)//Removes non 
+                {
+                    continue;
+                }
+                
+                string[] Split = UnSortedArray[i].Split(':');//Splits it based upon the : character
+                SortedArray[i, 0] = RemoveStrings(Split[0].Trim());//Stored in new array
+                SortedArray[i, 1] = RemoveStrings(Split[1].Trim());//And removes Whitespace
             }
 
             return SortedArray;
         }
 
-        static string[][] RemoveUneeded(string[][] Input){
-            string[] NeededTags = {"biological_sample_id","phenotyping_center","date_of_birth","sex","age_in_weeks","weight (g)","biological_sample_group",
-            "gene_symbol","gene_accession_id","zygosity", "parameter_name", "observation_type","category","download_url","jpeg_url","biological_sample_id",
-            "parameter_name"};
-             ArrayList Info = new ArrayList();//ArrayList used to account for input size
-            int x_length = Input.GetLength(0);
-            for(int i = 0; i<x_length; i++){
-                foreach (string Tag in NeededTags)
+        string RemoveStrings(string input)//Iterates through the input, and removes unnecessary characters from input
+        {
+            string cleared = null;
+            foreach (char element in input)
+            {
+                switch (element)//comparison
                 {
-                    if(Input[i][0].Contains(Tag)){
-                        Info.Add(Input[i][0]);
-                    }
+                    case '"':
+                        break;
+                    case '{':
+                        break;
+                    case '[':
+                        break;
+                    case '}':
+                        break;
+                    case ']':
+                        break;
+                    case ',':
+                        break;
+                    default://if not one of the forbidden characters add to string
+                        cleared = cleared + element;
+                        break;
                 }
             }
-
-            int SortedLenth =  Info.Count/NeededTags.GetLength();
-            string[][] InfoArray = new string[NeededTags.GetLength()][SortedLenth];
-
-            for(int i = 0; i<Info.Count; i+=8){
-
-            }
+            return cleared;//return string
         }
+
+
         static void Main(string[] args)
         {
+            JSONRead Reader = new JSONRead();//testing loop. Remove when implementing
             Console.WriteLine("Please enter address of the JSON file");
             string File = Console.ReadLine();
-            string Filepath = @File;
-            JSONRead.readIn(Filepath);
+            string[,] test = Reader.readIn(File);
+            for (int i = 0; i < test.GetLength(0); i++)
+            {
+                Console.WriteLine(i+" "+test[i, 0]);
+                Console.WriteLine(i + " " + test[i, 1]);
+                Console.WriteLine(i + " " + "");
+            }
             Console.ReadKey();
         }
     }

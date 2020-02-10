@@ -1,10 +1,20 @@
 ﻿<Properties StartupConfiguration="{D14EB2D7-62E3-4FF9-BFC7-E134E71D0AA1}|Default">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml.cs">
+    <Files>
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="36" Column="1" />
+      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="45" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="helloWorld" expanded="True">
-            <Node name="helloWorld" expanded="True" />
+            <Node name="helloWorld" expanded="True">
+              <Node name="Pages" expanded="True">
+                <Node name="dicomImageToGrid.cshtml" expanded="True">
+                  <Node name="dicomImageToGrid.cshtml.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>

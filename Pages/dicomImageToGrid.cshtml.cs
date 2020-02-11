@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Web;
 
 namespace helloWorld.Pages
 {
@@ -18,31 +19,45 @@ namespace helloWorld.Pages
             _logger = logger;
         }
 
-        public string Message { get; set; }
-        public object HiddenField1 { get; set; }
-        public object HiddenField2 { get; set; }
 
         public void OnGet()
         {
+       
+            ViewData["DICOMArrayList"] = new string[] {"https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm",
+                "https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm" };
 
-            Message = "Hello World";
-
-            List<string> strList = new List<string>();
-            strList.Add("str1");
-            strList.Add("str2");
-            strList.Add("str3");
-
-            List<int> intList = new List<int>();
-            intList.Add(1);
-            intList.Add(2);
-            intList.Add(3);
 
 
-            HiddenField1 = Newtonsoft.Json.JsonConvert.SerializeObject(strList);
-            HiddenField2 = Newtonsoft.Json.JsonConvert.SerializeObject(intList);
         }
 
 
+
     }
-    
+
+
+
+
+
 }

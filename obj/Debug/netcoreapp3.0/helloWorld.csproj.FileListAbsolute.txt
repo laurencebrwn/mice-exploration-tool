@@ -106,3 +106,4 @@ C:/Users/PC/Downloads/helloWorld/obj/Debug/netcoreapp3.0/helloWorld.csproj.CopyC
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.0/helloWorld.pdb
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.0/helloWorld.csproj.CopyComplete
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/bin/Debug/netcoreapp3.0/Newtonsoft.Json.dll
+/Users/garryclawson/Documents/GitHub/mice-exploration-tool/bin/Debug/netcoreapp3.0/Json.Net.dll

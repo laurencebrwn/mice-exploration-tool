@@ -7,7 +7,7 @@
 <!doctype html>
 <html>
 <head>
-	<title>Grid</title>
+    <title>Grid</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -20,30 +20,7 @@
         <input type="submit" name="answer" value="Male" class="btn btn-danger" />
     </div>
 
-
-    <h2>@Model.Message</h2>
-    <h2>@ViewData["Message"]</h>
-
-
-        <form id="form1" runat="server">
-            <div>
-                <input id="Button1" type="button" value="button" onclick="getValue()" />
-                <asp:HiddenField ID="HiddenField1" runat="server" />
-                <asp:HiddenField ID="HiddenField2" runat="server" />
-            </div>
-        </form>
-
-
-
-
-
-
-
-
-
-
-        <div id="dicomImage"></div>
-
+    <div id="dicomImage"></div>
 
 </body>
 
@@ -61,49 +38,13 @@
 
 cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
-    //Testing to pass c# to js code to create a new array that can be used in cornerstone
-
-    function getValue() {
-
-        alert($('#HiddenField1').val()); //result:["str1","str2","str3"]
-        alert($('#HiddenField2').val());  //result: [1,2,3]
-
-    }
-
-
-
-
     //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
-    var ImageArray = "<%=dicomImages%>";
-
-    //var ImageArray = [
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm',
-    //'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm',];
+    var ImageArray = @Html.Raw(Json.Serialize(ViewData["DICOMArrayList"]));
+    console.log(ImageArray[1]);
+    console.log(ImageArray.length);
 
     //Forloop through image set and appends image to end of previous image
-    for (var i = 0; i < ImageArray.length; i++) {
+        for (var i = 0; i < ImageArray.length; i++) {
         var imageNum = ImageArray[i];
         let imageId = "wadouri:" + imageNum;
 

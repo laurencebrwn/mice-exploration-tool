@@ -2,8 +2,8 @@
 @model dicomImageToGridModel
 @{
     //ViewData["Title"] = "dicomImageToGrid";
-
 }
+
 <!doctype html>
 <html>
 <head>
@@ -12,13 +12,18 @@
 </head>
 
 <body>
-    <div id="Header">The number of images depends on ImageArray variable length (currently 24 Images).</div>
+    <div id="Header">Click a button to see related images.</div>
     <div id="Header">Use your mouse to zoom in or change the contrast of each image individually.</div>
 
     <div>
-        <input type="submit" name="answer" value="Female" class="btn btn-success" />
-        <input type="submit" name="answer" value="Male" class="btn btn-danger" />
+        <form method="POST">
+            <button type="submit" class="btn btn-success" asp-page-handler="Females">Females</button>
+            <button type="submit" class="btn btn-primary" asp-page-handler="Males">Males</button>
+            <button type="submit" class="btn btn-danger" asp-page-handler="Reset">Reset</button>
+        </form>
+
     </div>
+
 
     <div id="dicomImage"></div>
 
@@ -36,7 +41,7 @@
 
 <script>
 
-cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
     //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
     var ImageArray = @Html.Raw(Json.Serialize(ViewData["DICOMArrayList"]));
@@ -44,29 +49,29 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
     console.log(ImageArray.length);
 
     //Forloop through image set and appends image to end of previous image
-        for (var i = 0; i < ImageArray.length; i++) {
-        var imageNum = ImageArray[i];
-        let imageId = "wadouri:" + imageNum;
+    for (var i = 0; i < ImageArray.length; i++) {
+    var imageNum = ImageArray[i];
+    let imageId = "wadouri:" + imageNum;
 
-        //Create new div element for each DICOM image and insert it befor the dicomImage div in body
-        const imageDiv = document.createElement("div");
-        imageDiv.style = "width:25w; height:25vw; border: thin solid white; display:inline-block";
-        var currentDiv = document.getElementById("dicomImage");
-        currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
-        cornerstone.enable(imageDiv);
+    //Create new div element for each DICOM image and insert it befor the dicomImage div in body
+    const imageDiv = document.createElement("div");
+    imageDiv.style = "width:25w; height:25vw; border: thin solid white; display:inline-block";
+    var currentDiv = document.getElementById("dicomImage");
+    currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
+    cornerstone.enable(imageDiv);
 
-        //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
-        cornerstone.loadImage(imageId).then(function(image) {
-        cornerstone.displayImage(imageDiv, image);
-        cornerstoneTools.mouseInput.enable(imageDiv);
-        cornerstoneTools.mouseWheelInput.enable(imageDiv);
-        cornerstoneTools.wwwc.activate(imageDiv, 1); // ww/wc is the default tool for left mouse button
-        cornerstoneTools.pan.activate(imageDiv, 2); // pan is the default tool for middle mouse button
-        cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
-        cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
-        //cornerstoneTools.imageStats.enable(imageElement);
-        console.log("image loaded");
-        });
+    //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
+    cornerstone.loadImage(imageId).then(function(image) {
+    cornerstone.displayImage(imageDiv, image);
+    cornerstoneTools.mouseInput.enable(imageDiv);
+    cornerstoneTools.mouseWheelInput.enable(imageDiv);
+    cornerstoneTools.wwwc.activate(imageDiv, 1); // ww/wc is the default tool for left mouse button
+    cornerstoneTools.pan.activate(imageDiv, 2); // pan is the default tool for middle mouse button
+    cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
+    cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
+    //cornerstoneTools.imageStats.enable(imageElement);
+    console.log("image loaded");
+    });
 
     }
 
@@ -78,7 +83,7 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
     // document.body.appendChild(jpgImg);
     // }
 
-console.log("Page Loaded");
+    console.log("Page Loaded");
 
 </script>
 

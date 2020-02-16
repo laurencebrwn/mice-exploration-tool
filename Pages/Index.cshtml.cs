@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
+
+
 namespace helloWorld.Pages
 {
     public class IndexModel : PageModel
@@ -21,5 +23,7 @@ namespace helloWorld.Pages
         {
 
         }
+
+        
     }
 }

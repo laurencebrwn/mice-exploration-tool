@@ -53,7 +53,7 @@ insert into `mice` (`patient_id`,`patient_sex`,`patient_gene`,`phenotyping_cente
 ('FF123456789','F','Rab15','WTSI'),
 ('GG123456789','F','Rab18','ICS'),
 ('HH123456789','F','Rab18','ICS'),
-('JJ123456789','M','Rab18','WTSI');
+('JJ123456789','F','Rab18','WTSI');
 
 --
 -- Add Items to url table

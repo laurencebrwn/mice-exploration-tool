@@ -51,6 +51,7 @@ namespace helloWorld.Pages
             MySqlConnection(cmdText);
 
             return Page();
+            //return Redirect("Index"); //Directs to a new page where the result can be shown
         }
 
         //show only ICS Centre
@@ -59,7 +60,7 @@ namespace helloWorld.Pages
 
             string cmdText = @"
                 SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
+                (SELECT patient_id FROM mice WHERE phenotyping_center = 'ICS');";
 
             MySqlConnection(cmdText);
 
@@ -72,7 +73,7 @@ namespace helloWorld.Pages
 
             string cmdText = @"
                 SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
+                (SELECT patient_id FROM mice WHERE patient_gene = 'Rab15');";
 
             MySqlConnection(cmdText);
 
@@ -145,6 +146,7 @@ namespace helloWorld.Pages
             }
 
         }
+
     }
 
 }

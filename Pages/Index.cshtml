@@ -46,51 +46,60 @@
 
     <!-- // Image slideshow section -->
 
-<Section class="images">	
+<Section class="images">
 
-<div id="images-background"><img src="assets/imagesBackground.jpg" alt="map" style="width:100vw; height:510px;"></div>
+        <div id="images-background"><img src="assets/imagesBackground.jpg" alt="map" style="width:100vw; height:510px;"></div>
 
-<div class="container">
+        <div class="container">
 
-    <div id="dicomImage" style="width:450px;height:450px;top:335px;left:53vw; position:absolute"></div>
-
-        <!-- // dicom data metadata tags -->
-        <div class="dicomData">
-            <div id="dicomData">
-                <span>STUDY DETAILS:</span><br>
-                <span>Transfer Syntax: </span><span id="transferSyntax"></span><br>
-                <span>SOP Class: </span><span id="sopClass"></span><br>
-                <span>Study Instance UID: </span><span id="studyInstanceUID"></span><br>
-                <span>Image ID: </span><span id="imageID"></span><br> 
-                <span>Study Date: </span><span id="studyDate"></span><br>
-                <span>Series Date: </span><span id="seriesDate"></span><br>
-                <span>Context Date: </span><span id="contextDate"></span><br>
-                <span>Study Time: </span><span id="studyTime"></span><br>
-                <span>Series Time: </span><span id="seriesTime"></span><br>
-                <span>Context Time: </span><span id="contextTime"></span><br><br>
-
-                <span>EQUIPMENT DETAILS:</span><br>
-                <span>Manufacturer: </span><span id="manufacturer"></span><br>
-                <span>Manufacturer Model: </span><span id="manufacturerModel"></span><br>
-                <span>Station Name: </span><span id="stationName"></span><br>
-                <span>Device SN: </span><span id="deviceSN"></span><br>
-                <span>Software Version: </span><span id="softwareVersion"></span><br>
-                <span>Date of calibration: </span><span id="DateOfCalibration"></span><br>
-                <span>Detector Manufacturer: </span><span id="detectorManufacturer"></span><br>
-                <span>Detector Type: </span><span id="detectorType"></span><br>
-                <span>Dectector Model: </span><span id="detectorModel"></span><br><br>
-
-                <span>PATIENT DETAILS:</span><br>     
-                <span>Patient Name: </span><span id="patientName"></span><br>
-                <span>Patient ID: </span><span id="patientID"></span><br>
-                <span>Patient DOB: </span><span id="patientDOB"></span><br>
-                <span>Patient Sex: </span><span id="patientSex"></span><br>
-
+            <!-- // Buttons to trigger function on asp-page handlers-->
+            <div>
+                <form method="POST">
+                    <button type="submit" class="btn btn-success" asp-page="/dicomImageToGrid" asp-page-handler="Females">Females</button>
+                </form>
             </div>
-        </div> 
 
-</div>
-    
+
+
+            <div id="dicomImage" style="width:450px;height:450px;top:335px;left:53vw; position:absolute"></div>
+
+            <!-- // dicom data metadata tags -->
+            <div class="dicomData">
+                <div id="dicomData">
+                    <span>STUDY DETAILS:</span><br>
+                    <span>Transfer Syntax: </span><span id="transferSyntax"></span><br>
+                    <span>SOP Class: </span><span id="sopClass"></span><br>
+                    <span>Study Instance UID: </span><span id="studyInstanceUID"></span><br>
+                    <span>Image ID: </span><span id="imageID"></span><br>
+                    <span>Study Date: </span><span id="studyDate"></span><br>
+                    <span>Series Date: </span><span id="seriesDate"></span><br>
+                    <span>Context Date: </span><span id="contextDate"></span><br>
+                    <span>Study Time: </span><span id="studyTime"></span><br>
+                    <span>Series Time: </span><span id="seriesTime"></span><br>
+                    <span>Context Time: </span><span id="contextTime"></span><br><br>
+
+                    <span>EQUIPMENT DETAILS:</span><br>
+                    <span>Manufacturer: </span><span id="manufacturer"></span><br>
+                    <span>Manufacturer Model: </span><span id="manufacturerModel"></span><br>
+                    <span>Station Name: </span><span id="stationName"></span><br>
+                    <span>Device SN: </span><span id="deviceSN"></span><br>
+                    <span>Software Version: </span><span id="softwareVersion"></span><br>
+                    <span>Date of calibration: </span><span id="DateOfCalibration"></span><br>
+                    <span>Detector Manufacturer: </span><span id="detectorManufacturer"></span><br>
+                    <span>Detector Type: </span><span id="detectorType"></span><br>
+                    <span>Dectector Model: </span><span id="detectorModel"></span><br><br>
+
+                    <span>PATIENT DETAILS:</span><br>
+                    <span>Patient Name: </span><span id="patientName"></span><br>
+                    <span>Patient ID: </span><span id="patientID"></span><br>
+                    <span>Patient DOB: </span><span id="patientDOB"></span><br>
+                    <span>Patient Sex: </span><span id="patientSex"></span><br>
+
+                </div>
+            </div>
+
+        </div>
+
 </Section>
 </body>
 
@@ -121,7 +130,7 @@
 <!-- javascript to show dicom image -->
 
 <script>
-cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
     const element = document.getElementById('dicomImage');
     cornerstone.enable(element);
@@ -148,8 +157,8 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
             //Array of image addresses. Add more image address ot have more images in the slideshow
             var ImageArray = [
-            'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm', 
-            'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm', 
+            'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm',
+            'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm',
             'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm',
             'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm',
             'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm',
@@ -159,18 +168,18 @@ cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
             //shows a random image every X interval
             setInterval(function()
-            { 
+            {
                 var rand = ImageArray[Math.floor(Math.random() * ImageArray.length)];
                 let imageId = "wadouri:" + rand;
                 //console.log("Image: ", imageId);
                 loadAndViewImage(imageId)
-            }, 3000); 
+            }, 3000);
 
-            //// Image url test function    
+            //// Image url test function
             //let imageId = "wadouri:" + url8;
             // console.log(imageId);
             //loadAndViewImage(imageId)
-            
+
         }
         let loaded = false;
     function loadAndViewImage(imageId) {

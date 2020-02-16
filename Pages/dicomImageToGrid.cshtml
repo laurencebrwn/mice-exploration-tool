@@ -19,6 +19,10 @@
         <form method="POST">
             <button type="submit" class="btn btn-success" asp-page-handler="Females">Females</button>
             <button type="submit" class="btn btn-primary" asp-page-handler="Males">Males</button>
+
+            <button type="submit" class="btn btn-info" asp-page-handler="Centre">Centre</button>
+            <button type="submit" class="btn btn-warning" asp-page-handler="Gene">Gene</button>
+
             <button type="submit" class="btn btn-danger" asp-page-handler="viewAll">View All</button>
         </form>
 
@@ -50,27 +54,27 @@
 
     //Forloop through image set and appends image to end of previous image
     for (var i = 0; i < ImageArray.length; i++) {
-    var imageNum = ImageArray[i];
-    let imageId = "wadouri:" + imageNum;
+        var imageNum = ImageArray[i];
+        let imageId = "wadouri:" + imageNum;
 
-    //Create new div element for each DICOM image and insert it befor the dicomImage div in body
-    const imageDiv = document.createElement("div");
-    imageDiv.style = "width:25w; height:25vw; border: thin solid white; display:inline-block";
-    var currentDiv = document.getElementById("dicomImage");
-    currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
-    cornerstone.enable(imageDiv);
+        //Create new div element for each DICOM image and insert it befor the dicomImage div in body
+        const imageDiv = document.createElement("div");
+        imageDiv.style = "width:25w; height:25vw; border: thin solid white; display:inline-block";
+        var currentDiv = document.getElementById("dicomImage");
+        currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
+        cornerstone.enable(imageDiv);
 
-    //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
-    cornerstone.loadImage(imageId).then(function(image) {
-    cornerstone.displayImage(imageDiv, image);
-    cornerstoneTools.mouseInput.enable(imageDiv);
-    cornerstoneTools.mouseWheelInput.enable(imageDiv);
-    cornerstoneTools.wwwc.activate(imageDiv, 1); // ww/wc is the default tool for left mouse button
-    cornerstoneTools.pan.activate(imageDiv, 2); // pan is the default tool for middle mouse button
-    cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
-    cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
-    //cornerstoneTools.imageStats.enable(imageElement);
-    console.log("image loaded");
+        //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
+        cornerstone.loadImage(imageId).then(function(image) {
+        cornerstone.displayImage(imageDiv, image);
+        cornerstoneTools.mouseInput.enable(imageDiv);
+        cornerstoneTools.mouseWheelInput.enable(imageDiv);
+        cornerstoneTools.wwwc.activate(imageDiv, 1); // ww/wc is the default tool for left mouse button
+        cornerstoneTools.pan.activate(imageDiv, 2); // pan is the default tool for middle mouse button
+        cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
+        cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
+        //cornerstoneTools.imageStats.enable(imageElement);
+        console.log("image loaded");
     });
 
     }

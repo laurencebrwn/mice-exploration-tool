@@ -53,6 +53,33 @@ namespace helloWorld.Pages
             return Page();
         }
 
+        //show only ICS Centre
+        public IActionResult OnPostCentre()
+        {
+
+            string cmdText = @"
+                SELECT urlString FROM url WHERE patient_id IN 
+                (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
+
+            MySqlConnection(cmdText);
+
+            return Page();
+        }
+
+        //show only Gene RAB15
+        public IActionResult OnPostGene()
+        {
+
+            string cmdText = @"
+                SELECT urlString FROM url WHERE patient_id IN 
+                (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
+
+            MySqlConnection(cmdText);
+
+            return Page();
+        }
+
+
         //show all images in MySql database
         public IActionResult OnPostViewAll()
         {

@@ -7,7 +7,9 @@
             <Node name="helloWorld" expanded="True">
               <Node name="Pages" expanded="True">
                 <Node name="base64ToImage.cshtml" expanded="True" />
-                <Node name="dicomImageToGrid.cshtml" expanded="True" selected="True" />
+                <Node name="dicomImageToGrid.cshtml" expanded="True">
+                  <Node name="dicomImageToGrid.cshtml.cs" selected="True" />
+                </Node>
                 <Node name="Index.cshtml" expanded="True" />
               </Node>
               <Node name="Test MySql Database Schema" expanded="True" />

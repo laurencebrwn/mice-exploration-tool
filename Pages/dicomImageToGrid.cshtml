@@ -52,10 +52,11 @@
 
     //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
     var ImageArray = @Html.Raw(Json.Serialize(ViewData["DICOMArrayList"]));
-    console.log(ImageArray[1]);
-    console.log(ImageArray.length);
+    //console.log(ImageArray[1]);
+    //console.log(ImageArray.length);
 
     //Forloop through image set and appends image to end of previous image
+
     for (var i = 0; i < ImageArray.length; i++) {
         var imageNum = ImageArray[i];
         let imageId = "wadouri:" + imageNum;
@@ -77,8 +78,8 @@
         cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
         cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
         //cornerstoneTools.imageStats.enable(imageElement);
-        console.log("image loaded");
-    });
+        console.log("images of", ImageArray.length, "loaded");
+        });
 
     }
 
@@ -90,7 +91,7 @@
     // document.body.appendChild(jpgImg);
     // }
 
-    console.log("Page Loaded :)");
+    //console.log("Page Loaded :)");
 
 </script>
 

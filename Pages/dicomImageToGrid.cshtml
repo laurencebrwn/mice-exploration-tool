@@ -58,6 +58,7 @@
     //Forloop through image set and appends image to end of previous image
 
     for (var i = 0; i < ImageArray.length; i++) {
+        console.log("Images", i+1, "of", ImageArray.length, "loaded");
         var imageNum = ImageArray[i];
         let imageId = "wadouri:" + imageNum;
 
@@ -78,7 +79,7 @@
         cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
         cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
         //cornerstoneTools.imageStats.enable(imageElement);
-        console.log("images of", ImageArray.length, "loaded");
+        //console.log("Images", i, "of", ImageArray.length, "loaded");
         });
 
     }

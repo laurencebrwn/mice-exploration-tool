@@ -52,8 +52,15 @@ insert into `mice` (`patient_id`,`patient_sex`,`patient_gene`,`phenotyping_cente
 ('EE123456789','M','Rab15','TCP'),
 ('FF123456789','F','Rab15','WTSI'),
 ('GG123456789','F','Rab18','ICS'),
-('HH123456789','F','Rab18','ICS'),
-('JJ123456789','F','Rab18','WTSI');
+('HH123456789','F','Rab15','WTSI'),
+('JJ123456789','F','Rab15','TCP'),
+('KK123456789','M','Rab15','ICS'),
+('LL123456789','M','Rab15','ICS'),
+('MM123456789','M','Rab15','TCP'),
+('NN123456789','F','Rab15','WTSI'),
+('PP123456789','F','Rab18','ICS'),
+('RR123456789','F','Rab18','ICS'),
+('SS123456789','F','Rab18','WTSI');
 
 --
 -- Add Items to url table
@@ -68,7 +75,14 @@ insert into `url` (`patient_id`,`parameter_name`,`urlString`) values
 ('FF123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm'),
 ('GG123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm'),
 ('HH123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm'),
-('JJ123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse9.dcm');
+('JJ123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse9.dcm'),
+('KK123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse10.dcm'),
+('LL123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse11.dcm'),
+('MM123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse12.dcm'),
+('NN123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse13.dcm'),
+('PP123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse14.dcm'),
+('RR123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse15.dcm'),
+('SS123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse16.dcm');
 
 --
 -- END

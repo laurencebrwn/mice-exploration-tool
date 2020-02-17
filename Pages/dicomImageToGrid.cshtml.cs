@@ -111,18 +111,13 @@ namespace helloWorld.Pages
                 conn.Open(); //opens the database connection
                 Console.WriteLine("Localhost MySQL Database Connected"); //If the database opens it presents this messsge. 
 
-                //Assigns a query to cmdText which will be passed to the MySql database
-                //Returns URLs of all female mice where the patient_id's match (because data is in 2 tables)
-                //string cmdText = @"
-                //SELECT urlString FROM MICE.url;";
-
                 //Creates object and passes all returned values to it
                 MySqlCommand cmd = new MySqlCommand(cmdText, conn);
                 reader = cmd.ExecuteReader();
 
                 //Loops through the returned values and writes them to an array that will be passed to client side
                 int i = 0;
-                string[] arrayURL = new string[25];
+                string[] arrayURL = new string[16];
                 while (reader.Read())
                 {
                     //Console.WriteLine(reader.GetString(0));

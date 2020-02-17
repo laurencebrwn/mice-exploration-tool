@@ -6,7 +6,7 @@ body
 {
 	margin:0px;
 	padding:0px;
-
+	background: rgb(255, 255, 255);
 	z-index: -999;
 }
 
@@ -104,7 +104,7 @@ a:hover:after, a:visited:hover:after {
 ------------------------------------*/
 
 .images{
-	background-color: none;
+
 	width: 100vw;
 	height:500px;
 	margin: 0px;

@@ -34,6 +34,16 @@
             <button type="submit" class="btn btn-warning" asp-page-handler="Gene">Gene (Rab15)</button>
             <button type="submit" class="btn btn-info" asp-page-handler="Centre">Centre (ICS)</button>
         </form>
+
+    </div>
+
+    <div class="header">
+        <form method="POST">
+            <label for="tagName"><font color="black" ; size="4">QUERY:</font></label>
+            <input type="text" id="tagName" placeholder="Centre: WTSI or ICS" name="centre">
+            <input type="text" id="tagName" placeholder="Sex: M or F" name="sex">
+            <input type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Name">
+        </form>
     </div>
 
     <div class="images">

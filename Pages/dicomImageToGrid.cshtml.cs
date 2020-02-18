@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Web;
 using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace helloWorld.Pages
 {
@@ -25,6 +26,7 @@ namespace helloWorld.Pages
 
             //Shows all images in the databse as a defult GET request
             OnPostViewAll();
+
         }
 
         //show only female samples
@@ -115,17 +117,17 @@ namespace helloWorld.Pages
                 MySqlCommand cmd = new MySqlCommand(cmdText, conn);
                 reader = cmd.ExecuteReader();
 
-                //Loops through the returned values and writes them to an array that will be passed to client side
-                int i = 0;
-                string[] arrayURL = new string[16];
+                //Loops through the returned values and writes them to a list that will be passed to client side
+                List<string> urlList = new List<string>();
+
                 while (reader.Read())
                 {
                     //Console.WriteLine(reader.GetString(0));
-                    arrayURL[i] = reader.GetString(0);
-                    i++;
+                    urlList.Add(reader.GetString(0));
+                    
                 }
 
-                ViewData["DICOMArrayList"] = arrayURL;
+                ViewData["DICOMArrayList"] = urlList;
 
             }
             catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
@@ -141,6 +143,19 @@ namespace helloWorld.Pages
             }
 
         }
+
+        //display user selected query images
+        public IActionResult OnPostName(string centre, string sex)
+        {
+
+            string cmdText = "SELECT urlString FROM url WHERE patient_id IN(SELECT patient_id FROM mice WHERE phenotyping_center = '" + centre + "' AND patient_sex = '" + sex + "');";
+
+            MySqlConnection(cmdText);
+
+            return Page();
+
+        }
+
 
     }
 

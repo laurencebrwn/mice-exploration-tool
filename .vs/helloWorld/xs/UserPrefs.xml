@@ -4,7 +4,7 @@
       <File FileName="Pages/base64ToImage.cshtml" Line="21" Column="9" />
       <File FileName="Pages/base64ToImage.cshtml.cs" Line="1" Column="1" />
       <File FileName="Pages/dicomImageToGrid.cshtml" Line="45" Column="108" />
-      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="55" Column="27" />
+      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="12" Column="1" />
       <File FileName="Pages/Index.cshtml" Line="6" Column="1" />
       <File FileName="Pages/Index.cshtml.cs" Line="1" Column="1" />
       <File FileName="wwwroot/css/dicomImageToGrid.css" Line="12" Column="1" />

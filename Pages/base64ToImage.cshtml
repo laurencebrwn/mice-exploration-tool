@@ -2,8 +2,14 @@
 @model base64ToImageModel
 @{
     //ViewData["Title"] = "base64ToImage";
-
 }
+
+@functions
+{
+
+    @base64ToImageModel.Button();
+}
+
 
 <!DOCTYPE html>
 <html>
@@ -18,7 +24,7 @@
     <script src="js/cornerstoneTools.min.js"></script>
     <script src="js/dicomParser.min.js"></script>
     <script src="js/cornerstoneWADOImageLoader.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
 </head>
@@ -27,23 +33,31 @@
 
     <div id="header">Image taken from a URL, converted to Base64 and then converted back to an Image.</div>
 
+
+    <!--Button samples to trigger call to another page from code behind -->
     <form method="POST">
-        <button type="submit" class="btn btn-dark" asp-page="/Index">Home</button>
+        <button type="submit" class="btn btn-dark" asp-page="/Index">Home1</button>
+        <button class="btn btn-info" asp-page-handler="Button">Home2</button>
+        <input asp-for="Message" /> <input type="submit" class="btn btn-warning" />
+    </form>
+
+
+    <!--Test IMageMap property -->
+    <img src="https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg" alt="mouse" usemap="#mouseMap" width="400" height="400">
+
+    <form method="POST">
+        <map name="mouseMap">
+            <area shape="rect" id="btnGet" coords="50,50,150,150" href="#" alt="body" />
+            <area shape="rect" coords="250,250,350,350" href="#" alt="paw" />
+        </map>
     </form>
 
 
 
-    <img src="https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg" alt="Workplace" usemap="#workmap" width="400" height="379">
-
-   
-        <map name="workmap">
-            <area shape="rect" id="btnGet" coords="34,44,270,350" href="#" alt="body"/>
-            <area shape="circle" coords="337,300,44" href="#" alt="paw"/>
-        </map>
 
 
+    <!--Div that DICOM images are dynamically appended to to show as a grid -->
     <div class="images">
-        <!-- Images are placed above this Div to create the grid -->
         <div id="dicomImage"></div>
     </div>
 
@@ -53,12 +67,44 @@
 
 </html>
 
+
+
+
 <!-- javascript to convert base64 to jpg and jpeg to base64 -->
 
 <script>
+
+    //Look for image and note click on its cor-ordinates
+    $(document).ready(function () {
+        $("img").on("click", function (event) {
+            var x = event.pageX - this.offsetLeft;
+            var y = event.pageY - this.offsetTop;
+
+
+
+            $.ajax
+                ({
+                    type: "POST",
+                    url: "dicomImageToGrid.aspx/Males",
+                    dataType: "text",
+                    success: function (result) {
+                        alert(result);
+                    },
+                    error: function (status, ex) {
+                        alert("Error Code: Status: " + status + " Ex: " + ex);
+                    }
+                });
+
+
+            console.log("X Coordinate: " + x + " Y Coordinate: " + y);
+        });
+    });
+
+
+
 // >>>>>>> Part A: Convert image to Base64
 
-    var imageURL = 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg'
+    //var imageURL = 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg'
 
     //The funtion with image link to translate to Base64
     toDataURL(imageURL, function (dataUrl) {
@@ -70,8 +116,8 @@
 
         //console.log(dataUrl);
         image.src = dataUrl;
-        image.style = "width:400px;height:379px;display:inline-block";
-        image.usemap = "#workmap";
+        image.style = "width:400px;height:400px;display:inline-block";
+        image.usemap = "#mouseMap";
         document.body.appendChild(image);
         console.log('base64 image loaded');
     })
@@ -93,9 +139,12 @@
         httpRequest.send();
     }
 
+
+    //Cornserstone Library to present DICOM images in grid
     cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
     //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
+
     var ImageArray = @Html.Raw(Json.Serialize(ViewData["DICOMArrayList"]));
     //console.log(ImageArray[1]);
     //console.log(ImageArray.length);

@@ -17,9 +17,37 @@ namespace helloWorld.Pages
             _logger = logger;
         }
 
+
+        public string Message
+        {
+            get;
+            set;
+        }
+
+
         public void OnGet()
         {
-
+            Message = "Enter your message here";
         }
+
+        public void OnPost()
+        {
+            Message = Request.Form[nameof(Message)];
+        }
+
+
+        public IActionResult OnPostButton()
+        {
+            return RedirectToPage("Index");
+        }
+
+        public IActionResult OnPostMouseClick()
+        {
+            return RedirectToPage("Index");
+        }
+
+
+
+
     }
 }

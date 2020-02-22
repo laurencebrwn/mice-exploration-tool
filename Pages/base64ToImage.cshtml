@@ -2,7 +2,9 @@
 @model base64ToImageModel
 @{
     //ViewData["Title"] = "base64ToImage";
+
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,43 +17,50 @@
     <script src="js/cornerstoneMath.min.js"></script>
     <script src="js/cornerstoneTools.min.js"></script>
     <script src="js/dicomParser.min.js"></script>
-    <script src="js/cornerstoneWADOImageLoader.js"></script>    
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
-        
-        
+    <script src="js/cornerstoneWADOImageLoader.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
 </head>
 
 <body>
- 
+
     <div id="header">Image taken from a URL, converted to Base64 and then converted back to an Image.</div>
-    
+
     <form method="POST">
         <button type="submit" class="btn btn-dark" asp-page="/Index">Home</button>
     </form>
-        
-    <img src="https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg" alt="Workplace" usemap="#workmap" width="400" height="379">    
-        
-    <form method="POST">
+
+
+
+
+
+
+
+    <img src="https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg" alt="Workplace" usemap="#workmap" width="400" height="379">
+
+   
         <map name="workmap">
-          <area shape="rect" id="btnGet" coords="34,44,270,350" alt="paw" onclick="myFunction1()">
-          <area shape="circle" coords="337,300,44" alt="body" onclick="myFunction2()">
+            <area shape="rect" id="btnGet" coords="34,44,270,350" href="#" alt="body"/>
+            <area shape="circle" coords="337,300,44" href="#" alt="paw"/>
         </map>
-    </form>
-        
+
+
     <div class="images">
         <!-- Images are placed above this Div to create the grid -->
         <div id="dicomImage"></div>
-    </div>    
-        
-    
-        
+    </div>
+
+
+
 </body>
 
 </html>
 
 <!-- javascript to convert base64 to jpg and jpeg to base64 -->
 
-<script>// >>>>>>> Part A: Convert image to Base64
+<script>
+// >>>>>>> Part A: Convert image to Base64
 
     var imageURL = 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg'
 
@@ -87,7 +96,7 @@
         httpRequest.responseType = 'blob';
         httpRequest.send();
     }
-    
+
     cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
     //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
@@ -123,27 +132,12 @@
         });
 
     }
-    
-    $(function () {
-            $("#btnGet").click(MyFunction1 () {
-                $.ajax({
-                    type: "POST",
-                    url: "/dicomImageToGrid/Females",
-                    data: '{name: "' + $("#txtName").val() + '" }',
-                    success: function (response) {
-                        alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-            });
-        });
-    
-    
+
+
+
+
+
+
     // //Forloop through jpg image set in assets folder and appends image to end of previous image
     // for (var i = 0; i < 3; i++) {
     // var jpgImg = document.createElement("img");
@@ -153,7 +147,6 @@
     // }
 
     //console.log("Page Loaded :)");
-
 
 </script>
 

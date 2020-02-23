@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
+
 namespace helloWorld.Pages
 {
+    [ValidateAntiForgeryToken]
     public class base64ToImageModel : PageModel
     {
         private readonly ILogger<base64ToImageModel> _logger;
@@ -33,11 +35,17 @@ namespace helloWorld.Pages
         public void OnPost()
         {
             Message = Request.Form[nameof(Message)];
+
+
         }
 
 
+
+
+        
         public IActionResult OnPostButton()
         {
+            Message = "Enter your message here";
             return RedirectToPage("Index");
         }
 
@@ -46,7 +54,10 @@ namespace helloWorld.Pages
             return RedirectToPage("Index");
         }
 
-
+        public IActionResult btnSample_Click(object sender, EventArgs e)
+        {
+            return RedirectToPage("Index");
+        }
 
 
     }

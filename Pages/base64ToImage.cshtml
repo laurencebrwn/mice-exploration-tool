@@ -7,7 +7,6 @@
 @functions
 {
 
-    @base64ToImageModel.Button();
 }
 
 
@@ -36,15 +35,17 @@
 
     <!--Button samples to trigger call to another page from code behind -->
     <form method="POST">
-        <button type="submit" class="btn btn-dark" asp-page="/Index">Home1</button>
-        <button class="btn btn-info" asp-page-handler="Button">Home2</button>
-        <input asp-for="Message" /> <input type="submit" class="btn btn-warning" />
+        <button type="submit" class="btn btn-dark" asp-page="/Index">Home</button>
+        <button class="btn btn-warning" asp-page="/dicomImageToGrid" asp-page-handler="Males">What I want to happen</button>
+        <!--<input asp-for="Message" /> <input type="submit" class="btn btn-warning" />-->
     </form>
 
 
     <!--Test IMageMap property -->
     <img src="https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg" alt="mouse" usemap="#mouseMap" width="400" height="400">
 
+
+    @Html.AntiForgeryToken()
     <form method="POST">
         <map name="mouseMap">
             <area shape="rect" id="btnGet" coords="50,50,150,150" href="#" alt="body" />
@@ -55,11 +56,10 @@
 
 
 
-
-    <!--Div that DICOM images are dynamically appended to to show as a grid -->
-    <div class="images">
-        <div id="dicomImage"></div>
-    </div>
+        <!--Div that DICOM images are dynamically appended to to show as a grid -->
+        <div class="images">
+            <div id="dicomImage"></div>
+        </div>
 
 
 
@@ -75,30 +75,42 @@
 <script>
 
     //Look for image and note click on its cor-ordinates
+
     $(document).ready(function () {
         $("img").on("click", function (event) {
-            var x = event.pageX - this.offsetLeft;
-            var y = event.pageY - this.offsetTop;
+
+        var x = event.pageX - this.offsetLeft;
+        var y = event.pageY - this.offsetTop;
+
+        $.ajax
+            ({
+                type: "POST",
+                url: "/base64ToImage?handler=Button",
+
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+
+                //dataType: "text",
+                //success: function (result) {
+                //    alert(result);
+                //},
+                error: function (status, ex) {
+                    console.log("Error Code: Status: " + status + " Ex: " + ex);
+                }
+            });
 
 
+        console.log("X Coordinate: " + x + " Y Coordinate: " + y);
 
-            $.ajax
-                ({
-                    type: "POST",
-                    url: "dicomImageToGrid.aspx/Males",
-                    dataType: "text",
-                    success: function (result) {
-                        alert(result);
-                    },
-                    error: function (status, ex) {
-                        alert("Error Code: Status: " + status + " Ex: " + ex);
-                    }
-                });
-
-
-            console.log("X Coordinate: " + x + " Y Coordinate: " + y);
-        });
     });
+    });
+
+
+
+
+
 
 
 

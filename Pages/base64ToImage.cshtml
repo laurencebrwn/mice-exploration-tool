@@ -33,13 +33,13 @@
     <!--Test IMageMap property -->
     <img src="https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg" alt="mouse" usemap="#mouseMap" width="400" height="400">
     
+    <map name="mouseMap">
+        <area shape="rect" id="btnGet" coords="50,50,150,150" href="#" onclick="myform1.submit()" alt="paw" />
+        <area shape="rect" coords="250,250,350,350" href="#" onclick="myform2.submit()" alt="body" />
+    </map>
+        
     @Html.AntiForgeryToken()
-    <form name="myform1" method="POST"  asp-page="/dicomImageToGrid" asp-page-handler="Males">
-        <map name="mouseMap">
-            <area shape="rect" id="btnGet" coords="50,50,150,150" href="#" onclick="myform1.submit()" alt="paw" />
-            <area shape="rect" coords="250,250,350,350" href="#" onclick="myform2.submit()" alt="body" />
-        </map>
-    </form>
+    <form name="myform1" method="POST"  asp-page="/dicomImageToGrid" asp-page-handler="Males"></form>
 
     @Html.AntiForgeryToken()
     <form name="myform2" method="POST" asp-page="/dicomImageToGrid" asp-page-handler="Females"></form>

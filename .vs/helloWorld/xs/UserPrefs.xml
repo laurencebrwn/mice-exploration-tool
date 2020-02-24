@@ -10,9 +10,7 @@
           <Node name="helloWorld" expanded="True">
             <Node name="helloWorld" expanded="True">
               <Node name="Pages" expanded="True">
-                <Node name="base64ToImage.cshtml" expanded="True" selected="True" />
-                <Node name="dicomImageToGrid.cshtml" expanded="True" />
-                <Node name="Index.cshtml" expanded="True" />
+                <Node name="base64ToImage.cshtml" selected="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
                 <Node name="css" expanded="True" />
@@ -23,7 +21,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.helloWorld PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.ItemProperties.helloWorld PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

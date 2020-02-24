@@ -26,7 +26,6 @@ namespace helloWorld.Pages
             set;
         }
 
-
         public void OnGet()
         {
             Message = "Enter your message here";
@@ -35,14 +34,11 @@ namespace helloWorld.Pages
         public void OnPost()
         {
             Message = Request.Form[nameof(Message)];
-
-
         }
 
 
 
 
-        
         public IActionResult OnPostButton()
         {
             Message = "Enter your message here";

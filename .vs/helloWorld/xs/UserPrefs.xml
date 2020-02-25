@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{D14EB2D7-62E3-4FF9-BFC7-E134E71D0AA1}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Pages/base64ToImage.cshtml">
     <Files>
-      <File FileName="Pages/base64ToImage.cshtml" Line="52" Column="20" />
+      <File FileName="Pages/base64ToImage.cshtml" Line="32" Column="25" />
       <File FileName="Pages/base64ToImage.cshtml.cs" Line="59" Column="1" />
       <File FileName="wwwroot/css/base64ToImage.css" Line="24" Column="1" />
-      <File FileName="Pages/dicomImageToGrid.cshtml" Line="25" Column="1" />
-      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="12" Column="1" />
-      <File FileName="wwwroot/css/dicomImageToGrid.css" Line="1" Column="1" />
-      <File FileName="Test MySql Database Schema/miceSchema.sql" Line="47" Column="64" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" />
+      <File FileName="Pages/dicomImageToGrid.cshtml.cs" />
+      <File FileName="wwwroot/css/dicomImageToGrid.css" />
+      <File FileName="Test MySql Database Schema/miceSchema.sql" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,7 +15,7 @@
           <Node name="helloWorld" expanded="True">
             <Node name="helloWorld" expanded="True">
               <Node name="Pages" expanded="True">
-                <Node name="base64ToImage.cshtml" selected="True" />
+                <Node name="base64ToImage.cshtml" expanded="True" selected="True" />
               </Node>
               <Node name="Test MySql Database Schema" expanded="True" />
               <Node name="wwwroot" expanded="True">
@@ -27,7 +27,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.helloWorld PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.helloWorld PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

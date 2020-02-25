@@ -12,37 +12,50 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Base64 Image</title>
     <link rel="stylesheet" href="css/base64ToImage.css">
+    <!-- javascript tags -->
+    <script src="https://unpkg.com/cornerstone-wado-image-loader@3.0.6/dist/cornerstoneWADOImageLoader.min.js"></script>
+    <script src="js/cornerstone.min.js"></script>
+    <script src="js/cornerstoneMath.min.js"></script>
+    <script src="js/cornerstoneTools.min.js"></script>
+    <script src="js/dicomParser.min.js"></script>
+    <script src="js/cornerstoneWADOImageLoader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 
 <body>
 
-    <div id="header">Image taken from a URL, converted to Base64 and then converted back to an Image.</div>
+    <div class="header">
+        <p>Click a part of the image to show related DICOM files.</p>
 
+        <!--Button samples to trigger call to another page from code behind -->
+        <form method="POST">
+            <button class="btn btn-info" asp-page="/Index">Home</button>
+        </form>
 
-    <!--Button samples to trigger call to another page from code behind -->
-    <form method="POST">
-        <button class="btn btn-dark" asp-page="/Index">Home</button>
-        <button class="btn btn-warning" asp-page="/dicomImageToGrid" asp-page-handler="Males">What I want to happen</button>
-        <!--<input asp-for="Message" /> <input type="submit" class="btn btn-warning" />-->
-    </form>
+        <a><font color="black">Body part selected: </font></a><a id="desc"></a>
 
+    </div>
 
-    <!--Test IMageMap property -->
-    <img src="https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg" alt="mouse" usemap="#mouseMap" width="400" height="400">
-    
-    <map name="mouseMap">
-        <area shape="rect" id="btnGet" coords="50,50,150,150" href="#" onclick="myform1.submit()" alt="paw" />
-        <area shape="rect" coords="250,250,350,350" href="#" onclick="myform2.submit()" alt="body" />
-    </map>
-        
-    @Html.AntiForgeryToken()
-    <form name="myform1" method="POST"  asp-page="/dicomImageToGrid" asp-page-handler="Males"></form>
+    <div class="images">
+        <!--Test IMageMap property -->
+        <img src="https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg" usemap="#mouseMap" class="map" width="400" height="400">
+    </div>
 
-    @Html.AntiForgeryToken()
-    <form name="myform2" method="POST" asp-page="/dicomImageToGrid" asp-page-handler="Females"></form>
+    <div class="images">
+        <map name="mouseMap">
+            <area shape="rect" coords="50,50,150,150" onmouseover="writeText('Mouse Paw')" href="#" onclick="myform1.submit()" alt="paw" />
+            <area shape="rect" coords="250,250,350,350" onmouseover="writeText('Mouse Body')" href="#" onclick="myform2.submit()" alt="body" />
+        </map>
+    </div>
+
+    <form name="myform1" method="POST" asp-page="/base64ToImage" asp-page-handler="Paw"></form>
+    <form name="myform2" method="POST" asp-page="/base64ToImage" asp-page-handler="Body"></form>
+
 
 
     <!--Div that DICOM images are dynamically appended to to show as a grid -->
@@ -50,18 +63,6 @@
         <div id="dicomImage"></div>
     </div>
 
-        
-        
-        
-        
-<!-- javascript tags -->
-<script src="https://unpkg.com/cornerstone-wado-image-loader@3.0.6/dist/cornerstoneWADOImageLoader.min.js"></script>
-<script src="js/cornerstone.min.js"></script>
-<script src="js/cornerstoneMath.min.js"></script>
-<script src="js/cornerstoneTools.min.js"></script>
-<script src="js/dicomParser.min.js"></script>
-<script src="js/cornerstoneWADOImageLoader.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>        
 
 </body>
 
@@ -74,87 +75,8 @@
 
 <script>
 
-//Look for image 'img' tag and and note click of its co-ordinates
+//Cornserstone Library to present DICOM images in grid
 
-    $(document).ready(function () {
-        $("img").on("click", function (event) {
-        event.preventDefault();
-    
-        var x = event.pageX - this.offsetLeft;
-        var y = event.pageY - this.offsetTop;
-    
-        
-        //ajax to fire a POST request to trigger the handler method 'Button' in the code behind file
-        $.ajax
-            ({
-                type: "POST",
-                url: "/base64ToImage?handler=Button",
-                
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("XSRF-TOKEN",
-                        $('input:hidden[name="__RequestVerificationToken"]').val());
-                },
-
-                //dataType: "text",
-                //success: function (result) {
-                //    alert(result);
-                //},
-                error: function (status, ex) {
-                    console.log("Error Code: Status: " + status + " Ex: " + ex);
-                }
-            });
-            
-        console.log("X Coordinate: " + x + " Y Coordinate: " + y);
-
-    });
-    });
-
-
-
-
-
-
-
-
-// >>>>>>> Part A: Convert image to Base64
-
-    //var imageURL = 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg'
-
-    //The funtion with image link to translate to Base64
-    toDataURL(imageURL, function (dataUrl) {
-        //document.write('Result in string:', dataUrl)
-
-        var image = new Image();
-        //Getting the source from the span.
-        //image.src = document.getElementById('source').innerHTML;
-
-        //console.log(dataUrl);
-        image.src = dataUrl;
-        image.style = "width:400px;height:400px;display:inline-block";
-        image.usemap = "#mouseMap";
-        document.body.appendChild(image);
-        console.log('base64 image loaded');
-    })
-
-    // >>>>>>> Part B: Converts Base64 to image
-
-    //GETs image from location and converts to base64 using 'readAsDataURL' function
-    function toDataURL(url, callback) {
-        var httpRequest = new XMLHttpRequest();
-        httpRequest.onload = function () {
-            var fileReader = new FileReader();
-            fileReader.onloadend = function () {
-                callback(fileReader.result);
-            }
-            fileReader.readAsDataURL(httpRequest.response);
-        };
-        httpRequest.open('GET', url);
-        httpRequest.responseType = 'blob';
-        httpRequest.send();
-    }
-
-
-    //Cornserstone Library to present DICOM images in grid
     cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
     //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
@@ -192,10 +114,49 @@
 
     }
 
+// >>>>>>> Shows image body part text upon hover over of image
 
+    function writeText(txt) {
+        document.getElementById("desc").style.color = 'black';
+        document.getElementById("desc").innerHTML = txt;
+    }
 
+// >>>>>>> Part A: Convert image to Base64
 
+    //var imageURL = 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg'
 
+    //The funtion with image link to translate to Base64
+    toDataURL(imageURL, function (dataUrl) {
+        //document.write('Result in string:', dataUrl)
+
+        var image = new Image();
+        //Getting the source from the span.
+        //image.src = document.getElementById('source').innerHTML;
+
+        //console.log(dataUrl);
+        image.src = dataUrl;
+        image.style = "width:400px;height:400px;display:inline-block";
+        image.usemap = "#mouseMap";
+        document.body.appendChild(image);
+        console.log('base64 image loaded');
+    })
+
+    // >>>>>>> Part B: Converts Base64 to image
+
+    //GETs image from location and converts to base64 using 'readAsDataURL' function
+    function toDataURL(url, callback) {
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.onload = function () {
+            var fileReader = new FileReader();
+            fileReader.onloadend = function () {
+                callback(fileReader.result);
+            }
+            fileReader.readAsDataURL(httpRequest.response);
+        };
+        httpRequest.open('GET', url);
+        httpRequest.responseType = 'blob';
+        httpRequest.send();
+    }
 
     // //Forloop through jpg image set in assets folder and appends image to end of previous image
     // for (var i = 0; i < 3; i++) {

@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `mice` (
   `patient_id` varchar(50) NOT NULL,
   `patient_sex` varchar(50) NOT NULL,
   `patient_gene` varchar(50) NOT NULL,
+  `parameter_name` varchar(100) NOT NULL,
   `phenotyping_center` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_id`), 
   KEY `patient_id` (`patient_id`) 
@@ -32,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `mice` (
 
 CREATE TABLE IF NOT EXISTS `url` (
   `patient_id` varchar(100) NOT NULL,
-  `parameter_name` varchar(100) NOT NULL,
   `urlString` varchar(100) NOT NULL,
   PRIMARY KEY (`urlString`),
   KEY `patient_id` (`patient_id`),
@@ -44,45 +44,45 @@ CREATE TABLE IF NOT EXISTS `url` (
 -- Add Items to mice table
 -- 
 
-insert into `mice` (`patient_id`,`patient_sex`,`patient_gene`,`phenotyping_center`) values 
-('AA123456789','F','Rab15','WTSI'),
-('BB123456789','F','Rab15','TCP'),
-('CC123456789','M','Rab15','ICS'),
-('DD123456789','M','Rab15','ICS'),
-('EE123456789','M','Rab15','TCP'),
-('FF123456789','F','Rab15','WTSI'),
-('GG123456789','F','Rab18','ICS'),
-('HH123456789','F','Rab15','WTSI'),
-('JJ123456789','F','Rab15','TCP'),
-('KK123456789','M','Rab15','ICS'),
-('LL123456789','M','Rab15','ICS'),
-('MM123456789','M','Rab15','TCP'),
-('NN123456789','F','Rab15','WTSI'),
-('PP123456789','F','Rab18','ICS'),
-('RR123456789','F','Rab18','ICS'),
-('SS123456789','F','Rab18','WTSI');
+insert into `mice` (`patient_id`,`patient_sex`,`patient_gene`,`parameter_name`,`phenotyping_center`) values 
+('AA123456789','F','Rab15','body','WTSI'),
+('BB123456789','F','Rab15','head','TCP'),
+('CC123456789','M','Rab15','body','ICS'),
+('DD123456789','M','Rab15','body','ICS'),
+('EE123456789','M','Rab15','paw','TCP'),
+('FF123456789','F','Rab15','paw','WTSI'),
+('GG123456789','F','Rab18','body','ICS'),
+('HH123456789','F','Rab15','head','WTSI'),
+('JJ123456789','F','Rab15','head','TCP'),
+('KK123456789','M','Rab15','head','ICS'),
+('LL123456789','M','Rab15','body','ICS'),
+('MM123456789','M','Rab15','body','TCP'),
+('NN123456789','F','Rab15','paw','WTSI'),
+('PP123456789','F','Rab18','paw','ICS'),
+('RR123456789','F','Rab18','body','ICS'),
+('SS123456789','F','Rab18','head','WTSI');
 
 --
 -- Add Items to url table
 -- 
 
-insert into `url` (`patient_id`,`parameter_name`,`urlString`) values 
-('AA123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm'),
-('BB123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm'),
-('CC123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm'),
-('DD123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm'),
-('EE123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm'),
-('FF123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm'),
-('GG123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm'),
-('HH123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm'),
-('JJ123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse9.dcm'),
-('KK123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse10.dcm'),
-('LL123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse11.dcm'),
-('MM123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse12.dcm'),
-('NN123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse13.dcm'),
-('PP123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse14.dcm'),
-('RR123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse15.dcm'),
-('SS123456789','XRay Images Dorso Ventral','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse16.dcm');
+insert into `url` (`patient_id`,`urlString`) values 
+('AA123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm'),
+('BB123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm'),
+('CC123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm'),
+('DD123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm'),
+('EE123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm'),
+('FF123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm'),
+('GG123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm'),
+('HH123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm'),
+('JJ123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse9.dcm'),
+('KK123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse10.dcm'),
+('LL123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse11.dcm'),
+('MM123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse12.dcm'),
+('NN123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse13.dcm'),
+('PP123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse14.dcm'),
+('RR123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse15.dcm'),
+('SS123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse16.dcm');
 
 --
 -- END

@@ -50,12 +50,13 @@
         <map name="mouseMap">
             <area shape="rect" coords="50,50,150,150" onmouseover="writeText('Mouse Paw')" href="#" onclick="myform1.submit()" alt="paw" />
             <area shape="rect" coords="250,250,350,350" onmouseover="writeText('Mouse Body')" href="#" onclick="myform2.submit()" alt="body" />
+            <area shape="rect" coords="250,0,400,150" onmouseover="writeText('Mouse Head')" href="#" onclick="myform3.submit()" alt="head" />
         </map>
     </div>
 
     <form name="myform1" method="POST" asp-page="/base64ToImage" asp-page-handler="Paw"></form>
     <form name="myform2" method="POST" asp-page="/base64ToImage" asp-page-handler="Body"></form>
-
+    <form name="myform3" method="POST" asp-page="/base64ToImage" asp-page-handler="Head"></form>
 
 
     <!--Div that DICOM images are dynamically appended to to show as a grid -->

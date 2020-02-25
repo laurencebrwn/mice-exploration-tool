@@ -66,6 +66,18 @@ namespace helloWorld.Pages
             return Page();
         }
 
+        public IActionResult OnPostHead()
+        {
+
+            string cmdText = @"
+                SELECT urlString FROM url WHERE patient_id IN 
+                (SELECT patient_id FROM mice WHERE parameter_name = 'head');";
+
+            MySqlConnection(cmdText);
+
+            return Page();
+        }
+
 
         //Main functon that connects to the ySql server and returns the reuqired URLs
         public void MySqlConnection(string connection)

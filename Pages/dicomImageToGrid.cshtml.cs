@@ -95,6 +95,20 @@ namespace miceExplorationTool.Pages
             return Page();
         }
 
+
+        //display user selected query images
+        public IActionResult OnPostName(string centre, string sex)
+        {
+
+            string cmdText = "SELECT urlString FROM url WHERE patient_id IN(SELECT patient_id FROM mice WHERE phenotyping_center = '" + centre + "' AND patient_sex = '" + sex + "');";
+
+            MySqlConnection(cmdText);
+
+            return Page();
+
+        }
+
+
         //Main functon that connects to the ySql server and returns the reuqired URLs
         public void MySqlConnection(string connection)
         {
@@ -143,19 +157,6 @@ namespace miceExplorationTool.Pages
             }
 
         }
-
-        //display user selected query images
-        public IActionResult OnPostName(string centre, string sex)
-        {
-
-            string cmdText = "SELECT urlString FROM url WHERE patient_id IN(SELECT patient_id FROM mice WHERE phenotyping_center = '" + centre + "' AND patient_sex = '" + sex + "');";
-
-            MySqlConnection(cmdText);
-
-            return Page();
-
-        }
-
 
     }
 

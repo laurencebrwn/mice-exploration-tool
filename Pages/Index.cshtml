@@ -15,6 +15,15 @@
 
 <body>
 
+    <div class="header">
+        <form method="POST">
+            <label for="tagName"><font color="black" size="4">Please enter you filepath here:</font></label>
+            <input type="text" id="tagName" placeholder="Your filepath here" name="FilePath">
+            <input type="submit" class="btn btn-light" asp-page="/Index" asp-page-handler="FilePath">
+        </form>
+    </div>
+
+
     <form method="POST">
         <ul id="hexGrid">
             <li class="hex">

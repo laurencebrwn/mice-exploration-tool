@@ -4,9 +4,21 @@ using System.IO;
 using System.Collections.Generic;
 
 namespace DirectoryImportCode{
+
     class ImportDirectory{
         
         private string DirecotryPath;
+
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter the address of your directory");
+            string dirPath = Console.ReadLine();
+            ImportDirectory imp = new ImportDirectory(dirPath);
+
+
+        }
+
+
         ImportDirectory(string Directory)
         {
             this.DirecotryPath = Directory;//Gets the directory

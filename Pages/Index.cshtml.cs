@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using Newtonsoft;
 
 namespace miceExplorationTool.Pages
 {
@@ -23,16 +24,27 @@ namespace miceExplorationTool.Pages
 
         }
 
+
         //display user selected query images
-        public IActionResult OnPostFilePath(string filePath)
+        public void OnPostFilePath(string filePath)
         {
 
-            FindFiles(filePath);
+            List<Image> mice = FindFiles(filePath);
+            foreach (Image im in mice)
+            {//goes through them
+                List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
+                foreach (string path in filepaths)
+                {//goes through them
 
-            //ImportDirectory imp = new ImportDirectory(dirPath);
 
-            return Page();
+                    // ... pass the file URL (path) here to load into the database
 
+
+                    Console.WriteLine(path);//prints
+                }
+
+            }
+  
         }
 
         public List<Image> FindFiles(string DirectoryPath)
@@ -41,11 +53,12 @@ namespace miceExplorationTool.Pages
             string[] Dir = Directory.GetFiles(DirectoryPath);//Allows for copy paste filepaths using Override.
             List<string> ImagePaths = new List<string>();//creates a list of filepaths
             List<string> TagPaths = new List<string>();//creates a list of filepaths
+
             foreach (string file in Dir)
             {//goes through directory finding all files
                 string ext = Path.GetExtension(file);
-                //Console.WriteLine(file);
-                if (ext != ".txt" || ext != ".json")
+
+                if (ext == ".dcm") //If extension is a dcm file then put in ImagePaths list
                 {//sorts dependent upont file type
                     ImagePaths.Add(file);
                 }
@@ -53,8 +66,10 @@ namespace miceExplorationTool.Pages
                 {
                     TagPaths.Add(file);
                 }
+
             }
             List<Image> Images = SortImage(ImagePaths);//Sorts images of the same mouse into record.
+
             return Images;//returns a list of the Image object
 
         }
@@ -77,8 +92,21 @@ namespace miceExplorationTool.Pages
             return Images;
         }
 
-    }
+        public void GetImagesPaths(string fileURL)
+        {//this calls the find files method, and gets and object of images back - I've left it void for you.
+            List<Image> mice = FindFiles(fileURL);
+            foreach (Image im in mice)
+            {//goes through them
+                List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
+                foreach (string path in filepaths)
+                {//goes through them
+                    Console.WriteLine(filepaths);//prints
+                }
 
+            }
+        }
+
+    }
 
     //Import the users file path
 

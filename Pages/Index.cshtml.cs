@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-
-
 namespace miceExplorationTool.Pages
 {
     public class IndexModel : PageModel
@@ -23,7 +21,5 @@ namespace miceExplorationTool.Pages
         {
 
         }
-
-        
     }
 }

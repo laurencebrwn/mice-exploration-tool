@@ -39,33 +39,20 @@ namespace DirectoryImportCode{
         public List<Image> SortImage(List<string> Files){
             List<string> Filepaths = Files;
             List<Image> Images = new List<Image>();
-            while(Filepaths!=null){
+            foreach(string File in Filepaths){
                 Console.WriteLine("a");
                 List<string>files = new List<string>();
-                List<int> indexes = new List<int>();
-                indexes.Add(0);
                 Console.WriteLine("b");
-                string id = GetID(Filepaths[0]);
-                files.Add(Filepaths[0]);
-                for(int i = 1; i<Filepaths.Count; i++){
-                    Console.WriteLine("c");
-                    if(id == GetID(Filepaths[i])){
-                        indexes.Add(i);
-                        files.Add(Filepaths[i]);
-                    }
-                }
+                //string id = GetID(Filepaths[0]);
+                files.Add(File);
                 Image Mouse = new Image();
                 Mouse.AddImage(files);
                 Images.Add(Mouse);
-                for(int i = indexes.Count; i>=0; i--){
-                    Console.WriteLine("d");
-                    files.RemoveAt(indexes[i]);
-                }
                 Console.WriteLine("e");
+            }
             // for this step you need to match substring after a _ and then remove from List. 
             //4. Continue until no more matching is done, removing all the matching from list.
             //5. Repeat until list empty
-            }
             return Images;
         }
 
@@ -90,6 +77,7 @@ namespace DirectoryImportCode{
             Console.WriteLine("Please enter the address of your directory");
             string dirPath = Console.ReadLine();
             ImportDirectory imp = new ImportDirectory(dirPath);
+            Console.ReadLine();
 
 
         }

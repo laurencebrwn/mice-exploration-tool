@@ -1,7 +1,7 @@
 language: csharp
 mono: none
 dotnet: 3.0.101
-solution: helloWorld.sln
+solution: miceExplorationTool.sln
 script:
   - dotnet restore
   - dotnet test

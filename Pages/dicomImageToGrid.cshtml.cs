@@ -10,7 +10,7 @@ using System.Web;
 using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace helloWorld.Pages
+namespace miceExplorationTool.Pages
 {
     public class dicomImageToGridModel : PageModel
     {

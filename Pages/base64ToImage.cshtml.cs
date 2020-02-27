@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 
-namespace helloWorld.Pages
+namespace miceExplorationTool.Pages
 {
     [ValidateAntiForgeryToken]
     public class base64ToImageModel : PageModel

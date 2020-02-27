@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 
 
-namespace helloWorld.Pages
+namespace miceExplorationTool.Pages
 {
     public class IndexModel : PageModel
     {

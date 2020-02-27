@@ -1,28 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/helloWorld.csproj": {}
+    "E:\\Documents\\GitHub\\mice-exploration-tool\\helloWorld.csproj": {}
   },
   "projects": {
-    "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/helloWorld.csproj": {
+    "E:\\Documents\\GitHub\\mice-exploration-tool\\helloWorld.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/helloWorld.csproj",
+        "projectUniqueName": "E:\\Documents\\GitHub\\mice-exploration-tool\\helloWorld.csproj",
         "projectName": "helloWorld",
-        "projectPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/helloWorld.csproj",
-        "packagesPath": "/Users/garryclawson/.nuget/packages/",
-        "outputPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/",
+        "projectPath": "E:\\Documents\\GitHub\\mice-exploration-tool\\helloWorld.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "E:\\Documents\\GitHub\\mice-exploration-tool\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "/Users/garryclawson/.config/NuGet/NuGet.Config"
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,12 +65,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-x64",
-              "version": "[3.0.2, 3.0.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -80,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

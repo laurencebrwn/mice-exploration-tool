@@ -175,3 +175,13 @@ C:/Users/PC/Downloads/helloWorld/obj/Debug/netcoreapp3.0/helloWorld.csproj.CopyC
 /home/garry/mice-exploration-tool/obj/Debug/netcoreapp3.0/helloWorld.csproj.CopyComplete
 /home/garry/mice-exploration-tool/obj/Debug/netcoreapp3.0/helloWorld.dll
 /home/garry/mice-exploration-tool/obj/Debug/netcoreapp3.0/helloWorld.pdb
+E:\Documents\GitHub\mice-exploration-tool\obj\Debug\netcoreapp3.0\helloWorld.csprojAssemblyReference.cache
+E:\Documents\GitHub\mice-exploration-tool\obj\Debug\netcoreapp3.0\staticwebassets\helloWorld.StaticWebAssets.Manifest.cache
+E:\Documents\GitHub\mice-exploration-tool\obj\Debug\netcoreapp3.0\staticwebassets\helloWorld.StaticWebAssets.xml
+E:\Documents\GitHub\mice-exploration-tool\obj\Debug\netcoreapp3.0\helloWorld.MvcApplicationPartsAssemblyInfo.cache
+E:\Documents\GitHub\mice-exploration-tool\obj\Debug\netcoreapp3.0\helloWorld.RazorAssemblyInfo.cache
+E:\Documents\GitHub\mice-exploration-tool\obj\Debug\netcoreapp3.0\helloWorld.RazorAssemblyInfo.cs
+E:\Documents\GitHub\mice-exploration-tool\obj\Debug\netcoreapp3.0\helloWorld.AssemblyInfoInputs.cache
+E:\Documents\GitHub\mice-exploration-tool\obj\Debug\netcoreapp3.0\helloWorld.AssemblyInfo.cs
+E:\Documents\GitHub\mice-exploration-tool\obj\Debug\netcoreapp3.0\helloWorld.dll
+E:\Documents\GitHub\mice-exploration-tool\obj\Debug\netcoreapp3.0\helloWorld.pdb

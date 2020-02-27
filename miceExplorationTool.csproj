@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <StartupObject>miceExplorationTool.Program</StartupObject>
   </PropertyGroup>
 
 

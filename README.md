@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/laurencebrwn/mice-exploration-tool.svg?token=sX5CMpv3R8hjH5qNNqFT&branch=master)](https://travis-ci.com/laurencebrwn/mice-exploration-tool)
 
-# asp-mice-exploration-tool
+# mice-exploration-tool
 Visual Data Exploration tool for Musculoskeletal Phenotyping in mice.
 
 # Repo Details

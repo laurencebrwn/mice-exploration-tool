@@ -2,7 +2,8 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.cshtml">
     <Files>
       <File FileName="Pages/Index.cshtml.cs" Line="10" Column="1" />
-      <File FileName="Pages/Index.cshtml" Line="14" Column="1" />
+      <File FileName="Pages/Index.cshtml" Line="60" Column="55" />
+      <File FileName="Pages/base64ToImage.cshtml" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -10,6 +11,7 @@
           <Node name="miceExplorationTool" expanded="True">
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Pages" expanded="True">
+                <Node name="base64ToImage.cshtml" expanded="True" />
                 <Node name="dicomImageToGrid.cshtml" expanded="True" />
                 <Node name="Index.cshtml" expanded="True" selected="True" />
               </Node>

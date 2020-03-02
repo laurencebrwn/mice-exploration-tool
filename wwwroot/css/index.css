@@ -7,6 +7,13 @@ body {
     margin-top: 50px;
 }
 
+
+p {
+    display: inline;
+}
+
+
+
 .header {
     overflow: hidden;
     text-align: center;
@@ -155,3 +162,5 @@ body {
         font-size: 13px;
     }
 }
+
+

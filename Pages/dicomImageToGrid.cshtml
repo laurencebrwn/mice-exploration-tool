@@ -18,6 +18,7 @@
     <script src="js/dicomParser.min.js"></script>
     <script src="js/cornerstoneWADOImageLoader.js"></script>
 
+
 </head>
 
 <body>
@@ -61,6 +62,7 @@
     cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
     //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
+
     var ImageArray = @Html.Raw(Json.Serialize(ViewData["DICOMArrayList"]));
     //console.log(ImageArray[1]);
     //console.log(ImageArray.length);
@@ -70,6 +72,7 @@
     for (var i = 0; i < ImageArray.length; i++) {
         console.log("Images", i+1, "of", ImageArray.length, "loaded");
         var imageNum = ImageArray[i];
+
         let imageId = "wadouri:" + imageNum;
 
         //Create new div element for each DICOM image and insert it befor the dicomImage div in body
@@ -85,8 +88,8 @@
         cornerstoneTools.mouseInput.enable(imageDiv);
         cornerstoneTools.mouseWheelInput.enable(imageDiv);
         cornerstoneTools.wwwc.activate(imageDiv, 1); // ww/wc is the default tool for left mouse button
-        cornerstoneTools.pan.activate(imageDiv, 2); // pan is the default tool for middle mouse button
-        cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
+        cornerstoneTools.pan.activate(imageDiv, 4); // pan is the default tool for middle mouse button
+        cornerstoneTools.zoom.activate(imageDiv, 2); // zoom is the default tool for right mouse button
         cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
         //cornerstoneTools.imageStats.enable(imageElement);
         //console.log("Images", i, "of", ImageArray.length, "loaded");

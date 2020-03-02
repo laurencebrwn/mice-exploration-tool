@@ -1,9 +1,13 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml">
     <Files>
-      <File FileName="Pages/Index.cshtml.cs" Line="10" Column="1" />
-      <File FileName="Pages/Index.cshtml" Line="60" Column="37" />
-      <File FileName="Pages/base64ToImage.cshtml" Line="1" Column="1" />
+      <File FileName="Pages/Index.cshtml" Line="115" Column="5" />
+      <File FileName="Pages/Index.cshtml.cs" Line="28" Column="1" />
+      <File FileName="Test MySql Database Schema/miceSchema.sql" Line="51" Column="3" />
+      <File FileName="Test MySql Database Schema/miceSchemaOriginal.sql" Line="23" Column="1" />
+      <File FileName="Startup.cs" Line="38" Column="1" />
+      <File FileName="Program.cs" Line="1" Column="1" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="20" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,8 +15,11 @@
           <Node name="miceExplorationTool" expanded="True">
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Pages" expanded="True">
-                <Node name="Index.cshtml" selected="True" />
+                <Node name="base64ToImage.cshtml" expanded="True" />
+                <Node name="dicomImageToGrid.cshtml" expanded="True" selected="True" />
+                <Node name="Index.cshtml" expanded="True" />
               </Node>
+              <Node name="Test MySql Database Schema" expanded="True" />
               <Node name="wwwroot" expanded="True">
                 <Node name="css" expanded="True" />
               </Node>
@@ -22,7 +29,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.miceExplorationTool PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.miceExplorationTool PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

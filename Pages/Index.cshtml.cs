@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.IO;
 using Newtonsoft;
+using MySql.Data.MySqlClient;
+using System.Web;
 
 namespace miceExplorationTool.Pages
 {
@@ -24,27 +26,53 @@ namespace miceExplorationTool.Pages
 
         }
 
+        public string errorMessage;
 
         //display user selected query images
         public void OnPostFilePath(string filePath)
         {
 
-            List<Image> mice = FindFiles(filePath);
-            foreach (Image im in mice)
-            {//goes through them
-                List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
-                foreach (string path in filepaths)
+            //Checks if filepath exists
+            if (Directory.Exists(filePath))
+            {
+
+                List<Image> mice = FindFiles(filePath);
+                foreach (Image im in mice)
                 {//goes through them
+                    List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
+                    foreach (string path in filepaths)
+                    {//goes through them
 
 
-                    // ... pass the file URL (path) here to load into the database
+                        //adds 'file://' to start of every item in the list
+                        string newPath = "file://" + path;
 
 
-                    Console.WriteLine(path);//prints
+                        //Console.WriteLine(path);//prints
+
+                        //take last part of file path without extension
+                        var dirName = Path.GetFileNameWithoutExtension(path);
+                        Console.WriteLine(dirName);//prints file name without extension
+
+                        //create a insert funtion that uses the comparion and seraches the database and inserts the PATH value
+
+                        string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
+
+                        MySqlConnection(cmdText);
+
+                    }
+
                 }
 
             }
-  
+            else
+            {
+                //sends error to html 
+                errorMessage = "error";
+                Console.WriteLine("Folder does not exist");
+
+            };
+
         }
 
         public List<Image> FindFiles(string DirectoryPath)
@@ -105,6 +133,61 @@ namespace miceExplorationTool.Pages
 
             }
         }
+
+
+        //Main functon that connects to the ySql server and returns the reuqired URLs
+        public void MySqlConnection(string connection)
+        {
+
+            // Opens a db connection using localhost database connection.Could also have used 127.0.0.1
+            String str = @"server=localhost; database=MICE; userid=root; password=TSEGroup34;";
+            MySqlConnection conn = null;
+            MySqlDataReader reader = null;
+
+            string cmdText = connection;
+
+            try //To open localhost database and present a query
+            {
+                //Create a object with 'str' connection values passed. This uses the inbuilt library of MySql which is required
+                conn = new MySqlConnection(str);
+                conn.Open(); //opens the database connection
+                //Console.WriteLine("Localhost MySQL Database Connected"); //If the database opens it presents this messsge. 
+
+                //Creates object and passes all returned values to it
+                MySqlCommand cmd = new MySqlCommand(cmdText, conn);
+                reader = cmd.ExecuteReader();
+
+                //Loops through the returned values and writes them to a list that will be passed to client side
+                List<string> urlList = new List<string>();
+
+                while (reader.Read())
+                {
+                    //Console.WriteLine(reader.GetString(0));
+                    urlList.Add(reader.GetString(0));
+
+                }
+
+                ViewData["DICOMArrayList"] = urlList;
+
+            }
+            catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
+            {
+                Console.WriteLine(errorMessage);
+            }
+            finally //Once the try-ctach block is complete the connection is closed
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+
 
     }
 

@@ -2,6 +2,7 @@
 @model IndexModel
 @{
     //ViewData["Title"] = "Home page";
+
 }
 
 <!doctype html>
@@ -10,17 +11,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+
 </head>
 
 <body>
 
     <div class="header">
-        <form method="POST">
-            <label for="tagName"><font color="black" size="4">Please enter you filepath here:</font></label>
-            <input type="text" id="tagName" placeholder="Your filepath here" name="FilePath">
+        <form name="pathInput" method="POST" onSubmit="return required()">
+            <label for="tagName"><font color="black" size="4">Please enter you file path here:</font></label>
+            <input type="text" id="urlFilePath" placeholder="" value="" name="filePath">
             <input type="submit" class="btn btn-light" asp-page="/Index" asp-page-handler="FilePath">
         </form>
     </div>
+
+
+    @if (Model.errorMessage == "error")
+    {
+        <script>document.getElementsByName('filePath')[0].placeholder = 'Folder does not exist'</script>;
+    }
 
     <form method="POST">
         <ul id="hexGrid">
@@ -93,6 +101,10 @@
         </ul>
     </form>
 
+
+
+
+
 </body>
 
 </html>
@@ -100,6 +112,23 @@
 <script>
 
     console.log("Page Loaded :)");
+
+    //Checks that the filePath field has an entry (does not check if filePath is valid)
+
+    function required() {
+
+        var name_element = document.getElementById('urlFilePath').value;
+
+        if (name_element.length == 0)
+        {
+            alert('No folder selected. Please select a folder');
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
 </script>
 

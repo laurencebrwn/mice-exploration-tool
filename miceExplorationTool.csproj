@@ -15,4 +15,14 @@
 
 
 
+  <ItemGroup>
+    <None Remove="Pages\dumpDatabases.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Pages\dumpDatabases.cshtml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Pages\Error %28copy%29.cshtml" />
+    <Content Remove="Pages\dumpDatabases.cshtml" />
+  </ItemGroup>
 </Project>

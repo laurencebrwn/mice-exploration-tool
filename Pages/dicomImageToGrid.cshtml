@@ -18,9 +18,10 @@
     <script src="js/dicomParser.min.js"></script>
     <script src="js/cornerstoneWADOImageLoader.js"></script>
 
-    <!-- include dexie.js library -->
+    <!-- include pouchdb + pouchdb find api -->
     <script src="js/pouchdb-7.1.1.min.js"></script>
-    <script src="js/createPouchDb.js"></script>
+    <script src="js/pouchdb.find.js"></script>
+    <!--<script src="js/createPouchDb.js"></script>-->
 
 </head>
 
@@ -62,12 +63,176 @@
 <!-- javascript to show dicom image in grid -->
 <script>
 
-    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+    var ImageArray = [];
+    var db = new PouchDB("mice_database");
+    //PouchDB.debug.enable("pouchdb:allDocs");
+    db.destroy().then(
+        function () {
+            db = new PouchDB("mice_database");
+        }
+    ).then(
+        function () {
+            var promise = db.bulkDocs([
+                {
+                    _id: 'AA123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'body',
+                    phenotyping_center: 'WTSI',
+                    urlString: 'dicomImages/mouse1.dcm'
+                },
+                {
+                    _id: 'BB123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'head',
+                    phenotyping_center: 'TCP',
+                    urlString: 'dicomImages/mouse2.dcm'
+                },
+                {
+                    _id: 'CC123456789',
+                    patient_sex: 'M',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'body',
+                    phenotyping_center: 'ICS',
+                    urlString: 'dicomImages/mouse3.dcm'
+                },
+                {
+                    _id: 'DD123456789',
+                    patient_sex: 'M',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'body',
+                    phenotyping_center: 'ICS',
+                    urlString: 'dicomImages/mouse4.dcm'
+                },
+                {
+                    _id: 'EE123456789',
+                    patient_sex: 'M',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'paw',
+                    phenotyping_center: 'TCP',
+                    urlString: 'dicomImages/mouse5.dcm'
+                },
+                {
+                    _id: 'FF123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'paw',
+                    phenotyping_center: 'WTSI',
+                    urlString: 'dicomImages/mouse6.dcm'
+                },
+                {
+                    _id: 'GG123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab18',
+                    parameter_name: 'body',
+                    phenotyping_center: 'ICS',
+                    urlString: 'dicomImages/mouse7.dcm'
+                },
+                {
+                    _id: 'HH123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'head',
+                    phenotyping_center: 'WTSI',
+                    urlString: 'dicomImages/mouse8.dcm'
+                },
+                {
+                    _id: 'JJ123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'head',
+                    phenotyping_center: 'TCP',
+                    urlString: 'dicomImages/mouse9.dcm'
+                },
+                {
+                    _id: 'KK123456789',
+                    patient_sex: 'M',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'body',
+                    phenotyping_center: 'ICS',
+                    urlString: 'dicomImages/mouse10.dcm'
+                },
+                {
+                    _id: 'LL123456789',
+                    patient_sex: 'M',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'body',
+                    phenotyping_center: 'TCP',
+                    urlString: 'dicomImages/mouse11.dcm'
+                },
+                {
+                    _id: 'MM123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'body',
+                    phenotyping_center: 'TCP',
+                    urlString: 'dicomImages/mouse12.dcm'
+                },
+                {
+                    _id: 'NN123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab15',
+                    parameter_name: 'paw',
+                    phenotyping_center: 'WTSI',
+                    urlString: 'dicomImages/mouse13.dcm'
+                },
+                {
+                    _id: 'PP123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab18',
+                    parameter_name: 'paw',
+                    phenotyping_center: 'ICS',
+                    urlString: 'dicomImages/mouse14.dcm'
+                },
+                {
+                    _id: 'RR123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab18',
+                    parameter_name: 'body',
+                    phenotyping_center: 'ICS',
+                    urlString: 'dicomImages/mouse15.dcm'
+                },
+                {
+                    _id: 'SS123456789',
+                    patient_sex: 'F',
+                    patient_gene: 'Rab18',
+                    parameter_name: 'head',
+                    phenotyping_center: 'WTSI',
+                    urlString: 'dicomImages/mouse16.dcm'
+                }
+            ]);
+            return (promise);
+        }
+    ).then(
+        function () {
+            var promise = db.allDocs({ include_docs: true });
+            promise.then(
+                function (results) {
+                    console.log(results.docs);
+                    results.docs.forEach(
+                        function (doc) {
+                            console.log(doc.urlString);
+                            ImageArray.push(doc.urlString);
+                        }
+                    );
+                }
+            );
 
-    //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
-    var ImageArray = @Html.Raw(Json.Serialize(ViewData["DICOMArrayList"]));
-    //console.log(ImageArray[1]);
-    //console.log(ImageArray.length);
+            return (promise);
+        }
+    );
+
+
+
+
+
+
+    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+    //just grab all images from pouchdb for now:
+
+    console.log(ImageArray[1]);
+    console.log(ImageArray.length);
 
     //Forloop through image set and appends image to end of previous image
 

@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 
 namespace miceExplorationTool
 {
@@ -24,11 +26,17 @@ namespace miceExplorationTool
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddCors();
-
-            services.AddMvc();
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+                        
+            }));
 
             services.AddRazorPages();
+
+            services.AddMvc();
 
         }
 
@@ -36,8 +44,7 @@ namespace miceExplorationTool
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
+            app.UseCors("MyPolicy");
 
             if (env.IsDevelopment())
             {
@@ -64,6 +71,8 @@ namespace miceExplorationTool
             {
                 endpoints.MapRazorPages();
             });
+
+
         }
     }
 }

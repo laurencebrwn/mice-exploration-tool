@@ -9,9 +9,11 @@ using Newtonsoft.Json;
 using System.Web;
 using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Cors;
 
 namespace miceExplorationTool.Pages
 {
+
     public class dicomImageToGridModel : PageModel
     {
         private readonly ILogger<dicomImageToGridModel> _logger;

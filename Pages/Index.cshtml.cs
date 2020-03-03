@@ -9,9 +9,12 @@ using System.IO;
 using Newtonsoft;
 using MySql.Data.MySqlClient;
 using System.Web;
+using Microsoft.AspNetCore.Cors;
+
 
 namespace miceExplorationTool.Pages
 {
+
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
@@ -46,8 +49,6 @@ namespace miceExplorationTool.Pages
 
                         //adds 'file://' to start of every item in the list
                         string newPath = "file://" + path;
-
-
                         //Console.WriteLine(path);//prints
 
                         //take last part of file path without extension
@@ -56,9 +57,8 @@ namespace miceExplorationTool.Pages
 
                         //create a insert funtion that uses the comparion and seraches the database and inserts the PATH value
 
-                        string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
-
-                        MySqlConnection(cmdText);
+                        //string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
+                        //MySqlConnection(cmdText);
 
                     }
 

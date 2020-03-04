@@ -26,56 +26,109 @@ namespace miceExplorationTool.Pages
 
         public void OnGet()
         {
+            //FilePath();
+        }
+
+        public void OnPost()
+        {
 
         }
 
-        public string errorMessage;
+        //public string errorMessage;
 
         //display user selected query images
-        public void OnPostFilePath(string filePath)
+        public void OnPostFilePath()
         {
+
+            string filePath = "wwwroot/dicomImages";
 
             //Checks if filepath exists
             if (Directory.Exists(filePath))
             {
 
+                Console.WriteLine("\nNew Images added to database:");
+
                 List<Image> mice = FindFiles(filePath);
+
                 foreach (Image im in mice)
                 {//goes through them
                     List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
                     foreach (string path in filepaths)
                     {//goes through them
 
+                        //removes the wwwroot/ element of the file path
+                        string myfilePath = path;
+                        myfilePath = myfilePath.Replace("wwwroot/", "");
 
-                        //adds 'file://' to start of every item in the list
-                        string newPath = "file://" + path;
-                        //Console.WriteLine(path);//prints
+                        //adds 'https://' to start of every item in the list so it can be found in the folder
+                        string newPath = "https://localhost:5001/" + myfilePath;
+                        Console.WriteLine(newPath);//prints
 
-                        //take last part of file path without extension
+                        //take last part of file path without extension for search comparison
                         var dirName = Path.GetFileNameWithoutExtension(path);
-                        Console.WriteLine(dirName);//prints file name without extension
+                        //Console.WriteLine(dirName);//prints file name without extension
 
-                        //create a insert funtion that uses the comparion and seraches the database and inserts the PATH value
-
-                        //string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
-                        //MySqlConnection(cmdText);
+                        //create a insert funtion that uses the comparison and searches the database and inserts the newPath value
+                        string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
+                        MySqlConnection(cmdText);
 
                     }
 
-                }
-
             }
-            else
+            } else
             {
                 //sends error to html 
-                errorMessage = "error";
+                //errorMessage = "error";
                 Console.WriteLine("Folder does not exist");
 
             };
 
+
+
+
+
+            ////Checks if filepath exists
+            //if (Directory.Exists(filePath))
+            //{
+
+
+            //    List<Image> mice = FindFiles(filePath);
+            //    foreach (Image im in mice)
+            //    {//goes through them
+            //        List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
+            //        foreach (string path in filepaths)
+            //        {//goes through them
+
+
+            //            //adds 'https://' to start of every item in the list
+            //            //string newPath = "https://localhost:5001" + path;
+            //            //Console.WriteLine(path);//prints
+
+
+            //            //take last part of file path without extension
+            //            var dirName = Path.GetFileNameWithoutExtension(path);
+            //            Console.WriteLine(dirName);//prints file name without extension
+
+            //            //create a insert funtion that uses the comparison and searches the database and inserts the PATH value
+            //            string cmdText = "UPDATE url SET urlString = '" + path + " ' WHERE patient_id = '" + dirName + "';";
+            //            MySqlConnection(cmdText);
+
+            //        }
+
+            //    }
+
+            //}
+            //else
+            //{
+            //    //sends error to html 
+            //    //errorMessage = "error";
+            //    Console.WriteLine("Folder does not exist");
+
+            //};
+
         }
 
-        public List<Image> FindFiles(string DirectoryPath)
+            public List<Image> FindFiles(string DirectoryPath)
         {
 
             string[] Dir = Directory.GetFiles(DirectoryPath);//Allows for copy paste filepaths using Override.

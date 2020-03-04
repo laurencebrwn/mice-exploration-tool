@@ -91,8 +91,32 @@ insert into `url` (`patient_id`,`urlString`) values
 -- 
 
 
+--
+-- Add Items to url table
+-- 
 
+/*insert into `url` (`patient_id`,`urlString`) values 
+('AA123456789','https://localhost:5001/dicomImages/AA123456789.dcm'),
+('BB123456789','https://localhost:5001/dicomImages/BB123456789.dcm'),
+('CC123456789','https://localhost:5001/dicomImages/CC123456789.dcm'),
+('DD123456789','https://localhost:5001/dicomImages/DD123456789.dcm'),
+('EE123456789','https://localhost:5001/dicomImages/EE123456789.dcm'),
+('FF123456789','https://localhost:5001/dicomImages/FF123456789.dcm'),
+('GG123456789','https://localhost:5001/dicomImages/GG123456789.dcm'),
+('HH123456789','https://localhost:5001/dicomImages/HH123456789.dcm'),
+('JJ123456789','https://localhost:5001/dicomImages/JJ123456789.dcm'),
+('KK123456789','https://localhost:5001/dicomImages/KK123456789.dcm'),
+('LL123456789','https://localhost:5001/dicomImages/LL123456789.dcm'),
+('MM123456789','https://localhost:5001/dicomImages/MM123456789.dcm'),
+('NN123456789','https://localhost:5001/dicomImages/NN123456789.dcm'),
+('PP123456789','https://localhost:5001/dicomImages/PP123456789.dcm'),
+('RR123456789','https://localhost:5001/dicomImages/RR123456789.dcm'),
+('SS123456789','https://localhost:5001/dicomImages/SS123456789.dcm');
+*/
 
+--
+-- END
+-- 
 
 
 

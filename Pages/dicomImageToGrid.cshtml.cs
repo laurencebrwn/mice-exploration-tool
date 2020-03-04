@@ -127,7 +127,7 @@ namespace miceExplorationTool.Pages
                 //Create a object with 'str' connection values passed. This uses the inbuilt library of MySql which is required
                 conn = new MySqlConnection(str);
                 conn.Open(); //opens the database connection
-                Console.WriteLine("Localhost MySQL Database Connected"); //If the database opens it presents this messsge. 
+                //Console.WriteLine("MySQL Database Connected"); //If the database opens it presents this messsge. 
 
                 //Creates object and passes all returned values to it
                 MySqlCommand cmd = new MySqlCommand(cmdText, conn);

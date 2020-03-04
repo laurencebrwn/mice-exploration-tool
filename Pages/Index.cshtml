@@ -16,19 +16,6 @@
 
 <body>
 
-    <div class="header">
-        <form name="pathInput" method="POST" onSubmit="return required()">
-            <label for="tagName"><font color="black" size="4">Please enter you file path here:</font></label>
-            <input type="text" id="urlFilePath" placeholder="" value="" name="filePath">
-            <input type="submit" class="btn btn-light" asp-page="/Index" asp-page-handler="FilePath">
-        </form>
-    </div>
-
-
-    @if (Model.errorMessage == "error")
-    {
-        <script>document.getElementsByName('filePath')[0].placeholder = 'Folder does not exist'</script>;
-    }
 
     <form method="POST">
         <ul id="hexGrid">
@@ -94,8 +81,8 @@
             </li>
             <li class="hex">
                 <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse11.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>Not In Use</p>
+                    <input type="image" class="hexLink" src="assets/mouse11.jpg" alt="Submit" asp-page="/Index" asp-page-handler="FilePath" />
+                    <p>Update<br />the <br />Database</p>
                 </div>
             </li>
         </ul>
@@ -112,23 +99,6 @@
 <script>
 
     console.log("Page Loaded :)");
-
-    //Checks that the filePath field has an entry (does not check if filePath is valid)
-
-    function required() {
-
-        var name_element = document.getElementById('urlFilePath').value;
-
-        if (name_element.length == 0)
-        {
-            alert('No folder selected. Please select a folder');
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
 
 </script>
 

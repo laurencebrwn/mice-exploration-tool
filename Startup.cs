@@ -11,9 +11,15 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.AspNetCore;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace miceExplorationTool
 {
+
+
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -26,6 +32,8 @@ namespace miceExplorationTool
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDirectoryBrowser();
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -44,6 +52,27 @@ namespace miceExplorationTool
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "dicomImages")),
+                RequestPath = "/dicomImages"
+            });
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ServeUnknownFileTypes = true,
+                DefaultContentType = "image/png"
+            });
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "dicomImages")),
+                RequestPath = "/dicomImages"
+            });
 
             app.UseCors("MyPolicy");
 
@@ -62,8 +91,6 @@ namespace miceExplorationTool
 
             app.UseHttpsRedirection();
 
-            app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthorization();
@@ -75,5 +102,7 @@ namespace miceExplorationTool
 
 
         }
+
+
     }
 }

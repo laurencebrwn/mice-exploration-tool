@@ -78,15 +78,16 @@ p {
             transform: skewY(-30deg) rotate3d(0,0,1,60deg);
 }
 
+
 /*** HEX CONTENT **********************************************************************/
 
 .hex p {
     width: 100%;
     padding: 10%;
     font-family: 'Courier New', sans-serif;
-    color: grey;
+    color: black;
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(212, 175, 55, 0.8);
     font-weight: 300;
     -webkit-transition: -webkit-transform .2s ease-out, opacity .3s ease-out;
     transition: transform .2s ease-out, opacity .3s ease-out;

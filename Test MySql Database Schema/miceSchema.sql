@@ -103,22 +103,22 @@ insert into `url` (`patient_id`) values
 -- 
 
 /*insert into `url` (`patient_id`,`urlString`) values 
-('AA123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm'),
-('BB123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm'),
-('CC123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm'),
-('DD123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm'),
-('EE123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm'),
-('FF123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm'),
-('GG123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm'),
-('HH123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm'),
-('JJ123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse9.dcm'),
-('KK123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse10.dcm'),
-('LL123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse11.dcm'),
-('MM123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse12.dcm'),
-('NN123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse13.dcm'),
-('PP123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse14.dcm'),
-('RR123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse15.dcm'),
-('SS123456789','https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse16.dcm');
+('AA123456789','http://localhost:5000/dicomImages/AA123456789.dcm'),
+('BB123456789','http://localhost:5000/dicomImages/BB123456789.dcm'),
+('CC123456789','http://localhost:5000/dicomImages/CC123456789.dcm'),
+('DD123456789','http://localhost:5000/dicomImages/DD123456789.dcm'),
+('EE123456789','http://localhost:5000/dicomImages/EE123456789.dcm'),
+('FF123456789','http://localhost:5000/dicomImages/FF123456789.dcm'),
+('GG123456789','http://localhost:5000/dicomImages/GG123456789.dcm'),
+('HH123456789','http://localhost:5000/dicomImages/HH123456789.dcm'),
+('JJ123456789','http://localhost:5000/dicomImages/JJ123456789.dcm'),
+('KK123456789','http://localhost:5000/dicomImages/KK123456789.dcm'),
+('LL123456789','http://localhost:5000/dicomImages/LL123456789.dcm'),
+('MM123456789','http://localhost:5000/dicomImages/MM123456789.dcm'),
+('NN123456789','http://localhost:5000/dicomImages/NN123456789.dcm'),
+('PP123456789','http://localhost:5000/dicomImages/PP123456789.dcm'),
+('RR123456789','http://localhost:5000/dicomImages/RR123456789.dcm'),
+('SS123456789','http://localhost:5000/dicomImages/SS123456789.dcm');
 */
 --
 -- END

@@ -1,10 +1,8 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml">
     <Files>
-      <File FileName="Pages/dicomImageToGrid.cshtml" Line="29" Column="1" />
-      <File FileName="Pages/dicomImageToGrid.cshtml.cs" />
-      <File FileName="Pages/Index.cshtml" Line="24" Column="16" />
-      <File FileName="wwwroot/css/index.css" Line="1" Column="1" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="21" Column="5" />
+      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,8 +10,7 @@
           <Node name="miceExplorationTool" expanded="True">
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Pages" expanded="True">
-                <Node name="dicomImageToGrid.cshtml" expanded="True" />
-                <Node name="Index.cshtml" expanded="True" selected="True" />
+                <Node name="dicomImageToGrid.cshtml" selected="True" />
               </Node>
               <Node name="Test MySql Database Schema" expanded="True" />
               <Node name="wwwroot" expanded="True">
@@ -25,7 +22,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.miceExplorationTool PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.ItemProperties.miceExplorationTool PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

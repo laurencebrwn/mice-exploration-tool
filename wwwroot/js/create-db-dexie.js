@@ -1,0 +1,121 @@
+﻿var db = new Dexie('database');
+db.version(1).stores({
+    mice: "id,patient_sex,patient_gene,parameter_name,phenotyping_center,urlString"
+});
+db.open().catch(function (err) {
+    console.error(err.stack || err);
+});
+db.mice.bulkAdd([{
+    id: 'AA123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab15',
+    parameter_name: 'body',
+    phenotyping_center: 'WTSI',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse1.dcm'
+}, {
+    id: 'BB123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab15',
+    parameter_name: 'head',
+    phenotyping_center: 'TCP',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse2.dcm'
+}, {
+    id: 'CC123456789',
+    patient_sex: 'M',
+    patient_gene: 'Rab15',
+    parameter_name: 'body',
+    phenotyping_center: 'ICS',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse3.dcm'
+}, {
+    id: 'DD123456789',
+    patient_sex: 'M',
+    patient_gene: 'Rab15',
+    parameter_name: 'body',
+    phenotyping_center: 'ICS',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse4.dcm'
+}, {
+    id: 'EE123456789',
+    patient_sex: 'M',
+    patient_gene: 'Rab15',
+    parameter_name: 'paw',
+    phenotyping_center: 'TCP',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse5.dcm'
+}, {
+    id: 'FF123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab15',
+    parameter_name: 'paw',
+    phenotyping_center: 'WTSI',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse6.dcm'
+}, {
+    id: 'GG123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab18',
+    parameter_name: 'body',
+    phenotyping_center: 'ICS',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse7.dcm'
+}, {
+    id: 'HH123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab15',
+    parameter_name: 'head',
+    phenotyping_center: 'WTSI',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse8.dcm'
+}, {
+    id: 'JJ123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab15',
+    parameter_name: 'head',
+    phenotyping_center: 'TCP',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse9.dcm'
+}, {
+    id: 'KK123456789',
+    patient_sex: 'M',
+    patient_gene: 'Rab15',
+    parameter_name: 'body',
+    phenotyping_center: 'ICS',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse10.dcm'
+}, {
+    id: 'LL123456789',
+    patient_sex: 'M',
+    patient_gene: 'Rab15',
+    parameter_name: 'body',
+    phenotyping_center: 'TCP',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse11.dcm'
+}, {
+    id: 'MM123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab15',
+    parameter_name: 'body',
+    phenotyping_center: 'TCP',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse12.dcm'
+}, {
+    id: 'NN123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab15',
+    parameter_name: 'paw',
+    phenotyping_center: 'WTSI',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse13.dcm'
+}, {
+    id: 'PP123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab18',
+    parameter_name: 'paw',
+    phenotyping_center: 'ICS',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse14.dcm'
+}, {
+    id: 'RR123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab18',
+    parameter_name: 'body',
+    phenotyping_center: 'ICS',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse15.dcm'
+}, {
+    id: 'SS123456789',
+    patient_sex: 'F',
+    patient_gene: 'Rab18',
+    parameter_name: 'head',
+    phenotyping_center: 'WTSI',
+    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/mouse16.dcm'
+}]);
+

@@ -1,41 +1,58 @@
-﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="wwwroot/js/pouchdb-7.1.1.min.js">
+﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml">
     <Files>
-      <File FileName="Program.cs" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="12" Column="25" />
       <File FileName="wwwroot/js/site.js" Line="1" Column="1" />
-      <File FileName="Pages/Index.cshtml" Line="95" Column="5" />
-      <File FileName="Pages/dicomImageToGrid.cshtml" Line="26" Column="1" />
-      <File FileName="Pages/dumpDatabases.cshtml.cs" />
+      <File FileName="Pages/Index.cshtml" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="84" Column="17" />
       <File FileName="Pages/Error.cshtml.cs" />
       <File FileName="Pages/Index.cshtml.cs" />
       <File FileName="Pages/Error.cshtml" />
-      <File FileName=".dockerignore" Line="1" Column="1" />
-      <File FileName="Pages/base64ToImage.cshtml" Line="172" Column="10" />
+      <File FileName=".dockerignore" />
+      <File FileName="Pages/base64ToImage.cshtml" />
       <File FileName="wwwroot/js/dicomParser.min.js" Line="16" Column="9" />
-      <File FileName="wwwroot/js/initializeWebWorkers.js" Line="1" Column="1" />
-      <File FileName="wwwroot/js/exampleImageIdLoader.js" Line="1" Column="1" />
+      <File FileName="wwwroot/js/initializeWebWorkers.js" />
+      <File FileName="wwwroot/js/exampleImageIdLoader.js" />
       <File FileName="wwwroot/js/javascript.js" Line="1" Column="1" />
-      <File FileName="DirectoryImportCode/importDirectory.cs" Line="1" Column="1" />
-      <File FileName="wwwroot/js/createDexieDb.js" Line="4" Column="35" />
+      <File FileName="DirectoryImportCode/importDirectory.cs" />
       <File FileName="wwwroot/js/pouchdb-7.1.1.min.js" Line="1" Column="1" />
+      <File FileName="wwwroot/js/createPouchDb.js" Line="133" Column="1" />
+      <File FileName="Startup.cs" Line="26" Column="38" />
+      <File FileName="wwwroot/js/localforagedb-create.js" Line="112" Column="83" />
+      <File FileName="Pages/_ViewImports.cshtml" Line="1" Column="1" />
+      <File FileName="Pages/_ViewStart.cshtml" Line="1" Column="1" />
+      <File FileName="Pages/Shared/_Layout.cshtml" Line="18" Column="1" />
+      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="8" Column="23" />
+      <File FileName="wwwroot/js/taffy-min.js" Line="1" Column="1" />
+      <File FileName="Pages/Shared/_ValidationScriptsPartial.cshtml" Line="1" Column="1" />
+      <File FileName="wwwroot/js/uids.js" Line="1" Column="1" />
+      <File FileName="wwwroot/js/create-db-dexie.js" Line="4" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="miceExplorationTool" expanded="True">
             <Node name="miceExplorationTool" expanded="True">
-              <Node name="DirectoryImportCode" expanded="True" />
+              <Node name="Dependencies" expanded="True">
+                <Node name="FrameworkReferences" expanded="True" />
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
               <Node name="Pages" expanded="True">
-                <Node name="Error.cshtml" expanded="True" />
-                <Node name="Index.cshtml" expanded="True" />
+                <Node name="Shared" expanded="True" />
+                <Node name="dicomImageToGrid.cshtml" expanded="True" selected="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
-                <Node name="js" expanded="True">
-                  <Node name="pouchdb-7.1.1.min.js" selected="True" />
-                </Node>
+                <Node name="js" expanded="True" />
               </Node>
             </Node>
           </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>ImageArray</Value>
+          <Value>ImageArray[1]</Value>
+          <Value>ImageArray[1]</Value>
         </State>
       </Pad>
     </Pads>

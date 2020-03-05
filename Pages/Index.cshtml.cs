@@ -39,7 +39,7 @@ namespace miceExplorationTool.Pages
         //display user selected query images
         public void OnPostFilePath()
         {
-
+            //sets filepath as route to dicomImages folder - this is where the user will need to place there images or symlink to
             string filePath = "wwwroot/dicomImages";
 
             //unit test for filepath name >>result is a console log saying folder does not exist
@@ -51,7 +51,8 @@ namespace miceExplorationTool.Pages
 
                 Console.WriteLine("\nNew Images added to database:");
 
-                List<Image> mice = FindFiles(filePath);
+                //calls function to populate mice list with files found at the filePath
+                List<Image> mice = FindImages(filePath); //change from findFiles
 
                 foreach (Image im in mice)
                 {//goes through them
@@ -86,55 +87,16 @@ namespace miceExplorationTool.Pages
 
             };
 
-
-
-
-
-            ////Checks if filepath exists
-            //if (Directory.Exists(filePath))
-            //{
-
-
-            //    List<Image> mice = FindFiles(filePath);
-            //    foreach (Image im in mice)
-            //    {//goes through them
-            //        List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
-            //        foreach (string path in filepaths)
-            //        {//goes through them
-
-
-            //            //adds 'https://' to start of every item in the list
-            //            //string newPath = "https://localhost:5001" + path;
-            //            //Console.WriteLine(path);//prints
-
-
-            //            //take last part of file path without extension
-            //            var dirName = Path.GetFileNameWithoutExtension(path);
-            //            Console.WriteLine(dirName);//prints file name without extension
-
-            //            //create a insert funtion that uses the comparison and searches the database and inserts the PATH value
-            //            string cmdText = "UPDATE url SET urlString = '" + path + " ' WHERE patient_id = '" + dirName + "';";
-            //            MySqlConnection(cmdText);
-
-            //        }
-
-            //    }
-
-            //}
-            //else
-            //{
-            //    //sends error to html 
-            //    //errorMessage = "error";
-            //    Console.WriteLine("Folder does not exist");
-
-            //};
-
         }
 
-            public List<Image> FindFiles(string DirectoryPath)
+
+        public List<Image> FindImages(string DirectoryPath)
+        //public List<Image> FindFiles(string DirectoryPath) //current working
         {
 
-            string[] Dir = Directory.GetFiles(DirectoryPath);//Allows for copy paste filepaths using Override.
+            //string[] Dir = Directory.GetFiles(DirectoryPath);//Allows for copy paste filepaths using Override.
+
+            List<string> Dir = FindFiles(DirectoryPath);
             List<string> ImagePaths = new List<string>();//creates a list of filepaths
             List<string> TagPaths = new List<string>();//creates a list of filepaths
 
@@ -153,10 +115,34 @@ namespace miceExplorationTool.Pages
 
             }
             List<Image> Images = SortImage(ImagePaths);//Sorts images of the same mouse into record.
-
             return Images;//returns a list of the Image object
-
         }
+
+
+        public List<string> FindFiles(string directory)
+        {
+            List<string> filepaths = new List<string>();
+
+            string[] Directories = Directory.GetDirectories(@directory);//Allows for copy paste filepaths using Override.
+            if (Directories.Length > 0)
+            {
+                Console.WriteLine(Directories[0]);
+                foreach (string Dir in Directories)
+                {
+                    filepaths.AddRange(FindFiles(Dir));
+                }
+                filepaths.AddRange(Directory.GetFiles(@directory));
+            }
+            else
+            {
+                filepaths.AddRange(Directory.GetFiles(@directory));
+            }
+            return filepaths;
+        }
+
+
+
+
 
         public List<Image> SortImage(List<string> Files)
         {
@@ -170,15 +156,14 @@ namespace miceExplorationTool.Pages
                 Image Mouse = new Image();
                 Mouse.AddImage(files);
                 Images.Add(Mouse);
-
             }
-
             return Images;
         }
 
+
         public void GetImagesPaths(string fileURL)
         {//this calls the find files method, and gets and object of images back - I've left it void for you.
-            List<Image> mice = FindFiles(fileURL);
+            List<Image> mice = FindImages(fileURL); //was findFiles
             foreach (Image im in mice)
             {//goes through them
                 List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
@@ -189,7 +174,6 @@ namespace miceExplorationTool.Pages
 
             }
         }
-
 
         //Main functon that connects to the MySql server and returns the reuqired URLs
         public void MySqlConnection(string connection)

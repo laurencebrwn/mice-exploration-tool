@@ -186,3 +186,4 @@ E:/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExploratio
 /home/garry/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExplorationTool.dll
 /home/garry/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExplorationTool.pdb
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/Razor/Pages/charts.cshtml.g.cs
+/Users/garryclawson/Documents/GitHub/mice-exploration-tool/bin/Debug/netcoreapp3.1/Docker.DotNet.dll

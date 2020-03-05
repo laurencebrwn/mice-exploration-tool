@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.cshtml.cs">
     <Files>
       <File FileName="Pages/Index.cshtml.cs" Line="17" Column="1" />
-      <File FileName="Pages/Index.cshtml" Line="19" Column="1" />
+      <File FileName="Pages/Index.cshtml" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

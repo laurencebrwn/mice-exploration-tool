@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Web;
+using System.Data;
 using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -86,11 +87,6 @@ namespace miceExplorationTool.Pages
         //show all images in MySql database
         public IActionResult OnPostViewAll()
         {
-
-            string cmdText = @"
-            SELECT urlString FROM MICE.url;";
-
-            MySqlConnection(cmdText);
 
             return Page();
         }

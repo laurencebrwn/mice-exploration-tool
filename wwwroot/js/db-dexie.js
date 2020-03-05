@@ -186,23 +186,84 @@ function loadJsonArray(miceArr,urlArr) {
 
 function queryDb(id_q,sex_q,gene_q,parameter_q,center_q) {
     return db.open().then(function () {
-        console.log('query in process');
-
-        return db.mice
-            .where('urlString')
-            .noneOf([])
-            .and(value => function (value) { console.log('inside query'); if (id_q == 'A') { return value.patient_id !== ''; } else { return value.patient_id == id_q; }})
-            /*.and(value => function (value) { console.log('we sex  ', sex_q); if (sex_q == 'A') { return value.patient_sex !== ''; } else { console.log('we here'); return value.patient_sex == sex_q; } })
-            .and(value => function (value) { if (gene_q == 'A') { return value.patient_gene !== ''; } else { return value.patient_gene == gene_q; } })
-            .and(value => function (value) { if (parameter_q == 'A') { return value.parameter_name !== '' ; } else { return value.parameter_name == parameter_q; } })
-            .and(value => function (value) { if (center_q == 'A') { return value.phenotyping_center !== ''; } else { return value.phenotyping_center == center_q; } })
-            */.toArray();
+        console.log('patient query in process');
+        if (id_q == 'A') { return db.mice.toArray(); }
+        else { return db.mice.where('patient_id').equals(id_q).toArray();}
     }).then(function (queriedArr) {
-        return db.open().then(function () {
-            db.results.clear();
-            return db.results.bulkAdd(queriedArr);
-        })
-    }).catch(function (err) {
+        return db.open().then(function () { db.results.clear(); return db.results.bulkAdd(queriedArr); })
+    }).then(function () {
+        console.log('sex query in process');
+        if (sex_q == 'A') { return db.results.toArray(); }
+        else { return db.results.where('patient_sex').equals(sex_q).toArray(); }
+    }).then(function (queriedArr) {
+        return db.open().then(function () { db.results.clear(); return db.results.bulkAdd(queriedArr); })
+    }).then(function () {
+        console.log('gene query in process');
+        if (gene_q == 'A') { return db.results.toArray(); }
+        else { return db.results.where('patient_gene').equals(gene_q).toArray(); }
+    }).then(function (queriedArr) {
+        return db.open().then(function () { db.results.clear(); return db.results.bulkAdd(queriedArr); })
+    }).then(function () {
+        console.log('parameter query in process');
+        if (parameter_q == 'A') { return db.results.toArray(); }
+        else { return db.results.where('parameter_name').equals(parameter_q).toArray(); }
+    }).then(function (queriedArr) {
+        return db.open().then(function () { db.results.clear(); return db.results.bulkAdd(queriedArr); })
+    }).then(function () {
+        console.log('center query in process');
+        if (center_q == 'A') { return db.results.toArray(); }
+        else { return db.results.where('phenotyping_center').equals(center_q).toArray(); }
+    }).then(function (queriedArr) {
+        return db.open().then(function () { db.results.clear(); return db.results.bulkAdd(queriedArr); })
+    })/*.then(function () {
+        return loadDivs();
+    })*/.catch(function (err) {
         console.error(err.stack || err);
     });
 };
+
+function loadDivs() {
+    db.open().then(function () {
+        return db.results.toArray();
+    }).then(function (arr) {
+        var ImageArray = [];
+        for (var i = 0; i < arr.length; i++) {
+            ImageArray.push(arr[i].urlString);
+        };
+
+        cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+
+        //Forloop through image set and appends image to end of previous image
+
+        for (var i = 0; i < ImageArray.length; i++) {
+            console.log("Images", i + 1, "of", ImageArray.length, "loaded");
+            var imageNum = ImageArray[i];
+            let imageId = "wadouri:" + imageNum;
+
+            //Create new div element for each DICOM image and insert it befor the dicomImage div in body
+
+            const imageDiv = document.createElement("div");
+            imageDiv.style = "width:20vw; height:20vw; border: thin solid white; display:inline-block";
+            var currentDiv = document.getElementById("dicomImage");
+            currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
+            cornerstone.enable(imageDiv);
+
+            //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
+
+            cornerstone.loadImage(imageId).then(function (image) {
+                cornerstone.displayImage(imageDiv, image);
+                cornerstoneTools.mouseInput.enable(imageDiv);
+                cornerstoneTools.mouseWheelInput.enable(imageDiv);
+                cornerstoneTools.wwwc.activate(imageDiv, 1); // wwwc is the default tool for left mouse button
+                cornerstoneTools.pan.activate(imageDiv, 2); // pan is the default tool for middle mouse button
+                cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
+                cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
+                //cornerstoneTools.imageStats.enable(imageElement);
+                console.log("Images", i, "of", ImageArray.length, "loaded");
+            });
+        }
+    }).catch(function (err) {
+        console.log("oops");
+        console.error(err.stack || err);
+    });
+}

@@ -18,13 +18,13 @@
     <script src="js/dicomParser.min.js"></script>
     <script src="js/cornerstoneWADOImageLoader.js"></script>
 
-    <!-- include pouchdb + pouchdb find api -->
-    <!--<script src="js/pouchdb-7.1.1.min.js"></script>
-    <script src="js/pouchdb.find.js"></script>-->
-    <!--<script src="js/createPouchDb.js"></script>-->
-    <!-- local forage:
-    <script src="js/taffy-min.js"></script>-->
+    <!-- include dexie.js api - create db + store query functions -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    <script src="js/db-dexie.js"></script>
+    <script>
+        createDb();
+        loadTestData();
+    </script>
 
 </head>
 
@@ -64,74 +64,55 @@
 </html>
 
 <!-- javascript to show dicom image in grid -->
-
-<!--<script src="js/create-db-taffy.js"></script>-->
-<script src="js/create-db-dexie.js"></script>
 <script>
-    var ImageArray = [];
+    db.open().then(function () {
+        console.log('query called');
+        return queryDb('A', 'M', 'A', 'A', 'A');
+    }).then(function () {
+        return db.results.toArray();
+    }).then(function (arr) {
+        var ImageArray = [];
+        for (var i = 0; i < arr.length; i++) {
+            ImageArray.push(arr[i].urlString);
+        };
 
-    await db.mice.each(function (mouse) { ImageArray.push(mouse.urlString); });
-    console.log("image array 1:" + ImageArray[1]);
-    console.log("length:" + ImageArray.length);
-    /*var mouse2 = mice({ _id: 'AA123456789' }).first().urlString;
-    try {
-        console.log(mouse2);
-    }
-    catch{
-        console.error(err);
-    };
+        cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
-    var ImageArray = [];
-    mice().each(function (r) {
-        ImageArray.push(r.urlString);
-    });*/
+        //Forloop through image set and appends image to end of previous image
 
-    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
-    //just grab all images from pouchdb for now:
+        for (var i = 0; i < ImageArray.length; i++) {
+            console.log("Images", i + 1, "of", ImageArray.length, "loaded");
+            var imageNum = ImageArray[i];
+            let imageId = "wadouri:" + imageNum;
 
-    //console.log("image array 1:" + ImageArray[1]);
-    //console.log("length:" + ImageArray.length);
+            //Create new div element for each DICOM image and insert it befor the dicomImage div in body
 
-    //Forloop through image set and appends image to end of previous image
+            const imageDiv = document.createElement("div");
+            imageDiv.style = "width:20vw; height:20vw; border: thin solid white; display:inline-block";
+            var currentDiv = document.getElementById("dicomImage");
+            currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
+            cornerstone.enable(imageDiv);
 
-    for (var i = 0; i < ImageArray.length; i++) {
-        console.log("Images", i+1, "of", ImageArray.length, "loaded");
-        var imageNum = ImageArray[i];
-        let imageId = "wadouri:" + imageNum;
+            //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
 
-        //Create new div element for each DICOM image and insert it befor the dicomImage div in body
-        const imageDiv = document.createElement("div");
-        imageDiv.style = "width:20vw; height:20vw; border: thin solid white; display:inline-block";
-        var currentDiv = document.getElementById("dicomImage");
-        currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
-        cornerstone.enable(imageDiv);
+            cornerstone.loadImage(imageId).then(function (image) {
+                cornerstone.displayImage(imageDiv, image);
+                cornerstoneTools.mouseInput.enable(imageDiv);
+                cornerstoneTools.mouseWheelInput.enable(imageDiv);
+                cornerstoneTools.wwwc.activate(imageDiv, 1); // wwwc is the default tool for left mouse button
+                cornerstoneTools.pan.activate(imageDiv, 2); // pan is the default tool for middle mouse button
+                cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
+                cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
+                //cornerstoneTools.imageStats.enable(imageElement);
+                console.log("Images", i, "of", ImageArray.length, "loaded");
+            });
+        }
+    }).catch(function (err) {
+        console.log("oops");
+        console.error(err.stack || err);
+    });
 
-        //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
-        cornerstone.loadImage(imageId).then(function(image) {
-        cornerstone.displayImage(imageDiv, image);
-        cornerstoneTools.mouseInput.enable(imageDiv);
-        cornerstoneTools.mouseWheelInput.enable(imageDiv);
-        cornerstoneTools.wwwc.activate(imageDiv, 1); // ww/wc is the default tool for left mouse button
-        cornerstoneTools.pan.activate(imageDiv, 2); // pan is the default tool for middle mouse button
-        cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
-        cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
-        //cornerstoneTools.imageStats.enable(imageElement);
-        //console.log("Images", i, "of", ImageArray.length, "loaded");
-        });
-
-    }
-
-    // //Forloop through jpg image set in assets folder and appends image to end of previous image
-    // for (var i = 0; i < 3; i++) {
-    // var jpgImg = document.createElement("img");
-    // jpgImg.style = "width:300px; height:300px";
-    // jpgImg.src = "assets/image" + i +".jpg"; //remove jpg if not required
-    // document.body.appendChild(jpgImg);
-    // }
-
-    //console.log("Page Loaded :)");
-
-</script>
+    console.log("Page Loaded :)");</script>
 
 
 

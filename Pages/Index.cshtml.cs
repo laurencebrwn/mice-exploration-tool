@@ -42,7 +42,10 @@ namespace miceExplorationTool.Pages
 
             string filePath = "wwwroot/dicomImages";
 
-            //Checks if filepath exists
+            //unit test for filepath name >>result is a console log saying folder does not exist
+            //string filePath = "wwwroot/dicomImage";
+
+            //Runs through the folder and assigns a new path then pushes newPath to the database where there is an id match
             if (Directory.Exists(filePath))
             {
 
@@ -60,7 +63,7 @@ namespace miceExplorationTool.Pages
                         string myfilePath = path;
                         myfilePath = myfilePath.Replace("wwwroot/", "");
 
-                        //adds 'https://' to start of every item in the list so it can be found in the folder
+                        //adds 'https://' to start of every item in the list so it can be found in the project root folder
                         string newPath = "https://localhost:5001/" + myfilePath;
                         Console.WriteLine(newPath);//prints
 
@@ -79,7 +82,7 @@ namespace miceExplorationTool.Pages
             {
                 //sends error to html 
                 //errorMessage = "error";
-                Console.WriteLine("Folder does not exist");
+                Console.WriteLine("Folder does not exist. Please check the file path");
 
             };
 
@@ -188,7 +191,7 @@ namespace miceExplorationTool.Pages
         }
 
 
-        //Main functon that connects to the ySql server and returns the reuqired URLs
+        //Main functon that connects to the MySql server and returns the reuqired URLs
         public void MySqlConnection(string connection)
         {
 

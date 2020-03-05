@@ -68,7 +68,23 @@ insert into `mice` (`patient_id`,`patient_sex`,`patient_gene`,`parameter_name`,`
 ('NN123456789','F','Rab15','paw','WTSI'),
 ('PP123456789','F','Rab18','paw','ICS'),
 ('RR123456789','F','Rab18','body','ICS'),
-('SS123456789','F','Rab18','head','WTSI');
+('SS123456789','F','Rab18','head','WTSI'),
+('AA123456789L2','F','Rab15','body','WTSI'),
+('BB123456789L2','F','Rab15','head','TCP'),
+('CC123456789L2','M','Rab15','body','ICS'),
+('DD123456789L2','M','Rab15','body','ICS'),
+('EE123456789L2','M','Rab15','paw','TCP'),
+('FF123456789L2','F','Rab15','paw','WTSI'),
+('GG123456789L2','F','Rab18','body','ICS'),
+('HH123456789L2','F','Rab15','head','WTSI'),
+('JJ123456789L2','F','Rab15','head','TCP'),
+('KK123456789L2','M','Rab15','head','ICS'),
+('LL123456789L2','M','Rab15','body','ICS'),
+('MM123456789L2','M','Rab15','body','TCP'),
+('NN123456789L2','F','Rab15','paw','WTSI'),
+('PP123456789L2','F','Rab18','paw','ICS'),
+('RR123456789L2','F','Rab18','body','ICS'),
+('SS123456789L2','F','Rab18','head','WTSI');
 
 
 --
@@ -91,7 +107,23 @@ insert into `url` (`patient_id`) values
 ('NN123456789'),
 ('PP123456789'),
 ('RR123456789'),
-('SS123456789');
+('SS123456789'),
+('AA123456789L2'),
+('BB123456789L2'),
+('CC123456789L2'),
+('DD123456789L2'),
+('EE123456789L2'),
+('FF123456789L2'),
+('GG123456789L2'),
+('HH123456789L2'),
+('JJ123456789L2'),
+('KK123456789L2'),
+('LL123456789L2'),
+('MM123456789L2'),
+('NN123456789L2'),
+('PP123456789L2'),
+('RR123456789L2'),
+('SS123456789L2');
 
 --
 -- END

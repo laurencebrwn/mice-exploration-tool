@@ -21,6 +21,8 @@
     <Compile Remove="DirectoryImportCode\Image.cs" />
     <Compile Remove="DirectoryImportCode\JSONReader.cs" />
     <Compile Remove="DirectoryImportCode\obj\Debug\netcoreapp3.1\DirectoryImportCode.AssemblyInfo.cs" />
+    <Compile Remove="Pages\Index %28copy%29.cshtml.cs" />
+    <Compile Remove="Pages\Index %28another copy%29.cshtml.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="DirectoryImportCode\ImportCode.code-workspace" />
@@ -45,5 +47,6 @@
     <Content Remove="DirectoryImportCode\bin\Debug\netcoreapp3.1\DirectoryImportCode.runtimeconfig.json" />
     <Content Remove="DirectoryImportCode\bin\Debug\netcoreapp3.1\DirectoryImportCode.deps.json" />
     <Content Remove="DirectoryImportCode\bin\Debug\netcoreapp3.1\DirectoryImportCode.runtimeconfig.dev.json" />
+    <Content Remove="Pages\Index %28copy%29.cshtml" />
   </ItemGroup>
 </Project>

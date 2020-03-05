@@ -3,7 +3,7 @@
 ------------------------------------*/
 
 body {
-
+	background-color: #D4AF37;
 }
 
 /* Header section styles 
@@ -24,4 +24,11 @@ body {
 .images {
 	overflow: hidden;
 	text-align: center;
+}
+
+#description {
+	width: 100%;
+    height: 100px;
+	text-align: center;
+	padding: 20px 10px;
 }

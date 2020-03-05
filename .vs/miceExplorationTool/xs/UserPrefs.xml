@@ -1,13 +1,9 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.cshtml.cs">
     <Files>
-      <File FileName="Pages/dicomImageToGrid.cshtml" Line="80" Column="1" />
-      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="135" Column="1" />
-      <File FileName="Pages/Index.cshtml" Line="85" Column="58" />
-      <File FileName="Pages/Index.cshtml.cs" Line="13" Column="1" />
-      <File FileName="Test MySql Database Schema/miceSchemalocal.sql" Line="23" Column="1" />
-      <File FileName="Pages/base64ToImage.cshtml" Line="59" Column="4" />
-      <File FileName="Pages/base64ToImage.cshtml.cs" Line="1" Column="1" />
+      <File FileName="Pages/Index.cshtml" Line="19" Column="1" />
+      <File FileName="Pages/Index.cshtml.cs" Line="178" Column="1" />
+      <File FileName="wwwroot/css/index.css" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,14 +12,17 @@
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Pages" expanded="True">
                 <Node name="base64ToImage.cshtml" expanded="True" />
+                <Node name="charts.cshtml" expanded="True" />
                 <Node name="dicomImageToGrid.cshtml" expanded="True" />
+                <Node name="Error.cshtml" expanded="True" />
                 <Node name="Index.cshtml" expanded="True">
                   <Node name="Index.cshtml.cs" selected="True" />
                 </Node>
               </Node>
-              <Node name="Test MySql Database Schema" expanded="True" />
               <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True" />
+                <Node name="css" expanded="True">
+                  <Node name="bootstrap.min.css" expanded="True" />
+                </Node>
               </Node>
             </Node>
           </Node>

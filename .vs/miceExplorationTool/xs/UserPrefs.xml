@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="wwwroot/js/db-dexie.js">
     <Files>
-      <File FileName="Program.cs" Line="12" Column="25" />
+      <File FileName="Program.cs" Line="27" Column="1" />
       <File FileName="wwwroot/js/site.js" />
       <File FileName="Pages/Index.cshtml" />
-      <File FileName="Pages/dicomImageToGrid.cshtml" Line="24" Column="1" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" />
       <File FileName="Pages/Error.cshtml.cs" />
       <File FileName="Pages/Index.cshtml.cs" />
       <File FileName="Pages/Error.cshtml" />
@@ -14,14 +14,12 @@
       <File FileName="wwwroot/js/initializeWebWorkers.js" />
       <File FileName="wwwroot/js/exampleImageIdLoader.js" />
       <File FileName="wwwroot/js/javascript.js" />
-      <File FileName="DirectoryImportCode/importDirectory.cs" />
-      <File FileName="wwwroot/js/pouchdb-7.1.1.min.js" />
       <File FileName="Startup.cs" />
-      <File FileName="Pages/_ViewImports.cshtml" Line="1" Column="1" />
-      <File FileName="Pages/_ViewStart.cshtml" Line="1" Column="1" />
-      <File FileName="Pages/Shared/_Layout.cshtml" Line="1" Column="1" />
-      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="113" Column="61" />
-      <File FileName="wwwroot/js/create-db-dexie.js" Line="4" Column="4" />
+      <File FileName="Pages/_ViewImports.cshtml" />
+      <File FileName="Pages/_ViewStart.cshtml" />
+      <File FileName="Pages/Shared/_Layout.cshtml" />
+      <File FileName="Pages/dicomImageToGrid.cshtml.cs" />
+      <File FileName="wwwroot/js/db-dexie.js" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -33,14 +31,13 @@
                 <Node name="dicomImageToGrid.cshtml" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
-                <Node name="js" expanded="True" />
+                <Node name="js" expanded="True">
+                  <Node name="db-dexie.js" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

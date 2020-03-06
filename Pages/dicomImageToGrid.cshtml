@@ -33,15 +33,15 @@
     <div class="header">
         <p>Click a button to see related images.</p>
         <p>Use mouse to zoom in or change contrast of an image.</p>
-
         <form method="POST">
             <button type="submit" class="btn btn-dark" asp-page="/Index">Home</button>
-            <button type="submit" class="btn btn-danger" onclick="queryDb('A', 'A', 'A', 'A', 'A')" asp-page-handler="viewAll">View All</button>
-            <button type="submit" class="btn btn-success" onclick="queryDb('A', 'F', 'A', 'A', 'A')" asp-page-handler="Females">Females</button>
-            <button type="submit" class="btn btn-primary" onclick="queryDb('A', 'M', 'A', 'A', 'A')" asp-page-handler="Males">Males</button>
-            <button type="submit" class="btn btn-warning" onclick="queryDb('A', 'A', 'Rab15', 'A', 'A')" asp-page-handler="Gene">Gene (Rab15)</button>
-            <button type="submit" class="btn btn-info" onclick="queryDb('A', 'A', 'A', 'A', 'ICS')" asp-page-handler="Centre">Centre (ICS)</button>
         </form>
+        <button type="submit" class="btn btn-danger" onclick="queryDb('A', 'A', 'A', 'A', 'A')">View All</button>
+        <button type="submit" class="btn btn-success" onclick="queryDb('A', 'F', 'A', 'A', 'A')">Females</button>
+        <button type="submit" class="btn btn-primary" onclick="queryDb('A', 'M', 'A', 'A', 'A')">Males</button>
+        <button type="submit" class="btn btn-warning" onclick="queryDb('A', 'A', 'Rab15', 'A', 'A')">Gene (Rab15)</button>
+        <button type="submit" class="btn btn-info" onclick="queryDb('A', 'A', 'A', 'A', 'ICS')">Centre (ICS)</button>
+      
 
     </div>
 
@@ -54,7 +54,7 @@
         </form>
     </div>
 
-    <div class="images">
+    <div id="images">
         <!-- Images are placed above this Div to create the grid -->
         <div id="dicomImage"></div>
     </div>

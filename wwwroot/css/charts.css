@@ -2,8 +2,12 @@
     margin: 0;
     padding: 0;
 }
+
 body {
-    margin-top: 50px;
+    margin: 0;
+    background: #222;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
 }
 
 

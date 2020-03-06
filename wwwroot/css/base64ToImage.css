@@ -3,7 +3,10 @@
 ------------------------------------*/
 
 body {
-    background-color: #D4AF37;
+    margin: 0;
+    background: #222;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
 }
 
 /* Header section styles 

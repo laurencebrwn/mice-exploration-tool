@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
 
-body {
-    margin: 0;
-    background: #222;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 800;
-}
 
 .container {
     width: 100%;
@@ -13,15 +7,11 @@ body {
     margin: 0 auto;
 }
 
-header {
-    background: #55d6aa;
+navBar::after {
+    content: '';
+    display: table;
+    clear: both;
 }
-
-    header::after {
-        content: '';
-        display: table;
-        clear: both;
-    }
 
 .logo {
     float: left;

@@ -10,6 +10,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <!-- include dexie.js api - create db + store query functions -->
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    <script src="js/db-dexie.js"></script>
+    <script>
+        createDb();
+        loadTestData();
+    </script>
 </head>
 
 
@@ -37,8 +44,8 @@
             </li>
             <li class="hex">
                 <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse4.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Centre" />
-                    <p>Centre <br />(ICS)</p>
+                    <input type="image" class="hexLink" src="assets/mouse4.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Center" />
+                    <p>Center <br />(ICS)</p>
                 </div>
             </li>
             <li class="hex">
@@ -49,8 +56,8 @@
             </li>
             <li class="hex">
                 <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse6.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
+                    <input type="image" class="hexLink" src="assets/mouse11.jpg" alt="Submit" asp-page="/base64ToImage" />
+                    <p>Body<br />Parts</p>
                 </div>
             </li>
             <li class="hex">
@@ -79,8 +86,8 @@
             </li>
             <li class="hex">
                 <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse11.jpg" alt="Submit" asp-page="/base64ToImage" />
-                    <p>Base64 To <br />Image</p>
+                    <input type="image" class="hexLink" src="assets/mouse7.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                    <p>View All</p>
                 </div>
             </li>
         </ul>
@@ -91,9 +98,7 @@
 </html>
 
 <script>
-
     console.log("Page Loaded :)");
-
 </script>
 
 

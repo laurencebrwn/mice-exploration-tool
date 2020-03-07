@@ -1,25 +1,12 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="wwwroot/js/db-dexie.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml.cs">
     <Files>
-      <File FileName="Program.cs" Line="27" Column="1" />
-      <File FileName="wwwroot/js/site.js" />
-      <File FileName="Pages/Index.cshtml" />
-      <File FileName="Pages/dicomImageToGrid.cshtml" />
-      <File FileName="Pages/Error.cshtml.cs" />
-      <File FileName="Pages/Index.cshtml.cs" />
-      <File FileName="Pages/Error.cshtml" />
-      <File FileName=".dockerignore" />
-      <File FileName="Pages/base64ToImage.cshtml" />
-      <File FileName="wwwroot/js/dicomParser.min.js" />
-      <File FileName="wwwroot/js/initializeWebWorkers.js" />
-      <File FileName="wwwroot/js/exampleImageIdLoader.js" />
-      <File FileName="wwwroot/js/javascript.js" />
-      <File FileName="Startup.cs" />
-      <File FileName="Pages/_ViewImports.cshtml" />
-      <File FileName="Pages/_ViewStart.cshtml" />
-      <File FileName="Pages/Shared/_Layout.cshtml" />
-      <File FileName="Pages/dicomImageToGrid.cshtml.cs" />
-      <File FileName="wwwroot/js/db-dexie.js" Line="1" Column="1" />
+      <File FileName="Pages/Index.cshtml" Line="26" Column="26" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="70" Column="1" />
+      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="31" Column="1" />
+      <File FileName="Pages/base64ToImage.cshtml" Line="90" Column="1" />
+      <File FileName="Pages/base64ToImage.cshtml.cs" />
+      <File FileName="wwwroot/js/db-dexie.js" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -28,12 +15,15 @@
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Pages" expanded="True">
                 <Node name="Shared" expanded="True" />
-                <Node name="dicomImageToGrid.cshtml" expanded="True" />
+                <Node name="base64ToImage.cshtml" expanded="True" />
+                <Node name="dicomImageToGrid.cshtml" expanded="True">
+                  <Node name="dicomImageToGrid.cshtml.cs" selected="True" />
+                </Node>
+                <Node name="Error.cshtml" expanded="True" />
+                <Node name="Index.cshtml" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
-                <Node name="js" expanded="True">
-                  <Node name="db-dexie.js" selected="True" />
-                </Node>
+                <Node name="js" expanded="True" />
               </Node>
             </Node>
           </Node>

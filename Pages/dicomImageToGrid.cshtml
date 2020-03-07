@@ -33,16 +33,17 @@
     <div class="header">
         <p>Click a button to see related images.</p>
         <p>Use mouse to zoom in or change contrast of an image.</p>
+
         <form method="POST">
             <button type="submit" class="btn btn-dark" asp-page="/Index">Home</button>
         </form>
+
         <button type="submit" class="btn btn-danger" onclick="queryDb('A', 'A', 'A', 'A', 'A')">View All</button>
         <button type="submit" class="btn btn-success" onclick="queryDb('A', 'F', 'A', 'A', 'A')">Females</button>
         <button type="submit" class="btn btn-primary" onclick="queryDb('A', 'M', 'A', 'A', 'A')">Males</button>
         <button type="submit" class="btn btn-warning" onclick="queryDb('A', 'A', 'Rab15', 'A', 'A')">Gene (Rab15)</button>
         <button type="submit" class="btn btn-info" onclick="queryDb('A', 'A', 'A', 'A', 'ICS')">Centre (ICS)</button>
       
-
     </div>
 
     <div class="header">
@@ -64,6 +65,24 @@
 </html>
 
 <script>
+
+    //View All search button from index page
+
+    if (@ViewData["ViewAllSearch"] == "ViewAll") {
+        queryDb('A', 'A', 'A', 'A', 'A');
+    } else if (@ViewData["FemaleSearch"] == "Female") {
+        queryDb('A', 'M', 'A', 'A', 'A');
+    } else if (@ViewData["MaleSearch"] == "Male") {
+        queryDb('A', 'M', 'A', 'A', 'A');
+    } else if (@ViewData["GeneSearch"] == "Gene") {
+        queryDb('A', 'A', 'Rab15', 'A', 'A');
+    } else if (@ViewData["CenterSearch"] == "Center") {
+        queryDb('A', 'A', 'A', 'A', 'ICS');
+    }else {
+        console.log("Query Not Fired");
+    };
+
+
     loadDivs();
     console.log("Page Loaded :)");
 </script>

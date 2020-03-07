@@ -11,6 +11,8 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+
+
 namespace miceExplorationTool.Pages
 {
     public class dicomImageToGridModel : PageModel
@@ -24,133 +26,168 @@ namespace miceExplorationTool.Pages
 
         public void OnGet()
         {
+            
+        }
 
-            //Shows all images in the databse as a defult GET request
-            OnPostViewAll();
+        public string ViewAll { get; set; }
+        //show all images in db
+        public void OnPostViewAll()
+        {
+            ViewData["ViewAllSearch"] = ViewAll;
 
         }
+
+        public string Female { get; set; }
+        //show only female samples
+        public void OnPostFemales()
+        {
+            ViewData["FemaleSearch"] = Female;
+
+        }
+
+        public string Male { get; set; }
+        //show only Male samples
+        public void OnPostMales()
+        {
+            ViewData["MaleSearch"] = Male;
+        }
+
+        public string Center { get; set; }
+        //show only ICS center samples
+        public void OnPostCenter()
+        {
+            ViewData["CenterSearch"] = Center;
+        }
+
+        public string Gene { get; set; }
+        //show only Gene Rab15 samples
+        public void OnPostGene()
+        {
+            ViewData["GeneSearch"] = Gene;
+        }
+
 
         //show only female samples
-        public IActionResult OnPostFemales()
-        {
+        //public IActionResult OnPostFemales()
+        //{
 
-            string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
+        //    string cmdText = @"
+        //        SELECT urlString FROM url WHERE patient_id IN 
+        //        (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
 
-            MySqlConnection(cmdText);
+        //    MySqlConnection(cmdText);
 
-            return Page();
-        }
+        //    return Page();
+        //}
 
-        //show only male examples
-        public IActionResult OnPostMales()
-        {
+        ////show only male examples
+        //public IActionResult OnPostMales()
+        //{
 
-            string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE patient_sex = 'M');";
+        //    string cmdText = @"
+        //        SELECT urlString FROM url WHERE patient_id IN 
+        //        (SELECT patient_id FROM mice WHERE patient_sex = 'M');";
 
-            MySqlConnection(cmdText);
+        //    MySqlConnection(cmdText);
 
-            return Page();
-            //return Redirect("Index"); //Directs to a new page where the result can be shown
-        }
+        //    return Page();
+        //    //return Redirect("Index"); //Directs to a new page where the result can be shown
+        //}
 
-        //show only ICS Centre
-        public IActionResult OnPostCentre()
-        {
+        ////show only ICS Centre
+        //public IActionResult OnPostCentre()
+        //{
 
-            string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE phenotyping_center = 'ICS');";
+        //    string cmdText = @"
+        //        SELECT urlString FROM url WHERE patient_id IN 
+        //        (SELECT patient_id FROM mice WHERE phenotyping_center = 'ICS');";
 
-            MySqlConnection(cmdText);
+        //    MySqlConnection(cmdText);
 
-            return Page();
-        }
+        //    return Page();
+        //}
 
-        //show only Gene RAB15
-        public IActionResult OnPostGene()
-        {
+        ////show only Gene RAB15
+        //public IActionResult OnPostGene()
+        //{
 
-            string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE patient_gene = 'Rab15');";
+        //    string cmdText = @"
+        //        SELECT urlString FROM url WHERE patient_id IN 
+        //        (SELECT patient_id FROM mice WHERE patient_gene = 'Rab15');";
 
-            MySqlConnection(cmdText);
+        //    MySqlConnection(cmdText);
 
-            return Page();
-        }
+        //    return Page();
+        //}
 
 
-        //show all images in MySql database
-        public IActionResult OnPostViewAll()
-        {
+        ////show all images in MySql database
+        //public IActionResult OnPostViewAll()
+        //{
 
-            return Page();
-        }
+        //    return Page();
+        //}
 
-        //Main functon that connects to the ySql server and returns the reuqired URLs
-        public void MySqlConnection(string connection)
-        {
+        ////Main functon that connects to the ySql server and returns the reuqired URLs
+        //public void MySqlConnection(string connection)
+        //{
 
-            // Opens a db connection using localhost database connection.Could also have used 127.0.0.1
-            String str = @"server=localhost; database=MICE; userid=root; password=TSEGroup34;";
-            MySqlConnection conn = null;
-            MySqlDataReader reader = null;
+        //    // Opens a db connection using localhost database connection.Could also have used 127.0.0.1
+        //    String str = @"server=localhost; database=MICE; userid=root; password=TSEGroup34;";
+        //    MySqlConnection conn = null;
+        //    MySqlDataReader reader = null;
 
-            string cmdText = connection;
+        //    string cmdText = connection;
 
-            try //To open localhost database and present a query
-            {
-                //Create a object with 'str' connection values passed. This uses the inbuilt library of MySql which is required
-                conn = new MySqlConnection(str);
-                conn.Open(); //opens the database connection
-                Console.WriteLine("Localhost MySQL Database Connected"); //If the database opens it presents this messsge. 
+        //    try //To open localhost database and present a query
+        //    {
+        //        //Create a object with 'str' connection values passed. This uses the inbuilt library of MySql which is required
+        //        conn = new MySqlConnection(str);
+        //        conn.Open(); //opens the database connection
+        //        Console.WriteLine("Localhost MySQL Database Connected"); //If the database opens it presents this messsge. 
 
-                //Creates object and passes all returned values to it
-                MySqlCommand cmd = new MySqlCommand(cmdText, conn);
-                reader = cmd.ExecuteReader();
+        //        //Creates object and passes all returned values to it
+        //        MySqlCommand cmd = new MySqlCommand(cmdText, conn);
+        //        reader = cmd.ExecuteReader();
 
-                //Loops through the returned values and writes them to a list that will be passed to client side
-                List<string> urlList = new List<string>();
+        //        //Loops through the returned values and writes them to a list that will be passed to client side
+        //        List<string> urlList = new List<string>();
 
-                while (reader.Read())
-                {
-                    //Console.WriteLine(reader.GetString(0));
-                    urlList.Add(reader.GetString(0));
-                    
-                }
+        //        while (reader.Read())
+        //        {
+        //            //Console.WriteLine(reader.GetString(0));
+        //            urlList.Add(reader.GetString(0));
 
-                ViewData["DICOMArrayList"] = urlList;
+        //        }
 
-            }
-            catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
-            {
-                Console.WriteLine(errorMessage);
-            }
-            finally //Once the try-ctach block is complete the connection is closed
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
+        //        ViewData["DICOMArrayList"] = urlList;
 
-        }
+        //    }
+        //    catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
+        //    {
+        //        Console.WriteLine(errorMessage);
+        //    }
+        //    finally //Once the try-ctach block is complete the connection is closed
+        //    {
+        //        if (conn != null)
+        //        {
+        //            conn.Close();
+        //        }
+        //    }
 
-        //display user selected query images
-        public IActionResult OnPostName(string centre, string sex)
-        {
+        //}
 
-            string cmdText = "SELECT urlString FROM url WHERE patient_id IN(SELECT patient_id FROM mice WHERE phenotyping_center = '" + centre + "' AND patient_sex = '" + sex + "');";
+        ////display user selected query images
+        //public IActionResult OnPostName(string centre, string sex)
+        //{
 
-            MySqlConnection(cmdText);
+        //    string cmdText = "SELECT urlString FROM url WHERE patient_id IN(SELECT patient_id FROM mice WHERE phenotyping_center = '" + centre + "' AND patient_sex = '" + sex + "');";
 
-            return Page();
+        //    MySqlConnection(cmdText);
 
-        }
+        //    return Page();
+
+        //}
 
 
     }

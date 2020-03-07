@@ -1,4 +1,6 @@
-﻿var db = new Dexie('database');
+﻿
+var db = new Dexie('database');
+
 var miceTestData = [{
     patient_id: 'AA123456789',
     patient_sex: 'F',
@@ -112,6 +114,7 @@ var miceTestData = [{
     phenotyping_center: 'WTSI',
     urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/SS123456789.dcm'
     }];
+
 var urlTestData = [{
     patient_id: 'AA123456789',
     urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/AA123456789.dcm'
@@ -168,10 +171,13 @@ function createDb() {
         url: "patient_id, urlString",
         results: "patient_id,patient_sex,patient_gene,parameter_name,phenotyping_center,urlString"
     });
+    console.log("Database created");
 };
 
+//adds json data into dexieDB
 function loadTestData() {
     loadJsonArray(miceTestData, urlTestData);
+    console.log("Test data loaded");
 };
 
 function loadJsonArray(miceArr,urlArr) {
@@ -184,6 +190,7 @@ function loadJsonArray(miceArr,urlArr) {
     });
 };
 
+//Impliment queries for dexieDB
 function queryDb(id_q,sex_q,gene_q,parameter_q,center_q) {
     return db.open().then(function () {
         console.log('patient query in process');
@@ -235,6 +242,7 @@ function clearDivs() {
     }
 }
 
+//Takes results from QueryDB array and creates new ImageArray item with url string for Cornerstone to use
 function loadDivs() {
     db.open().then(function () {
         return db.results.toArray();
@@ -245,8 +253,6 @@ function loadDivs() {
         };
 
         cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
-
-
 
         //Forloop through image set and appends image to end of previous image
 
@@ -264,7 +270,7 @@ function loadDivs() {
             currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
             cornerstone.enable(imageDiv);
 
-            //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
+            //Load the DICOM image and allow support tools for image zoom and contrast etc
 
             cornerstone.loadImage(imageId).then(function (image) {
                 cornerstone.displayImage(imageDiv, image);

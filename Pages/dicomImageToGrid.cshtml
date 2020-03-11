@@ -9,6 +9,7 @@
 <head>
     <title>Grid</title>
     <link rel="stylesheet" href="css/dicomImageToGrid.css">
+    <link rel="stylesheet" href="css/navbar.css">
 
     <!-- include the cornerstone library -->
     <script src="https://unpkg.com/cornerstone-wado-image-loader@3.0.6/dist/cornerstoneWADOImageLoader.min.js"></script>
@@ -22,12 +23,40 @@
 
 <body>
 
-    <div class="header">
-        <p>Click a button to see related images.</p>
-        <p>Use mouse to zoom in or change contrast of an image.</p>
+    <!-- // Intro and header -->
 
+    <Section class="navBar">
+        <header>
+            <div class="container">
+                <h1 class="logo"></h1>
+
+                <nav>
+                    <ul>
+                        <li><a asp-page="/index">Home</a></li>
+                        <li><a asp-page="/dicomImageToGrid">Search</a></li>
+                        <li><a asp-page="/base64ToImage">Body Part</a></li>
+                        <li><a asp-page="/charts">Charts</a></li>
+                        <li><a asp-page="/index">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </Section>
+
+
+    <!-- // place for any text-->
+
+    <Section class="description">
+        <div id="description">
+
+        </div>
+    </Section>
+
+
+    <!-- // Helper points  -->
+
+    <div class="header">
         <form method="POST">
-            <button type="submit" class="btn btn-dark" asp-page="/Index">Home</button>
             <button type="submit" class="btn btn-danger" asp-page-handler="viewAll">View All</button>
             <button type="submit" class="btn btn-success" asp-page-handler="Females">Females</button>
             <button type="submit" class="btn btn-primary" asp-page-handler="Males">Males</button>
@@ -39,7 +68,7 @@
 
     <div class="header">
         <form method="POST">
-            <label for="tagName"><font color="black" size="4">QUERY:</font></label>
+            <label for="tagName"><font color="white" size="4">QUERY: </font></label>
             <input type="text" id="tagName" placeholder="Centre: WTSI or ICS" name="centre">
             <input type="text" id="tagName" placeholder="Sex: M or F" name="sex">
             <input type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Name">
@@ -61,6 +90,7 @@
     cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
     //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
+
     var ImageArray = @Html.Raw(Json.Serialize(ViewData["DICOMArrayList"]));
     //console.log(ImageArray[1]);
     //console.log(ImageArray.length);
@@ -70,26 +100,31 @@
     for (var i = 0; i < ImageArray.length; i++) {
         console.log("Images", i+1, "of", ImageArray.length, "loaded");
         var imageNum = ImageArray[i];
+
         let imageId = "wadouri:" + imageNum;
+        console.log(imageId);
 
         //Create new div element for each DICOM image and insert it befor the dicomImage div in body
+
         const imageDiv = document.createElement("div");
-        imageDiv.style = "width:20vw; height:20vw; border: thin solid white; display:inline-block";
+        imageDiv.style = "width:20vw; height:20vw; border: thin solid transparent; display:inline-block";
         var currentDiv = document.getElementById("dicomImage");
         currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
         cornerstone.enable(imageDiv);
 
         //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
-        cornerstone.loadImage(imageId).then(function(image) {
+
+        cornerstone.loadImage(imageId).then(function (image) {
         cornerstone.displayImage(imageDiv, image);
         cornerstoneTools.mouseInput.enable(imageDiv);
         cornerstoneTools.mouseWheelInput.enable(imageDiv);
         cornerstoneTools.wwwc.activate(imageDiv, 1); // ww/wc is the default tool for left mouse button
-        cornerstoneTools.pan.activate(imageDiv, 2); // pan is the default tool for middle mouse button
-        cornerstoneTools.zoom.activate(imageDiv, 4); // zoom is the default tool for right mouse button
+        cornerstoneTools.pan.activate(imageDiv, 4); // pan is the default tool for middle mouse button
+        cornerstoneTools.zoom.activate(imageDiv, 2); // zoom is the default tool for right mouse button
         cornerstoneTools.zoomWheel.activate(imageDiv); // zoom is the default tool for middle mouse wheel
         //cornerstoneTools.imageStats.enable(imageElement);
         //console.log("Images", i, "of", ImageArray.length, "loaded");
+
         });
 
     }

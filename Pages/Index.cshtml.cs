@@ -5,9 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.IO;
+using Newtonsoft;
+using MySql.Data.MySqlClient;
+using System.Web;
+using Microsoft.AspNetCore.Cors;
+
 
 namespace miceExplorationTool.Pages
 {
+
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
@@ -19,7 +26,249 @@ namespace miceExplorationTool.Pages
 
         public void OnGet()
         {
+            //FilePath();
+        }
 
+        public void OnPost()
+        {
+
+        }
+
+        //public string errorMessage;
+
+        //display user selected query images
+        public void OnPostFilePath()
+        {
+            //sets filepath as route to dicomImages folder - this is where the user will need to place there images or symlink to
+            string filePath = "wwwroot/dicomImages";
+
+            //unit test for filepath name >>result is a console log saying folder does not exist
+            //string filePath = "wwwroot/dicomImage";
+
+            //Runs through the folder and assigns a new path then pushes newPath to the database where there is an id match
+            if (Directory.Exists(filePath))
+            {
+
+                Console.WriteLine("\nNew Images added to database:");
+
+                //calls function to populate mice list with files found at the filePath
+                List<Image> mice = FindImages(filePath); //change from findFiles
+
+                foreach (Image im in mice)
+                {//goes through them
+                    List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
+                    foreach (string path in filepaths)
+                    {//goes through them
+
+                        //removes the wwwroot/ element of the file path
+                        string myfilePath = path;
+                        myfilePath = myfilePath.Replace("wwwroot/", "");
+
+                        //adds 'https://' to start of every item in the list so it can be found in the project root folder
+                        string newPath = "https://localhost:5001/" + myfilePath;
+                        Console.WriteLine(newPath);//prints
+
+                        //take last part of file path without extension for search comparison
+                        var dirName = Path.GetFileNameWithoutExtension(path);
+                        //Console.WriteLine(dirName);//prints file name without extension
+
+                        //create a insert funtion that uses the comparison and searches the database and inserts the newPath value
+                        string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
+                        MySqlConnection(cmdText);
+
+                    }
+
+            }
+            } else
+            {
+                //sends error to html 
+                //errorMessage = "error";
+                Console.WriteLine("Folder does not exist. Please check the file path");
+
+            };
+
+        }
+
+
+        public List<Image> FindImages(string DirectoryPath)
+        //public List<Image> FindFiles(string DirectoryPath) //current working
+        {
+
+            //string[] Dir = Directory.GetFiles(DirectoryPath);//Allows for copy paste filepaths using Override.
+
+            List<string> Dir = FindFiles(DirectoryPath);
+            List<string> ImagePaths = new List<string>();//creates a list of filepaths
+            List<string> TagPaths = new List<string>();//creates a list of filepaths
+
+            foreach (string file in Dir)
+            {//goes through directory finding all files
+                string ext = Path.GetExtension(file);
+
+                if (ext == ".dcm") //If extension is a dcm file then put in ImagePaths list
+                {//sorts dependent upont file type
+                    ImagePaths.Add(file);
+                }
+                else
+                {
+                    TagPaths.Add(file);
+                }
+
+            }
+            List<Image> Images = SortImage(ImagePaths);//Sorts images of the same mouse into record.
+            return Images;//returns a list of the Image object
+        }
+
+
+        public List<string> FindFiles(string directory)
+        {
+            List<string> filepaths = new List<string>();
+
+            string[] Directories = Directory.GetDirectories(@directory);//Allows for copy paste filepaths using Override.
+            if (Directories.Length > 0)
+            {
+                Console.WriteLine(Directories[0]);
+                foreach (string Dir in Directories)
+                {
+                    filepaths.AddRange(FindFiles(Dir));
+                }
+                filepaths.AddRange(Directory.GetFiles(@directory));
+            }
+            else
+            {
+                filepaths.AddRange(Directory.GetFiles(@directory));
+            }
+            return filepaths;
+        }
+
+
+
+
+
+        public List<Image> SortImage(List<string> Files)
+        {
+            List<string> Filepaths = Files;
+            List<Image> Images = new List<Image>();
+            foreach (string File in Filepaths)
+            {
+                List<string> files = new List<string>();
+                //string id = GetID(Filepaths[0]);
+                files.Add(File);
+                Image Mouse = new Image();
+                Mouse.AddImage(files);
+                Images.Add(Mouse);
+            }
+            return Images;
+        }
+
+
+        public void GetImagesPaths(string fileURL)
+        {//this calls the find files method, and gets and object of images back - I've left it void for you.
+            List<Image> mice = FindImages(fileURL); //was findFiles
+            foreach (Image im in mice)
+            {//goes through them
+                List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
+                foreach (string path in filepaths)
+                {//goes through them
+                    Console.WriteLine(filepaths);//prints
+                }
+
+            }
+        }
+
+        //Main functon that connects to the MySql server and returns the reuqired URLs
+        public void MySqlConnection(string connection)
+        {
+
+            // Opens a db connection using localhost database connection.Could also have used 127.0.0.1
+            String str = @"server=localhost; database=MICE; userid=root; password=TSEGroup34;";
+            MySqlConnection conn = null;
+            MySqlDataReader reader = null;
+
+            string cmdText = connection;
+
+            try //To open localhost database and present a query
+            {
+                //Create a object with 'str' connection values passed. This uses the inbuilt library of MySql which is required
+                conn = new MySqlConnection(str);
+                conn.Open(); //opens the database connection
+                //Console.WriteLine("Localhost MySQL Database Connected"); //If the database opens it presents this messsge. 
+
+                //Creates object and passes all returned values to it
+                MySqlCommand cmd = new MySqlCommand(cmdText, conn);
+                reader = cmd.ExecuteReader();
+
+                //Loops through the returned values and writes them to a list that will be passed to client side
+                List<string> urlList = new List<string>();
+
+                while (reader.Read())
+                {
+                    //Console.WriteLine(reader.GetString(0));
+                    urlList.Add(reader.GetString(0));
+
+                }
+
+                ViewData["DICOMArrayList"] = urlList;
+
+            }
+            catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
+            {
+                Console.WriteLine(errorMessage);
+            }
+            finally //Once the try-ctach block is complete the connection is closed
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+
+
+    }
+
+    //Import the users file path
+
+    public class Image//Record of images
+    {
+        private List<string> ImageFilepaths = new List<string>();//stores the groups of images
+        private List<string> TagHeaders = new List<string>();
+        private List<string> TagInfo = new List<string>();
+
+        public Image()
+        {//creates a new object
+
+        }
+
+        public void AddImage(List<string> filepath)
+        {//sets the list of images to the image
+            ImageFilepaths = filepath;
+        }
+
+        public void AddTagInfo(List<string> headers, List<string> body)
+        {//sets the info as 2 a
+            this.TagHeaders = headers;
+            this.TagInfo = body;
+        }
+
+
+        public List<string> GetImages()
+        {//returns the list of images
+            return this.ImageFilepaths;
+        }
+
+        public List<string> GetHeaders()
+        {
+            return this.TagHeaders;
+        }
+
+        public List<string> GetInfo()
+        {
+            return this.TagInfo;
         }
     }
 }

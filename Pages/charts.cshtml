@@ -1,0 +1,52 @@
+﻿@page
+@model chartsModel
+@{
+    //ViewData["Title"] = "Chart page";
+
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/charts.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+</head>
+
+<body>
+
+    <!-- // Intro and header -->
+
+    <Section class="navBar">
+        <header>
+            <div class="container">
+                <h1 class="logo"></h1>
+
+                <nav>
+                    <ul>
+                        <li><a asp-page="/index">Home</a></li>
+                        <li><a asp-page="/dicomImageToGrid">Search</a></li>
+                        <li><a asp-page="/base64ToImage">Body Part</a></li>
+                        <li><a asp-page="/charts">Charts</a></li>
+                        <li><a asp-page="/index">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </Section>
+
+    <!-- // Helper points  -->
+
+</body>
+
+</html>
+
+<script>
+
+    console.log("Charts Page Loaded :)");
+
+</script>
+
+

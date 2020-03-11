@@ -11,6 +11,7 @@ using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 
+
 namespace miceExplorationTool.Pages
 {
     [ValidateAntiForgeryToken]
@@ -106,8 +107,18 @@ namespace miceExplorationTool.Pages
 
                 while (reader.Read())
                 {
-                    //Console.WriteLine(reader.GetString(0));
-                    urlList.Add(reader.GetString(0));
+                    //Console.WriteLine("string: " + reader.GetString(0));
+
+                    //checks if database value returned is null i.e. no record in associated id column for the URL)
+                    //because the users does not have the image for that particular mouse in their image folder
+                    if (!reader.IsDBNull(0))
+                    {
+                        urlList.Add(reader.GetString(0));
+                    }
+                    else
+                    {
+                        Console.WriteLine("No URL string associated with image id");
+                    }
 
                 }
 

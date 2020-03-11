@@ -9,9 +9,11 @@ using Newtonsoft.Json;
 using System.Web;
 using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Cors;
 
 namespace miceExplorationTool.Pages
 {
+
     public class dicomImageToGridModel : PageModel
     {
         private readonly ILogger<dicomImageToGridModel> _logger;
@@ -95,6 +97,20 @@ namespace miceExplorationTool.Pages
             return Page();
         }
 
+
+        //display user selected query images
+        public IActionResult OnPostName(string centre, string sex)
+        {
+
+            string cmdText = "SELECT urlString FROM url WHERE patient_id IN(SELECT patient_id FROM mice WHERE phenotyping_center = '" + centre + "' AND patient_sex = '" + sex + "');";
+
+            MySqlConnection(cmdText);
+
+            return Page();
+
+        }
+
+
         //Main functon that connects to the ySql server and returns the reuqired URLs
         public void MySqlConnection(string connection)
         {
@@ -111,7 +127,7 @@ namespace miceExplorationTool.Pages
                 //Create a object with 'str' connection values passed. This uses the inbuilt library of MySql which is required
                 conn = new MySqlConnection(str);
                 conn.Open(); //opens the database connection
-                Console.WriteLine("Localhost MySQL Database Connected"); //If the database opens it presents this messsge. 
+                //Console.WriteLine("MySQL Database Connected"); //If the database opens it presents this messsge. 
 
                 //Creates object and passes all returned values to it
                 MySqlCommand cmd = new MySqlCommand(cmdText, conn);
@@ -122,9 +138,19 @@ namespace miceExplorationTool.Pages
 
                 while (reader.Read())
                 {
-                    //Console.WriteLine(reader.GetString(0));
-                    urlList.Add(reader.GetString(0));
-                    
+                    //Console.WriteLine("string: " + reader.GetString(0));
+
+                    //checks if database value returned is null i.e. no record in associated id column for the URL)
+                    //because the users does not have the image for that particular mouse in their image folder
+                    if (!reader.IsDBNull(0))
+                    {
+                        urlList.Add(reader.GetString(0));
+                    }
+                    else
+                    {
+                        Console.WriteLine("No URL string associated with image id");
+                    }
+
                 }
 
                 ViewData["DICOMArrayList"] = urlList;
@@ -143,19 +169,6 @@ namespace miceExplorationTool.Pages
             }
 
         }
-
-        //display user selected query images
-        public IActionResult OnPostName(string centre, string sex)
-        {
-
-            string cmdText = "SELECT urlString FROM url WHERE patient_id IN(SELECT patient_id FROM mice WHERE phenotyping_center = '" + centre + "' AND patient_sex = '" + sex + "');";
-
-            MySqlConnection(cmdText);
-
-            return Page();
-
-        }
-
 
     }
 

@@ -11,9 +11,14 @@ cd into directory
 
 terminal - dotnet run
 
-visit localhost:5000
+visit localhost:5000   << This may show you an error due to HTTPS being required. 
 
-# Database details
+
+# WebApp website (not fully operating as yet)
+
+https://met.azurewebsites.net/
+
+# Database details (Localy hosted)
 The database is in MySql and is hosted locally (i.e. a users machine). The user will need to install MySql for their machine and create a user and password. Currently, 'user=root' and 'password=TSEGroup34'. If these values change for the user then the program will need to be changed accordingly. These values are used to create a connection string to the local MySql database. 
 
 The user will then be required to upload the miceSchema.sql file to create the database called 'MICE' with its associated tables and values. A query will then be applied to this datbase using the c# program to find all female mice within the database and return their associated URLs. These URLs could be used to fetch the DICOM images ?

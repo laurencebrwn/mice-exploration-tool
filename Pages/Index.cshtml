@@ -2,6 +2,7 @@
 @model IndexModel
 @{
     //ViewData["Title"] = "Home page";
+
 }
 
 <!doctype html>
@@ -10,81 +11,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
-</head>
+    <link rel="stylesheet" href="css/navbar.css">
 
+</head>
 
 <body>
 
-    <form method="POST">
-        <ul id="hexGrid">
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse1.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Females" />
-                    <p>Females<br />in <br />Database</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Males" />
-                    <p>Males<br /> in <br />Database</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse4.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Centre" />
-                    <p>Centre <br />(ICS)</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse5.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Gene" />
-                    <p>Gene <br />(Rab15)</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse6.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse7.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse8.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse9.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse10.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>DICOM <br />Image Grid</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse11.jpg" alt="Submit" asp-page="/base64ToImage" />
-                    <p>Base64 To <br />Image</p>
-                </div>
-            </li>
-        </ul>
-    </form>
+    <!-- // Intro and header -->
+
+    <Section class="navBar">
+        <header>
+            <div class="container">
+                <h1 class="logo"></h1>
+                <nav>
+                    <ul>
+                        <li><a asp-page="/index">Home</a></li>
+                        <li><a asp-page="/dicomImageToGrid">Search</a></li>
+                        <li><a asp-page="/base64ToImage">Body Part</a></li>
+                        <li><a asp-page="/charts">Charts</a></li>
+                        <li><a asp-page="/index">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </Section>
+
+
+    <!-- // place for any text-->
+
+    <Section class="description">
+        <div id="description">
+
+        </div>
+    </Section>
+
+    <!-- // Hexogan grid display-->
+
+    <Section class="grid">
+
+        <form method="POST">
+            <ul id="hexGrid">
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse1.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <p>View All</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Females" />
+                        <p>Females<br />in <br />Database</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Males" />
+                        <p>Males<br /> in <br />Database</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse4.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Centre" />
+                        <p>Centre <br />(ICS)</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse5.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Gene" />
+                        <p>Gene <br />(Rab15)</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse6.jpg" alt="Submit" asp-page="/charts" />
+                        <p>Charts</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse7.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <p>Not In Use</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse8.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <p>Not In Use</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse9.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <p>Not In Use</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse10.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <p>Not In Use</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse11.jpg" alt="Submit" asp-page="/Index" asp-page-handler="FilePath" />
+                        <p>Update<br />the <br />Database</p>
+                    </div>
+                </li>
+            </ul>
+        </form>
+
+    </Section>
+
+    <!-- // Team details-->
 
 </body>
 

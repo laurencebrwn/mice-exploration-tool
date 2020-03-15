@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/navbar.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
 
 </head>
 
@@ -73,7 +73,7 @@
 
     //Global options for all charts
 
-    Chart.defaults.global.defaultFontFamily = 'lato';
+    Chart.defaults.global.defaultFontFamily = 'Work Sans';
     Chart.defaults.global.defaultFontSize = 15;
     Chart.defaults.global.defaultFontColor = '#777';
 
@@ -96,15 +96,15 @@
                     5
                 ],
                 //backgroundColor:'green'
-                backgroundColor: [
-                    'rgba(255,99,132,0.6)',
-                    'rgba(54,162,235,0.6)',
-                    'rgba(255,206,86,0.6)',
-                    'rgba(75,192,192,0.6)',
-                    'rgba(153,102,255,0.6)',
-                    'rgba(255,159,64,0.6)',
-                    'rgba(255,99,132,0.6)',
 
+                backgroundColor: [
+                    'rgba(220,105,20,1)',
+                    'rgba(70,77,87,1)',
+                    'rgba(212,232,211,1)',
+                    'rgba(228,220,203,1)',
+                    'rgba(237,137,23,1)',
+                    'rgba(166,196,188,1)',
+                    'rgba(234,122,88,1)',
                 ],
                 borderWidth: 1,
                 borderColor: '#777',
@@ -157,12 +157,10 @@
 
     let Centers = document.getElementById('Centers').getContext('2d');
 
-    //Global options
-
     let CentersChart = new Chart(Centers, {
         type: 'pie',//bar, horizontalBar,pie,line,doughnut,radar,polarArea
         data: {
-            labels: ['University of California Davis', 'University of Cincinnati Medical Center', 'University of Massachusetts', 'University of Michigan', 'Vanderbilt University School of Medicine', 'Alumni MMPCs'],
+            labels: ['Centre 1', 'Center 2', 'Centre 3', 'Centre 4', 'Center 5', 'Centre 6'],
             datasets: [{
                 label: 'Group 1',
                 data: [
@@ -174,15 +172,15 @@
                     50
                 ],
                 //backgroundColor:'green'
-                backgroundColor: [
-                    'rgba(255,99,132,0.6)',
-                    'rgba(54,162,235,0.6)',
-                    'rgba(255,206,86,0.6)',
-                    'rgba(75,192,192,0.6)',
-                    'rgba(153,102,255,0.6)',
-                    'rgba(255,159,64,0.6)',
-                    'rgba(255,99,132,0.6)',
 
+                backgroundColor: [
+                    'rgba(220,105,20,1)',
+                    'rgba(70,77,87,1)',
+                    'rgba(212,232,211,1)',
+                    'rgba(228,220,203,1)',
+                    'rgba(237,137,23,1)',
+                    'rgba(166,196,188,1)',
+                    'rgba(234,122,88,1)',
                 ],
                 borderWidth: 1,
                 borderColor: '#777',
@@ -222,8 +220,6 @@
 
     let DistMiceByAge = document.getElementById('DistMiceByAge').getContext('2d');
 
-    //Global options
-
     let DistMiceByAgeChart = new Chart(DistMiceByAge, {
         type: 'bar',//bar, horizontalBar,pie,line,doughnut,radar,polarArea
         data: {
@@ -239,13 +235,13 @@
                     32
                 ],
                 backgroundColor: [
-                    'rgba(255,99,132,0.6)',
-                    'rgba(54,162,235,0.6)',
-                    'rgba(255,206,86,0.6)',
-                    'rgba(75,192,192,0.6)',
-                    'rgba(153,102,255,0.6)',
-                    'rgba(255,159,64,0.6)',
-                    'rgba(255,99,132,0.6)',
+                    'rgba(220,105,20,1)',
+                    'rgba(70,77,87,1)',
+                    'rgba(212,232,211,1)',
+                    'rgba(228,220,203,1)',
+                    'rgba(237,137,23,1)',
+                    'rgba(166,196,188,1)',
+                    'rgba(234,122,88,1)',
                 ],
                 borderWidth: 1,
                 borderColor: '#777',
@@ -299,12 +295,10 @@
 
     let MFDist = document.getElementById('MFDist').getContext('2d');
 
-    //Global options
-
     let MFDistChart = new Chart(MFDist, {
         type: 'radar',//bar, horizontalBar,pie,line,doughnut,radar,polarArea
         data: {
-            labels: ['University of California Davis', 'University of Cincinnati Medical Center', 'University of Massachusetts', 'University of Michigan', 'Vanderbilt University School of Medicine', 'Alumni MMPCs'],
+            labels: ['Centre 1', 'Center 2', 'Centre 3', 'Centre 4', 'Center 5', 'Centre 6'],
             datasets: [{
                 label: 'Male',
                 data: [
@@ -315,7 +309,7 @@
                     111,
                     50
                 ],
-                backgroundColor: 'blue',
+                backgroundColor: 'rgba(228,220,203,1)',
                 borderWidth: 1,
                 borderColor: '#777',
                 hoverBorderWidth: 3,
@@ -331,7 +325,7 @@
                     214,
                     301
                 ],
-                backgroundColor: 'red',
+                backgroundColor: 'rgba(237,137,23,1)',
                 borderWidth: 1,
                 borderColor: '#777',
                 hoverBorderWidth: 3,
@@ -371,8 +365,6 @@
 
     let genes = document.getElementById('genes').getContext('2d');
 
-    //Global options
-
     let genesChart = new Chart(genes, {
         type: 'bar',//bar, horizontalBar,pie,line,doughnut,radar,polarArea
         data: {
@@ -407,13 +399,13 @@
                 ],
                 //  yAxisID: "y-axis-2",
                 backgroundColor: [
-                    'rgba(255,99,132,0.6)',
-                    'rgba(54,162,235,0.6)',
-                    'rgba(255,206,86,0.6)',
-                    'rgba(75,192,192,0.6)',
-                    'rgba(153,102,255,0.6)',
-                    'rgba(255,159,64,0.6)',
-                    'rgba(255,99,132,0.6)',
+                    'rgba(220,105,20,1)',
+                    'rgba(70,77,87,1)',
+                    'rgba(212,232,211,1)',
+                    'rgba(228,220,203,1)',
+                    'rgba(237,137,23,1)',
+                    'rgba(166,196,188,1)',
+                    'rgba(234,122,88,1)',
                 ],
                 borderWidth: 1,
                 borderColor: '#777',
@@ -425,7 +417,7 @@
         options: {
             title: {
                 display: true,
-                text: 'Distribution of Abnormalities Across Mice of Different Ages ',
+                text: 'Weight of mice across age ranges ',
                 fontSize: 20
             },
             legend: {

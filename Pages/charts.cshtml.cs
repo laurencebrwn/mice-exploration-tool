@@ -26,7 +26,7 @@ namespace miceExplorationTool.Pages
 
         public void OnGet()
         {
-            //FilePath();
+            //ChartData();
         }
 
         public void OnPost()

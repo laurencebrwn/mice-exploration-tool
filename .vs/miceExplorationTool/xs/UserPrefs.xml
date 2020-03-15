@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/base64ToImage.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/charts.cshtml.cs">
     <Files>
-      <File FileName="Pages/base64ToImage.cshtml" Line="66" Column="1" />
-      <File FileName="Pages/base64ToImage.cshtml.cs" Line="106" Column="1" />
+      <File FileName="Pages/charts.cshtml" Line="22" Column="1" />
+      <File FileName="Pages/charts.cshtml.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -10,7 +10,10 @@
           <Node name="miceExplorationTool" expanded="True">
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Pages" expanded="True">
-                <Node name="base64ToImage.cshtml" expanded="True" selected="True" />
+                <Node name="base64ToImage.cshtml" expanded="True" />
+                <Node name="charts.cshtml" expanded="True">
+                  <Node name="charts.cshtml.cs" selected="True" />
+                </Node>
                 <Node name="dicomImageToGrid.cshtml" expanded="True" />
                 <Node name="Index.cshtml" expanded="True" />
               </Node>

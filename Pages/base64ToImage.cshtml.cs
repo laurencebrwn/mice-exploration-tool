@@ -41,7 +41,7 @@ namespace miceExplorationTool.Pages
             return RedirectToPage("Index");
         }
 
-        //show only female samples
+        //show only images of the paw
         public IActionResult OnPostPaw()
         {
 
@@ -54,7 +54,7 @@ namespace miceExplorationTool.Pages
             return Page();
         }
 
-        //show only male samples
+        //show only images of the body
         public IActionResult OnPostBody()
         {
 
@@ -67,12 +67,25 @@ namespace miceExplorationTool.Pages
             return Page();
         }
 
+        //show only images of the head
         public IActionResult OnPostHead()
         {
 
             string cmdText = @"
                 SELECT urlString FROM url WHERE patient_id IN 
                 (SELECT patient_id FROM mice WHERE parameter_name = 'head');";
+
+            MySqlConnection(cmdText);
+
+            return Page();
+        }
+
+        //show the full body image of a mouse with the user inputed ID
+        public IActionResult OnPostID(string ID)
+        {
+
+            string cmdText = @"
+                SELECT urlString FROM url WHERE patient_id = '" + ID + "';"; 
 
             MySqlConnection(cmdText);
 

@@ -31,6 +31,7 @@ namespace miceExplorationTool.Pages
 
         }
 
+
         //show only female samples
         public IActionResult OnPostFemales()
         {
@@ -101,6 +102,13 @@ namespace miceExplorationTool.Pages
         //display user selected query images
         public IActionResult OnPostName(string centre, string sex)
         {
+
+
+            //check string to make sure it does not contain an incorrect value
+
+         
+
+            //End of test by Chris
 
             string cmdText = "SELECT urlString FROM url WHERE patient_id IN(SELECT patient_id FROM mice WHERE phenotyping_center = '" + centre + "' AND patient_sex = '" + sex + "');";
 

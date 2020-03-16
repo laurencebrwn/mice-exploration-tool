@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/base64ToImage.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml.cs">
     <Files>
-      <File FileName="Pages/base64ToImage.cshtml" Line="33" Column="5" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="135" Column="12" />
+      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="12" Column="33" />
       <File FileName="Pages/base64ToImage.cshtml.cs" Line="1" Column="1" />
     </Files>
     <Pads>
@@ -10,12 +11,7 @@
           <Node name="miceExplorationTool" expanded="True">
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Pages" expanded="True">
-                <Node name="base64ToImage.cshtml" selected="True" />
-              </Node>
-              <Node name="Test MySql Database Schema" expanded="True" />
-              <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True" />
-                <Node name="js" expanded="True" />
+                <Node name="dicomImageToGrid.cshtml.cs" selected="True" />
               </Node>
             </Node>
           </Node>

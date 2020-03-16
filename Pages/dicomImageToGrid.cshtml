@@ -88,13 +88,20 @@
 <script>
 
     cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
-
-    //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
-
+    
+    
+    //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection? 
+    
     var ImageArray = @Html.Raw(Json.Serialize(ViewData["DICOMArrayList"]));
     //console.log(ImageArray[1]);
     //console.log(ImageArray.length);
-
+    
+    
+    if(ImageArray.length == 0)
+    {
+    window.alert("there are no images in the database");
+    } else
+    {
     //Forloop through image set and appends image to end of previous image
 
     for (var i = 0; i < ImageArray.length; i++) {
@@ -126,9 +133,11 @@
         //console.log("Images", i, "of", ImageArray.length, "loaded");
 
         });
-
+    
     }
-
+    
+    }
+    
     // //Forloop through jpg image set in assets folder and appends image to end of previous image
     // for (var i = 0; i < 3; i++) {
     // var jpgImg = document.createElement("img");

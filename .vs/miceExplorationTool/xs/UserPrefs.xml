@@ -10,10 +10,7 @@
           <Node name="miceExplorationTool" expanded="True">
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Pages" expanded="True">
-                <Node name="base64ToImage.cshtml" expanded="True" selected="True" />
-                <Node name="charts.cshtml" expanded="True" />
-                <Node name="dicomImageToGrid.cshtml" expanded="True" />
-                <Node name="Index.cshtml" expanded="True" />
+                <Node name="base64ToImage.cshtml" selected="True" />
               </Node>
               <Node name="Test MySql Database Schema" expanded="True" />
               <Node name="wwwroot" expanded="True">
@@ -26,7 +23,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.miceExplorationTool PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.ItemProperties.miceExplorationTool PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

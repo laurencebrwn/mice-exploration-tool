@@ -36,26 +36,33 @@
 
         <form method="POST">
             <button type="submit" class="btn btn-dark" asp-page="/Index">Home</button>
-        </form>
 
-        <button type="submit" class="btn btn-danger" onclick="queryDb('A', 'A', 'A', 'A', 'A')">View All</button>
-        <button type="submit" class="btn btn-success" onclick="queryDb('A', 'F', 'A', 'A', 'A')">Females</button>
-        <button type="submit" class="btn btn-primary" onclick="queryDb('A', 'M', 'A', 'A', 'A')">Males</button>
-        <button type="submit" class="btn btn-warning" onclick="queryDb('A', 'A', 'Rab15', 'A', 'A')">Gene (Rab15)</button>
-        <button type="submit" class="btn btn-info" onclick="queryDb('A', 'A', 'A', 'A', 'ICS')">Centre (ICS)</button>
-      
+            <!--
+    <button type="submit" class="btn btn-danger" onclick="queryDb('A', 'A', 'A', 'A', 'A')">View All</button>
+    <button type="submit" class="btn btn-success" onclick="queryDb('A', 'F', 'A', 'A', 'A')">Females</button>
+    <button type="submit" class="btn btn-primary" onclick="queryDb('A', 'M', 'A', 'A', 'A')">Males</button>
+    <button type="submit" class="btn btn-warning" onclick="queryDb('A', 'A', 'Rab15', 'A', 'A')">Gene (Rab15)</button>
+    <button type="submit" class="btn btn-info" onclick="queryDb('A', 'A', 'A', 'A', 'ICS')">Centre (ICS)</button>-->
+
+            <button type="submit" class="btn btn-danger" asp-page-handler="ViewAll">View All</button>
+            <button type="submit" class="btn btn-success" asp-page-handler="Females">Females</button>
+            <button type="submit" class="btn btn-primary" asp-page-handler="Males">Males</button>
+            <button type="submit" class="btn btn-warning" asp-page-handler="Gene">Gene (Rab15)</button>
+            <button type="submit" class="btn btn-info" asp-page-handler="Center">Centre (ICS)</button>
+        </form>
     </div>
 
     <div class="header">
         <form method="POST">
             <label for="tagName"><font color="black" size="4">QUERY:</font></label>
-            <input type="text" id="tagName" placeholder="Centre: WTSI or ICS" name="centre">
+            <input type="text" id="tagName" placeholder="Centre: WTSI or ICS" name="center">
             <input type="text" id="tagName" placeholder="Sex: M or F" name="sex">
             <input type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Name">
         </form>
     </div>
 
     <div id="images">
+        <p id="resultsFound"></p>
         <!-- Images are placed above this Div to create the grid -->
         <div id="dicomImage"></div>
     </div>
@@ -67,23 +74,28 @@
 <script>
 
     //View All search button from index page
-
-    if (@ViewData["ViewAllSearch"] == "ViewAll") {
+    var menuOption = '@ViewData["MenuOption"]';
+    var centerOption = '@ViewData["CenterOption"]';
+    var sexOption = '@ViewData["SexOption"]';
+    console.log("Menu Option: ", menuOption);
+    console.log("Center Option: ", centerOption);
+    console.log("Sex Option: ", sexOption);
+    if(menuOption == "ViewAll"){
         queryDb('A', 'A', 'A', 'A', 'A');
-    } else if (@ViewData["FemaleSearch"] == "Female") {
+    } else if (menuOption == "Females") {
+        queryDb('A', 'F', 'A', 'A', 'A');
+    } else if (menuOption == "Males") {
         queryDb('A', 'M', 'A', 'A', 'A');
-    } else if (@ViewData["MaleSearch"] == "Male") {
-        queryDb('A', 'M', 'A', 'A', 'A');
-    } else if (@ViewData["GeneSearch"] == "Gene") {
+    } else if (menuOption == "Gene") {
         queryDb('A', 'A', 'Rab15', 'A', 'A');
-    } else if (@ViewData["CenterSearch"] == "Center") {
+    } else if (menuOption == "Center") {
         queryDb('A', 'A', 'A', 'A', 'ICS');
-    }else {
+    } else if (menuOption == "User"){
+        queryDb('A', sexOption, 'A', 'A', centerOption);
+    } else {
         console.log("Query Not Fired");
     };
 
-
-    loadDivs();
     console.log("Page Loaded :)");
 </script>
 

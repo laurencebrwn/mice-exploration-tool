@@ -24,48 +24,53 @@ namespace miceExplorationTool.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            
+            return Page();
         }
 
-        public string ViewAll { get; set; }
         //show all images in db
-        public void OnPostViewAll()
+        public IActionResult OnPostViewAll()
         {
-            ViewData["ViewAllSearch"] = ViewAll;
-
+            ViewData["MenuOption"] = "ViewAll";
+            return Page();
         }
 
-        public string Female { get; set; }
         //show only female samples
-        public void OnPostFemales()
+        public IActionResult OnPostFemales()
         {
-            ViewData["FemaleSearch"] = Female;
-
+            ViewData["MenuOption"] = "Females";
+            return Page();
         }
 
-        public string Male { get; set; }
         //show only Male samples
-        public void OnPostMales()
+        public IActionResult OnPostMales()
         {
-            ViewData["MaleSearch"] = Male;
+            ViewData["MenuOption"] = "Males";
+            return Page();
         }
 
-        public string Center { get; set; }
         //show only ICS center samples
-        public void OnPostCenter()
+        public IActionResult OnPostCenter()
         {
-            ViewData["CenterSearch"] = Center;
+            ViewData["MenuOption"] = "Center";
+            return Page();
         }
 
-        public string Gene { get; set; }
         //show only Gene Rab15 samples
-        public void OnPostGene()
+        public IActionResult OnPostGene()
         {
-            ViewData["GeneSearch"] = Gene;
+            ViewData["MenuOption"] = "Gene";
+            return Page();
         }
 
+        public IActionResult OnPostName(string center, string sex)
+        {
+            ViewData["MenuOption"] = "User";
+            ViewData["CenterOption"] = center;
+            ViewData["SexOption"] = sex;
+            return Page();
+        }
 
         //show only female samples
         //public IActionResult OnPostFemales()

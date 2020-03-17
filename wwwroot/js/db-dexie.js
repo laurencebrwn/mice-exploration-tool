@@ -252,6 +252,9 @@ function loadDivs() {
             ImageArray.push(arr[i].urlString);
         };
 
+        var element = document.getElementById("resultsFound");
+        element.innerHTML = (ImageArray.length + " results found.");
+
         cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
         //Forloop through image set and appends image to end of previous image

@@ -292,3 +292,38 @@ function loadDivs() {
         console.error(err.stack || err);
     });
 }
+
+function populateOptions() {
+    return db.open().then(function () {
+        return db.mice.orderBy('patient_sex').uniqueKeys();
+    }).then(function (uniqueKeys) {
+        populateOptionBox("optionSex", uniqueKeys);
+    }).then(function () {
+        return db.mice.orderBy('patient_gene').uniqueKeys();
+    }).then(function (uniqueKeys) {
+        populateOptionBox("optionGene", uniqueKeys);
+    }).then(function () {
+        return db.mice.orderBy('parameter_name').uniqueKeys();
+    }).then(function (uniqueKeys) {
+        populateOptionBox("optionParameter", uniqueKeys);
+    }).then(function () {
+        return db.mice.orderBy('phenotyping_center').uniqueKeys();
+    }).then(function (uniqueKeys) {
+        populateOptionBox("optionCenter", uniqueKeys);
+    }).catch(function (err) {
+        console.error(err.stack || err);
+    });
+}
+
+function populateOptionBox(optionId, optionsArr) {
+    var opt = document.getElementById(optionId);
+
+    for (var i = 0; i < optionsArr.length; i++) {
+        var option = document.createElement("option");
+        option.value = optionsArr[i];
+        var optionText = document.createTextNode(optionsArr[i]);
+        option.appendChild(optionText);
+        opt.appendChild(option);
+    }
+
+}

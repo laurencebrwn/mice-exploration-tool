@@ -64,11 +64,27 @@ namespace miceExplorationTool.Pages
             return Page();
         }
 
-        public IActionResult OnPostName(string center, string sex)
+        public IActionResult OnPostTextQuery(string center, string sex)
         {
             ViewData["MenuOption"] = "User";
             ViewData["CenterOption"] = center;
             ViewData["SexOption"] = sex;
+            return Page();
+        }
+
+        public IActionResult OnPostFilter(string optionId, string optionSex, string optionParameter, string optionGene, string optionCenter )
+        {
+            ViewData["MenuOption"] = "UserFilter";
+            ViewData["CenterOption"] = optionCenter;
+            ViewData["SexOption"] = optionSex;
+            if (optionId != "" && optionId != null)
+            {
+                ViewData["IdOption"] = optionId;
+            } else {
+                ViewData["IdOption"] = 'A';
+            }
+            ViewData["ParameterOption"] = optionParameter;
+            ViewData["GeneOption"] = optionGene;
             return Page();
         }
 

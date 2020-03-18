@@ -5816,23 +5816,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "/Users/garryclawson/.nuget/packages/": {},
+=======
+    "/Users/laurencebrown/.nuget/packages/": {},
+>>>>>>> 5304f7fdecc1ee0a08afb7ff74218795e2b5bb60
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj",
       "projectName": "miceExplorationTool",
       "projectPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj",
       "packagesPath": "/Users/garryclawson/.nuget/packages/",
       "outputPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/",
+=======
+      "projectUniqueName": "/Users/laurencebrown/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj",
+      "projectName": "miceExplorationTool",
+      "projectPath": "/Users/laurencebrown/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj",
+      "packagesPath": "/Users/laurencebrown/.nuget/packages/",
+      "outputPath": "/Users/laurencebrown/Documents/GitHub/mice-exploration-tool/obj/",
+>>>>>>> 5304f7fdecc1ee0a08afb7ff74218795e2b5bb60
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "/Users/garryclawson/.nuget/NuGet/NuGet.Config"
+=======
+        "/Users/laurencebrown/.config/NuGet/NuGet.Config"
+>>>>>>> 5304f7fdecc1ee0a08afb7ff74218795e2b5bb60
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"

@@ -1,11 +1,24 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
   <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml">
     <Files>
+<<<<<<< HEAD
       <File FileName="Pages/Index.cshtml" Line="45" Column="1" />
       <File FileName="wwwroot/css/index.css" Line="90" Column="1" />
       <File FileName="wwwroot/css/animations.css" Line="8" Column="14" />
       <File FileName="Pages/base64ToImage.cshtml" Line="49" Column="9" />
       <File FileName="Pages/dicomImageToGrid.cshtml" Line="32" Column="1" />
+=======
+      <File FileName="Pages/Index.cshtml" Line="26" Column="26" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="65" Column="11" />
+      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="95" Column="34" />
+      <File FileName="Pages/base64ToImage.cshtml" />
+      <File FileName="Pages/base64ToImage.cshtml.cs" />
+      <File FileName="wwwroot/js/db-dexie.js" Line="10" Column="5" />
+      <File FileName="Pages/Error.cshtml" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="16" Column="1" />
+      <File FileName="Program.cs" Line="22" Column="18" />
+      <File FileName="Pages/Index.cshtml.cs" Line="1" Column="1" />
+>>>>>>> 5304f7fdecc1ee0a08afb7ff74218795e2b5bb60
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -26,6 +39,9 @@
             </Node>
           </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

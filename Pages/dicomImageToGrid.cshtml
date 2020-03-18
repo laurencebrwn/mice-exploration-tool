@@ -34,14 +34,6 @@
 
         <form method="POST">
             <button type="submit" class="btn btn-dark" asp-page="/Index">Home</button>
-
-            <!--
-    <button type="submit" class="btn btn-danger" onclick="queryDb('A', 'A', 'A', 'A', 'A')">View All</button>
-    <button type="submit" class="btn btn-success" onclick="queryDb('A', 'F', 'A', 'A', 'A')">Females</button>
-    <button type="submit" class="btn btn-primary" onclick="queryDb('A', 'M', 'A', 'A', 'A')">Males</button>
-    <button type="submit" class="btn btn-warning" onclick="queryDb('A', 'A', 'Rab15', 'A', 'A')">Gene (Rab15)</button>
-    <button type="submit" class="btn btn-info" onclick="queryDb('A', 'A', 'A', 'A', 'ICS')">Centre (ICS)</button>-->
-
             <button type="submit" class="btn btn-danger" asp-page-handler="ViewAll">View All</button>
             <button type="submit" class="btn btn-success" asp-page-handler="Females">Females</button>
             <button type="submit" class="btn btn-primary" asp-page-handler="Males">Males</button>
@@ -49,13 +41,24 @@
             <button type="submit" class="btn btn-info" asp-page-handler="Center">Centre (ICS)</button>
         </form>
     </div>
-
+<!--
     <div class="header">
         <form method="POST">
             <label for="tagName"><font color="black" size="4">QUERY:</font></label>
             <input type="text" id="tagName" placeholder="Centre: WTSI or ICS" name="center">
             <input type="text" id="tagName" placeholder="Sex: M or F" name="sex">
-            <input type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Name">
+            <input type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="TextQuery">
+        </form>
+    </div> -->
+
+    <div class="header">
+        <form method="POST">
+            <input type="text" id="tagName" placeholder="Patient ID" name="optionId">
+            <select id="optionSex" name="optionSex"><option value="A">Any</option></select>
+            <select id="optionParameter" name="optionParameter"><option value="A">Any</option></select>
+            <select id="optionGene" name="optionGene"><option value="A">Any</option></select>
+            <select id="optionCenter" name="optionCenter"><option value="A">Any</option></select>
+            <input type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Filter">
         </form>
     </div>
 
@@ -70,15 +73,22 @@
 </html>
 
 <script>
+    populateOptions();
 
     //View All search button from index page
     var menuOption = '@ViewData["MenuOption"]';
     var centerOption = '@ViewData["CenterOption"]';
     var sexOption = '@ViewData["SexOption"]';
+    var parameterOption = '@ViewData["ParameterOption"]';
+    var geneOption = '@ViewData["GeneOption"]';
+    var idOption = '@ViewData["IdOption"]';
     console.log("Menu Option: ", menuOption);
     console.log("Center Option: ", centerOption);
     console.log("Sex Option: ", sexOption);
-    if(menuOption == "ViewAll"){
+    console.log("Parameter Option: ", parameterOption);
+    console.log("Gene Option: ", geneOption);
+    console.log("id Option: ", idOption);
+    if (menuOption == "ViewAll") {
         queryDb('A', 'A', 'A', 'A', 'A');
     } else if (menuOption == "Females") {
         queryDb('A', 'F', 'A', 'A', 'A');
@@ -88,8 +98,8 @@
         queryDb('A', 'A', 'Rab15', 'A', 'A');
     } else if (menuOption == "Center") {
         queryDb('A', 'A', 'A', 'A', 'ICS');
-    } else if (menuOption == "User"){
-        queryDb('A', sexOption, 'A', 'A', centerOption);
+    } else if (menuOption == "UserFilter") {
+        queryDb(idOption, sexOption, geneOption, parameterOption, centerOption);
     } else {
         console.log("Query Not Fired");
     };

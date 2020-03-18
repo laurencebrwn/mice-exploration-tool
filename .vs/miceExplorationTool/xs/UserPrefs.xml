@@ -1,12 +1,11 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml">
     <Files>
-      <File FileName="Pages/Index.cshtml" Line="26" Column="26" />
-      <File FileName="Pages/dicomImageToGrid.cshtml" Line="70" Column="1" />
-      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="31" Column="1" />
-      <File FileName="Pages/base64ToImage.cshtml" Line="90" Column="1" />
-      <File FileName="Pages/base64ToImage.cshtml.cs" />
-      <File FileName="wwwroot/js/db-dexie.js" />
+      <File FileName="Pages/Index.cshtml" Line="45" Column="1" />
+      <File FileName="wwwroot/css/index.css" Line="90" Column="1" />
+      <File FileName="wwwroot/css/animations.css" Line="8" Column="14" />
+      <File FileName="Pages/base64ToImage.cshtml" Line="49" Column="9" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="32" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,13 +15,12 @@
               <Node name="Pages" expanded="True">
                 <Node name="Shared" expanded="True" />
                 <Node name="base64ToImage.cshtml" expanded="True" />
-                <Node name="dicomImageToGrid.cshtml" expanded="True">
-                  <Node name="dicomImageToGrid.cshtml.cs" selected="True" />
-                </Node>
+                <Node name="dicomImageToGrid.cshtml" expanded="True" selected="True" />
                 <Node name="Error.cshtml" expanded="True" />
                 <Node name="Index.cshtml" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True" />
                 <Node name="js" expanded="True" />
               </Node>
             </Node>

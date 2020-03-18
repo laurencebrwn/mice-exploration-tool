@@ -7,6 +7,102 @@ body {
     margin-top: 50px;
 }
 
+/*** VIDEO SECTION *****************************************************************/
+
+.video {
+    height: 600px;
+}
+
+/*** DESCRIPTION SECTION *****************************************************************/
+
+.description {
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    line-height: 1.8;
+}
+
+.description2 {
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    line-height: 1.8;
+}
+
+.team1 {
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team1 h1 {
+    height: 300px;
+}
+
+.team2 {
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team2 h1 {
+    height: 300px;
+}
+
+.team3 {
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team3 h1 {
+    height: 300px;
+}
+
+.download {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    line-height: 1.8;
+    background-color: orange;
+    border-radius: 15px;
+}
+
+
+
+/*** NAVBAR SECTION *****************************************************************/
+
+.right {
+    float: right;
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+.left {
+    float: left;
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+
+/*** HEXAGON SECTION *****************************************************************/
+
+.grid{
+    height: 600px;
+    text-align: center;
+}
+
 .headertag {
     overflow: hidden;
     text-align: center;
@@ -16,14 +112,14 @@ body {
 }
 
 #hexGrid {
-  display: flex;
-  flex-wrap: wrap;
-  width: 90%;
-  margin: 0 auto;
-  overflow: hidden;
-  font-family: 'Raleway', sans-serif;
-  font-size: 15px;
-  list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    list-style-type: none;
 }
 
 .hex {

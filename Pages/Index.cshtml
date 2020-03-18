@@ -9,95 +9,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/animations.css">
     <!-- include dexie.js api - create db + store query functions -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <script src="js/db-dexie.js"></script>
-    <script>
-        createDb();
-        loadTestData();
-    </script>
+    <script>createDb();
+        loadTestData();</script>
 </head>
 
 
 <body>
 
-    <form method="POST">
-        <ul id="hexGrid">
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse1.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Females" />
-                    <p>Females<br />in <br />Database</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Males" />
-                    <p>Males<br /> in <br />Database</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse4.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Center" />
-                    <p>Center <br />(ICS)</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse5.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Gene" />
-                    <p>Gene <br />(Rab15)</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse11.jpg" alt="Submit" asp-page="/base64ToImage" />
-                    <p>Body<br />Parts</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse7.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse8.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse9.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse10.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>DICOM <br />Image Grid</p>
-                </div>
-            </li>
-            <li class="hex">
-                <div class="hexIn">
-                    <input type="image" class="hexLink" src="assets/mouse7.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
-                    <p>View All</p>
-                </div>
-            </li>
-        </ul>
-    </form>
+    <!-- //  video -->
+
+    <Section class="video">
+
+        <div id="video">
+            <iframe width="100%" height="500px" src="https://www.youtube.com/embed/WeA7edXsU40" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+    </Section>
+
+    <!-- // Quote -->
+
+    <Section class="description">
+
+        <h1>One never notices what has been done; <br> one can only see what remains to be done.</h1>
+
+        <h2>- Marie Curie -</h2>
+
+    </Section>
+
+
+    <!-- // Form for hexagons -->
+
+    <Section class="grid">
+        <form method="POST">
+            <ul id="hexGrid">
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse1.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <p>View All</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Females" />
+                        <p>Females<br />in <br />Database</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Males" />
+                        <p>Males<br /> in <br />Database</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Males" />
+                        <p>Males<br /> in <br />Database</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse1.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <p>View All</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Females" />
+                        <p>Females<br />in <br />Database</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Males" />
+                        <p>Males<br /> in <br />Database</p>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </Section>
+
+    <!-- // Description of team -->
+
+    <Section class="description2">
+
+        <h1>ExVi is a tool tool to help IMPC researchers compare X-ray images and identify the impact of gene 'knockouts' </h1>
+
+    </Section>
+
+
+    <!-- // Description of site -->
+    <div class="team1">
+        <Section class="right">
+
+            <h1><br />Seach through your chosen images.</h1>
+
+        </Section>
+
+        <!-- // Description of site -->
+
+        <Section class="left">
+
+            <img src="assets/search.png" width="300" height="300">
+
+        </Section>
+    </div>
+
+    <!-- // Description of site -->
+    <div class="team2">
+        <Section class="right">
+
+            <img src="assets/charts.png" width="300" height="300">
+
+        </Section>
+
+        <!-- // Description of site -->
+
+        <Section class="left">
+
+            <h1><br />Data Visulatisation on your whole dataset.</h1>
+
+        </Section>
+    </div>
+
+    <!-- // Description of site -->
+    <div class="team3">
+        <Section class="right">
+
+            <h1><br />Finetune each search to your parameters.</h1>
+
+        </Section>
+
+        <!-- // Description of site -->
+
+        <Section class="left">
+
+            <img src="assets/highlight.png" width="300" height="300">
+
+        </Section>
+    </div>
+
+
+    <!-- // Description of site -->
+
+    <Section class="download">
+
+        <h1><a href="#" style="text-decoration:none; color:white">Download from GitHub</a></h1>
+
+
+    </Section>
+
+
+
+
+    <!-- // Explore our solor system video -->
 
 </body>
 
 </html>
 
 <script>
+
+    // Listen to scroll event for window
+
+    $(window).scroll(function () {
+        $(".video").css("opacity", 1 - $(window).scrollTop() / 400);
+        var offsetTop = $(".description").offset().top;
+        $(".description").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+        var offsetTop = $(".grid").offset().top;
+        $(".grid").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+        var offsetTop = $(".description2").offset().top;
+        $(".description2").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+        var offsetTop = $(".team1").offset().top;
+        $(".team1").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+    });
+
     console.log("Page Loaded :)");
 </script>
 

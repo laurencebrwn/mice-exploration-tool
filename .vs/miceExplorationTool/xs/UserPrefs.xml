@@ -3,7 +3,6 @@
     <Files>
       <File FileName="Pages/dicomImageToGrid.cshtml" Line="135" Column="12" />
       <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="12" Column="33" />
-      <File FileName="Pages/base64ToImage.cshtml.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,7 +10,10 @@
           <Node name="miceExplorationTool" expanded="True">
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Pages" expanded="True">
-                <Node name="dicomImageToGrid.cshtml.cs" selected="True" />
+                <Node name="base64ToImage.cshtml" expanded="True" />
+                <Node name="dicomImageToGrid.cshtml" expanded="True">
+                  <Node name="dicomImageToGrid.cshtml.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -19,7 +21,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.miceExplorationTool PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.miceExplorationTool PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

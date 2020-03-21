@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj": {}
+    "C:\\Users\\wjedg\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj": {}
   },
   "projects": {
-    "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj": {
+    "C:\\Users\\wjedg\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj",
+        "projectUniqueName": "C:\\Users\\wjedg\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj",
         "projectName": "miceExplorationTool",
-        "projectPath": "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "E:\\Documents\\GitHub\\mice-exploration-tool\\obj\\",
+        "projectPath": "C:\\Users\\wjedg\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj",
+        "packagesPath": "C:\\Users\\wjedg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\wjedg\\Documents\\GitHub\\mice-exploration-tool\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wjedg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -56,7 +59,7 @@
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[12.0.3, )"
+              "version": "(, )"
             }
           },
           "imports": [

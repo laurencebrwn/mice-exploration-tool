@@ -114,10 +114,9 @@ namespace miceExplorationTool.Pages
                 }
 
             }
-            List<Image> Images = SortImage(ImagePaths);//Sorts images of the same mouse into record.
+            List<Image> Images = SortImage(ImagePaths, TagPaths);//Sorts images of the same mouse into record.
             return Images;//returns a list of the Image object
         }
-
 
         public List<string> FindFiles(string directory)
         {
@@ -141,7 +140,51 @@ namespace miceExplorationTool.Pages
         }
 
 
+        public List<Image> SortImage(List<string> Files, List<string> Tags)
+        {
+            List<string> Filepaths = Files;
+            List<Image> Images = new List<Image>();
+            List<Tags> TagData = new List<Tags>();
+            List<List<Tags>> SortedTags = new List<List<Tags>>();
+            TagData = getTags(Tags);
+            SortedTags = SortLists(TagData);
+            foreach (string File in Filepaths)
+            {
+                List<string> files = new List<string>();
+                string id = GetID(Filepaths[0]);
+                files.Add(File);
+                List<Tags> t = FindList(id,SortedTags);
+                Image Mouse = new Image(id);
+                Mouse.SetImage(files);
+                Mouse.SetTags(t);
+                Images.Add(Mouse);
 
+            }
+            return Images;
+        }
+
+
+        private List<Tags> FindList(string ID, List<List<Tags>> sortedTags)
+        {
+            List<Tags> match = new List<Tags>();
+            foreach(List<Tags> TagList in sortedTags){
+                bool found = false;
+                foreach(Tags t in TagList){
+                    if(t.download_file_path != null){
+                        string TagID = GetID(t.download_file_path);
+                        if(TagID == ID){
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if(found == true){
+                    match = TagList;
+                    break;
+                }
+            }
+            return match;
+        }
 
 
         public List<Image> SortImage(List<string> Files)
@@ -160,20 +203,97 @@ namespace miceExplorationTool.Pages
             return Images;
         }
 
+        string GetID(string filepath)
+        {
+            Regex regex = new Regex(@"^\d$");
+            int start = 0;
+            string FileName = Path.GetFileNameWithoutExtension(filepath);
+            for (int i = FileName.Length-1; i >=0; i--)
+            {
+                if (!regex.IsMatch(FileName[i].ToString()))
+                {
+                    start = i+1;
+                    break;
+                }
+            }
+            string ID = FileName.Substring(start);
+            return ID;
+        }
 
-        public void GetImagesPaths(string fileURL)
-        {//this calls the find files method, and gets and object of images back - I've left it void for you.
-            List<Image> mice = FindImages(fileURL); //was findFiles
-            foreach (Image im in mice)
-            {//goes through them
-                List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
-                foreach (string path in filepaths)
-                {//goes through them
-                    Console.WriteLine(filepaths);//prints
+        public List<Tags> getTags(List<string> files)
+        {//gets a list of files, and returns a list of the JObjects
+            List<Tags> TagList = new List<Tags>();
+
+            foreach (string file in files)
+            {//iterates through list
+
+                List<Tags> TagIn = ReadInFile(file);
+                TagList.AddRange(TagIn);
+
+            }
+            return TagList;
+        }
+
+        public List<Tags> ReadInFile(string Filepath)//Finds all JSON objects in the path and stores the relevant tags in the list of object type Tags
+        {
+            string JSON = File.ReadAllText(@Filepath);
+            Console.WriteLine(JSON);
+            JObject TagResults = JObject.Parse(JSON);
+            Console.WriteLine(TagResults.ToString());
+            IList<JToken> TagTokens = TagResults["response"]["docs"].Children().ToList();
+            List<Tags> TagLists = new List<Tags>();
+            foreach(JToken Token in TagTokens){
+                Tags t = Token.ToObject<Tags>();
+                TagLists.Add(t);
+                t.writeout();
+            }
+
+            return TagLists;
+        }
+
+         public List<List<Tags>> SortLists(List<Tags> Input){
+            List<Tags> TagList = Input;
+            List<List<Tags>> SortedList = new List<List<Tags>>();
+            bool sorted = false;
+            while(sorted == false){
+                List<Tags> t = new List<Tags>();
+                List<int> Indexes = new List<int>();
+                string BioId = TagList[0].biological_sample_id;
+                t.Add(TagList[0]);
+                Indexes.Add(0);
+                for(int i = 1; i<TagList.Count; i++){
+                    if(TagList[i].biological_sample_id == BioId){
+                        t.Add(TagList[i]);
+                        Indexes.Add(i);
+                    }
+                }
+                SortedList.Add(t);
+                for(int i = Indexes.Count-1; i>=0; i--){
+                    TagList.RemoveAt(Indexes[i]);
+                }
+
+                if(TagList.Count == 0){
+                    sorted = true;
                 }
 
             }
+            return SortedList;
         }
+
+
+        // public void GetImagesPaths(string fileURL)
+        // {//this calls the find files method, and gets and object of images back - I've left it void for you.
+        //     List<Image> mice = FindImages(fileURL); //was findFiles
+        //     foreach (Image im in mice)
+        //     {//goes through them
+        //         List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
+        //         foreach (string path in filepaths)
+        //         {//goes through them
+        //             Console.WriteLine(filepaths);//prints
+        //         }
+
+        //     }
+        // }
 
         //Main functon that connects to the MySql server and returns the reuqired URLs
         public void MySqlConnection(string connection)
@@ -235,40 +355,54 @@ namespace miceExplorationTool.Pages
 
     public class Image//Record of images
     {
+        private string ID {get; set;}
+
+        private string biological_sample_id{get; set;}
         private List<string> ImageFilepaths = new List<string>();//stores the groups of images
-        private List<string> TagHeaders = new List<string>();
-        private List<string> TagInfo = new List<string>();
+        private List<Tags> TagData = new List<Tags>();
 
-        public Image()
-        {//creates a new object
-
+        public Image(string ID){//creates a new object
+            this.ID = ID;
         }
 
-        public void AddImage(List<string> filepath)
-        {//sets the list of images to the image
-            ImageFilepaths = filepath;
+        public void SetImage(List<string> Filepath){//sets the list of images to the image
+            ImageFilepaths = Filepath;
         }
 
-        public void AddTagInfo(List<string> headers, List<string> body)
-        {//sets the info as 2 a
-            this.TagHeaders = headers;
-            this.TagInfo = body;
+        public void SetTags(List<Tags> TagList){
+            this.TagData = TagList;
         }
 
-
-        public List<string> GetImages()
-        {//returns the list of images
+        public List<string> GetImages(){//returns the list of images
             return this.ImageFilepaths;
         }
 
-        public List<string> GetHeaders()
-        {
-            return this.TagHeaders;
+        public List<Tags> GetTagData(){
+            return this.TagData;
         }
 
-        public List<string> GetInfo()
-        {
-            return this.TagInfo;
-        }
+    }
+
+
+public class Tags{
+    public string biological_sample_id {get; set;}
+    public string phenotyping_center {get; set;}
+    public string date_of_birth {get; set;}
+    public string sex {get; set;}
+    public string age_in_weeks {get; set;}
+    public string weight {get; set;}
+    public string biological_sample_group {get; set;}
+    public string gene_symbol {get; set;}
+    public string zygosity {get; set;}
+    public string observation_type {get; set;}
+    public string category {get; set;}
+
+    public string download_file_path {get; set;}
+
+       [JsonExtensionData]
+        private IDictionary<string, JToken> _extraStuff;
     }
 }
+
+
+

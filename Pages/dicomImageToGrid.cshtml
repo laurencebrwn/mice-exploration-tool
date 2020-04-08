@@ -9,26 +9,20 @@
 <head>
     <title>Grid</title>
     <link rel="stylesheet" href="css/dicomImageToGrid.css">
+    <!--Pull down the polyfill if needed (Safari + older opera browser)-->
+    <script>
+        if (!(window.indexedDB || window.window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB))
 
-    <!-- include the cornerstone library -->
-    <script src="https://unpkg.com/cornerstone-wado-image-loader@3.0.6/dist/cornerstoneWADOImageLoader.min.js"></script>
-    <script src="js/cornerstone.min.js"></script>
-    <script src="js/cornerstoneMath.min.js"></script>
-    <script src="js/cornerstoneTools.min.js"></script>
-    <script src="js/dicomParser.min.js"></script>
-    <script src="js/cornerstoneWADOImageLoader.js"></script>
-
+            document.write('<script src="https://rawgit.com/axemclion/IndexedDBShim/master/dist/indexeddbshim.js">\x3C/script>');
+    </script>
     <!-- include dexie.js api - create db + store query functions -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <script src="js/db-dexie.js"></script>
-    <script>
-        createDb();
-        loadTestData();
-    </script>
+
 
 </head>
 
-<body>
+<body onload="onLoadRun();">
 
     <div class="header">
 
@@ -41,15 +35,6 @@
             <button type="submit" class="btn btn-info" asp-page-handler="Center">Centre (ICS)</button>
         </form>
     </div>
-<!--
-    <div class="header">
-        <form method="POST">
-            <label for="tagName"><font color="black" size="4">QUERY:</font></label>
-            <input type="text" id="tagName" placeholder="Centre: WTSI or ICS" name="center">
-            <input type="text" id="tagName" placeholder="Sex: M or F" name="sex">
-            <input type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="TextQuery">
-        </form>
-    </div> -->
 
     <div class="header">
         <form method="POST">
@@ -73,21 +58,12 @@
 </html>
 
 <script>
-    populateOptions();
-
-    //View All search button from index page
     var menuOption = '@ViewData["MenuOption"]';
     var centerOption = '@ViewData["CenterOption"]';
     var sexOption = '@ViewData["SexOption"]';
     var parameterOption = '@ViewData["ParameterOption"]';
     var geneOption = '@ViewData["GeneOption"]';
     var idOption = '@ViewData["IdOption"]';
-    console.log("Menu Option: ", menuOption);
-    console.log("Center Option: ", centerOption);
-    console.log("Sex Option: ", sexOption);
-    console.log("Parameter Option: ", parameterOption);
-    console.log("Gene Option: ", geneOption);
-    console.log("id Option: ", idOption);
     if (menuOption == "ViewAll") {
         queryDb('A', 'A', 'A', 'A', 'A');
     } else if (menuOption == "Females") {
@@ -104,7 +80,7 @@
         console.log("Query Not Fired");
     };
 
-    console.log("Page Loaded :)");
+
 </script>
 
 

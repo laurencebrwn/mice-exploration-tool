@@ -15,11 +15,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace miceExplorationTool.Pages
 {
-    public class dicomImageToGridModel : PageModel
+    public class demoModel : PageModel
     {
-        private readonly ILogger<dicomImageToGridModel> _logger;
+        private readonly ILogger<demoModel> _logger;
 
-        public dicomImageToGridModel(ILogger<dicomImageToGridModel> logger)
+        public demoModel(ILogger<demoModel> logger)
         {
             _logger = logger;
         }
@@ -47,20 +47,6 @@ namespace miceExplorationTool.Pages
         public IActionResult OnPostMales()
         {
             ViewData["MenuOption"] = "Males";
-            return Page();
-        }
-
-        //show only ICS center samples
-        public IActionResult OnPostCenter()
-        {
-            ViewData["MenuOption"] = "Center";
-            return Page();
-        }
-
-        //show only Gene Rab15 samples
-        public IActionResult OnPostGene()
-        {
-            ViewData["MenuOption"] = "Gene";
             return Page();
         }
 

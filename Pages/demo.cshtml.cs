@@ -50,152 +50,30 @@ namespace miceExplorationTool.Pages
             return Page();
         }
 
-        public IActionResult OnPostTextQuery(string center, string sex)
-        {
-            ViewData["MenuOption"] = "User";
-            ViewData["CenterOption"] = center;
-            ViewData["SexOption"] = sex;
-            return Page();
-        }
-
-        public IActionResult OnPostFilter(string optionId, string optionSex, string optionParameter, string optionGene, string optionCenter )
+        public IActionResult OnPostFilter(string optionId, string optionCenter, string optionDob, string optionSex, string optionAge, string optionWeight, string optionGeneSymb, string optionGeneAccId, string optionZygosity, string optionParameter, string optionObvsType, string optionCategory)
         {
             ViewData["MenuOption"] = "UserFilter";
-            ViewData["CenterOption"] = optionCenter;
-            ViewData["SexOption"] = optionSex;
             if (optionId != "" && optionId != null)
             {
                 ViewData["IdOption"] = optionId;
-            } else {
+            }
+            else
+            {
                 ViewData["IdOption"] = 'A';
             }
+            ViewData["CenterOption"] = optionCenter;
+            ViewData["DobOption"] = optionDob;
+            ViewData["SexOption"] = optionSex;
+            ViewData["AgeOption"] = optionAge;
+            ViewData["WeightOption"] = optionWeight;
+            ViewData["GeneSymbOption"] = optionGeneSymb;
+            ViewData["GeneAccIdOption"] = optionGeneAccId;
+            ViewData["ZygosityOption"] = optionZygosity;
             ViewData["ParameterOption"] = optionParameter;
-            ViewData["GeneOption"] = optionGene;
+            ViewData["ObvsTypeOption"] = optionObvsType;
+            ViewData["CategoryOption"] = optionCategory;
             return Page();
         }
-
-        //show only female samples
-        //public IActionResult OnPostFemales()
-        //{
-
-        //    string cmdText = @"
-        //        SELECT urlString FROM url WHERE patient_id IN 
-        //        (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
-
-        //    MySqlConnection(cmdText);
-
-        //    return Page();
-        //}
-
-        ////show only male examples
-        //public IActionResult OnPostMales()
-        //{
-
-        //    string cmdText = @"
-        //        SELECT urlString FROM url WHERE patient_id IN 
-        //        (SELECT patient_id FROM mice WHERE patient_sex = 'M');";
-
-        //    MySqlConnection(cmdText);
-
-        //    return Page();
-        //    //return Redirect("Index"); //Directs to a new page where the result can be shown
-        //}
-
-        ////show only ICS Centre
-        //public IActionResult OnPostCentre()
-        //{
-
-        //    string cmdText = @"
-        //        SELECT urlString FROM url WHERE patient_id IN 
-        //        (SELECT patient_id FROM mice WHERE phenotyping_center = 'ICS');";
-
-        //    MySqlConnection(cmdText);
-
-        //    return Page();
-        //}
-
-        ////show only Gene RAB15
-        //public IActionResult OnPostGene()
-        //{
-
-        //    string cmdText = @"
-        //        SELECT urlString FROM url WHERE patient_id IN 
-        //        (SELECT patient_id FROM mice WHERE patient_gene = 'Rab15');";
-
-        //    MySqlConnection(cmdText);
-
-        //    return Page();
-        //}
-
-
-        ////show all images in MySql database
-        //public IActionResult OnPostViewAll()
-        //{
-
-        //    return Page();
-        //}
-
-        ////Main functon that connects to the ySql server and returns the reuqired URLs
-        //public void MySqlConnection(string connection)
-        //{
-
-        //    // Opens a db connection using localhost database connection.Could also have used 127.0.0.1
-        //    String str = @"server=localhost; database=MICE; userid=root; password=TSEGroup34;";
-        //    MySqlConnection conn = null;
-        //    MySqlDataReader reader = null;
-
-        //    string cmdText = connection;
-
-        //    try //To open localhost database and present a query
-        //    {
-        //        //Create a object with 'str' connection values passed. This uses the inbuilt library of MySql which is required
-        //        conn = new MySqlConnection(str);
-        //        conn.Open(); //opens the database connection
-        //        Console.WriteLine("Localhost MySQL Database Connected"); //If the database opens it presents this messsge. 
-
-        //        //Creates object and passes all returned values to it
-        //        MySqlCommand cmd = new MySqlCommand(cmdText, conn);
-        //        reader = cmd.ExecuteReader();
-
-        //        //Loops through the returned values and writes them to a list that will be passed to client side
-        //        List<string> urlList = new List<string>();
-
-        //        while (reader.Read())
-        //        {
-        //            //Console.WriteLine(reader.GetString(0));
-        //            urlList.Add(reader.GetString(0));
-
-        //        }
-
-        //        ViewData["DICOMArrayList"] = urlList;
-
-        //    }
-        //    catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
-        //    {
-        //        Console.WriteLine(errorMessage);
-        //    }
-        //    finally //Once the try-ctach block is complete the connection is closed
-        //    {
-        //        if (conn != null)
-        //        {
-        //            conn.Close();
-        //        }
-        //    }
-
-        //}
-
-        ////display user selected query images
-        //public IActionResult OnPostName(string centre, string sex)
-        //{
-
-        //    string cmdText = "SELECT urlString FROM url WHERE patient_id IN(SELECT patient_id FROM mice WHERE phenotyping_center = '" + centre + "' AND patient_sex = '" + sex + "');";
-
-        //    MySqlConnection(cmdText);
-
-        //    return Page();
-
-        //}
-
 
     }
 

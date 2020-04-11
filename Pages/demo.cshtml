@@ -36,11 +36,18 @@
 
     <div class="header">
         <form method="POST">
-            <input type="text" id="tagName" placeholder="Patient ID" name="optionId">
-            <select id="optionSex" name="optionSex"><option value="A">Any</option></select>
-            <select id="optionParameter" name="optionParameter"><option value="A">Any</option></select>
-            <select id="optionGene" name="optionGene"><option value="A">Any</option></select>
-            <select id="optionCenter" name="optionCenter"><option value="A">Any</option></select>
+            <input type="text" id="optionId" placeholder="Biological Sample ID" name="optionId">
+            <select id="optionCenter" name="optionCenter"><option value="A" selected hidden>Phenotyping Center</option>><option value="A">Any</option></select>
+            <select id="optionDob" name="optionDob"><option value="A" selected hidden>Date of birth</option>><option value="A">Any</option></select>
+            <select id="optionSex" name="optionSex"><option value="A" selected hidden>Sex</option><option value="A">Any</option></select>
+            <select id="optionAge" name="optionAge"><option value="A" selected hidden>Age (In Weeks)</option>><option value="A">Any</option></select>
+            <select id="optionWeight" name="optionWeight"><option value="A" selected hidden>Weight</option>><option value="A">Any</option></select>
+            <select id="optionGeneSymb" name="optionGeneSymb"><option value="A" selected hidden>Gene Symbol</option><option value="A">Any</option></select>
+            <select id="optionGeneAccId" name="optionGeneAccId"><option value="A" selected hidden>Gene Accession ID</option><option value="A">Any</option></select>
+            <select id="optionZygosity" name="optionZygosity"><option value="A" selected hidden>Zygosity</option><option value="A">Any</option></select>
+            <select id="optionParameter" name="optionParameter"><option value="A" selected hidden>Parameter Name</option><option value="A">Any</option></select>
+            <select id="optionObvsType" name="optionObvsType"><option value="A" selected hidden>Observation Type</option><option value="A">Any</option></select>
+            <select id="optionCategory" name="optionCategory"><option value="A" selected hidden>Category</option><option value="A">Any</option></select>
             <input type="submit" class="btn btn-light" asp-page="/demo" asp-page-handler="Filter">
         </form>
     </div>
@@ -57,23 +64,30 @@
 
 <script>
     var menuOption = '@ViewData["MenuOption"]';
-    var centerOption = '@ViewData["CenterOption"]';
-    var sexOption = '@ViewData["SexOption"]';
-    var parameterOption = '@ViewData["ParameterOption"]';
-    var geneOption = '@ViewData["GeneOption"]';
     var idOption = '@ViewData["IdOption"]';
+    var centerOption = '@ViewData["CenterOption"]';
+    var dobOption = '@ViewData["DobOption"]';
+    var sexOption = '@ViewData["SexOption"]';
+    var ageOption = '@ViewData["AgeOption"]';
+    var weightOption = '@ViewData["WeightOption"]';
+    var geneSymbOption = '@ViewData["GeneSymbOption"]';
+    var geneAccIdOption = '@ViewData["GeneAccIdOption"]';
+    var zygosityOption = '@ViewData["ZygosityOption"]';
+    var parameterOption = '@ViewData["ParameterOption"]';
+    var obvsTypeOption = '@ViewData["ObvsTypeOption"]';
+    var categoryOption = '@ViewData["CategoryOption"]';
     if (menuOption == "ViewAll") {
-        queryDb('A', 'A', 'A', 'A', 'A');
+        queryDb('A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A');
     } else if (menuOption == "Females") {
-        queryDb('A', 'female', 'A', 'A', 'A');
+        queryDb('A', 'A', 'A', 'female', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A');
     } else if (menuOption == "Males") {
-        queryDb('A', 'male', 'A', 'A', 'A');
+        queryDb('A', 'A', 'A', 'male', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A');
     } else if (menuOption == "UserFilter") {
-        queryDb(idOption, sexOption, geneOption, parameterOption, centerOption);
+        queryDb(idOption, centerOption, dobOption, sexOption, ageOption, weightOption, geneSymbOption, geneAccIdOption, zygosityOption, parameterOption, obvsTypeOption, categoryOption);
     } else {
         console.log("Query Not Fired");
     };
-
+    //biological_sample_id,phenotyping_center,date_of_birth,sex,age_in_weeks,weight,gene_symbol,gene_accession_id,zygosity,parameter_name,observation_type,category
 
 </script>
 

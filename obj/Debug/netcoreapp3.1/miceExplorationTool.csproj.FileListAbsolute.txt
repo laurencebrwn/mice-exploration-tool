@@ -135,3 +135,5 @@ E:/Documents/GitHub/mice-exploration-tool/miceExplorationTool/obj/Debug/netcorea
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/bin/Debug/netcoreapp3.1/Docker.DotNet.dll
 /home/garry/mice-exploration-tool/bin/Debug/netcoreapp3.1/Docker.DotNet.dll
 /home/garry/mice-exploration-tool/obj/Debug/netcoreapp3.1/Razor/Pages/charts.cshtml.g.cs
+/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExplorationTool.csproj.CoreCompileInputs.cache
+/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExplorationTool.genruntimeconfig.cache

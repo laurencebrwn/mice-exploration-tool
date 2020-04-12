@@ -4,18 +4,59 @@
 }
 body {
     background-color: white;
-    margin-top: 50px;
 }
+
+.header {
+    height: 20vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.header h1 {
+    text-decoration: none;
+    color: white;
+    background-color: orange;
+    border-radius: 1vmin;
+    width: 20vmin;
+    font-size: 6vmin;
+}
+
+.header h2
+{
+    text-decoration: none;
+    color: gray;
+    width: 40vmin;
+    font-size: 2vmin;
+}
+
+
 
 /*** VIDEO SECTION *****************************************************************/
 
 .video {
-    height: 600px;
+    height: 60vmin;
+    padding-bottom: 8vmin;
+}
+#video {
+    height: 100%;
 }
 
 /*** DESCRIPTION SECTION *****************************************************************/
 
 .description {
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    line-height: 1.8;
+}
+
+.demo {
     height: 300px;
     justify-content: center;
     align-items: center;

@@ -15,19 +15,25 @@
     <!-- include dexie.js api - create db + store query functions -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <script src="js/db-dexie.js"></script>
-    <script>createDb();
-        loadTestData();</script>
 </head>
 
 
 <body>
+
+    <!-- //Header -->
+    <section class="header">
+
+        <h1>ExVi</h1>
+        <h2>- A data visualisation tool -</h2>
+
+    </section>
 
     <!-- //  video -->
 
     <Section class="video">
 
         <div id="video">
-            <iframe width="100%" height="500px" src="https://www.youtube.com/embed/WeA7edXsU40" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/WeA7edXsU40" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
     </Section>
@@ -42,6 +48,14 @@
 
     </Section>
 
+    <!-- // Demo -->
+    <Section class="demo">
+
+        <h1>Demo</h1>
+
+        <h2>Try a basic stripped down version of the ExVi app in your browser!</h2>
+
+    </Section>
 
     <!-- // Form for hexagons -->
 
@@ -50,43 +64,43 @@
             <ul id="hexGrid">
                 <li class="hex">
                     <div class="hexIn">
-                        <input type="image" class="hexLink" src="assets/mouse1.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <input type="image" class="hexLink" src="assets/mouse1.jpg" alt="Submit" asp-page="/demo" asp-page-handler="ViewAll" />
                         <p>View All</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
-                        <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Females" />
+                        <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/demo" asp-page-handler="Females" />
                         <p>Females<br />in <br />Database</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
-                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Males" />
+                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/demo" asp-page-handler="Males" />
                         <p>Males<br /> in <br />Database</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
-                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Males" />
+                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/demo" asp-page-handler="Males" />
                         <p>Males<br /> in <br />Database</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
-                        <input type="image" class="hexLink" src="assets/mouse1.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <input type="image" class="hexLink" src="assets/mouse1.jpg" alt="Submit" asp-page="/demo" asp-page-handler="ViewAll" />
                         <p>View All</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
-                        <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Females" />
+                        <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/demo" asp-page-handler="Females" />
                         <p>Females<br />in <br />Database</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
-                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Males" />
+                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/demo" asp-page-handler="Males" />
                         <p>Males<br /> in <br />Database</p>
                     </div>
                 </li>
@@ -178,15 +192,24 @@
     // Listen to scroll event for window
 
     $(window).scroll(function () {
-        $(".video").css("opacity", 1 - $(window).scrollTop() / 400);
+        var offsetTop = $(".header").offset().top;
+        $(".header").css("opacity", 1 - $(window).scrollTop() / 300);
+        var offsetTop = $(".video").offset().top;
+        $(".video").css("opacity", 1 - $(window).scrollTop() / 1000);
         var offsetTop = $(".description").offset().top;
-        $(".description").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+        $(".description").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 50);
+        var offsetTop = $(".demo").offset().top;
+        $(".demo").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 50);
         var offsetTop = $(".grid").offset().top;
         $(".grid").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
         var offsetTop = $(".description2").offset().top;
-        $(".description2").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+        $(".description2").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 50);
         var offsetTop = $(".team1").offset().top;
-        $(".team1").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+        $(".team1").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 200);
+        var offsetTop = $(".team2").offset().top;
+        $(".team2").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 200);
+        var offsetTop = $(".team3").offset().top;
+        $(".team3").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 200);
     });
 
     console.log("Page Loaded :)");

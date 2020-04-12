@@ -1,46 +1,27 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj": {}
+    "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj": {}
   },
   "projects": {
-    "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj": {
+    "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj",
+        "projectUniqueName": "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj",
         "projectName": "miceExplorationTool",
-        "projectPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj",
-        "packagesPath": "/Users/garryclawson/.nuget/packages/",
-        "outputPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/",
-=======
-    "/Users/laurencebrown/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj": {}
-  },
-  "projects": {
-    "/Users/laurencebrown/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/laurencebrown/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj",
-        "projectName": "miceExplorationTool",
-        "projectPath": "/Users/laurencebrown/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj",
-        "packagesPath": "/Users/laurencebrown/.nuget/packages/",
-        "outputPath": "/Users/laurencebrown/Documents/GitHub/mice-exploration-tool/obj/",
->>>>>>> 5304f7fdecc1ee0a08afb7ff74218795e2b5bb60
+        "projectPath": "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "E:\\Documents\\GitHub\\mice-exploration-tool\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-<<<<<<< HEAD
-          "/Users/garryclawson/.nuget/NuGet/NuGet.Config"
-=======
-          "/Users/laurencebrown/.config/NuGet/NuGet.Config"
->>>>>>> 5304f7fdecc1ee0a08afb7ff74218795e2b5bb60
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -88,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

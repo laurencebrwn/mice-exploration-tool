@@ -21,7 +21,12 @@ body {
 	color: grey;
 }
 
-.images {
+#images{																																																									images {
 	overflow: hidden;
 	text-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }

@@ -6,7 +6,7 @@ solution: miceExplorationTool.sln
 # whitelist
 branches:
   only:
-    - demo
+    - demo-api
 
 services:
     #Enable docker service inside travis

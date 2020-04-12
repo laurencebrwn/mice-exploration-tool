@@ -116,6 +116,10 @@
     var categoryOption = '@ViewData["CategoryOption"]';
     if (menuOption == "ViewAll") {
         queryDb('A', 'A', ['A','A'], 'A', ['A','A'], ['A','A'], 'A', 'A', 'A', 'A', 'A', 'A');
+    } else if (menuOption == "Males") {
+        queryDb('A', 'A', ['A', 'A'], 'male', ['A', 'A'], ['A', 'A'], 'A', 'A', 'A', 'A', 'A', 'A');
+    } else if (menuOption == "Females") {
+        queryDb('A', 'A', ['A', 'A'], 'female', ['A', 'A'], ['A', 'A'], 'A', 'A', 'A', 'A', 'A', 'A');
     } else if (menuOption == "UserFilter") {
         queryDb(idOption, centerOption, dobOption, sexOption, ageOption, weightOption, geneSymbOption, geneAccIdOption, zygosityOption, parameterOption, obvsTypeOption, categoryOption);
     } else {

@@ -1,27 +1,96 @@
-
 /* Global styles 
 ------------------------------------*/
 
-body {
+* {
+	margin: 0;
+	padding: 0;
+}
 
+body {
+	background-color: white;
 }
 
 /* Header section styles 
 ------------------------------------*/
 
 .header {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+	padding: 2vmin;
+}
+
+.header h1 {
+	text-decoration: none;
+	color: white;
+	background-color: orange;
+	border-radius: 1vmin;
+	font-size: 2em;
+	padding: 0.6vmin;
+	margin-right: 0.5vmin;
+}
+
+.header h2 {
+	text-decoration: none;
+	color: gray;
+	font-size: 1.5em;
+	margin-left: 0.5vmin;
+}
+
+
+#filters {
+	display: none;
+	border-bottom: solid 2px black;
 	overflow: hidden;
 	text-align: center;
-	padding: 20px 10px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 2vmin;
 }
 
-.header p {
-	font-size: 1.5em;
-	font-family: 'Courier New', sans-serif;
-	color: grey;
+.filterSection {
+	display: flex;
+	flex-direction: column;
+	margin:2vmin;
+}
+.filterSection select{
+	margin: 1vmin;
+}
+.filterSection input{
+	margin: 1vmin;
 }
 
-#images{																																																									images {
+#filterSubmit{
+	width:100%;
+}
+
+.filterSubSection {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin: 1vmin;
+}
+
+.filterSubSection select{
+	margin: 0 2px 0 2px;
+}
+
+#optionSex {
+	width: 100%;
+}
+
+.filterSubSection p{
+	margin:0;
+}
+
+#images {
 	overflow: hidden;
 	text-align: center;
 	display: flex;
@@ -29,4 +98,74 @@ body {
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+	border-bottom: solid 2px black;
+	padding: 2vmin;
+}
+
+#edit {
+	background-color: mediumseagreen;
+	cursor: pointer;
+}
+
+#edit:hover {
+	background-color: seagreen;
+}
+
+#clear {
+	background-color: crimson;
+	cursor: pointer;
+}
+#clear button{
+	background: transparent;
+    border: none !important;
+	color: white;
+}
+
+#clear:hover {
+	background-color: darkred;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+h2 {
+	font-size: 1.9em;
+}
+
+#resultsFlex + #resultsFlex {
+	border-left: solid 2px black;
+}
+
+#results {
+	overflow: hidden;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-top: solid 2px black;
+	border-bottom: solid 2px black;
+	padding: 2vmin;
+}
+
+#results div{
+	width: 49%;
+}
+
+ul.filterList {
+	list-style: none;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	padding-left:0;
+}
+
+ul.filterList li {
+	display: inline-block;
+	text-decoration: none;
+	color: white;
+	margin: 0.15vmin;
+	padding: 0 0.4vmin 0.2vmin 0.4vmin;
+	border-radius: 0.25vmin;
 }

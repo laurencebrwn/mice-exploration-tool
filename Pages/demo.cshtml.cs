@@ -50,7 +50,7 @@ namespace miceExplorationTool.Pages
             return Page();
         }
 
-        public IActionResult OnPostFilter(string optionId, string optionCenter, string optionDob, string optionSex, string optionAge, string optionWeight, string optionGeneSymb, string optionGeneAccId, string optionZygosity, string optionParameter, string optionObvsType, string optionCategory)
+        public IActionResult OnPostFilter(string optionId, string optionCenter, string optionMinDob, string optionMaxDob, string optionSex, string optionMinAge, string optionMaxAge, string optionMinWeight, string optionMaxWeight, string optionGeneSymb, string optionGeneAccId, string optionZygosity, string optionParameter, string optionObvsType, string optionCategory)
         {
             ViewData["MenuOption"] = "UserFilter";
             if (optionId != "" && optionId != null)
@@ -62,10 +62,13 @@ namespace miceExplorationTool.Pages
                 ViewData["IdOption"] = 'A';
             }
             ViewData["CenterOption"] = optionCenter;
-            ViewData["DobOption"] = optionDob;
+            ViewData["DobMinOption"] = optionMinDob;
+            ViewData["DobMaxOption"] = optionMaxDob;
             ViewData["SexOption"] = optionSex;
-            ViewData["AgeOption"] = optionAge;
-            ViewData["WeightOption"] = optionWeight;
+            ViewData["AgeMinOption"] = optionMinAge;
+            ViewData["AgeMaxOption"] = optionMaxAge;
+            ViewData["WeightMinOption"] = optionMinWeight;
+            ViewData["WeightMaxOption"] = optionMaxWeight;
             ViewData["GeneSymbOption"] = optionGeneSymb;
             ViewData["GeneAccIdOption"] = optionGeneAccId;
             ViewData["ZygosityOption"] = optionZygosity;

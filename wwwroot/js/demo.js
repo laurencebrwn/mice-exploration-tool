@@ -207,6 +207,7 @@ function loadData() {
 
 //Queries for dexieDB
 function queryDb(idOption, centerOption, dobOption, sexOption, ageOption, weightOption, geneSymbOption, geneAccIdOption, zygosityOption, parameterOption, obvsTypeOption, categoryOption) {
+    console.log(idOption, centerOption, dobOption, sexOption, ageOption, weightOption, geneSymbOption, geneAccIdOption, zygosityOption, parameterOption, obvsTypeOption, categoryOption);
     return db.miceData.toArray().then(function (queriedArr) {
         db.results.clear();
         db.results.bulkAdd(queriedArr);
@@ -223,8 +224,10 @@ function queryDb(idOption, centerOption, dobOption, sexOption, ageOption, weight
         db.results.clear();
         db.results.bulkAdd(queriedArr);
     }).then(function () {
-        if (dobOption == 'A') { return db.results.toArray(); }
-        else { return db.results.where('date_of_birth').equals(dobOption).toArray(); }
+        if (dobOption[0] == 'A' && dobOption[1] == 'A') { return db.results.toArray(); }
+        else if (dobOption[0] == 'A' && dobOption[1] != 'A') { return db.results.where('date_of_birth').noneOf('').and(value => Date.parse(value.date_of_birth) <= Date.parse(dobOption[1])).toArray();}
+        else if (dobOption[1] == 'A' && dobOption[0] != 'A') { return db.results.where('date_of_birth').noneOf('').and(value => Date.parse(value.date_of_birth) >= Date.parse(dobOption[0])).toArray();}
+        else { return db.results.where('date_of_birth').noneOf('').and(value => Date.parse(value.date_of_birth) >= Date.parse(dobOption[0]) && Date.parse(value.date_of_birth) <= Date.parse(dobOption[1])).toArray(); }
     }).then(function (queriedArr) {
         db.results.clear();
         db.results.bulkAdd(queriedArr);
@@ -235,14 +238,18 @@ function queryDb(idOption, centerOption, dobOption, sexOption, ageOption, weight
         db.results.clear();
         db.results.bulkAdd(queriedArr);
     }).then(function () {
-        if (ageOption == 'A') { return db.results.toArray(); }
-        else { return db.results.where('age_in_weeks').aboveOrEqual(parseInt(ageOption)).toArray(); }
+        if (ageOption[0] == 'A' && ageOption[1] == 'A') { return db.results.toArray(); }
+        else if (ageOption[0] == 'A' && ageOption[1] != 'A') { return db.results.where('age_in_weeks').belowOrEqual(parseInt(ageOption[1])).toArray(); }
+        else if (ageOption[1] == 'A' && ageOption[0] != 'A') { return db.results.where('age_in_weeks').aboveOrEqual(parseInt(ageOption[0])).toArray(); }
+        else { return db.results.where('age_in_weeks').aboveOrEqual(parseInt(ageOption[0])).and(value => value.age_in_weeks <= parseInt(ageOption[1])).toArray(); }
     }).then(function (queriedArr) {
         db.results.clear();
         db.results.bulkAdd(queriedArr);
     }).then(function () {
-        if (weightOption == 'A') { return db.results.toArray(); }
-        else { return db.results.where('weight').equals(parseFloat(weightOption)).toArray(); }
+        if (weightOption[0] == 'A' && weightOption[1] == 'A') { return db.results.toArray(); }
+        else if (weightOption[0] == 'A' && weightOption[1] != 'A') { return db.results.where('weight').belowOrEqual(parseFloat(weightOption[1])).toArray(); }
+        else if (weightOption[1] == 'A' && weightOption[0] != 'A') { return db.results.where('weight').aboveOrEqual(parseFloat(weightOption[0])).toArray(); }
+        else { return db.results.where('weight').aboveOrEqual(parseFloat(weightOption[0])).and(value => value.weight <= parseFloat(weightOption[1])).toArray(); }
     }).then(function (queriedArr) {
         db.results.clear();
         db.results.bulkAdd(queriedArr);
@@ -282,11 +289,105 @@ function queryDb(idOption, centerOption, dobOption, sexOption, ageOption, weight
     }).then(function (queriedArr) {
         db.results.clear();
         db.results.bulkAdd(queriedArr);
+        showAppliedFilters(idOption, centerOption, dobOption, sexOption, ageOption, weightOption, geneSymbOption, geneAccIdOption, zygosityOption, parameterOption, obvsTypeOption, categoryOption);
     }).catch(function (err) {
         console.error(err.stack || err);
     });
 };
 
+function showAppliedFilters(idOption, centerOption, dobOption, sexOption, ageOption, weightOption, geneSymbOption, geneAccIdOption, zygosityOption, parameterOption, obvsTypeOption, categoryOption) {
+    var ul = document.getElementById("filterList");
+    ul.innerHTML = "";
+    if (idOption == 'A' && centerOption == 'A' && dobOption == ['A', 'A'] && sexOption == 'A' && ageOption == ['A', 'A'] && weightOption == ['A', 'A'] && geneSymbOption == 'A' && geneAccIdOption == 'A' && zygosityOption == 'A' && parameterOption == 'A' && obvsTypeOption == 'A' && categoryOption == 'A') {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode("None"));
+        li.style = " background-color: crimson;";
+        ul.appendChild(li);
+    }   
+    else {
+        if (idOption != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Biological Sample ID: " + idOption));
+            li.style = " background-color: darkmagenta;";
+            ul.appendChild(li);
+        }
+        if (centerOption != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Phenotyping Center: " + centerOption));
+            li.style = " background-color: seagreen;";
+            ul.appendChild(li);
+        }
+        if (dobOption[0] != 'A' && dobOption[1] != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Date of Birth: " + dobOption[0] + " - " + dobOption[1]));
+            li.style = " background-color: darkcyan;";
+            ul.appendChild(li);
+        }
+        if (sexOption != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Sex: " + sexOption));
+            li.style = " background-color: mediumvioletred;";
+            ul.appendChild(li);
+        }
+        if (ageOption[0] != 'A' && ageOption[1] != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Age: " + ageOption[0] + " - " + ageOption[1]));
+            li.style = " background-color: gray;";
+            ul.appendChild(li);
+        }
+        if (weightOption[0] != 'A' && weightOption[1] != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Weight: " + weightOption[0] + " - " + weightOption[1] + "g"));
+            li.style = " background-color: sienna;";
+            ul.appendChild(li);
+        }
+        if (geneSymbOption != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Gene Symbol: " + geneSymbOption));
+            li.style = " background-color: midnightblue;";
+            ul.appendChild(li);
+        }
+        if (geneAccIdOption != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Gene Accession ID: " + geneAccIdOption));
+            li.style = " background-color: slateblue;";
+            ul.appendChild(li);
+        }
+        if (zygosityOption != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Zygosity: " + zygosityOption));
+            li.style = " background-color: forestgreen;";
+            ul.appendChild(li);
+        }
+        if (parameterOption != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Parameter Name: " + parameterOption));
+            li.style = " background-color: darkkhaki;";
+            ul.appendChild(li);
+        }
+        if (obvsTypeOption != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Observation Type: " + obvsTypeOption));
+            li.style = " background-color: tomato;";
+            ul.appendChild(li);
+        }
+        if (categoryOption != 'A') {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Category: " + categoryOption));
+            li.style = " background-color: indianred;";
+            ul.appendChild(li);
+        }
+    }
+}
+
+function showFilters() {
+    var x = document.getElementById("filters");
+    if (x.style.display === "none") {
+        x.style.display = "flex";
+    } else {
+        x.style.display = "none";
+    }
+}
 
 function clearDivs() {
     //delete current divs
@@ -334,7 +435,7 @@ function loadDivs() {
         return db.results.toArray()
     }).then(function (arr) {
         var element = document.getElementById("resultsFound");
-        element.innerHTML = (arr.length + " results found.");
+        element.innerHTML = (arr.length);
 
         for (var i = 0; i < arr.length; i++) {
             db.miceImages.where('biological_sample_id').equals(arr[i].biological_sample_id).toArray().then(function (arr) {
@@ -373,47 +474,50 @@ function loadDivs() {
 
 function populateOptions() {
     return db.miceData.orderBy('phenotyping_center').uniqueKeys().then(function (uniqueKeys) {
-        populateOptionBox("optionCenter", uniqueKeys);
+        populateOptionBox("optionCenter", uniqueKeys, false);
     }).then(function () {
         return db.miceData.orderBy('date_of_birth').uniqueKeys();
     }).then(function (uniqueKeys) {
-        populateOptionBox("optionDob", uniqueKeys);
+        populateOptionBox("optionMinDob", uniqueKeys, true);
+        populateOptionBox("optionMaxDob", uniqueKeys, true);
     }).then(function () {
         return db.miceData.orderBy('sex').uniqueKeys();
     }).then(function (uniqueKeys) {
-        populateOptionBox("optionSex", uniqueKeys);
+        populateOptionBox("optionSex", uniqueKeys, false);
     }).then(function () {
         return db.miceData.orderBy('age_in_weeks').uniqueKeys();
     }).then(function (uniqueKeys) {
-        populateOptionBox("optionAge", uniqueKeys);
+        populateOptionBox("optionMinAge", uniqueKeys, false);
+        populateOptionBox("optionMaxAge", uniqueKeys, false);
     }).then(function () {
         return db.miceData.orderBy('weight').uniqueKeys();
     }).then(function (uniqueKeys) {
-        populateOptionBox("optionWeight", uniqueKeys);
+        populateOptionBox("optionMinWeight", uniqueKeys, false);
+        populateOptionBox("optionMaxWeight", uniqueKeys, false);
     }).then(function () {
         return db.miceData.orderBy('gene_symbol').uniqueKeys();
     }).then(function (uniqueKeys) {
-        populateOptionBox("optionGeneSymb", uniqueKeys);
+        populateOptionBox("optionGeneSymb", uniqueKeys, false);
     }).then(function () {
         return db.miceData.orderBy('gene_accession_id').uniqueKeys();
     }).then(function (uniqueKeys) {
-        populateOptionBox("optionGeneAccId", uniqueKeys);
+        populateOptionBox("optionGeneAccId", uniqueKeys, false);
     }).then(function () {
         return db.miceData.orderBy('zygosity').uniqueKeys();
     }).then(function (uniqueKeys) {
-        populateOptionBox("optionZygosity", uniqueKeys);
+        populateOptionBox("optionZygosity", uniqueKeys, false);
     }).then(function () {
         return db.miceData.orderBy('parameter_name').uniqueKeys();
     }).then(function (uniqueKeys) {
-        populateOptionBox("optionParameter", uniqueKeys);
+        populateOptionBox("optionParameter", uniqueKeys, false);
     }).then(function () {
         return db.miceData.orderBy('observation_type').uniqueKeys();
     }).then(function (uniqueKeys) {
-        populateOptionBox("optionObvsType", uniqueKeys);
+        populateOptionBox("optionObvsType", uniqueKeys, false);
     }).then(function () {
         return db.miceData.orderBy('category').uniqueKeys();
     }).then(function (uniqueKeys) {
-        populateOptionBox("optionCategory", uniqueKeys);
+        populateOptionBox("optionCategory", uniqueKeys, false);
     }).catch(function (err) {
         console.error(err.stack || err);
     });
@@ -421,17 +525,26 @@ function populateOptions() {
 //biological_sample_id,phenotyping_center,date_of_birth,sex,age_in_weeks,weight,gene_symbol,gene_accession_id,zygosity,parameter_name,observation_type,category
 
 
-function populateOptionBox(optionId, optionsArr) {
+function populateOptionBox(optionId, optionsArr, isDate) {
     var opt = document.getElementById(optionId);
-
-    for (var i = 0; i < optionsArr.length; i++) {
-        var option = document.createElement("option");
-        option.value = optionsArr[i];
-        var optionText = document.createTextNode(optionsArr[i]);
-        option.appendChild(optionText);
-        opt.appendChild(option);
+    if (isDate == false) {
+        for (var i = 0; i < optionsArr.length; i++) {
+            var option = document.createElement("option");
+            option.value = optionsArr[i];
+            var optionText = document.createTextNode(optionsArr[i]);
+            option.appendChild(optionText);
+            opt.appendChild(option);
+        }
     }
-
+    else {
+        for (var i = 0; i < optionsArr.length; i++) {
+            var option = document.createElement("option");
+            option.value = optionsArr[i];
+            var optionText = document.createTextNode(optionsArr[i].substring(0, optionsArr[i].length - 10));
+            option.appendChild(optionText);
+            opt.appendChild(option);
+        }
+    }
 }
 
 function onLoadRun() {

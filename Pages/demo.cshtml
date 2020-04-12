@@ -9,6 +9,7 @@
 <head>
     <title>Grid</title>
     <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
     <!--Pull down the polyfill if needed (Safari + older opera browser)-->
     <script>
         if (!(window.indexedDB || window.window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB))
@@ -23,37 +24,74 @@
 </head>
 
 <body onload="onLoadRun();">
+    <form method="POST">
+        <section class="header">
 
-    <div class="header">
+            <h1>ExVi</h1>
+            <h2>Demo</h2>
 
-        <form method="POST">
-            <button type="submit" class="btn btn-dark" asp-page="/Index">Home</button>
-            <button type="submit" class="btn btn-danger" asp-page-handler="ViewAll">View All</button>
-            <button type="submit" class="btn btn-success" asp-page-handler="Females">Females</button>
-            <button type="submit" class="btn btn-primary" asp-page-handler="Males">Males</button>
-        </form>
-    </div>
+        </section>
 
-    <div class="header">
-        <form method="POST">
-            <input type="text" id="optionId" placeholder="Biological Sample ID" name="optionId">
-            <select id="optionCenter" name="optionCenter"><option value="A" selected hidden>Phenotyping Center</option>><option value="A">Any</option></select>
-            <select id="optionDob" name="optionDob"><option value="A" selected hidden>Date of birth</option>><option value="A">Any</option></select>
-            <select id="optionSex" name="optionSex"><option value="A" selected hidden>Sex</option><option value="A">Any</option></select>
-            <select id="optionAge" name="optionAge"><option value="A" selected hidden>Age (In Weeks)</option>><option value="A">Any</option></select>
-            <select id="optionWeight" name="optionWeight"><option value="A" selected hidden>Weight</option>><option value="A">Any</option></select>
-            <select id="optionGeneSymb" name="optionGeneSymb"><option value="A" selected hidden>Gene Symbol</option><option value="A">Any</option></select>
-            <select id="optionGeneAccId" name="optionGeneAccId"><option value="A" selected hidden>Gene Accession ID</option><option value="A">Any</option></select>
-            <select id="optionZygosity" name="optionZygosity"><option value="A" selected hidden>Zygosity</option><option value="A">Any</option></select>
-            <select id="optionParameter" name="optionParameter"><option value="A" selected hidden>Parameter Name</option><option value="A">Any</option></select>
-            <select id="optionObvsType" name="optionObvsType"><option value="A" selected hidden>Observation Type</option><option value="A">Any</option></select>
-            <select id="optionCategory" name="optionCategory"><option value="A" selected hidden>Category</option><option value="A">Any</option></select>
-            <input type="submit" class="btn btn-light" asp-page="/demo" asp-page-handler="Filter">
-        </form>
-    </div>
+        <div id="results">
+            <div id="resultsFlex">
+                <h3 id="filtersTitle">Filters:</h3>
+                <ul id="filterList" class="filterList"></ul>
+                <ul class="filterList">
+                    <li id="edit" onclick="showFilters()"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></li>
+                    <li id="clear"><button asp-page="/dem" asp-page-handler="ViewAll"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></button></li>
+                </ul>
+
+            </div>
+            <div id="resultsFlex">
+                <h2 id="resultsFound"></h2>
+                <p>Results found</p>
+            </div>
+        </div>
+
+        <div id="filters">
+            <div class="filterSection">
+                <h4>Mouse</h4>
+                <div class="filterSubSection">
+                    <p>Date of Birth:</p>
+                    <select id="optionMinDob" name="optionMinDob"><option value="A" selected hidden>Min</option><option value="A">Any</option></select>
+                    <p>to</p>
+                    <select id="optionMaxDob" name="optionMaxDob"><option value="A" selected hidden>Max</option><option value="A">Any</option></select>
+                </div>
+                <div class="filterSubSection">
+                    <select id="optionSex" name="optionSex"><option value="A" selected hidden>Sex</option><option value="A">Any</option></select>
+                </div>
+                <div class="filterSubSection">
+                    <p>Age (In Weeks):</p>
+                    <select id="optionMinAge" name="optionMinAge"><option value="A" selected hidden>Min</option><option value="A">Any</option></select>
+                    <p>to</p>
+                    <select id="optionMaxAge" name="optionMaxAge"><option value="A" selected hidden>Max</option><option value="A">Any</option></select>
+                </div>
+                <div class="filterSubSection">
+                    <p>Weight (g):</p>
+                    <select id="optionMinWeight" name="optionMinWeight"><option value="A" selected hidden>Min</option><option value="A">Any</option></select>
+                    <p>to</p>
+                    <select id="optionMaxWeight" name="optionMaxWeight"><option value="A" selected hidden>Max</option><option value="A">Any</option></select>
+                </div>
+                </div>
+                <div class="filterSection">
+                    <h4>Experiment</h4>
+                    <input type="text" id="optionId" placeholder="Biological Sample ID" name="optionId">
+                    <select id="optionGeneSymb" name="optionGeneSymb"><option value="A" selected hidden>Gene Symbol</option><option value="A">Any</option></select>
+                    <select id="optionGeneAccId" name="optionGeneAccId"><option value="A" selected hidden>Gene Accession ID</option><option value="A">Any</option></select>
+                    <select id="optionZygosity" name="optionZygosity"><option value="A" selected hidden>Zygosity</option><option value="A">Any</option></select>
+                    <select id="optionParameter" name="optionParameter"><option value="A" selected hidden>Parameter Name</option><option value="A">Any</option></select>
+                </div>
+                <div class="filterSection">
+                    <h4>Other</h4>
+                    <select id="optionCenter" name="optionCenter"><option value="A" selected hidden>Phenotyping Center</option><option value="A">Any</option></select>
+                    <select id="optionObvsType" name="optionObvsType"><option value="A" selected hidden>Observation Type</option><option value="A">Any</option></select>
+                    <select id="optionCategory" name="optionCategory"><option value="A" selected hidden>Category</option><option value="A">Any</option></select>
+                </div>
+                <input id="filterSubmit" type="submit" class="btn btn-light" asp-page="/demo" asp-page-handler="Filter">
+            </div>
+    </form>
 
     <div id="images">
-        <p id="resultsFound"></p>
         <!-- Images are placed above this Div to create the grid -->
         <div id="placeholderDiv"></div>
     </div>
@@ -66,10 +104,10 @@
     var menuOption = '@ViewData["MenuOption"]';
     var idOption = '@ViewData["IdOption"]';
     var centerOption = '@ViewData["CenterOption"]';
-    var dobOption = '@ViewData["DobOption"]';
+    var dobOption = ['@ViewData["DobMinOption"]','@ViewData["DobMaxOption"]'];
     var sexOption = '@ViewData["SexOption"]';
-    var ageOption = '@ViewData["AgeOption"]';
-    var weightOption = '@ViewData["WeightOption"]';
+    var ageOption = ['@ViewData["AgeMinOption"]','@ViewData["AgeMaxOption"]'];
+    var weightOption = ['@ViewData["WeightMinOption"]','@ViewData["WeightMaxOption"]'];
     var geneSymbOption = '@ViewData["GeneSymbOption"]';
     var geneAccIdOption = '@ViewData["GeneAccIdOption"]';
     var zygosityOption = '@ViewData["ZygosityOption"]';
@@ -77,11 +115,7 @@
     var obvsTypeOption = '@ViewData["ObvsTypeOption"]';
     var categoryOption = '@ViewData["CategoryOption"]';
     if (menuOption == "ViewAll") {
-        queryDb('A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A');
-    } else if (menuOption == "Females") {
-        queryDb('A', 'A', 'A', 'female', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A');
-    } else if (menuOption == "Males") {
-        queryDb('A', 'A', 'A', 'male', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A');
+        queryDb('A', 'A', ['A','A'], 'A', ['A','A'], ['A','A'], 'A', 'A', 'A', 'A', 'A', 'A');
     } else if (menuOption == "UserFilter") {
         queryDb(idOption, centerOption, dobOption, sexOption, ageOption, weightOption, geneSymbOption, geneAccIdOption, zygosityOption, parameterOption, obvsTypeOption, categoryOption);
     } else {

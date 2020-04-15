@@ -289,6 +289,7 @@ function queryDb(idOption, centerOption, dobOption, sexOption, ageOption, weight
     }).then(function (queriedArr) {
         db.results.clear();
         db.results.bulkAdd(queriedArr);
+        console.log("Query success");
         showAppliedFilters(idOption, centerOption, dobOption, sexOption, ageOption, weightOption, geneSymbOption, geneAccIdOption, zygosityOption, parameterOption, obvsTypeOption, categoryOption);
     }).catch(function (err) {
         console.error(err.stack || err);
@@ -454,15 +455,24 @@ function loadDivs() {
                 db.miceImagesResults.put(mouse);
                 const mouseDiv = document.createElement("div");
                 mouseDiv.id = "mouseDiv" + mouse.biological_sample_id;
+                mouseDiv.className = "mouseDiv"
                 mouseDiv.src = "https:" + mouse.jpeg_url;
-                mouseDiv.style = "width:160px; height:160px; border: thin solid white; display: inline-block; overflow:hidden; text-align:center; margin:5px;";
+                mouseDiv.onclick = function () { showModal(mouse.biological_sample_id) };
+                //mouseDiv.style = "width:160px; height:160px; border: thin solid white; display: inline-block; overflow:hidden; text-align:center; margin:5px;";
                 var currentDiv = document.getElementById("placeholderDiv");
                 currentDiv.parentNode.insertBefore(mouseDiv, currentDiv);
                 const mouseImg = document.createElement("img");
                 mouseImg.className = "mouse"
                 mouseImg.src = "https:" + mouse.jpeg_url;
-                mouseImg.style = "height:100%; object-fit:cover; flex-grow:1;";
+                //mouseImg.style = "height:100%; object-fit:cover; flex-grow:1;";
                 document.getElementById(mouseDiv.id).appendChild(mouseImg);
+                const mouseId = document.createElement("p");
+                mouseId.className = "mouseId"
+                mouseId.innerText = mouse.biological_sample_id;
+                document.getElementById(mouseDiv.id).appendChild(mouseId);
+                return mouse;
+            //}).then(function (mouse) {
+              //  loadModal(mouse);
             });
             console.log("Image", i+1, "of", arr.length, "loaded.");
         }
@@ -470,6 +480,166 @@ function loadDivs() {
         console.log("oops");
         console.error(err.stack || err);
     });
+}
+
+function loadModal(mouseId) {
+    return db.miceData.where('biological_sample_id').equals(parseInt(mouseId)).first().then(function (mouse) {
+        const mouseModal = document.createElement("div");
+        mouseModal.className = "modal";
+        mouseModal.id = "modal" + mouse.biological_sample_id;
+        document.getElementById("modalContainer").appendChild(mouseModal)
+
+        const modalContent = document.createElement("div");
+        modalContent.className = "modalContent";
+        modalContent.id = "modalContent" + mouse.biological_sample_id;
+        document.getElementById(mouseModal.id).appendChild(modalContent);
+
+        const closeSpan = document.createElement("span");
+        closeSpan.className = "close";
+        closeSpan.onclick = function () { closeModal() };
+        closeSpan.innerHTML = "&times;";
+        document.getElementById(modalContent.id).appendChild(closeSpan);
+
+        const slideContainer = document.createElement("div");
+        slideContainer.className = "slideContainer";
+        slideContainer.id = "slideContainer" + mouse.biological_sample_id;
+        document.getElementById(modalContent.id).appendChild(slideContainer);
+
+        const slideThumbRow = document.createElement("div");
+        slideThumbRow.id = "thumbRow" + mouse.biological_sample_id;
+        slideThumbRow.className = "thumbRow";
+        document.getElementById(slideContainer.id).appendChild(slideThumbRow);
+
+        db.miceImages.where('biological_sample_id').equals(mouse.biological_sample_id).toArray().then(function (arr) {
+            for (i = 0; i < arr.length; i++) {
+                //const x = i;
+                const mouseSlide = document.createElement("div");
+                mouseSlide.id = "mouseSlide" + mouse.biological_sample_id + "-" + i;
+                if (i == 0) { mouseSlide.className = "mouseSlide defaultSlide"; }
+                else { mouseSlide.className = "mouseSlide"; }
+                document.getElementById(slideContainer.id).appendChild(mouseSlide);
+
+                const mouseSlideImg = document.createElement("img");
+                mouseSlideImg.src = arr[i].jpeg_url;
+                document.getElementById(mouseSlide.id).appendChild(mouseSlideImg);
+
+                const mouseSlideThumb = document.createElement("div");
+                mouseSlideThumb.id = "mouseSlideThumb" + mouse.biological_sample_id + "-" + i;
+                mouseSlideThumb.className = "mouseSlideThumb";
+                document.getElementById(slideThumbRow.id).appendChild(mouseSlideThumb);
+
+                const mouseSlideThumbImg = document.createElement("img");
+                mouseSlideThumbImg.src = arr[i].jpeg_url;
+                mouseSlideThumbImg.className = "mouseSlideThumbImg"
+                mouseSlideThumbImg.onclick = function () { currentSlide(mouseSlide.id) };
+                document.getElementById(mouseSlideThumb.id).appendChild(mouseSlideThumbImg);
+            }
+        })
+
+        const mouseInfo = document.createElement("div");
+        mouseInfo.className = "mouseInfo";
+        mouseInfo.id = "mouseInfo" + mouse.biological_sample_id;
+        document.getElementById(modalContent.id).appendChild(mouseInfo);
+
+        const mouseTitle = document.createElement("h3");
+        mouseTitle.className = "mouseTitle";
+        mouseTitle.textContent = "Mouse " + mouse.biological_sample_id;
+        document.getElementById(mouseInfo.id).appendChild(mouseTitle);
+
+        const mouseCenter = document.createElement("p");
+        mouseCenter.textContent = "Phenotyping center: " + mouse.phenotyping_center;
+        document.getElementById(mouseInfo.id).appendChild(mouseCenter);
+
+        const mouseDob = document.createElement("p");
+        mouseDob.textContent = "Date of birth: " + mouse.date_of_birth;
+        document.getElementById(mouseInfo.id).appendChild(mouseDob);
+
+        const mouseSex = document.createElement("p");
+        mouseSex.textContent = "Sex: " + mouse.sex;
+        document.getElementById(mouseInfo.id).appendChild(mouseSex);
+
+        const mouseAge = document.createElement("p");
+        mouseAge.textContent = "Age : " + mouse.age_in_weeks + " weeks";
+        document.getElementById(mouseInfo.id).appendChild(mouseAge);
+
+        const mouseWeight = document.createElement("p");
+        mouseWeight.textContent = "Weight : " + mouse.weight + "g";
+        document.getElementById(mouseInfo.id).appendChild(mouseWeight);
+
+        const mouseGeneSymb = document.createElement("p");
+        mouseGeneSymb.textContent = "Gene symbol: " + mouse.gene_symbol;
+        document.getElementById(mouseInfo.id).appendChild(mouseGeneSymb);
+
+        const mouseGeneAccId = document.createElement("p");
+        mouseGeneAccId.textContent = "Gene accession ID: " + mouse.gene_accession_id;
+        document.getElementById(mouseInfo.id).appendChild(mouseGeneAccId);
+
+        const mouseZygosity = document.createElement("p");
+        mouseZygosity.textContent = "Zygosity: " + mouse.zygosity;
+        document.getElementById(mouseInfo.id).appendChild(mouseZygosity);
+
+        const mouseParamName = document.createElement("p");
+        mouseParamName.textContent = "Parameter name: " + mouse.parameter_name;
+        document.getElementById(mouseInfo.id).appendChild(mouseParamName);
+
+        const mouseObvsType = document.createElement("p");
+        mouseObvsType.textContent = "Observation type: " + mouse.observation_type;
+        document.getElementById(mouseInfo.id).appendChild(mouseObvsType);
+
+        const mouseCategory = document.createElement("p");
+        mouseCategory.textContent = "Category: " + mouse.category;
+        document.getElementById(mouseInfo.id).appendChild(mouseCategory);
+
+        return mouse;
+    }).catch(function (err) {
+        console.log("oops");
+        console.error(err.stack || err);
+    });
+
+}
+
+function clearModal() {
+    document.getElementById("modalContainer").innerHTML = '';
+}
+
+//modal js
+
+function showSlides(id) {
+    var i;
+    var modalSlide = document.getElementById(modId).querySelectorAll(".mouseSlide"); //get slides in open modal
+
+    for (i = 0; i < modalSlide.length; i++) {
+        modalSlide[i].style.display = "none"; //hide all slides
+    }
+    document.getElementById(id).style.display = "block"; //show current slide
+}
+
+function currentSlide(id) {
+    showSlides(id);
+}
+
+function showModal(mouseId) {
+    loadModal(mouseId).then(function () {
+        modId = "modal"+mouseId
+        window.modId = modId;
+        window.modal = document.getElementById(modId);
+        window.span = document.getElementsByClassName("close")[0];
+        modal.style.display = "flex"; //display selected modal
+    }).catch(function (err) {
+        console.log("oops");
+        console.error(err.stack || err);
+    });
+}
+
+function closeModal() {
+    modal.style.display = "none"; //close modal when close button pressed
+    clearModal();
+}
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        closeModal(); //close modal when pressed outside of the modal
+    }
 }
 
 function populateOptions() {

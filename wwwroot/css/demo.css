@@ -31,6 +31,8 @@ body {
 	font-size: 2em;
 	padding: 0.6vmin;
 	margin-right: 0.5vmin;
+	width: 12vmin;
+	min-width:70px;
 }
 
 .header h2 {
@@ -64,6 +66,174 @@ body {
 .filterSection input{
 	margin: 1vmin;
 }
+
+.mouseDiv {
+	width:160px;
+	height:160px;
+	border: thin solid white;
+	display: flex;
+	overflow:hidden;
+	text-align:center;
+	margin:5px;
+	position:relative;
+}
+
+.mouse{
+	height:100%;
+	object-fit:cover;
+	flex-grow:1;
+}
+
+.mouseId {
+	position: absolute;
+	width: 50%;
+	height: 18%;
+	line-height: 1.8;
+	background-color: black;
+	color: white;
+	bottom: 0;
+	right: 0;
+	margin:0;
+}
+
+/*modal stuff*/
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 100; /* Sit on top */
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 100vw; /* Full width */
+	height: 100vh; /* Full height */
+	/*overflow: auto;  Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	flex-wrap: nowrap;
+	flex-direction: column;
+	align-items: center;
+}
+.modalContent {
+	background-color: #fefefe;
+	margin: auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: auto; /* Could be more or less, depending on screen size */
+	max-width: 80vw;
+	max-height: 90vh;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+}
+.close {
+	color: #aaa;
+	text-align: right;
+	width: 100%;
+	line-height: 3vmin;
+	font-size: 6vmin;
+	font-weight: bold;
+}
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+.slideContainer {
+	position: relative;
+	width: 100%;
+	max-width: 378px;
+	display: flex;
+	flex-direction: column;
+	padding-right: 0;
+	padding-bottom: 3px;
+}
+.slideContainer img {
+	width: 100%;
+}
+.mouseSlide {
+  	display: none;
+	order:1;
+}
+.defaultSlide {
+	display: block;
+}
+.thumbRow{
+	margin-top: 3px;
+	order:99;
+}
+.thumbRow:after {
+  	content: "";
+  	display: table;
+  	clear: both;
+}
+.mouseSlideThumb {
+	margin-right: 3px;
+	float: left;
+	width: 16.66%;
+}
+.mouseSlideThumbImg {
+	opacity: 0.6;
+	cursor: pointer;
+}
+.mouseSlideThumbImg:hover {
+  	opacity: 1;
+}
+.mouseInfo {
+	border-top: solid 2px black;
+	border-left: none;
+	padding-left: 0;
+	padding-top: 3px;
+}
+.mouseInfo h3 {
+	font-size: 5vmin;
+	font-weight: 600;
+	margin: 3px;
+	text-align: center;
+}
+.mouseInfo p {
+	font-size: 3.1vmin;
+	font-weight: 400;
+	margin: 2px;
+	text-align: left;
+}
+
+/*--desktop--*/
+@media only screen and (min-width: 992px) {
+	.modalContent {
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	.slideContainer {
+		width: 45%;
+		max-width: 45vmin;
+		padding-right: 8px;
+		padding-bottom: 0;
+	}
+
+	.mouseInfo {
+		width: 50%;
+		padding-left: 3px;
+		padding-top: 0;
+		border-top: none;
+		border-left: solid 2px black;
+	}
+
+	.mouseInfo h3 {
+		font-size: 2.5vmin;
+	}
+
+	.mouseInfo p {
+		font-size: 1.5vmin;
+		margin-left: 5px;
+	}
+}
+
+/*-------------*/
 
 #filterSubmit{
 	width:100%;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DirectoryImportCode
 {
@@ -9,29 +8,35 @@ namespace DirectoryImportCode
         private List<string> TagHeaders = new List<string>();
         private List<string> TagInfo = new List<string>();
 
-        public Image(){//creates a new object
-            
+        public Image()
+        {//creates a new object
+
         }
 
-        public void AddImage(List<string> filepath){//sets the list of images to the image
+        public void AddImage(List<string> filepath)
+        {//sets the list of images to the image
             ImageFilepaths = filepath;
         }
 
-        public void AddTagInfo(List<string> headers, List<string> body){//sets the info as 2 a
+        public void AddTagInfo(List<string> headers, List<string> body)
+        {//sets the info as 2 a
             this.TagHeaders = headers;
             this.TagInfo = body;
         }
 
 
-        public List<string> GetImages(){//returns the list of images
+        public List<string> GetImages()
+        {//returns the list of images
             return this.ImageFilepaths;
         }
 
-        public List<string> GetHeaders(){
+        public List<string> GetHeaders()
+        {
             return this.TagHeaders;
         }
 
-        public List<string> GetInfo(){
+        public List<string> GetInfo()
+        {
             return this.TagInfo;
         }
     }

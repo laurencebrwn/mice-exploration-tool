@@ -114,7 +114,6 @@ E:/Documents/GitHub/mice-exploration-tool/miceExplorationTool/obj/Debug/netcorea
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExplorationTool.TagHelpers.output.cache
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExplorationTool.RazorCoreGenerate.cache
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/Razor/Pages/base64ToImage.cshtml.g.cs
-/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/Razor/Pages/dicomImageToGrid.cshtml.g.cs
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/Razor/Pages/Error.cshtml.g.cs
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/Razor/Pages/Index.cshtml.g.cs
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/Razor/Pages/Shared/_Layout.cshtml.g.cs
@@ -129,3 +128,7 @@ E:/Documents/GitHub/mice-exploration-tool/miceExplorationTool/obj/Debug/netcorea
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/staticwebassets/miceExplorationTool.StaticWebAssets.xml
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExplorationTool.dll
 /Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExplorationTool.pdb
+/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExplorationTool.csproj.CoreCompileInputs.cache
+/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/Razor/Pages/demo.cshtml.g.cs
+/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/Razor/Pages/gettingstarted.cshtml.g.cs
+/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/Debug/netcoreapp3.1/miceExplorationTool.genruntimeconfig.cache

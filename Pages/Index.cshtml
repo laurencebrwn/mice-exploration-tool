@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/animations.css">
     <!-- include dexie.js api - create db + store query functions -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
@@ -20,6 +21,22 @@
 
 <body>
 
+    <Section class="navBar">
+        <header>
+            <div class="container">
+                <h1 class="logo"></h1>
+
+                <nav>
+                    <ul>
+                        <li><a asp-page="/demo" asp-page-handler="ViewAll">Demo</a></li>
+                        <li><a asp-page="/gettingstarted">Getting Started</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </Section>
+
+
     <!-- //Header -->
     <section class="header">
 
@@ -28,6 +45,15 @@
 
     </section>
 
+
+    <!-- // Description of team -->
+
+    <Section class="description2">
+
+        <h1>A tool to help IMPC researchers compare X-ray images and identify the impact of gene 'knockouts' </h1>
+
+    </Section>
+
     <!-- //  video -->
 
     <Section class="video">
@@ -35,16 +61,6 @@
         <div id="video">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/WeA7edXsU40" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-
-    </Section>
-
-    <!-- // Quote -->
-
-    <Section class="description">
-
-        <h1>One never notices what has been done; <br> one can only see what remains to be done.</h1>
-
-        <h2>- Marie Curie -</h2>
 
     </Section>
 
@@ -71,19 +87,13 @@
                 <li class="hex">
                     <div class="hexIn">
                         <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/demo" asp-page-handler="Females" />
-                        <p>Females<br />in <br />Database</p>
+                        <p>Search<br />Females</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/demo" asp-page-handler="Males" />
-                        <p>Males<br /> in <br />Database</p>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/demo" asp-page-handler="Males" />
-                        <p>Males<br /> in <br />Database</p>
+                        <p>Search<br /> Males</p>
                     </div>
                 </li>
                 <li class="hex">
@@ -95,14 +105,6 @@
 
             </ul>
         </form>
-    </Section>
-
-    <!-- // Description of team -->
-
-    <Section class="description2">
-
-        <h1>ExVi is a tool tool to help IMPC researchers compare X-ray images and identify the impact of gene 'knockouts' </h1>
-
     </Section>
 
 
@@ -135,7 +137,7 @@
 
         <Section class="left">
 
-            <h1><br />Data Visulatisation on your whole dataset.</h1>
+            <h1><br />Visulatisation of your whole dataset.</h1>
 
         </Section>
     </div>
@@ -162,15 +164,10 @@
 
     <Section class="download">
 
-        <h1><a href="#" style="text-decoration:none; color:white">Download from GitHub</a></h1>
+        <h1><a href="https://github.com/laurencebrwn/mice-exploration-tool" style="text-decoration:none; color:white">Download from GitHub</a></h1>
 
 
     </Section>
-
-
-
-
-    <!-- // Explore our solor system video -->
 
 </body>
 
@@ -183,24 +180,29 @@
     $(window).scroll(function () {
         var offsetTop = $(".header").offset().top;
         $(".header").css("opacity", 1 - $(window).scrollTop() / 400);
+
+        var offsetTop = $(".description2").offset().top;
+        $(".description2").css("opacity", 1 - $(window).scrollTop() / 400);
+
         var offsetTop = $(".video").offset().top;
-        $(".video").css("opacity", 1 - $(window).scrollTop() / 400);
-        var offsetTop = $(".description").offset().top;
-        $(".description").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+        $(".video").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+
         var offsetTop = $(".demo").offset().top;
         $(".demo").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+
         var offsetTop = $(".grid").offset().top;
         $(".grid").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
-        var offsetTop = $(".description2").offset().top;
-        $(".description2").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+
         var offsetTop = $(".team1").offset().top;
         $(".team1").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+
         var offsetTop = $(".team2").offset().top;
         $(".team2").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
+
         var offsetTop = $(".team3").offset().top;
         $(".team3").css("opacity", 1 - ($(window).scrollTop() - offsetTop) / 400);
-    });
 
+    });
     console.log("Page Loaded :)");
 </script>
 

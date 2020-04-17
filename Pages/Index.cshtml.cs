@@ -10,7 +10,9 @@ using Newtonsoft;
 using MySql.Data.MySqlClient;
 using System.Web;
 using Microsoft.AspNetCore.Cors;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 namespace miceExplorationTool.Pages
 {
@@ -140,10 +142,6 @@ namespace miceExplorationTool.Pages
             return filepaths;
         }
 
-
-
-
-
         public List<Image> SortImage(List<string> Files)
         {
             List<string> Filepaths = Files;
@@ -161,19 +159,117 @@ namespace miceExplorationTool.Pages
         }
 
 
-        public void GetImagesPaths(string fileURL)
-        {//this calls the find files method, and gets and object of images back - I've left it void for you.
-            List<Image> mice = FindImages(fileURL); //was findFiles
-            foreach (Image im in mice)
-            {//goes through them
-                List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
-                foreach (string path in filepaths)
-                {//goes through them
-                    Console.WriteLine(filepaths);//prints
+
+
+        ///////////////////////////////// Williams Implimentation
+
+        string GetID(string filepath)
+        {
+            Regex regex = new Regex(@"^\d$");
+            int start = 0;
+            string FileName = Path.GetFileNameWithoutExtension(filepath);
+            for (int i = FileName.Length - 1; i >= 0; i--)
+            {
+                if (!regex.IsMatch(FileName[i].ToString()))
+                {
+                    start = i + 1;
+                    break;
+                }
+            }
+            string ID = FileName.Substring(start);
+            return ID;
+        }
+
+        public List<Tags> getTags(List<string> files)
+        {//gets a list of files, and returns a list of the JObjects
+            List<Tags> TagList = new List<Tags>();
+
+            foreach (string file in files)
+            {//iterates through list
+
+                List<Tags> TagIn = ReadInFile(file);
+                TagList.AddRange(TagIn);
+
+            }
+            return TagList;
+        }
+
+
+        public List<Tags> ReadInFile(string Filepath)//Finds all JSON objects in the path and stores the relevant tags in the list of object type Tags
+        {
+            string JSON = File.ReadAllText(@Filepath);
+            Console.WriteLine(JSON);
+            JObject TagResults = JObject.Parse(JSON);
+            Console.WriteLine(TagResults.ToString());
+            IList<JToken> TagTokens = TagResults["response"]["docs"].Children().ToList();
+            List<Tags> TagLists = new List<Tags>();
+            foreach (JToken Token in TagTokens)
+            {
+                Tags t = Token.ToObject<Tags>();
+                TagLists.Add(t);
+                t.writeout();
+            }
+
+            return TagLists;
+        }
+
+
+        public List<List<Tags>> SortLists(List<Tags> Input)
+        {
+            List<Tags> TagList = Input;
+            List<List<Tags>> SortedList = new List<List<Tags>>();
+            bool sorted = false;
+            while (sorted == false)
+            {
+                List<Tags> t = new List<Tags>();
+                List<int> Indexes = new List<int>();
+                string BioId = TagList[0].biological_sample_id;
+                t.Add(TagList[0]);
+                Indexes.Add(0);
+                for (int i = 1; i < TagList.Count; i++)
+                {
+                    if (TagList[i].biological_sample_id == BioId)
+                    {
+                        t.Add(TagList[i]);
+                        Indexes.Add(i);
+                    }
+                }
+                SortedList.Add(t);
+                for (int i = Indexes.Count - 1; i >= 0; i--)
+                {
+                    TagList.RemoveAt(Indexes[i]);
+                }
+
+                if (TagList.Count == 0)
+                {
+                    sorted = true;
                 }
 
             }
+            return SortedList;
         }
+
+        //////////////////////// Williams implimentation
+
+
+
+
+
+
+        //public void GetImagesPaths(string fileURL)
+        //{//this calls the find files method, and gets and object of images back - I've left it void for you.
+        //    List<Image> mice = FindImages(fileURL); //was findFiles
+        //    foreach (Image im in mice)
+        //    {//goes through them
+        //        List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
+        //        foreach (string path in filepaths)
+        //        {//goes through them
+        //            Console.WriteLine(filepaths);//prints
+        //        }
+
+        //    }
+        //}
+
 
         //Main functon that connects to the MySql server and returns the reuqired URLs
         public void MySqlConnection(string connection)
@@ -271,4 +367,30 @@ namespace miceExplorationTool.Pages
             return this.TagInfo;
         }
     }
+
+
+
+    //////////////////////// Williams implimentation
+  
+    public class Tags
+    {
+        public string biological_sample_id { get; set; }
+        public string phenotyping_center { get; set; }
+        public string date_of_birth { get; set; }
+        public string sex { get; set; }
+        public string age_in_weeks { get; set; }
+        public string weight { get; set; }
+        public string biological_sample_group { get; set; }
+        public string gene_symbol { get; set; }
+        public string zygosity { get; set; }
+        public string observation_type { get; set; }
+        public string category { get; set; }
+
+        public string download_file_path { get; set; }
+
+        [JsonExtensionData]
+        private IDictionary<string, JToken> _extraStuff;
+    }
+
+    //////////////////////// Williams implimentation
 }

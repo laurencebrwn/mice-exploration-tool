@@ -1,0 +1,111 @@
+﻿@page
+@model demoModel
+@{
+    //ViewData["Title"] = "Getting Started";
+}
+
+<!doctype html>
+<html>
+<head>
+    <title>Grid</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+    <style>
+        body, h1, h2, h3, h4, h5 {
+            font-family: "Poppins", sans-serif
+        }
+
+        body {
+            font-size: 16px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <Section class="navBar">
+        <header>
+            <div class="container">
+                <h1 class="logo"></h1>
+
+                <nav>
+                    <ul>
+                        <li><a asp-page="/Index">Home</a></li>
+                        <li><a href="https://github.com/laurencebrwn/mice-exploration-tool">Download from GitHub</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </Section>
+
+    <section class="header">
+
+        <h1><a asp-page="/index" style="text-decoration:none; color:white;">ExVi</a></h1>
+        <h2>Watch the video to get started</h2>
+
+    </section>
+
+    <!-- //  video -->
+
+    <Section class="video">
+
+        <div id="video">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+    </Section>
+
+
+    <!-- Guide Section -->
+    <div class="w3-padding-64 w3-light-grey">
+        <div class="w3-row-padding">
+
+            <div class=>
+                <h1 class="w3-jumbo"><b>Walk Through</b></h1>
+                <h1 class="w3-xxxlarge w3-text-red"><b>Step by Step</b></h1>
+
+                <p>
+                    <span class="w3-xlarge">Step 1.</span> <br /><br />Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+
+                <p>
+                    <span class="w3-xlarge">Step 2.</span> <br /><br />Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+
+                <p>
+                    <span class="w3-xlarge">Step 3.</span> <br /><br />Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+
+                <p>
+                    <span class="w3-xlarge">Step 4.</span> <br /><br />Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+                <p>
+                    <span class="w3-xlarge">Step 5.</span> <br /><br />Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+<script>
+    
+</script>
+
+
+
+

@@ -9,13 +9,12 @@
 <head>
     <title>Grid</title>
     <link rel="stylesheet" href="css/demo.css">
+
     <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
     <!--Pull down the polyfill if needed (Safari + older opera browser)-->
-    <script>
-        if (!(window.indexedDB || window.window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB))
+    <script>if (!(window.indexedDB || window.window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB))
 
-            document.write('<script src="https://rawgit.com/axemclion/IndexedDBShim/master/dist/indexeddbshim.js">\x3C/script>');
-    </script>
+            document.write('<script src="https://rawgit.com/axemclion/IndexedDBShim/master/dist/indexeddbshim.js">\x3C/script>');</script>
     <!-- include dexie.js api - create db + store query functions -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <script src="js/demo.js"></script>
@@ -25,6 +24,7 @@
 
 <body onload="onLoadRun();">
     <form method="POST">
+
         <section class="header">
 
             <h1><a asp-page="/index" style="text-decoration:none; color:white;">ExVi</a></h1>
@@ -72,23 +72,23 @@
                     <p>to</p>
                     <select id="optionMaxWeight" name="optionMaxWeight"><option value="A" selected hidden>Max</option><option value="A">Any</option></select>
                 </div>
-                </div>
-                <div class="filterSection">
-                    <h4>Experiment</h4>
-                    <input type="text" id="optionId" placeholder="Biological Sample ID" name="optionId">
-                    <select id="optionGeneSymb" name="optionGeneSymb"><option value="A" selected hidden>Gene Symbol</option><option value="A">Any</option></select>
-                    <select id="optionGeneAccId" name="optionGeneAccId"><option value="A" selected hidden>Gene Accession ID</option><option value="A">Any</option></select>
-                    <select id="optionZygosity" name="optionZygosity"><option value="A" selected hidden>Zygosity</option><option value="A">Any</option></select>
-                    <select id="optionParameter" name="optionParameter"><option value="A" selected hidden>Parameter Name</option><option value="A">Any</option></select>
-                </div>
-                <div class="filterSection">
-                    <h4>Other</h4>
-                    <select id="optionCenter" name="optionCenter"><option value="A" selected hidden>Phenotyping Center</option><option value="A">Any</option></select>
-                    <select id="optionObvsType" name="optionObvsType"><option value="A" selected hidden>Observation Type</option><option value="A">Any</option></select>
-                    <select id="optionCategory" name="optionCategory"><option value="A" selected hidden>Category</option><option value="A">Any</option></select>
-                </div>
-                <input id="filterSubmit" type="submit" class="btn btn-light" asp-page="/demo" asp-page-handler="Filter">
             </div>
+            <div class="filterSection">
+                <h4>Experiment</h4>
+                <input type="text" id="optionId" placeholder="Biological Sample ID" name="optionId">
+                <select id="optionGeneSymb" name="optionGeneSymb"><option value="A" selected hidden>Gene Symbol</option><option value="A">Any</option></select>
+                <select id="optionGeneAccId" name="optionGeneAccId"><option value="A" selected hidden>Gene Accession ID</option><option value="A">Any</option></select>
+                <select id="optionZygosity" name="optionZygosity"><option value="A" selected hidden>Zygosity</option><option value="A">Any</option></select>
+                <select id="optionParameter" name="optionParameter"><option value="A" selected hidden>Parameter Name</option><option value="A">Any</option></select>
+            </div>
+            <div class="filterSection">
+                <h4>Other</h4>
+                <select id="optionCenter" name="optionCenter"><option value="A" selected hidden>Phenotyping Center</option><option value="A">Any</option></select>
+                <select id="optionObvsType" name="optionObvsType"><option value="A" selected hidden>Observation Type</option><option value="A">Any</option></select>
+                <select id="optionCategory" name="optionCategory"><option value="A" selected hidden>Category</option><option value="A">Any</option></select>
+            </div>
+            <input id="filterSubmit" type="submit" class="btn btn-light" asp-page="/demo" asp-page-handler="Filter">
+        </div>
     </form>
 
     <div id="images">

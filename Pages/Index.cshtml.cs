@@ -80,8 +80,9 @@ namespace miceExplorationTool.Pages
 
                     }
 
+                }
             }
-            } else
+            else
             {
                 //sends error to html 
                 //errorMessage = "error";
@@ -300,7 +301,23 @@ namespace miceExplorationTool.Pages
                 {
                     Tags t = Token.ToObject<Tags>();
                     TagLists.Add(t);
-                    //t.writeout();
+                    t.writeout();
+
+
+
+
+
+
+
+                    //add here the database connection and creation for each header. Make sure it does each tag. 
+                    string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
+                    MySqlConnection(cmdText);
+
+
+
+
+
+
                 }
 
                 return TagLists;
@@ -308,7 +325,6 @@ namespace miceExplorationTool.Pages
             }
 
             return null; // A file should only be a .txt or .json. Anything else will return null. 
-
 
         }
 
@@ -404,6 +420,24 @@ namespace miceExplorationTool.Pages
 
             [JsonExtensionData]
             private IDictionary<string, JToken> _extraStuff;
+
+
+
+            public void writeout()
+            {
+                Console.WriteLine(biological_sample_id);
+                Console.WriteLine(phenotyping_center);
+                Console.WriteLine(date_of_birth);
+                Console.WriteLine(sex);
+                Console.WriteLine(age_in_weeks);
+                Console.WriteLine(weight);
+                Console.WriteLine(biological_sample_group);
+                Console.WriteLine(gene_symbol);
+                Console.WriteLine(zygosity);
+                Console.WriteLine(observation_type);
+                Console.WriteLine(category);
+                Console.WriteLine(download_file_path);
+            }
         }
 
         //public void writeout()

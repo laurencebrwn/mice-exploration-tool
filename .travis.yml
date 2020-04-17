@@ -18,9 +18,6 @@ before_install:
 script:
     - dotnet restore
     - dotnet test
-    #build the image
+    #build the test image
     - docker build --no-cache -t  laurencebrwn/mice-exploration-tool .
-    #tag the build
-    - docker tag laurencebrwn/mice-exploration-tool:latest laurencebrwn/mice-exploration-tool:v1
-    #push the image to the repository
-    - docker push laurencebrwn/mice-exploration-tool
+    #no longer push to demo site

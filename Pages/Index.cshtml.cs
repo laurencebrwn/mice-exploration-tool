@@ -272,31 +272,44 @@ namespace miceExplorationTool.Pages
             {//iterates through list
 
                 List<Tags> TagIn = ReadInFile(file);
-                TagList.AddRange(TagIn);
-
+                if (TagIn != null) // Ignore if a returned file is null. Should only be .txt or .json
+                {
+                    TagList.AddRange(TagIn);
+                }
             }
             return TagList;
         }
 
 
+        //Reads file in from user input and checks if it is a .txt or .json. If not returns a serror to the user. 
         public List<Tags> ReadInFile(string Filepath)//Finds all JSON objects in the path and stores the relevant tags in the list of object type Tags
         {
 
-            string JSON = System.IO.File.ReadAllText(@Filepath);
-            Console.WriteLine(JSON);
+            string fileExtension = Path.GetExtension(Filepath);
 
-            JObject TagResults = JObject.Parse(JSON);
-            Console.WriteLine(TagResults.ToString());
-            IList<JToken> TagTokens = TagResults["response"]["docs"].Children().ToList();
-            List<Tags> TagLists = new List<Tags>();
-            foreach (JToken Token in TagTokens)
+            if (fileExtension == ".txt" || fileExtension == ".json")
             {
-                Tags t = Token.ToObject<Tags>();
-                TagLists.Add(t);
-                //t.writeout();
+                string JSON = System.IO.File.ReadAllText(@Filepath);
+                //Console.WriteLine(JSON);
+                JObject TagResults = JObject.Parse(JSON);
+                //Console.WriteLine(TagResults.ToString());
+                IList<JToken> TagTokens = TagResults["response"]["docs"].Children().ToList();
+                List<Tags> TagLists = new List<Tags>();
+
+                foreach (JToken Token in TagTokens)
+                {
+                    Tags t = Token.ToObject<Tags>();
+                    TagLists.Add(t);
+                    //t.writeout();
+                }
+
+                return TagLists;
+
             }
 
-            return TagLists;
+            return null; // A file should only be a .txt or .json. Anything else will return null. 
+
+
         }
 
 
@@ -393,7 +406,22 @@ namespace miceExplorationTool.Pages
             private IDictionary<string, JToken> _extraStuff;
         }
 
+        //public void writeout()
+        //{
+        //    Console.WriteLine(biological_sample_id);
+        //    Console.WriteLine(phenotyping_center);
+        //    Console.WriteLine(date_of_birth);
+        //    Console.WriteLine(sex);
+        //    Console.WriteLine(age_in_weeks);
+        //    Console.WriteLine(weight);
+        //    Console.WriteLine(biological_sample_group);
+        //    Console.WriteLine(gene_symbol);
+        //    Console.WriteLine(zygosity);
+        //    Console.WriteLine(observation_type);
+        //    Console.WriteLine(category);
+        //    Console.WriteLine(download_file_path);
 
+        //}
 
 
 

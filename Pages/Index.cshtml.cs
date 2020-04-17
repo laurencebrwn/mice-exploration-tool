@@ -92,6 +92,78 @@ namespace miceExplorationTool.Pages
         }
 
 
+        //public List<Image> FindImages(string DirectoryPath)
+        ////public List<Image> FindFiles(string DirectoryPath) //current working
+        //{
+
+        //    //string[] Dir = Directory.GetFiles(DirectoryPath);//Allows for copy paste filepaths using Override.
+
+        //    List<string> Dir = FindFiles(DirectoryPath);
+        //    List<string> ImagePaths = new List<string>();//creates a list of filepaths
+        //    List<string> TagPaths = new List<string>();//creates a list of filepaths
+
+        //    foreach (string file in Dir)
+        //    {//goes through directory finding all files
+        //        string ext = Path.GetExtension(file);
+
+        //        if (ext == ".dcm") //If extension is a dcm file then put in ImagePaths list
+        //        {//sorts dependent upont file type
+        //            ImagePaths.Add(file);
+        //        }
+        //        else
+        //        {
+        //            TagPaths.Add(file);
+        //        }
+
+        //    }
+        //    List<Image> Images = SortImage(ImagePaths);//Sorts images of the same mouse into record.
+        //    return Images;//returns a list of the Image object
+        //}
+
+
+        public List<string> FindFiles(string directory)
+        {
+            List<string> filepaths = new List<string>();
+
+            string[] Directories = Directory.GetDirectories(@directory);//Allows for copy paste filepaths using Override.
+            if (Directories.Length > 0)
+            {
+                Console.WriteLine(Directories[0]);
+                foreach (string Dir in Directories)
+                {
+                    filepaths.AddRange(FindFiles(Dir));
+                }
+                filepaths.AddRange(Directory.GetFiles(@directory));
+            }
+            else
+            {
+                filepaths.AddRange(Directory.GetFiles(@directory));
+            }
+            return filepaths;
+        }
+
+        //public List<Image> SortImage(List<string> Files)
+        //{
+        //    List<string> Filepaths = Files;
+        //    List<Image> Images = new List<Image>();
+        //    foreach (string File in Filepaths)
+        //    {
+        //        List<string> files = new List<string>();
+        //        //string id = GetID(Filepaths[0]);
+        //        files.Add(File);
+        //        Image Mouse = new Image();
+        //        Mouse.AddImage(files);
+        //        Images.Add(Mouse);
+        //    }
+        //    return Images;
+        //}
+
+
+
+
+        ///////////////////////////////// Williams Implimentation /////////////////////////////////////////////////////////////
+
+
         public List<Image> FindImages(string DirectoryPath)
         //public List<Image> FindFiles(string DirectoryPath) //current working
         {
@@ -116,52 +188,63 @@ namespace miceExplorationTool.Pages
                 }
 
             }
-            List<Image> Images = SortImage(ImagePaths);//Sorts images of the same mouse into record.
+            List<Image> Images = SortImage(ImagePaths, TagPaths);//Sorts images of the same mouse into record.
             return Images;//returns a list of the Image object
         }
 
 
-        public List<string> FindFiles(string directory)
-        {
-            List<string> filepaths = new List<string>();
 
-            string[] Directories = Directory.GetDirectories(@directory);//Allows for copy paste filepaths using Override.
-            if (Directories.Length > 0)
-            {
-                Console.WriteLine(Directories[0]);
-                foreach (string Dir in Directories)
-                {
-                    filepaths.AddRange(FindFiles(Dir));
-                }
-                filepaths.AddRange(Directory.GetFiles(@directory));
-            }
-            else
-            {
-                filepaths.AddRange(Directory.GetFiles(@directory));
-            }
-            return filepaths;
-        }
-
-        public List<Image> SortImage(List<string> Files)
+        public List<Image> SortImage(List<string> Files, List<string> Tags)
         {
             List<string> Filepaths = Files;
             List<Image> Images = new List<Image>();
+            List<Tags> TagData = new List<Tags>();
+            List<List<Tags>> SortedTags = new List<List<Tags>>();
+            TagData = getTags(Tags);
+            SortedTags = SortLists(TagData);
             foreach (string File in Filepaths)
             {
                 List<string> files = new List<string>();
-                //string id = GetID(Filepaths[0]);
+                string id = GetID(Filepaths[0]);
                 files.Add(File);
-                Image Mouse = new Image();
-                Mouse.AddImage(files);
+                List<Tags> t = FindList(id, SortedTags);
+                Image Mouse = new Image(id);
+                Mouse.SetImage(files);
+                Mouse.SetTags(t);
                 Images.Add(Mouse);
+
             }
             return Images;
         }
 
 
+        private List<Tags> FindList(string ID, List<List<Tags>> sortedTags)
+        {
+            List<Tags> match = new List<Tags>();
+            foreach (List<Tags> TagList in sortedTags)
+            {
+                bool found = false;
+                foreach (Tags t in TagList)
+                {
+                    if (t.download_file_path != null)
+                    {
+                        string TagID = GetID(t.download_file_path);
+                        if (TagID == ID)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if (found == true)
+                {
+                    match = TagList;
+                    break;
+                }
+            }
+            return match;
+        }
 
-
-        ///////////////////////////////// Williams Implimentation
 
         string GetID(string filepath)
         {
@@ -180,6 +263,7 @@ namespace miceExplorationTool.Pages
             return ID;
         }
 
+
         public List<Tags> getTags(List<string> files)
         {//gets a list of files, and returns a list of the JObjects
             List<Tags> TagList = new List<Tags>();
@@ -197,8 +281,10 @@ namespace miceExplorationTool.Pages
 
         public List<Tags> ReadInFile(string Filepath)//Finds all JSON objects in the path and stores the relevant tags in the list of object type Tags
         {
-            string JSON = File.ReadAllText(@Filepath);
+
+            string JSON = System.IO.File.ReadAllText(@Filepath);
             Console.WriteLine(JSON);
+
             JObject TagResults = JObject.Parse(JSON);
             Console.WriteLine(TagResults.ToString());
             IList<JToken> TagTokens = TagResults["response"]["docs"].Children().ToList();
@@ -207,7 +293,7 @@ namespace miceExplorationTool.Pages
             {
                 Tags t = Token.ToObject<Tags>();
                 TagLists.Add(t);
-                t.writeout();
+                //t.writeout();
             }
 
             return TagLists;
@@ -249,7 +335,69 @@ namespace miceExplorationTool.Pages
             return SortedList;
         }
 
-        //////////////////////// Williams implimentation
+
+
+
+        public class Image//Record of images
+        {
+            private string ID { get; set; }
+
+            private string biological_sample_id { get; set; }
+            private List<string> ImageFilepaths = new List<string>();//stores the groups of images
+            private List<Tags> TagData = new List<Tags>();
+
+            public Image(string ID)
+            {//creates a new object
+                this.ID = ID;
+            }
+
+            public void SetImage(List<string> Filepath)
+            {//sets the list of images to the image
+                ImageFilepaths = Filepath;
+            }
+
+            public void SetTags(List<Tags> TagList)
+            {
+                this.TagData = TagList;
+            }
+
+            public List<string> GetImages()
+            {//returns the list of images
+                return this.ImageFilepaths;
+            }
+
+            public List<Tags> GetTagData()
+            {
+                return this.TagData;
+            }
+
+        }
+
+        public class Tags
+        {
+            public string biological_sample_id { get; set; }
+            public string phenotyping_center { get; set; }
+            public string date_of_birth { get; set; }
+            public string sex { get; set; }
+            public string age_in_weeks { get; set; }
+            public string weight { get; set; }
+            public string biological_sample_group { get; set; }
+            public string gene_symbol { get; set; }
+            public string zygosity { get; set; }
+            public string observation_type { get; set; }
+            public string category { get; set; }
+
+            public string download_file_path { get; set; }
+
+            [JsonExtensionData]
+            private IDictionary<string, JToken> _extraStuff;
+        }
+
+
+
+
+
+        ////////////////////////////////// Williams Implimentation /////////////////////////////////////////////////////////////
 
 
 
@@ -366,31 +514,11 @@ namespace miceExplorationTool.Pages
         {
             return this.TagInfo;
         }
+
+        internal void SetImage(List<string> files)
+        {
+            throw new NotImplementedException();
+        }
     }
 
-
-
-    //////////////////////// Williams implimentation
-  
-    public class Tags
-    {
-        public string biological_sample_id { get; set; }
-        public string phenotyping_center { get; set; }
-        public string date_of_birth { get; set; }
-        public string sex { get; set; }
-        public string age_in_weeks { get; set; }
-        public string weight { get; set; }
-        public string biological_sample_group { get; set; }
-        public string gene_symbol { get; set; }
-        public string zygosity { get; set; }
-        public string observation_type { get; set; }
-        public string category { get; set; }
-
-        public string download_file_path { get; set; }
-
-        [JsonExtensionData]
-        private IDictionary<string, JToken> _extraStuff;
-    }
-
-    //////////////////////// Williams implimentation
 }

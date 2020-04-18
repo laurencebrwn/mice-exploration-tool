@@ -15,7 +15,7 @@ function loadData() {
     var jsonMice = {};
     var jsonMiceImages = {};
     var jsonMiceData = {};
-    const proxyurl = "https://exvi-cors-helper.herokuapp.com/";
+    const proxyurl = "https://exvi-cors.herokuapp.com/";
     return db.mice.count(function (count) {
         if (count > 0) {
             console.log("Already populated");

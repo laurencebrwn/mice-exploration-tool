@@ -9,131 +9,19 @@ db.version(1).stores({
 });
 db.open();
 
-var miceTestData = [{
-    patient_id: 'AA123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab15',
-    parameter_name: 'body',
-    phenotyping_center: 'WTSI',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/AA123456789.dcm'
-}, {
-    patient_id: 'BB123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab15',
-    parameter_name: 'head',
-    phenotyping_center: 'TCP',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/BB123456789.dcm'
-}, {
-    patient_id: 'CC123456789',
-    patient_sex: 'M',
-    patient_gene: 'Rab15',
-    parameter_name: 'body',
-    phenotyping_center: 'ICS',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/CC123456789.dcm'
-}, {
-    patient_id: 'DD123456789',
-    patient_sex: 'M',
-    patient_gene: 'Rab15',
-    parameter_name: 'body',
-    phenotyping_center: 'ICS',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/DD123456789.dcm'
-}, {
-    patient_id: 'EE123456789',
-    patient_sex: 'M',
-    patient_gene: 'Rab15',
-    parameter_name: 'paw',
-    phenotyping_center: 'TCP',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/EE123456789.dcm'
-}, {
-    patient_id: 'FF123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab15',
-    parameter_name: 'paw',
-    phenotyping_center: 'WTSI',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/FF123456789.dcm'
-}, {
-    patient_id: 'GG123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab18',
-    parameter_name: 'body',
-    phenotyping_center: 'ICS',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/GG123456789.dcm'
-}, {
-    patient_id: 'HH123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab15',
-    parameter_name: 'head',
-    phenotyping_center: 'WTSI',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/HH123456789.dcm'
-}, {
-    patient_id: 'JJ123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab15',
-    parameter_name: 'head',
-    phenotyping_center: 'TCP',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/JJ123456789.dcm'
-}, {
-    patient_id: 'KK123456789',
-    patient_sex: 'M',
-    patient_gene: 'Rab15',
-    parameter_name: 'body',
-    phenotyping_center: 'ICS',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/KK123456789.dcm'
-}, {
-    patient_id: 'LL123456789',
-    patient_sex: 'M',
-    patient_gene: 'Rab15',
-    parameter_name: 'body',
-    phenotyping_center: 'TCP',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/LL123456789.dcm'
-}, {
-    patient_id: 'MM123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab15',
-    parameter_name: 'body',
-    phenotyping_center: 'TCP',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/MM123456789.dcm'
-}, {
-    patient_id: 'NN123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab15',
-    parameter_name: 'paw',
-    phenotyping_center: 'WTSI',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/NN123456789.dcm'
-}, {
-    patient_id: 'PP123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab18',
-    parameter_name: 'paw',
-    phenotyping_center: 'ICS',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/PP123456789.dcm'
-}, {
-    patient_id: 'RR123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab18',
-    parameter_name: 'body',
-    phenotyping_center: 'ICS',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/RR123456789.dcm'
-}, {
-    patient_id: 'SS123456789',
-    patient_sex: 'F',
-    patient_gene: 'Rab18',
-    parameter_name: 'head',
-    phenotyping_center: 'WTSI',
-    urlString: 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/dicomImages/SS123456789.dcm'
-}];
 
 //adds json data into dexieDB
 function loadData() {
     var jsonMice = {};
     var jsonMiceImages = {};
     var jsonMiceData = {};
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
     return db.mice.count(function (count) {
         if (count > 0) {
             console.log("Already populated");
         } else {
             console.log("Populating tables");
-            return fetch('https://www.ebi.ac.uk/mi/impc/solr/impc_images/select?q=(biological_sample_id:[*%20TO%20*]%20AND%20parameter_name:%22XRay%20Images%20Whole%20Body%20Dorso%20Ventral%22)&fl=biological_sample_id&rows=40').then(
+            return fetch(proxyurl + 'https://www.ebi.ac.uk/mi/impc/solr/impc_images/select?q=(biological_sample_id:[*%20TO%20*]%20AND%20parameter_name:%22XRay%20Images%20Whole%20Body%20Dorso%20Ventral%22)&fl=biological_sample_id&rows=40').then(
                 res => res.json()
             ).then(
                 (data) => {
@@ -165,7 +53,7 @@ function loadData() {
                 console.log(urlStr);
                 return urlStr;
             }).then(function (urlStr) {
-                return fetch(urlStr)
+                return fetch(proxyurl + urlStr)
             }).then(
                 res => res.json()
             ).then(
@@ -186,7 +74,7 @@ function loadData() {
                 console.log(urlStr);
                 return urlStr;
             }).then(function (urlStr) {
-                return fetch(urlStr);
+                return fetch(proxyurl + urlStr);
             }).then(
                 res => res.json()
             ).then(

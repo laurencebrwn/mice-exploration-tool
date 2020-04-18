@@ -185,7 +185,7 @@ namespace miceExplorationTool.Pages
                 }
                 else
                 {
-                    TagPaths.Add(file);
+                    TagPaths.Add(file); //this list stores the json and txt file paths
                 }
 
             }
@@ -302,6 +302,7 @@ namespace miceExplorationTool.Pages
                     Tags t = Token.ToObject<Tags>();
                     TagLists.Add(t);
                     t.writeout();
+                    Console.WriteLine();
 
 
 
@@ -310,8 +311,8 @@ namespace miceExplorationTool.Pages
 
 
                     //add here the database connection and creation for each header. Make sure it does each tag. 
-                    string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
-                    MySqlConnection(cmdText);
+                    //string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
+                    //MySqlConnection(cmdText);
 
 
 
@@ -404,19 +405,24 @@ namespace miceExplorationTool.Pages
 
         public class Tags
         {
-            public string biological_sample_id { get; set; }
-            public string phenotyping_center { get; set; }
+
             public string date_of_birth { get; set; }
             public string sex { get; set; }
             public string age_in_weeks { get; set; }
             public string weight { get; set; }
-            public string biological_sample_group { get; set; }
+            public string biological_sample_id { get; set; }
             public string gene_symbol { get; set; }
+            public string gene_accession_id { get; set; }
             public string zygosity { get; set; }
+            public string parameter_name { get; set; }
+            public string phenotyping_center { get; set; }
             public string observation_type { get; set; }
-            public string category { get; set; }
 
+
+            //public string biological_sample_group { get; set; }
+            //public string category { get; set; }
             public string download_file_path { get; set; }
+
 
             [JsonExtensionData]
             private IDictionary<string, JToken> _extraStuff;
@@ -425,37 +431,24 @@ namespace miceExplorationTool.Pages
 
             public void writeout()
             {
-                Console.WriteLine(biological_sample_id);
-                Console.WriteLine(phenotyping_center);
-                Console.WriteLine(date_of_birth);
-                Console.WriteLine(sex);
-                Console.WriteLine(age_in_weeks);
-                Console.WriteLine(weight);
-                Console.WriteLine(biological_sample_group);
-                Console.WriteLine(gene_symbol);
-                Console.WriteLine(zygosity);
-                Console.WriteLine(observation_type);
-                Console.WriteLine(category);
-                Console.WriteLine(download_file_path);
+
+                Console.WriteLine("date_of_birth: {0}", date_of_birth);
+                Console.WriteLine("sex: {0}", sex);
+                Console.WriteLine("age_in_weeks: {0}", age_in_weeks);
+                Console.WriteLine("weight: {0}", weight);
+                Console.WriteLine("Biological_sample_id: {0}", biological_sample_id);
+                Console.WriteLine("gene_symbol: {0}", gene_symbol);
+                Console.WriteLine("gene_accession_id: {0}", gene_symbol);
+                Console.WriteLine("zygosity: {0}", zygosity);
+                Console.WriteLine("parameter_name: {0}", parameter_name);
+                Console.WriteLine("phentyping_centre: {0}", phenotyping_center);
+                Console.WriteLine("observation_type: {0}", observation_type);
+
+                //Console.WriteLine("biological_sample_group: {0}", biological_sample_group);
+                //Console.WriteLine("catagory: {0}", category);
+                //Console.WriteLine(download_file_path);
             }
         }
-
-        //public void writeout()
-        //{
-        //    Console.WriteLine(biological_sample_id);
-        //    Console.WriteLine(phenotyping_center);
-        //    Console.WriteLine(date_of_birth);
-        //    Console.WriteLine(sex);
-        //    Console.WriteLine(age_in_weeks);
-        //    Console.WriteLine(weight);
-        //    Console.WriteLine(biological_sample_group);
-        //    Console.WriteLine(gene_symbol);
-        //    Console.WriteLine(zygosity);
-        //    Console.WriteLine(observation_type);
-        //    Console.WriteLine(category);
-        //    Console.WriteLine(download_file_path);
-
-        //}
 
 
 

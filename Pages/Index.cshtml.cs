@@ -41,6 +41,8 @@ namespace miceExplorationTool.Pages
         //display user selected query images
         public void OnPostFilePath()
         {
+
+
             //sets filepath as route to dicomImages folder - this is where the user will need to place there images or symlink to
             string filePath = "wwwroot/dicomImages";
 
@@ -51,7 +53,10 @@ namespace miceExplorationTool.Pages
             if (Directory.Exists(filePath))
             {
 
-                Console.WriteLine("\nNew Images added to database:");
+                //Creates a new MICE database when the user adds new images or files
+                MySqlDatabaseCreation();
+
+                int count = 0; //count for testing purposes
 
                 //calls function to populate mice list with files found at the filePath
                 List<Image> mice = FindImages(filePath); //change from findFiles
@@ -62,24 +67,29 @@ namespace miceExplorationTool.Pages
                     foreach (string path in filepaths)
                     {//goes through them
 
-                        //removes the wwwroot/ element of the file path
+                        count++; //displays a count for testing purposes
+
+                        //removes the wwwroot/ element of the file path and replaces with nothing
                         string myfilePath = path;
                         myfilePath = myfilePath.Replace("wwwroot/", "");
 
                         //adds 'https://' to start of every item in the list so it can be found in the project root folder
                         string newPath = "https://localhost:5001/" + myfilePath;
-                        Console.WriteLine(newPath);//prints
+                        //Console.WriteLine(newPath);//prints
 
                         //take last part of file path without extension for search comparison
                         var dirName = Path.GetFileNameWithoutExtension(path);
                         //Console.WriteLine(dirName);//prints file name without extension
 
                         //create a insert funtion that uses the comparison and searches the database and inserts the newPath value
-                        string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
+                        //string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
+
+                        string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE id = '" + dirName + "';";
                         MySqlConnection(cmdText);
 
                     }
 
+                    Console.WriteLine("\nNew Images added to database: {0}", count); //displays count for testing purposes
                 }
             }
             else
@@ -93,35 +103,6 @@ namespace miceExplorationTool.Pages
         }
 
 
-        //public List<Image> FindImages(string DirectoryPath)
-        ////public List<Image> FindFiles(string DirectoryPath) //current working
-        //{
-
-        //    //string[] Dir = Directory.GetFiles(DirectoryPath);//Allows for copy paste filepaths using Override.
-
-        //    List<string> Dir = FindFiles(DirectoryPath);
-        //    List<string> ImagePaths = new List<string>();//creates a list of filepaths
-        //    List<string> TagPaths = new List<string>();//creates a list of filepaths
-
-        //    foreach (string file in Dir)
-        //    {//goes through directory finding all files
-        //        string ext = Path.GetExtension(file);
-
-        //        if (ext == ".dcm") //If extension is a dcm file then put in ImagePaths list
-        //        {//sorts dependent upont file type
-        //            ImagePaths.Add(file);
-        //        }
-        //        else
-        //        {
-        //            TagPaths.Add(file);
-        //        }
-
-        //    }
-        //    List<Image> Images = SortImage(ImagePaths);//Sorts images of the same mouse into record.
-        //    return Images;//returns a list of the Image object
-        //}
-
-
         public List<string> FindFiles(string directory)
         {
             List<string> filepaths = new List<string>();
@@ -129,7 +110,7 @@ namespace miceExplorationTool.Pages
             string[] Directories = Directory.GetDirectories(@directory);//Allows for copy paste filepaths using Override.
             if (Directories.Length > 0)
             {
-                Console.WriteLine(Directories[0]);
+                //Console.WriteLine(Directories[0]);
                 foreach (string Dir in Directories)
                 {
                     filepaths.AddRange(FindFiles(Dir));
@@ -142,24 +123,6 @@ namespace miceExplorationTool.Pages
             }
             return filepaths;
         }
-
-        //public List<Image> SortImage(List<string> Files)
-        //{
-        //    List<string> Filepaths = Files;
-        //    List<Image> Images = new List<Image>();
-        //    foreach (string File in Filepaths)
-        //    {
-        //        List<string> files = new List<string>();
-        //        //string id = GetID(Filepaths[0]);
-        //        files.Add(File);
-        //        Image Mouse = new Image();
-        //        Mouse.AddImage(files);
-        //        Images.Add(Mouse);
-        //    }
-        //    return Images;
-        //}
-
-
 
 
         ///////////////////////////////// Williams Implimentation /////////////////////////////////////////////////////////////
@@ -247,7 +210,7 @@ namespace miceExplorationTool.Pages
         }
 
 
-        string GetID(string filepath)
+        public static string GetID(string filepath)
         {
             Regex regex = new Regex(@"^\d$");
             int start = 0;
@@ -290,6 +253,7 @@ namespace miceExplorationTool.Pages
 
             if (fileExtension == ".txt" || fileExtension == ".json")
             {
+
                 string JSON = System.IO.File.ReadAllText(@Filepath);
                 //Console.WriteLine(JSON);
                 JObject TagResults = JObject.Parse(JSON);
@@ -302,22 +266,10 @@ namespace miceExplorationTool.Pages
                     Tags t = Token.ToObject<Tags>();
                     TagLists.Add(t);
                     t.writeout();
-                    Console.WriteLine();
 
+                    t.populateMySqlDatabase(); //populates the database with the respective tags
 
-
-
-
-
-
-                    //add here the database connection and creation for each header. Make sure it does each tag. 
-                    //string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
-                    //MySqlConnection(cmdText);
-
-
-
-
-
+                    Console.WriteLine(); //a line for spacing during testing
 
                 }
 
@@ -403,9 +355,11 @@ namespace miceExplorationTool.Pages
 
         }
 
+
         public class Tags
         {
 
+            public string id { get; set; }
             public string date_of_birth { get; set; }
             public string sex { get; set; }
             public string age_in_weeks { get; set; }
@@ -428,58 +382,142 @@ namespace miceExplorationTool.Pages
             private IDictionary<string, JToken> _extraStuff;
 
 
-
             public void writeout()
             {
-
+                Console.WriteLine("id: {0}", id);
                 Console.WriteLine("date_of_birth: {0}", date_of_birth);
                 Console.WriteLine("sex: {0}", sex);
                 Console.WriteLine("age_in_weeks: {0}", age_in_weeks);
                 Console.WriteLine("weight: {0}", weight);
                 Console.WriteLine("Biological_sample_id: {0}", biological_sample_id);
                 Console.WriteLine("gene_symbol: {0}", gene_symbol);
-                Console.WriteLine("gene_accession_id: {0}", gene_symbol);
+                Console.WriteLine("gene_accession_id: {0}", gene_accession_id);
                 Console.WriteLine("zygosity: {0}", zygosity);
                 Console.WriteLine("parameter_name: {0}", parameter_name);
-                Console.WriteLine("phentyping_centre: {0}", phenotyping_center);
+                Console.WriteLine("phenotyping_center: {0}", phenotyping_center);
                 Console.WriteLine("observation_type: {0}", observation_type);
 
                 //Console.WriteLine("biological_sample_group: {0}", biological_sample_group);
                 //Console.WriteLine("catagory: {0}", category);
                 //Console.WriteLine(download_file_path);
             }
+
+
+            public void populateMySqlDatabase()
+            {
+
+                string image = GetID(download_file_path); //name of image in users folder
+
+
+                string populateDatabase = "insert IGNORE into `mice` " +
+                    "(`id`,`image`,`date_of_birth`,`sex`,`age_in_weeks`,`weight`,`Biological_sample_id`,`gene_symbol`,`gene_accession_id`,`zygosity`,`parameter_name`,`phenotyping_center`,`observation_type`) values" +
+                    "('" + id + "', " +
+                    "'" + image + "', " +
+                    "'" + date_of_birth + "', " +
+                    "'" + sex + "', " +
+                    "'" + age_in_weeks + "', " +
+                    "'" + weight + "', " +
+                    "'" + biological_sample_id + "', " +
+                    "'" + gene_symbol + "', " +
+                    "'" + gene_accession_id + "', " +
+                    "'" + zygosity + "', " +
+                    "'" + parameter_name + "', " +
+                    "'" + phenotyping_center + "', " +
+                    "'" + observation_type + "');" +
+                    "INSERT INTO `url` (`id`)" + 
+                    "SELECT '" + id + "' " +
+                    "WHERE NOT EXISTS (SELECT * FROM `url` " + 
+                    "WHERE `id` = '" + id + "' LIMIT 1);";
+
+                CreateMySqlDatabase(populateDatabase);
+
+            }
+
         }
-
-
 
         ////////////////////////////////// Williams Implimentation /////////////////////////////////////////////////////////////
 
 
+        //Creates the database in prepartion for population. Only has to do this each time a database is updated.
+        public void MySqlDatabaseCreation()
+        {
+
+            //Creates the MICE table with the required field headers (hard coded)
+            string createDbTableMice = "DROP DATABASE IF EXISTS MICE;" +
+                "CREATE DATABASE MICE;" +
+                "USE MICE;" +
+                "CREATE TABLE IF NOT EXISTS `mice` " +
+                "(`id` varchar(50) NOT NULL," +
+                "`image` varchar(50) NOT NULL," +
+                "`date_of_birth` varchar(50) NOT NULL," +
+                "`sex` varchar(50) NOT NULL," +
+                "`age_in_weeks` varchar(50) NOT NULL," +
+                "`weight` varchar(100) NOT NULL," +
+                "`biological_sample_id` varchar(50) NOT NULL," +
+                "`gene_symbol` varchar(50) NOT NULL," +
+                "`gene_accession_id` varchar(50) NOT NULL," +
+                "`zygosity` varchar(50) NOT NULL," +
+                "`parameter_name` varchar(50) NOT NULL," +
+                "`phenotyping_center` varchar(50) NOT NULL," +
+                "`observation_type` varchar(50) NOT NULL," +
+                "PRIMARY KEY(`id`), KEY `id` (`id`) ) ENGINE = InnoDB DEFAULT CHARSET = latin1;" +
+                "CREATE TABLE IF NOT EXISTS `url` " +
+                "(`id` varchar(50) NOT NULL," +
+                //"`image` varchar(50) NULL," +
+                "`urlString` varchar(100) NULL," +
+                "KEY `id` (`id`)," +
+                "CONSTRAINT `orders_ibfk_1` FOREIGN KEY(`id`) REFERENCES `mice` (`id`)) " +
+                "ENGINE = InnoDB DEFAULT CHARSET = latin1;";
+            CreateMySqlDatabase(createDbTableMice);
+
+        }
 
 
+        //Creates database for list of header tags
+        public static void CreateMySqlDatabase(string connection)
+        {
 
+            // Opens a db connection using localhost database connection.Could also have used 127.0.0.1 instead of localhost
+            String str = @"server=localhost; userid=root; password=TSEGroup34;"; //change this to your required userid and password
+            MySqlConnection conn = null;
 
-        //public void GetImagesPaths(string fileURL)
-        //{//this calls the find files method, and gets and object of images back - I've left it void for you.
-        //    List<Image> mice = FindImages(fileURL); //was findFiles
-        //    foreach (Image im in mice)
-        //    {//goes through them
-        //        List<string> filepaths = im.GetImages();//gets the "list" of images - this is incase you get any extra files for the same ID
-        //        foreach (string path in filepaths)
-        //        {//goes through them
-        //            Console.WriteLine(filepaths);//prints
-        //        }
+            string cmdText = connection;
 
-        //    }
-        //}
+            try //To open localhost database and present a query
+            {
+                //Create a object with 'str' connection values passed. This uses the inbuilt library of MySql which is required
+                conn = new MySqlConnection(str);
+                conn.Open(); //opens the database connection
+                //Console.WriteLine("Localhost MySQL Database Created"); //If the database opens it presents this messsge. 
+
+                //Creates object and passes all returned values to it
+                MySqlCommand cmd = new MySqlCommand(cmdText, conn);
+                cmd.ExecuteNonQuery(); //executes a non query and returns no data
+
+                Console.WriteLine("\nDatabase Created");
+
+            }
+            catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
+            {
+                Console.WriteLine(errorMessage);
+            }
+            finally //Once the try-ctach block is complete the connection is closed
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
 
 
         //Main functon that connects to the MySql server and returns the reuqired URLs
         public void MySqlConnection(string connection)
         {
 
-            // Opens a db connection using localhost database connection.Could also have used 127.0.0.1
-            String str = @"server=localhost; database=MICE; userid=root; password=TSEGroup34;";
+            // Opens a db connection using localhost database connection.Could also have used 127.0.0.1 instead of localhost
+            String str = @"server=localhost; database=MICE; userid=root; password=TSEGroup34;"; //change this to your required userid and password
             MySqlConnection conn = null;
             MySqlDataReader reader = null;
 
@@ -522,10 +560,6 @@ namespace miceExplorationTool.Pages
             }
 
         }
-
-
-
-
 
 
     }

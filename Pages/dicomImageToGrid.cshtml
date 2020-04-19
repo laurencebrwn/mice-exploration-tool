@@ -108,7 +108,6 @@
                     </select>
                 </div>
                 <div class="filterSubSection">
-                    <p>Sex:</p>
                     <select id="optionSex" name="optionSex">
                         <option selected hidden>Sex</option>
                     </select>
@@ -124,43 +123,39 @@
                     <select id="optionWeight" name="optionWeight">
                         <option selected hidden>Weight</option>
                     </select>
-                    <p>to</p>
                 </div>
             </div>
 
             <div class="filterSection">
                 <h4>Experiment</h4>
-                <input type="text" id="optionId" placeholder="Biological Sample ID" name="optionId">
-                <select id="optionGeneSymb" name="optionGeneSymb">
-                    <option selected hidden>Gene Symbol</option>
-                </select>
-                <select id="optionGeneAccId" name="optionGeneAccId">
-                    <option selected hidden>Gene Accession ID</option>
-                </select>
-                <select id="optionZygosity" name="optionZygosity">
-                    <option selected hidden>Zygosity</option>
-                </select>
-                <select id="optionParameter" name="optionParameter">
-                    <option selected hidden>Parameter Name</option>
-                </select>
+                    <input type="text" id="optionId" placeholder="Biological Sample ID" name="optionId">
+                    <select id="optionGeneSymb" name="optionGeneSymb">
+                        <option selected hidden>Gene Symbol</option>
+                    </select>
+                    <select id="optionGeneAccId" name="optionGeneAccId">
+                        <option selected hidden>Gene Accession ID</option>
+                    </select>
+                    <select id="optionZygosity" name="optionZygosity">
+                        <option selected hidden>Zygosity</option>
+                    </select>
+                    <select id="optionParameter" name="optionParameter">
+                        <option selected hidden>Parameter Name</option>
+                    </select>
             </div>
 
-            <div class="filterSection">
-                <h4>Other</h4>
-                <select id="optionCenter" name="optionCenter">
-                    <option selected hidden>Phenotyping Center</option>
-                </select>
-                <select id="optionObvsType" name="optionObvsType">
-                    <option selected hidden>Observation Type</option>
-                </select>
-                <select id="optionCategory" name="optionCategory">
-                    <option selected hidden>Category</option>
-                </select>
+                <div class="filterSection">
+                    <h4>Other</h4>
+                    <select id="optionCenter" name="optionCenter">
+                        <option selected hidden>Phenotyping Center</option>
+                    </select>
+                    <select id="optionObvsType" name="optionObvsType">
+                        <option selected hidden>Observation Type</option>
+                    </select>
+                </div>
+
+                <input id="filterSubmit" type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Filter">
+
             </div>
-
-            <input id="filterSubmit" type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Filter">
-
-        </div>
     </form>
 
 
@@ -184,23 +179,6 @@
 <!-- javascript to show dicom image in grid -->
 <script>
 
-    ////////////////////////////////// Populates drop down menus //////////////////////////////////////////////////////////////////////////////////////
-
-    //var menuOption = '@ViewData["MenuOption"]';
-    //var idOption = '@ViewData["IdOption"]';
-    //var centerOption = '@ViewData["CenterOption"]';
-    //var dobOption = '@ViewData["DobOption"]';
-    //var sexOption = '@ViewData["SexOption"]';
-    //var ageOption = '@ViewData["AgeOption"]';
-    //var weightOption = '@ViewData["WeightOption"]';
-    //var geneSymbOption = '@ViewData["GeneSymbOption"]';
-    //var geneAccIdOption = '@ViewData["GeneAccIdOption"]';
-    //var zygosityOption = '@ViewData["ZygosityOption"]';
-    //var parameterOption = '@ViewData["ParameterOption"]';
-    //var obvsTypeOption = '@ViewData["ObvsTypeOption"]';
-    //var categoryOption = '@ViewData["CategoryOption"]';
-
-
     ////////////////////////////////// Shows and callapses filters (green and reg buttons) ////////////////////////////////////////////////////////////
 
     function showFilters() {
@@ -213,33 +191,154 @@
     }
 
 
-    ////////////////// Populates the sex option drop down using hard coded values /////////////////////////////////////////////////////////////////////
+    ////////////////// Populates the drop downs using records retreived from the database values /////////////////////////////////////////////////////////////////////
+
+    // Date of birth drop down
+
+    selectDob = document.getElementById('optionDob');
+
+    var DobOption = @Html.Raw(Json.Serialize(ViewData["DobOption"]));
+
+    for (element in DobOption) {
+
+        selectDob.add(new Option(DobOption[element]));
+        console.log("element");
+
+    };
+
+    // Sex drop down
 
     selectSex = document.getElementById('optionSex');
 
-    var countries = @Html.Raw(Json.Serialize(ViewData["SexOption"]));
+    var SexOption = @Html.Raw(Json.Serialize(ViewData["SexOption"]));
 
-    for (element in countries) {
+    for (element in SexOption) {
 
-        selectSex.add(new Option(countries[element]));
+        selectSex.add(new Option(SexOption[element]));
+        console.log("element");
+
+    };
+
+    // Age in weeks drop down
+
+    selectAge = document.getElementById('optionAge');
+
+    var AgeOption = @Html.Raw(Json.Serialize(ViewData["AgeOption"]));
+
+    for (element in AgeOption) {
+
+        selectAge.add(new Option(AgeOption[element]));
+        console.log("element");
+
+    };
+
+    // Weight drop down
+
+    selectWeight = document.getElementById('optionWeight');
+
+    var WeightOption = @Html.Raw(Json.Serialize(ViewData["WeightOption"]));
+
+    for (element in WeightOption) {
+
+        selectWeight.add(new Option(WeightOption[element]));
         console.log("element");
 
     };
 
 
-    //var countries = ['France', 'UK', 'Spain', 'Belgium', 'Holland'];
 
-    //for (country in countries) {
+    // biological_sample_id is not a drop down
 
-    //    selectSex.add(new Option(countries[country]));
+    //selectId = document.getElementById('optionId');
+
+    //var IdOption = @Html.Raw(Json.Serialize(ViewData["IdOption"]));
+
+    //for (element in IdOption) {
+
+    //    selectId.add(new Option(IdOption[element]));
+    //    console.log("element");
 
     //};
 
 
 
+    // gene_symbol drop down
 
+    selectGeneSymb = document.getElementById('optionGeneSymb');
 
+    var GeneSymbOption = @Html.Raw(Json.Serialize(ViewData["GeneSymbOption"]));
 
+    for (element in GeneSymbOption) {
+
+        selectGeneSymb.add(new Option(GeneSymbOption[element]));
+        console.log("element");
+
+    };
+
+    // gene_accession_id drop down
+
+    selectGeneAccId = document.getElementById('optionGeneAccId');
+
+    var GeneAccIdOption = @Html.Raw(Json.Serialize(ViewData["GeneAccIdOption"]));
+
+    for (element in GeneAccIdOption) {
+
+        selectGeneAccId.add(new Option(GeneAccIdOption[element]));
+        console.log("element");
+
+    };
+
+    // zygosity drop down
+
+    selectZygosity = document.getElementById('optionZygosity');
+
+    var ZygosityOption = @Html.Raw(Json.Serialize(ViewData["ZygosityOption"]));
+
+    for (element in ZygosityOption) {
+
+        selectZygosity.add(new Option(ZygosityOption[element]));
+        console.log("element");
+
+    };
+
+    // Parameter_name drop down
+
+    selectParameter = document.getElementById('optionParameter');
+
+    var ParameterOption = @Html.Raw(Json.Serialize(ViewData["ParameterOption"]));
+
+    for (element in ParameterOption) {
+
+        selectParameter.add(new Option(ParameterOption[element]));
+        console.log("element");
+
+    };
+
+    // phenotyoing_center drop down
+
+    selectCenter = document.getElementById('optionCenter');
+
+    var CenterOption = @Html.Raw(Json.Serialize(ViewData["CenterOption"]));
+
+    for (element in CenterOption) {
+
+        selectCenter.add(new Option(CenterOption[element]));
+        console.log("element");
+
+    };
+
+    // observation_type drop down
+
+    selectObvsType = document.getElementById('optionObvsType');
+
+    var ObvsTypeOption = @Html.Raw(Json.Serialize(ViewData["ObvsTypeOption"]));
+
+    for (element in ObvsTypeOption) {
+
+        selectObvsType.add(new Option(ObvsTypeOption[element]));
+        console.log("element");
+
+    };
 
 
 
@@ -313,6 +412,8 @@
     }
 
     }
+
+    /////////////////////////////////////// Use Jpeg images in grid instead of DICOMs ///////////////////////////////////////////////////////////////////////
 
     // //Forloop through jpg image set in assets folder and appends image to end of previous image
     // for (var i = 0; i < 3; i++) {

@@ -105,35 +105,22 @@ namespace miceExplorationTool.Pages
             return Page();
         }
 
-        //show all images in MySql database
-        public IActionResult OnPostViewAll1()
+        //populate the drop downs
+        public IActionResult OnPostViewDropDowns()
         {
 
-            Console.WriteLine("This is the dropdowns section");
-
-            string cmdText = "USE MICE; SELECT sex FROM mice;";
-
-            HeadersMySqlConnection(cmdText);
-
-
-            //ViewData["CenterOption"] = optionCenter;
-            //ViewData["DobOption"] = optionMinDob;
-            //ViewData["AgeOption"] = optionMinAge;
-            //ViewData["WeightOption"] = optionMinWeight;
-            //ViewData["GeneSymbOption"] = optionGeneSymb;
-            //ViewData["GeneAccIdOption"] = optionGeneAccId;
-            //ViewData["ZygosityOption"] = optionZygosity;
-            //ViewData["ParameterOption"] = optionParameter;
-            //ViewData["ObvsTypeOption"] = optionObvsType;
-            //ViewData["CategoryOption"] = optionCategory;
+            //populates all drop down menu parameters
+            OnPostDropDowns();
 
             return Page();
         }
 
 
+
         //Presents user filter selection from drop downs and creates a MySql command to get images
         public IActionResult OnPostFilter(string optionId, string optionCenter, string optionDob, string optionSex, string optionAge, string optionWeight, string optionGeneSymb, string optionGeneAccId, string optionZygosity, string optionParameter, string optionObvsType, string optionCategory)
         {
+
             //ViewData["MenuOption"] = "UserFilter";
             //if (optionId != "" && optionId != null)
             //{
@@ -178,6 +165,8 @@ namespace miceExplorationTool.Pages
 
 
 
+            //populates all drop down menu parameters ready for the next search
+            OnPostDropDowns();
 
             return Page();
         }
@@ -189,28 +178,43 @@ namespace miceExplorationTool.Pages
 
             Console.WriteLine("This is the dropdowns section");
 
-            string cmdText = "USE MICE; SELECT sex FROM mice;";
+            string DobText = "USE MICE; SELECT date_of_birth FROM mice;";
+            ViewData["DobOption"] = HeadersMySqlConnection(DobText);
 
-            HeadersMySqlConnection(cmdText);
+            string sexText = "USE MICE; SELECT sex FROM mice;";
+            ViewData["SexOption"] = HeadersMySqlConnection(sexText);
 
 
-            //ViewData["CenterOption"] = optionCenter;
-            //ViewData["DobOption"] = optionMinDob;
-            //ViewData["AgeOption"] = optionMinAge;
-            //ViewData["WeightOption"] = optionMinWeight;
-            //ViewData["GeneSymbOption"] = optionGeneSymb;
-            //ViewData["GeneAccIdOption"] = optionGeneAccId;
-            //ViewData["ZygosityOption"] = optionZygosity;
-            //ViewData["ParameterOption"] = optionParameter;
-            //ViewData["ObvsTypeOption"] = optionObvsType;
-            //ViewData["CategoryOption"] = optionCategory;
+            string AgeText = "USE MICE; SELECT age_in_weeks FROM mice;";
+            ViewData["AgeOption"] = HeadersMySqlConnection(AgeText);
+
+            string WeightText = "USE MICE; SELECT weight FROM mice;";
+            ViewData["WeightOption"] = HeadersMySqlConnection(WeightText);
+
+            string IdText = "USE MICE; SELECT biological_sample_id FROM mice;";
+            ViewData["IdOption"] = HeadersMySqlConnection(IdText);
+
+            string GeneSymbText = "USE MICE; SELECT gene_symbol FROM mice;";
+            ViewData["GeneSymbOption"] = HeadersMySqlConnection(GeneSymbText);
+
+            string GeneAccIdText = "USE MICE; SELECT gene_accession_id FROM mice;";
+            ViewData["GeneAccIdOption"] = HeadersMySqlConnection(GeneAccIdText);
+
+            string ZygosityText = "USE MICE; SELECT zygosity FROM mice;";
+            ViewData["ZygosityOption"] = HeadersMySqlConnection(ZygosityText);
+
+            string ParameterText = "USE MICE; SELECT parameter_name FROM mice;";
+            ViewData["ParameterOption"] = HeadersMySqlConnection(ParameterText);
+
+            string ObvsTypeText = "USE MICE; SELECT observation_type FROM mice;";
+            ViewData["ObvsTypeOption"] = HeadersMySqlConnection(ObvsTypeText);
 
             return Page();
         }
 
 
         //Main functon that connects to the ySql server and returns the reuqired URLs
-        public void HeadersMySqlConnection(string connection)
+        public List<string> HeadersMySqlConnection(string connection)
         {
 
             // Opens a db connection using localhost database connection.Could also have used 127.0.0.1
@@ -251,17 +255,18 @@ namespace miceExplorationTool.Pages
 
                 }
 
-                //return urlList;
 
                 Console.WriteLine(String.Join("\n", urlList)); //prints headers list to be passed to front end
 
-                ViewData["SexOption"] = urlList;
+                return urlList;
+
+                //ViewData["SexOption"] = urlList;
 
             }
             catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
             {
                 Console.WriteLine(errorMessage);
-                //return null;
+                return null;
             }
             finally //Once the try-ctach block is complete the connection is closed
             {

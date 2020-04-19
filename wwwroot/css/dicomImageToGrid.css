@@ -86,6 +86,10 @@ body {
 	align-items: center;
 }
 
+#optionSex {
+	width: 75%;
+}
+
 .imageDiv {
 	width: 300px;
 	height: 300px;
@@ -323,9 +327,7 @@ body {
 		margin: 0 2px 0 2px;
 	}
 
-#optionSex {
-	width: 100%;
-}
+
 
 .filterSubSection p {
 	margin: 0;

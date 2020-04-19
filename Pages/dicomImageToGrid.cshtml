@@ -20,7 +20,6 @@
     <script src="js/cornerstoneTools.min.js"></script>
     <script src="js/dicomParser.min.js"></script>
     <script src="js/cornerstoneWADOImageLoader.js"></script>
-
 </head>
 
 <body>
@@ -38,7 +37,6 @@
                         <li><a asp-page="/dicomImageToGrid">Search</a></li>
                         <li><a asp-page="/base64ToImage">Body Part</a></li>
                         <li><a asp-page="/charts">Charts</a></li>
-                        <li><a asp-page="/index">About</a></li>
                     </ul>
                 </nav>
             </div>
@@ -63,19 +61,11 @@
             <button type="submit" class="btn btn-success" asp-page-handler="Females">Females</button>
             <button type="submit" class="btn btn-primary" asp-page-handler="Males">Males</button>
             <button type="submit" class="btn btn-warning" asp-page-handler="Gene">Gene (Rab15)</button>
-            <button type="submit" class="btn btn-info" asp-page-handler="Centre">Centre (ICS)</button>
+            <button type="submit" class="btn btn-info" asp-page-handler="Centre">Centre (WTSI)</button>
         </form>
 
     </div>
 
-    <div class="header">
-        <form method="POST">
-            <label for="tagName"><font color="white" size="4">QUERY: </font></label>
-            <input type="text" id="tagName" placeholder="Centre: WTSI or ICS" name="centre">
-            <input type="text" id="tagName" placeholder="Sex: M or F" name="sex">
-            <input type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Name">
-        </form>
-    </div>
 
     <!--New drop down tools -->
 
@@ -104,24 +94,24 @@
                 <div class="filterSubSection">
                     <p>Date of Birth:</p>
                     <select id="optionDob" name="optionDob">
-                        <option selected hidden>D.O.B</option>
+                        <option value="A" selected hidden>D.O.B</option>
                     </select>
                 </div>
                 <div class="filterSubSection">
                     <select id="optionSex" name="optionSex">
-                        <option selected hidden>Sex</option>
+                        <option value="A" selected hidden>Sex</option>
                     </select>
                 </div>
                 <div class="filterSubSection">
                     <p>Age (In Weeks):</p>
                     <select id="optionAge" name="optionAge">
-                        <option selected hidden>Age</option>
+                        <option value="A" selected hidden>Age</option>
                     </select>
                 </div>
                 <div class="filterSubSection">
                     <p>Weight (g):</p>
                     <select id="optionWeight" name="optionWeight">
-                        <option selected hidden>Weight</option>
+                        <option value="A" selected hidden>Weight</option>
                     </select>
                 </div>
             </div>
@@ -130,26 +120,26 @@
                 <h4>Experiment</h4>
                     <input type="text" id="optionId" placeholder="Biological Sample ID" name="optionId">
                     <select id="optionGeneSymb" name="optionGeneSymb">
-                        <option selected hidden>Gene Symbol</option>
+                        <option value="A" selected hidden>Gene Symbol</option>
                     </select>
                     <select id="optionGeneAccId" name="optionGeneAccId">
-                        <option selected hidden>Gene Accession ID</option>
+                        <option value="A" selected hidden>Gene Accession ID</option>
                     </select>
                     <select id="optionZygosity" name="optionZygosity">
-                        <option selected hidden>Zygosity</option>
+                        <option value="A" selected hidden>Zygosity</option>
                     </select>
                     <select id="optionParameter" name="optionParameter">
-                        <option selected hidden>Parameter Name</option>
+                        <option value="A" selected hidden>Parameter Name</option>
                     </select>
             </div>
 
                 <div class="filterSection">
                     <h4>Other</h4>
                     <select id="optionCenter" name="optionCenter">
-                        <option selected hidden>Phenotyping Center</option>
+                        <option value="A" selected hidden>Phenotyping Center</option>
                     </select>
                     <select id="optionObvsType" name="optionObvsType">
-                        <option selected hidden>Observation Type</option>
+                        <option value="A" selected hidden>Observation Type</option>
                     </select>
                 </div>
 

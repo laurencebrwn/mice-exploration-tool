@@ -27,7 +27,6 @@
     <script src="js/dicomParser.min.js"></script>
     <script src="js/cornerstoneWADOImageLoader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 </head>
 
 <body>
@@ -45,7 +44,6 @@
                         <li><a asp-page="/dicomImageToGrid">Search</a></li>
                         <li><a asp-page="/base64ToImage">Body Part</a></li>
                         <li><a asp-page="/charts">Charts</a></li>
-                        <li><a asp-page="/index">About</a></li>
                     </ul>
                 </nav>
             </div>
@@ -104,6 +102,8 @@
 
 <script>
 
+/////////////////////////////////////// Load Cornerstone and display images /////////////////////////////////////////////////////////////////////////////
+
 //Cornserstone Library to present DICOM images in grid
 
     cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
@@ -143,14 +143,14 @@
 
     }
 
-// >>>>>>> Shows image body part text upon hover over of image
+////////////////////////////////////// Shows image body part text upon hover over of image //////////////////////////////////////////////////////////////
 
     function writeText(txt) {
         document.getElementById("desc").style.color = 'black';
         document.getElementById("desc").innerHTML = txt;
     }
 
-// >>>>>>> Part A: Convert image to Base64
+/////////////////////////////////////// Part A: Convert image to Base64 ///////////////////////////////////////////////////////////////////////////////////
 
     //var imageURL = 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg'
 
@@ -170,7 +170,7 @@
         console.log('base64 image loaded');
     })
 
-    // >>>>>>> Part B: Converts Base64 to image
+    ///////////////////////////////////// Part B: Converts Base64 to image  ///////////////////////////////////////////////////////////////////////////////
 
     //GETs image from location and converts to base64 using 'readAsDataURL' function
     function toDataURL(url, callback) {
@@ -186,6 +186,9 @@
         httpRequest.responseType = 'blob';
         httpRequest.send();
     }
+
+
+    /////////////////////////////////////// Use Jpeg images in grid instead of DICOMs ///////////////////////////////////////////////////////////////////////
 
     // //Forloop through jpg image set in assets folder and appends image to end of previous image
     // for (var i = 0; i < 3; i++) {

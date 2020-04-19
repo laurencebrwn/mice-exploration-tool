@@ -33,7 +33,7 @@ namespace miceExplorationTool.Pages
 
         public void OnPost()
         {
-
+            
         }
 
         //public string errorMessage;
@@ -41,7 +41,6 @@ namespace miceExplorationTool.Pages
         //display user selected query images
         public void OnPostFilePath()
         {
-
 
             //sets filepath as route to dicomImages folder - this is where the user will need to place there images or symlink to
             string filePath = "wwwroot/dicomImages";
@@ -88,9 +87,6 @@ namespace miceExplorationTool.Pages
 
                         MySqlConnection(cmdText);
 
-
-
-
                         //string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE id = '" + dirName + "';";
                         //MySqlConnection(cmdText);
 
@@ -106,7 +102,7 @@ namespace miceExplorationTool.Pages
                 Console.WriteLine("Folder does not exist. Please check the file path");
 
             };
-
+            
         }
 
 

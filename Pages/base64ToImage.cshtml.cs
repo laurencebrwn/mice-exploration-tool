@@ -46,7 +46,7 @@ namespace miceExplorationTool.Pages
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
+                SELECT urlString FROM url WHERE id IN 
                 (SELECT patient_id FROM mice WHERE parameter_name = 'paw');";
 
             MySqlConnection(cmdText);
@@ -60,7 +60,7 @@ namespace miceExplorationTool.Pages
 
             string cmdText = @"
                 SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE parameter_name = 'body');";
+                (SELECT id FROM mice WHERE parameter_name = 'body');";
 
             MySqlConnection(cmdText);
 
@@ -73,7 +73,7 @@ namespace miceExplorationTool.Pages
 
             string cmdText = @"
                 SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE parameter_name = 'head');";
+                (SELECT id FROM mice WHERE parameter_name = 'head');";
 
             MySqlConnection(cmdText);
 
@@ -85,7 +85,7 @@ namespace miceExplorationTool.Pages
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id = '" + ID + "';"; 
+                SELECT urlString FROM url WHERE id = '" + ID + "';"; 
 
             MySqlConnection(cmdText);
 

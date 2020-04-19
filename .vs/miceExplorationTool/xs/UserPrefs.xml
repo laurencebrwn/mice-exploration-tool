@@ -1,10 +1,8 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.cshtml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/dicomImageToGrid.cshtml">
     <Files>
-      <File FileName="Pages/Index.cshtml" Line="48" Column="36" />
-      <File FileName="Pages/Index.cshtml.cs" Line="437" Column="1" />
-      <File FileName="wwwroot/dicomImages/json/testData.json" Line="5" Column="15" />
-      <File FileName="wwwroot/dicomImages/json/testImage.txt" Line="49" Column="28" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="138" Column="1" />
+      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="232" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,17 +11,10 @@
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Dependencies" expanded="True" />
               <Node name="Pages" expanded="True">
-                <Node name="dicomImageToGrid.cshtml" expanded="True" />
-                <Node name="Index.cshtml" expanded="True">
-                  <Node name="Index.cshtml.cs" selected="True" />
-                </Node>
+                <Node name="base64ToImage.cshtml" expanded="True" />
+                <Node name="dicomImageToGrid.cshtml" expanded="True" selected="True" />
               </Node>
-              <Node name="Test MySql Database Schema" expanded="True" />
-              <Node name="wwwroot" expanded="True">
-                <Node name="dicomImages" expanded="True">
-                  <Node name="json" expanded="True" />
-                </Node>
-              </Node>
+              <Node name="wwwroot" expanded="True" />
             </Node>
           </Node>
         </State>

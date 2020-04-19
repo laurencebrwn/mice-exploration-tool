@@ -81,11 +81,18 @@ namespace miceExplorationTool.Pages
                         var dirName = Path.GetFileNameWithoutExtension(path);
                         //Console.WriteLine(dirName);//prints file name without extension
 
-                        //create a insert funtion that uses the comparison and searches the database and inserts the newPath value
-                        //string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE patient_id = '" + dirName + "';";
+   
+                        string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE image = '" + dirName + "';";
 
-                        string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE id = '" + dirName + "';";
+                        //string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE id = (SELECT image FROM mice WHERE mice.id = '" + dirName + "');";
+
                         MySqlConnection(cmdText);
+
+
+
+
+                        //string cmdText = "UPDATE url SET urlString = '" + newPath + " ' WHERE id = '" + dirName + "';";
+                        //MySqlConnection(cmdText);
 
                     }
 
@@ -424,8 +431,8 @@ namespace miceExplorationTool.Pages
                     "'" + parameter_name + "', " +
                     "'" + phenotyping_center + "', " +
                     "'" + observation_type + "');" +
-                    "INSERT INTO `url` (`id`)" + 
-                    "SELECT '" + id + "' " +
+                    "INSERT INTO `url` (`id`, `image`)" + 
+                    "SELECT '" + id + "', '" + image + "' " +
                     "WHERE NOT EXISTS (SELECT * FROM `url` " + 
                     "WHERE `id` = '" + id + "' LIMIT 1);";
 
@@ -463,7 +470,7 @@ namespace miceExplorationTool.Pages
                 "PRIMARY KEY(`id`), KEY `id` (`id`) ) ENGINE = InnoDB DEFAULT CHARSET = latin1;" +
                 "CREATE TABLE IF NOT EXISTS `url` " +
                 "(`id` varchar(50) NOT NULL," +
-                //"`image` varchar(50) NULL," +
+                "`image` varchar(50) NULL," +
                 "`urlString` varchar(100) NULL," +
                 "KEY `id` (`id`)," +
                 "CONSTRAINT `orders_ibfk_1` FOREIGN KEY(`id`) REFERENCES `mice` (`id`)) " +

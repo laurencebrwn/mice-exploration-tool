@@ -98,49 +98,70 @@
         </div>
 
         <div id="filters">
+
             <div class="filterSection">
                 <h4>Mouse</h4>
                 <div class="filterSubSection">
                     <p>Date of Birth:</p>
-                    <select id="optionMinDob" name="optionMinDob"><option value="A" selected hidden>Min</option><option value="A">Any</option></select>
-                    <p>to</p>
-                    <select id="optionMaxDob" name="optionMaxDob"><option value="A" selected hidden>Max</option><option value="A">Any</option></select>
+                    <select id="optionDob" name="optionDob">
+                        <option selected hidden>D.O.B</option>
+                    </select>
                 </div>
                 <div class="filterSubSection">
-                    <select id="optionSex" name="optionSex"><option value="A" selected hidden>Sex</option><option value="A">Any</option></select>
+                    <p>Sex:</p>
+                    <select id="optionSex" name="optionSex">
+                        <option selected hidden>Sex</option>
+                    </select>
                 </div>
                 <div class="filterSubSection">
                     <p>Age (In Weeks):</p>
-                    <select id="optionMinAge" name="optionMinAge"><option value="A" selected hidden>Min</option><option value="A">Any</option></select>
-                    <p>to</p>
-                    <select id="optionMaxAge" name="optionMaxAge"><option value="A" selected hidden>Max</option><option value="A">Any</option></select>
+                    <select id="optionAge" name="optionAge">
+                        <option selected hidden>Age</option>
+                    </select>
                 </div>
                 <div class="filterSubSection">
                     <p>Weight (g):</p>
-                    <select id="optionMinWeight" name="optionMinWeight"><option value="A" selected hidden>Min</option><option value="A">Any</option></select>
+                    <select id="optionWeight" name="optionWeight">
+                        <option selected hidden>Weight</option>
+                    </select>
                     <p>to</p>
-                    <select id="optionMaxWeight" name="optionMaxWeight"><option value="A" selected hidden>Max</option><option value="A">Any</option></select>
                 </div>
             </div>
+
             <div class="filterSection">
                 <h4>Experiment</h4>
                 <input type="text" id="optionId" placeholder="Biological Sample ID" name="optionId">
-                <select id="optionGeneSymb" name="optionGeneSymb"><option value="A" selected hidden>Gene Symbol</option><option value="A">Any</option></select>
-                <select id="optionGeneAccId" name="optionGeneAccId"><option value="A" selected hidden>Gene Accession ID</option><option value="A">Any</option></select>
-                <select id="optionZygosity" name="optionZygosity"><option value="A" selected hidden>Zygosity</option><option value="A">Any</option></select>
-                <select id="optionParameter" name="optionParameter"><option value="A" selected hidden>Parameter Name</option><option value="A">Any</option></select>
+                <select id="optionGeneSymb" name="optionGeneSymb">
+                    <option selected hidden>Gene Symbol</option>
+                </select>
+                <select id="optionGeneAccId" name="optionGeneAccId">
+                    <option selected hidden>Gene Accession ID</option>
+                </select>
+                <select id="optionZygosity" name="optionZygosity">
+                    <option selected hidden>Zygosity</option>
+                </select>
+                <select id="optionParameter" name="optionParameter">
+                    <option selected hidden>Parameter Name</option>
+                </select>
             </div>
+
             <div class="filterSection">
                 <h4>Other</h4>
-                <select id="optionCenter" name="optionCenter"><option value="A" selected hidden>Phenotyping Center</option><option value="A">Any</option></select>
-                <select id="optionObvsType" name="optionObvsType"><option value="A" selected hidden>Observation Type</option><option value="A">Any</option></select>
-                <select id="optionCategory" name="optionCategory"><option value="A" selected hidden>Category</option><option value="A">Any</option></select>
+                <select id="optionCenter" name="optionCenter">
+                    <option selected hidden>Phenotyping Center</option>
+                </select>
+                <select id="optionObvsType" name="optionObvsType">
+                    <option selected hidden>Observation Type</option>
+                </select>
+                <select id="optionCategory" name="optionCategory">
+                    <option selected hidden>Category</option>
+                </select>
             </div>
+
             <input id="filterSubmit" type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Filter">
+
         </div>
     </form>
-
-
 
 
     <div id="images">
@@ -163,22 +184,24 @@
 <!-- javascript to show dicom image in grid -->
 <script>
 
-    var menuOption = '@ViewData["MenuOption"]';
-    var idOption = '@ViewData["IdOption"]';
-    var centerOption = '@ViewData["CenterOption"]';
-    var dobOption = ['@ViewData["DobMinOption"]','@ViewData["DobMaxOption"]'];
-    var sexOption = '@ViewData["SexOption"]';
-    var ageOption = ['@ViewData["AgeMinOption"]','@ViewData["AgeMaxOption"]'];
-    var weightOption = ['@ViewData["WeightMinOption"]','@ViewData["WeightMaxOption"]'];
-    var geneSymbOption = '@ViewData["GeneSymbOption"]';
-    var geneAccIdOption = '@ViewData["GeneAccIdOption"]';
-    var zygosityOption = '@ViewData["ZygosityOption"]';
-    var parameterOption = '@ViewData["ParameterOption"]';
-    var obvsTypeOption = '@ViewData["ObvsTypeOption"]';
-    var categoryOption = '@ViewData["CategoryOption"]';
+    ////////////////////////////////// Populates drop down menus //////////////////////////////////////////////////////////////////////////////////////
 
-    //biological_sample_id,phenotyping_center,date_of_birth,sex,age_in_weeks,weight,gene_symbol,gene_accession_id,zygosity,parameter_name,observation_type,category
+    //var menuOption = '@ViewData["MenuOption"]';
+    //var idOption = '@ViewData["IdOption"]';
+    //var centerOption = '@ViewData["CenterOption"]';
+    //var dobOption = '@ViewData["DobOption"]';
+    //var sexOption = '@ViewData["SexOption"]';
+    //var ageOption = '@ViewData["AgeOption"]';
+    //var weightOption = '@ViewData["WeightOption"]';
+    //var geneSymbOption = '@ViewData["GeneSymbOption"]';
+    //var geneAccIdOption = '@ViewData["GeneAccIdOption"]';
+    //var zygosityOption = '@ViewData["ZygosityOption"]';
+    //var parameterOption = '@ViewData["ParameterOption"]';
+    //var obvsTypeOption = '@ViewData["ObvsTypeOption"]';
+    //var categoryOption = '@ViewData["CategoryOption"]';
 
+
+    ////////////////////////////////// Shows and callapses filters (green and reg buttons) ////////////////////////////////////////////////////////////
 
     function showFilters() {
         var x = document.getElementById("filters");
@@ -189,10 +212,44 @@
         }
     }
 
+
+    ////////////////// Populates the sex option drop down using hard coded values /////////////////////////////////////////////////////////////////////
+
+    selectSex = document.getElementById('optionSex');
+
+    var countries = @Html.Raw(Json.Serialize(ViewData["SexOption"]));
+
+    for (element in countries) {
+
+        selectSex.add(new Option(countries[element]));
+        console.log("element");
+
+    };
+
+
+    //var countries = ['France', 'UK', 'Spain', 'Belgium', 'Holland'];
+
+    //for (country in countries) {
+
+    //    selectSex.add(new Option(countries[country]));
+
+    //};
+
+
+
+
+
+
+
+
+
+    /////////////////////////////////////// Load Cornerstone and display images ///////////////////////////////////////////////////////////////////////
+
     cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
 
-    //onclick function when clicking on DICOM image
+    //onclick function when clicking on DICOM image - NOT USED
+
     function showModal() {
         console.log("Image clicked)")
     }
@@ -217,7 +274,7 @@
     for (var i = 0; i < ImageArray.length; i++) {
         console.log("Images", i + 1, "of", ImageArray.length, "loaded");
 
-        
+
         var element = document.getElementById("resultsFound");
         element.innerHTML = (ImageArray.length);
 

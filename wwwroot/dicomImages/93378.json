@@ -3,13 +3,13 @@
     "status":0,
     "QTime":239,
     "params":{
-      "q":"id:59192500"}},
+      "q":"id:59192502"}},
   "response":{"numFound":1,"start":0,"docs":[
       {
         "date_of_experiment":"2012-08-14T00:00:00Z",
         "date_of_birth":"2012-05-06T00:00:00Z",
         "weight_date":"2012-08-14T00:00:00Z",
-        "id":"59192500",
+        "id":"59192502",
         "datasource_id":22,
         "datasource_name":"IMPC",
         "project_id":8,
@@ -57,7 +57,7 @@
           "Experimenter ID (analysis) = 8E98D"],
         "allele_accession_id":"MGI:4363640",
         "allele_symbol":"Rab15<tm1a(KOMP)Wtsi>",
-        "download_file_path":"http://images.mousephenotype.org/src/12/15/2032/18/175/4811/93377.dcm",
+        "download_file_path":"http://images.mousephenotype.org/src/12/15/2032/18/175/4811/93378.dcm",
         "weight_parameter_stable_id":"IMPC_DXA_001_001",
         "weight_days_old":100,
         "weight":32.4,

@@ -31,14 +31,18 @@ namespace miceExplorationTool.Pages
 
         }
 
+        public void OnPost()
+        {
+
+        }
 
         //show only female samples
         public IActionResult OnPostFemales()
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE patient_sex = 'F');";
+                SELECT urlString FROM url WHERE id IN 
+                (SELECT id FROM mice WHERE sex = 'female');";
 
             MySqlConnection(cmdText);
 
@@ -50,8 +54,8 @@ namespace miceExplorationTool.Pages
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE patient_sex = 'M');";
+                SELECT urlString FROM url WHERE id IN 
+                (SELECT id FROM mice WHERE sex = 'male');";
 
             MySqlConnection(cmdText);
 
@@ -64,8 +68,8 @@ namespace miceExplorationTool.Pages
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE phenotyping_center = 'ICS');";
+                SELECT urlString FROM url WHERE id IN 
+                (SELECT id FROM mice WHERE phenotyping_center = 'WTSI');";
 
             MySqlConnection(cmdText);
 
@@ -77,8 +81,8 @@ namespace miceExplorationTool.Pages
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE patient_gene = 'Rab15');";
+                SELECT urlString FROM url WHERE id IN 
+                (SELECT id FROM mice WHERE gene_symbol = 'Rab15');";
 
             MySqlConnection(cmdText);
 
@@ -95,44 +99,180 @@ namespace miceExplorationTool.Pages
 
             MySqlConnection(cmdText);
 
+            //populates all drop down menu parameters
+            OnPostDropDowns();
+
             return Page();
         }
 
-        //show drop down menus
-        public IActionResult OnPostFilter(string optionId, string optionCenter, string optionMinDob, string optionMaxDob, string optionSex, string optionMinAge, string optionMaxAge, string optionMinWeight, string optionMaxWeight, string optionGeneSymb, string optionGeneAccId, string optionZygosity, string optionParameter, string optionObvsType, string optionCategory)
+        //show all images in MySql database
+        public IActionResult OnPostViewAll1()
         {
-            ViewData["MenuOption"] = "UserFilter";
-            if (optionId != "" && optionId != null)
-            {
-                ViewData["IdOption"] = optionId;
-            }
-            else
-            {
-                ViewData["IdOption"] = 'A';
-            }
+
+            Console.WriteLine("This is the dropdowns section");
+
+            string cmdText = "USE MICE; SELECT sex FROM mice;";
+
+            HeadersMySqlConnection(cmdText);
 
 
+            //ViewData["CenterOption"] = optionCenter;
+            //ViewData["DobOption"] = optionMinDob;
+            //ViewData["AgeOption"] = optionMinAge;
+            //ViewData["WeightOption"] = optionMinWeight;
+            //ViewData["GeneSymbOption"] = optionGeneSymb;
+            //ViewData["GeneAccIdOption"] = optionGeneAccId;
+            //ViewData["ZygosityOption"] = optionZygosity;
+            //ViewData["ParameterOption"] = optionParameter;
+            //ViewData["ObvsTypeOption"] = optionObvsType;
+            //ViewData["CategoryOption"] = optionCategory;
 
-
-
-
-            ViewData["CenterOption"] = optionCenter;
-            ViewData["DobMinOption"] = optionMinDob;
-            ViewData["DobMaxOption"] = optionMaxDob;
-            ViewData["SexOption"] = optionSex;
-            ViewData["AgeMinOption"] = optionMinAge;
-            ViewData["AgeMaxOption"] = optionMaxAge;
-            ViewData["WeightMinOption"] = optionMinWeight;
-            ViewData["WeightMaxOption"] = optionMaxWeight;
-            ViewData["GeneSymbOption"] = optionGeneSymb;
-            ViewData["GeneAccIdOption"] = optionGeneAccId;
-            ViewData["ZygosityOption"] = optionZygosity;
-            ViewData["ParameterOption"] = optionParameter;
-            ViewData["ObvsTypeOption"] = optionObvsType;
-            ViewData["CategoryOption"] = optionCategory;
             return Page();
         }
 
+
+        //Presents user filter selection from drop downs and creates a MySql command to get images
+        public IActionResult OnPostFilter(string optionId, string optionCenter, string optionDob, string optionSex, string optionAge, string optionWeight, string optionGeneSymb, string optionGeneAccId, string optionZygosity, string optionParameter, string optionObvsType, string optionCategory)
+        {
+            //ViewData["MenuOption"] = "UserFilter";
+            //if (optionId != "" && optionId != null)
+            //{
+            //    ViewData["IdOption"] = optionId;
+            //}
+            //else
+            //{
+            //    ViewData["IdOption"] = 'A';
+            //}
+
+            //ViewData["DobOption"] = optionDob;
+            //ViewData["SexOption"] = optionSex;
+            //ViewData["AgeOption"] = optionAge;
+            //ViewData["WeightOption"] = optionWeight;
+            //ViewData["GeneSymbOption"] = optionGeneSymb;
+            //ViewData["GeneAccIdOption"] = optionGeneAccId;
+            //ViewData["ZygosityOption"] = optionZygosity;
+            //ViewData["ParameterOption"] = optionParameter;
+            //ViewData["CenterOption"] = optionCenter;
+            //ViewData["ObvsTypeOption"] = optionObvsType;
+
+            //ViewData["CategoryOption"] = optionCategory;
+
+
+            Console.WriteLine("Sex selected: {0}:", optionSex);
+
+
+            string cmdText = "SELECT urlString FROM url WHERE id IN" +
+                "(SELECT id FROM mice WHERE " +
+                "date_of_birth = '" + optionDob + "' AND " +
+                "sex = '" + optionSex + "' AND " +
+                "age_in_weeks = '" + optionAge + "' AND " +
+                "weight = '" + optionWeight + "' AND " +
+                "gene_symbol = '" + optionGeneSymb + "' AND " +
+                "gene_accession_id = '" + optionGeneAccId + "' AND " +
+                "zygosity = '" + optionZygosity + "' AND " +
+                "parameter_name = '" + optionParameter + "' AND " +
+                "phenotyping_center = '" + optionCenter + "' AND " +
+                "observation_type = '" + optionObvsType + "');";
+
+            MySqlConnection(cmdText);
+
+
+
+
+            return Page();
+        }
+
+
+        //populate drop down menus
+        public IActionResult OnPostDropDowns()
+        {
+
+            Console.WriteLine("This is the dropdowns section");
+
+            string cmdText = "USE MICE; SELECT sex FROM mice;";
+
+            HeadersMySqlConnection(cmdText);
+
+
+            //ViewData["CenterOption"] = optionCenter;
+            //ViewData["DobOption"] = optionMinDob;
+            //ViewData["AgeOption"] = optionMinAge;
+            //ViewData["WeightOption"] = optionMinWeight;
+            //ViewData["GeneSymbOption"] = optionGeneSymb;
+            //ViewData["GeneAccIdOption"] = optionGeneAccId;
+            //ViewData["ZygosityOption"] = optionZygosity;
+            //ViewData["ParameterOption"] = optionParameter;
+            //ViewData["ObvsTypeOption"] = optionObvsType;
+            //ViewData["CategoryOption"] = optionCategory;
+
+            return Page();
+        }
+
+
+        //Main functon that connects to the ySql server and returns the reuqired URLs
+        public void HeadersMySqlConnection(string connection)
+        {
+
+            // Opens a db connection using localhost database connection.Could also have used 127.0.0.1
+            String str = @"server=localhost; database=MICE; userid=root; password=TSEGroup34;";
+            MySqlConnection conn = null;
+            MySqlDataReader reader = null;
+
+            string cmdText = connection;
+
+            try //To open localhost database and present a query
+            {
+                //Create a object with 'str' connection values passed. This uses the inbuilt library of MySql which is required
+                conn = new MySqlConnection(str);
+                conn.Open(); //opens the database connection
+                //Console.WriteLine("MySQL Database Connected"); //If the database opens it presents this messsge. 
+
+                //Creates object and passes all returned values to it
+                MySqlCommand cmd = new MySqlCommand(cmdText, conn);
+                reader = cmd.ExecuteReader();
+
+                //Loops through the returned values and writes them to a list that will be passed to client side
+                List<string> urlList = new List<string>();
+
+                while (reader.Read())
+                {
+                    //Console.WriteLine("string: " + reader.GetString(0));
+
+                    //checks if database value returned is null i.e. no record in associated id column for the URL)
+                    //because the users does not have the image for that particular mouse in their image folder
+                    if (!reader.IsDBNull(0))
+                    {
+                        urlList.Add(reader.GetString(0));
+                    }
+                    else
+                    {
+                        Console.WriteLine("No URL string associated with image id");
+                    }
+
+                }
+
+                //return urlList;
+
+                Console.WriteLine(String.Join("\n", urlList)); //prints headers list to be passed to front end
+
+                ViewData["SexOption"] = urlList;
+
+            }
+            catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
+            {
+                Console.WriteLine(errorMessage);
+                //return null;
+            }
+            finally //Once the try-ctach block is complete the connection is closed
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+
+            }
+
+        }
 
 
 
@@ -145,11 +285,11 @@ namespace miceExplorationTool.Pages
 
             //check string to make sure it does not contain an incorrect value
 
-         
+
 
             //End of test by Chris
 
-            string cmdText = "SELECT urlString FROM url WHERE patient_id IN(SELECT patient_id FROM mice WHERE phenotyping_center = '" + centre + "' AND patient_sex = '" + sex + "');";
+            string cmdText = "SELECT urlString FROM url WHERE id IN(SELECT id FROM mice WHERE phenotyping_center = '" + centre + "' AND sex = '" + sex + "');";
 
             MySqlConnection(cmdText);
 
@@ -199,6 +339,9 @@ namespace miceExplorationTool.Pages
                     }
 
                 }
+
+
+                //Console.WriteLine(String.Join("\n", urlList)); //prints url list to be passed to front end
 
                 ViewData["DICOMArrayList"] = urlList;
 

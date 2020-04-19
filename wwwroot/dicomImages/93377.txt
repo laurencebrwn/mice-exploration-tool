@@ -66,7 +66,7 @@
         "biological_sample_id":191422,
         "biological_model_id":46851,
         "zygosity":"homozygote",
-        "sex":"female",
+        "sex":"male",
         "biological_sample_group":"experimental",
         "external_sample_id":"1146783",
         "parameter_name":"XRay Images Whole Body Dorso Ventral",

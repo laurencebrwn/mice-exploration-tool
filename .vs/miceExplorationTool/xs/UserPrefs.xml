@@ -1,11 +1,7 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="wwwroot/css/index.css">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.cshtml">
     <Files>
-      <File FileName="Pages/Index.cshtml" Line="23" Column="1" />
-      <File FileName="Pages/dicomImageToGrid.cshtml" Line="6" Column="1" />
-      <File FileName="Pages/base64ToImage.cshtml" Line="190" Column="1" />
-      <File FileName="Pages/charts.cshtml" Line="25" Column="17" />
-      <File FileName="wwwroot/css/index.css" Line="1" Column="1" />
+      <File FileName="Pages/Index.cshtml" Line="21" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,12 +12,10 @@
               <Node name="Pages" expanded="True">
                 <Node name="base64ToImage.cshtml" expanded="True" />
                 <Node name="dicomImageToGrid.cshtml" expanded="True" />
-                <Node name="Index.cshtml" expanded="True" />
+                <Node name="Index.cshtml" expanded="True" selected="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True">
-                  <Node name="index.css" selected="True" />
-                </Node>
+                <Node name="css" expanded="True" />
               </Node>
             </Node>
           </Node>

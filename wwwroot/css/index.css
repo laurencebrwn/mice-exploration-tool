@@ -12,6 +12,13 @@ p {
     padding: 20px 10px;
 }
 
+.container img {
+    float: left;
+    padding-top: 20px;
+    width: 150px;
+    height: 75px;
+}
+
 .headertag {
     overflow: hidden;
     text-align: center;

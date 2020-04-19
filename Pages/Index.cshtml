@@ -12,7 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/navbar.css">
-
+    <style>
+        li {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,6 +26,7 @@
     <Section class="navBar">
         <header>
             <div class="container">
+                <img src="assets/logo.png" alt="My Logo" style="width:150px; height:75px; margin-top: 5px;">
                 <h1 class="logo"></h1>
                 <nav>
                     <ul>
@@ -29,10 +34,13 @@
                         <li><a asp-page="/dicomImageToGrid">Search</a></li>
                         <li><a asp-page="/base64ToImage">Body Part</a></li>
                         <li><a asp-page="/charts">Charts</a></li>
-                        <li><a asp-page="/index">About</a></li>
+                        <li><a onclick="database.submit()">Update-Database</a></li>
                     </ul>
                 </nav>
             </div>
+
+            <form name="database" method="POST" asp-page="/Index" asp-page-handler="FilePath"></form>
+
         </header>
     </Section>
 
@@ -60,31 +68,31 @@
                 <li class="hex">
                     <div class="hexIn">
                         <input type="image" class="hexLink" src="assets/mouse2.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Females" />
-                        <p>Females<br />in <br />Database</p>
+                        <p>Search<br />Females</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <input type="image" class="hexLink" src="assets/mouse3.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Males" />
-                        <p>Males<br /> in <br />Database</p>
+                        <p>Search<br />Males</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <input type="image" class="hexLink" src="assets/mouse4.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Centre" />
-                        <p>Centre <br />(ICS)</p>
+                        <p>Search <br />(WTSI)</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <input type="image" class="hexLink" src="assets/mouse5.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="Gene" />
-                        <p>Gene <br />(Rab15)</p>
+                        <p>Search<br />(Rab15)</p>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <input type="image" class="hexLink" src="assets/mouse6.jpg" alt="Submit" asp-page="/charts" />
-                        <p>Charts</p>
+                        <p>View<br />Charts</p>
                     </div>
                 </li>
                 <li class="hex">
@@ -114,7 +122,7 @@
                 <li class="hex">
                     <div class="hexIn">
                         <input type="image" class="hexLink" src="assets/mouse11.jpg" alt="Submit" asp-page="/Index" asp-page-handler="FilePath" />
-                        <p>Update<br />the <br />Database</p>
+                        <p>Update<br />Database</p>
                     </div>
                 </li>
             </ul>

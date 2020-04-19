@@ -15,7 +15,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
@@ -25,15 +24,14 @@
     <Section class="navBar">
         <header>
             <div class="container">
+                <img src="assets/logo.png" alt="My Logo" style="width:150px; height:75px; margin-top: 5px;">
                 <h1 class="logo"></h1>
-
                 <nav>
                     <ul>
                         <li><a asp-page="/index">Home</a></li>
                         <li><a asp-page="/dicomImageToGrid">Search</a></li>
                         <li><a asp-page="/base64ToImage">Body Part</a></li>
                         <li><a asp-page="/charts">Charts</a></li>
-                        <li><a asp-page="/index">About</a></li>
                     </ul>
                 </nav>
             </div>
@@ -69,7 +67,7 @@
 
 <script>
 
-    //Script for each chart on CHARTS page of the webapp
+    ///////////////////////////////////////////// Script for each chart on CHARTS page of the webapp ////////////////////////////////////////////////////////
 
     //Global options for all charts
 

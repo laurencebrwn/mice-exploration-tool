@@ -110,25 +110,25 @@ namespace miceExplorationTool.Pages
         }
 
 
-        public List<string> FindFiles(string directory)
+        public List<string> FindFiles(string directory)//finds all the filepaths in a directory recursively
         {
             List<string> filepaths = new List<string>();
 
-            string[] Directories = Directory.GetDirectories(@directory);//Allows for copy paste filepaths using Override.
-            if (Directories.Length > 0)
+            string[] Directories = Directory.GetDirectories(@directory);//Allows for copy paste filepaths using Override. - this holds all the sub- directories in a directory folder
+            if (Directories.Length > 0)//Checks if there are any sub folders at this level
             {
                 //Console.WriteLine(Directories[0]);
-                foreach (string Dir in Directories)
+                foreach (string Dir in Directories)//if there is, iterate through the list
                 {
-                    filepaths.AddRange(FindFiles(Dir));
+                    filepaths.AddRange(FindFiles(Dir));//call function recursively - adds the returned list elements to the filepaths list
                 }
-                filepaths.AddRange(Directory.GetFiles(@directory));
+                filepaths.AddRange(Directory.GetFiles(@directory));//adds all the files in this folder to the list
             }
-            else
+            else//if this is a bottom of the tree sub directory
             {
-                filepaths.AddRange(Directory.GetFiles(@directory));
+                filepaths.AddRange(Directory.GetFiles(@directory));//adds all the files in this folder to the list
             }
-            return filepaths;
+            return filepaths;//returns list of filepaths.
         }
 
 
@@ -165,19 +165,19 @@ namespace miceExplorationTool.Pages
 
 
 
-        public List<Image> SortImage(List<string> Files, List<string> Tags)
+        public List<Image> SortImage(List<string> Files, List<string> Tags)//sorts all the image filepaths and the tag filepaths into an Image object containing a list of the tag objects and the image filepahts
         {
-            List<string> Filepaths = Files;
-            List<Image> Images = new List<Image>();
+            List<string> Filepaths = Files;//takes all the filepaths and stores them
+            List<Image> Images = new List<Image>();//list of the Image objects
             List<Tags> TagData = new List<Tags>();
             List<List<Tags>> SortedTags = new List<List<Tags>>();
-            TagData = getTags(Tags);
-            SortedTags = SortLists(TagData);
-            foreach (string File in Filepaths)
+            TagData = getTags(Tags);//Retrieves all the tag data and stores in the Tag data object, and adds to the list
+            SortedTags = SortLists(TagData);//Groups together all related Tag objects
+            foreach (string File in Filepaths)//iterates throught the image filepaths, and matches to the tags, and stores in an Image object
             {
                 List<string> files = new List<string>();
-                string id = GetID(Filepaths[0]);
-                files.Add(File);
+                string id = GetID(Filepaths[0]);//gets the ID from the image
+                files.Add(File);//adds the 
                 List<Tags> t = FindList(id, SortedTags);
                 Image Mouse = new Image(id);
                 Mouse.SetImage(files);
@@ -217,7 +217,7 @@ namespace miceExplorationTool.Pages
         }
 
 
-        public static string GetID(string filepath)
+        public static string GetID(string filepath)//this method fetches the id from the filename.
         {
             Regex regex = new Regex(@"^\d$");
             int start = 0;
@@ -289,35 +289,35 @@ namespace miceExplorationTool.Pages
         }
 
 
-        public List<List<Tags>> SortLists(List<Tags> Input)
+        public List<List<Tags>> SortLists(List<Tags> Input) //sorts the lists of tags into groups based upon the shared tag of biological_sample_ID
         {
             List<Tags> TagList = Input;
             List<List<Tags>> SortedList = new List<List<Tags>>();
             bool sorted = false;
-            while (sorted == false)
+            while (sorted == false)//loops until correct
             {
-                List<Tags> t = new List<Tags>();
-                List<int> Indexes = new List<int>();
+                List<Tags> t = new List<Tags>();//tag for group being sorted
+                List<int> Indexes = new List<int>();//list of the indexes to be removed
                 string BioId = TagList[0].biological_sample_id;
-                t.Add(TagList[0]);
-                Indexes.Add(0);
-                for (int i = 1; i < TagList.Count; i++)
+                t.Add(TagList[0]);//adds the tag list at index 0
+                Indexes.Add(0);//adds the indext to it
+                for (int i = 1; i < TagList.Count; i++)//iterates through the list starting at index 1
                 {
-                    if (TagList[i].biological_sample_id == BioId)
+                    if (TagList[i].biological_sample_id == BioId)//if a mathc
                     {
-                        t.Add(TagList[i]);
-                        Indexes.Add(i);
+                        t.Add(TagList[i]);//add to list
+                        Indexes.Add(i);//add index
                     }
                 }
-                SortedList.Add(t);
-                for (int i = Indexes.Count - 1; i >= 0; i--)
+                SortedList.Add(t);//add group list to the sorted list group
+                for (int i = Indexes.Count - 1; i >= 0; i--)//removes indexes in reverse order. This handles the list auto-resizing.
                 {
                     TagList.RemoveAt(Indexes[i]);
                 }
 
-                if (TagList.Count == 0)
+                if (TagList.Count == 0)//If the taglist is empty it has been sorted
                 {
-                    sorted = true;
+                    sorted = true;//finish clause
                 }
 
             }
@@ -366,7 +366,7 @@ namespace miceExplorationTool.Pages
         public class Tags
         {
 
-            public string id { get; set; }
+            public string id { get; set; }//These are the data set that we are presenting on the site or for data purposes.
             public string date_of_birth { get; set; }
             public string sex { get; set; }
             public string age_in_weeks { get; set; }
@@ -389,7 +389,7 @@ namespace miceExplorationTool.Pages
             private IDictionary<string, JToken> _extraStuff;
 
 
-            public void writeout()
+            public void writeout()//Testing use that prints out the data if necessary
             {
                 Console.WriteLine("id: {0}", id);
                 Console.WriteLine("date_of_birth: {0}", date_of_birth);

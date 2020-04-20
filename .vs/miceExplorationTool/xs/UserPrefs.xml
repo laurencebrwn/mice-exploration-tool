@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.cshtml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/base64ToImage.cshtml">
     <Files>
-      <File FileName="Pages/dicomImageToGrid.cshtml" Line="240" Column="1" />
-      <File FileName="Pages/dicomImageToGrid.cshtml.cs" Line="340" Column="14" />
-      <File FileName="Pages/Index.cshtml" Line="1" Column="1" />
-      <File FileName="Pages/Index.cshtml.cs" Line="453" Column="1" />
+      <File FileName="Pages/base64ToImage.cshtml" Line="12" Column="1" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="6" Column="1" />
+      <File FileName="wwwroot/css/dicomImageToGrid.css" Line="91" Column="2" />
+      <File FileName="wwwroot/css/base64ToImage.css" Line="29" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,11 +13,9 @@
             <Node name="miceExplorationTool" expanded="True">
               <Node name="Dependencies" expanded="True" />
               <Node name="Pages" expanded="True">
-                <Node name="base64ToImage.cshtml" expanded="True" />
+                <Node name="base64ToImage.cshtml" expanded="True" selected="True" />
                 <Node name="dicomImageToGrid.cshtml" expanded="True" />
-                <Node name="Index.cshtml" expanded="True">
-                  <Node name="Index.cshtml.cs" selected="True" />
-                </Node>
+                <Node name="Index.cshtml" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
                 <Node name="css" expanded="True" />

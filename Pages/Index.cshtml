@@ -26,15 +26,15 @@
     <Section class="navBar">
         <header>
             <div class="container">
-                <img src="assets/logo.png" alt="My Logo" style="width:150px; height:75px; margin-top: 5px;">
+                <a href="https://met.azurewebsites.net/"><img src="assets/logo.png" alt="My Logo" style="width:150px; height:75px; margin-top: 5px;"></a>
                 <h1 class="logo"></h1>
                 <nav>
                     <ul>
+                        <li><a style="color:#720000" onclick="database.submit()">Update-Database</a></li>
                         <li><a asp-page="/index">Home</a></li>
                         <li><a asp-page="/dicomImageToGrid">Search</a></li>
                         <li><a asp-page="/base64ToImage">Body Part</a></li>
                         <li><a asp-page="/charts">Charts</a></li>
-                        <li><a onclick="database.submit()">Update-Database</a></li>
                     </ul>
                 </nav>
             </div>
@@ -43,6 +43,8 @@
 
         </header>
     </Section>
+
+    <hr style="border: 1px solid#F5F5F5;" />
 
     <!-- // Hexogan grid display-->
 
@@ -84,6 +86,24 @@
                     <div class="hexIn">
                         <input type="image" class="hexLink" src="assets/mouse6.jpg" alt="Submit" asp-page="/charts" />
                         <p>View<br />Charts</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse7.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <p>Not In Use</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse8.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <p>Not In Use</p>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <input type="image" class="hexLink" src="assets/mouse9.jpg" alt="Submit" asp-page="/dicomImageToGrid" asp-page-handler="ViewAll" />
+                        <p>Not In Use</p>
                     </div>
                 </li>
                 <li class="hex">

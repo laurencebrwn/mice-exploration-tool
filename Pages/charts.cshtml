@@ -24,19 +24,21 @@
     <Section class="navBar">
         <header>
             <div class="container">
-                <img src="assets/logo.png" alt="My Logo" style="width:150px; height:75px; margin-top: 5px;">
-                <h1 class="logo"></h1>
-                <nav>
-                    <ul>
-                        <li><a asp-page="/index">Home</a></li>
-                        <li><a asp-page="/dicomImageToGrid">Search</a></li>
-                        <li><a asp-page="/base64ToImage">Body Part</a></li>
-                        <li><a asp-page="/charts">Charts</a></li>
-                    </ul>
-                </nav>
-            </div>
+                    <a href="https://met.azurewebsites.net/"><img src="assets/logo.png" alt="My Logo" style="width:150px; height:75px; margin-top: 5px;"></a>
+                    <h1 class="logo"></h1>
+                    <nav>
+                        <ul>
+                            <li><a asp-page="/index">Home</a></li>
+                            <li><a asp-page="/dicomImageToGrid">Search</a></li>
+                            <li><a asp-page="/base64ToImage">Body Part</a></li>
+                            <li><a asp-page="/charts">Charts</a></li>
+                        </ul>
+                    </nav>
+</div>
         </header>
     </Section>
+
+    <hr style="border: 1px solid#F5F5F5;" />
 
     <div class="charts">
         <canvas id="AgeOfMice"></canvas>

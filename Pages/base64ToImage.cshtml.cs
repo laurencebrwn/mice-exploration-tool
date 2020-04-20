@@ -47,9 +47,9 @@ namespace miceExplorationTool.Pages
 
             string cmdText = @"
                 SELECT urlString FROM url WHERE id IN 
-                (SELECT patient_id FROM mice WHERE parameter_name = 'paw');";
+                (SELECT id FROM mice WHERE parameter_name = 'XRay Images Skull Dorso Ventral Orientation');";
 
-            MySqlConnection(cmdText);
+            MySqlConnection(cmdText); 
 
             return Page();
         }
@@ -59,8 +59,8 @@ namespace miceExplorationTool.Pages
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT id FROM mice WHERE parameter_name = 'body');";
+                SELECT urlString FROM url WHERE id IN 
+                (SELECT id FROM mice WHERE parameter_name = 'XRay Images Whole Body Lateral Orientation');";
 
             MySqlConnection(cmdText);
 
@@ -72,8 +72,8 @@ namespace miceExplorationTool.Pages
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT id FROM mice WHERE parameter_name = 'head');";
+                SELECT urlString FROM url WHERE id IN 
+                (SELECT id FROM mice WHERE parameter_name = 'XRay Images Whole Body Dorso Ventral');";
 
             MySqlConnection(cmdText);
 

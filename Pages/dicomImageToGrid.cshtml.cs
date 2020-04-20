@@ -205,7 +205,7 @@ namespace miceExplorationTool.Pages
             //builds the MySql command from the dropdown options list by concantanating the strings togther
             string whereClause = String.Concat(strId, strSex, strDob, strAge, strWeight, strGeneSymb, strGeneAccId, strZygosity, strParameter, strCenter, strObvsType);
 
-            Console.WriteLine("Length: {0}", whereClause.Length);
+            //Console.WriteLine("Length: {0}", whereClause.Length); //shows length of wherecluase to test if it was zero (i.e. no details selected)
 
             //If ther query has no chosen options then all images are displayed else it displays the queried images
             if (whereClause.Length == 0)

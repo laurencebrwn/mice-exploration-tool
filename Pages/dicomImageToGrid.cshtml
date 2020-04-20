@@ -29,7 +29,7 @@
     <Section class="navBar">
         <header>
             <div class="container">
-                <img src="assets/logo.png" alt="My Logo" style="width:150px; height:75px; margin-top: 5px;">
+                <a href="https://met.azurewebsites.net/"><img src="assets/logo.png" alt="My Logo" style="width:150px; height:75px; margin-top: 5px;"></a>
                 <h1 class="logo"></h1>
                 <nav>
                     <ul>
@@ -43,6 +43,7 @@
         </header>
     </Section>
 
+    <hr style="border: 1px solid#F5F5F5;" />
 
     <!-- // place for any text-->
 
@@ -135,19 +136,19 @@
                 </select>
             </div>
 
-                <div class="filterSection">
-                    <h4>Other</h4>
-                    <select id="optionCenter" name="optionCenter">
-                        <option value="A" selected hidden>Phenotyping Center</option>
-                    </select>
-                    <select id="optionObvsType" name="optionObvsType">
-                        <option value="A" selected hidden>Observation Type</option>
-                    </select>
-                </div>
-
-                <input id="filterSubmit" type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Filter">
-
+            <div class="filterSection">
+                <h4>Other</h4>
+                <select id="optionCenter" name="optionCenter">
+                    <option value="A" selected hidden>Phenotyping Center</option>
+                </select>
+                <select id="optionObvsType" name="optionObvsType">
+                    <option value="A" selected hidden>Observation Type</option>
+                </select>
             </div>
+
+            <input id="filterSubmit" type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Filter">
+
+        </div>
     </form>
 
 

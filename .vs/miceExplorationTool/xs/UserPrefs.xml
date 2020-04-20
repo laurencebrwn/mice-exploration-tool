@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.cshtml.cs">
     <Files>
       <File FileName="Pages/Index.cshtml" Line="124" Column="1" />
-      <File FileName="Pages/Index.cshtml.cs" Line="483" Column="1" />
-      <File FileName="wwwroot/css/index.css" Line="187" Column="22" />
+      <File FileName="Pages/Index.cshtml.cs" Line="16" Column="1" />
+      <File FileName="wwwroot/css/index.css" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

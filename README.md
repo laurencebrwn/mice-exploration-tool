@@ -11,9 +11,9 @@ This repository is the work of University of Lincoln's, Level 2, TSE Group 34. C
 The ExVi Demo WebApp can be accessed from any device anywhere in the world [here](https://met.azurewebsites.net/).
 
 Limitations of the Demo  WebApp include:
-* No DICOM viewer
-* Limited dataset of only 40 mice - (Populated by IMPC's SOLR API)
-* No visual breakdown of the dataset - (Inluding charting of results and entire database)
+* No DICOM viewer.
+* Limited dataset of only 40 mice - (Populated by IMPC's SOLR API).
+* No visual breakdown of the dataset - (Inluding charting of results and entire database).
 
 # ExVi - Full App
 [The ExVi Full App](https://github.com/laurencebrwn/mice-exploration-tool/) is the full locally run solution to explore your own datasets from the IMPC. Please follow the instructions below on how to get it set up and running.

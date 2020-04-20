@@ -149,6 +149,7 @@ namespace miceExplorationTool.Pages
             {//goes through directory finding all files
                 string ext = Path.GetExtension(file);
 
+                //NOTE: .TIF and .BMP files are regsiterd in the app and databse but the Cornertone viewer does not recognise these as valid DICOM P10 files. See https://github.com/cornerstonejs/dicomParser/issues/112
                 if (ext == ".dcm") //If extension is a dcm file then put in ImagePaths list
                 {//sorts dependent upont file type
                     ImagePaths.Add(file);
@@ -220,7 +221,7 @@ namespace miceExplorationTool.Pages
         public static string GetID(string filepath)//this method fetches the id from the filename.
         {
 
-            if (filepath != null)
+            if (filepath != null) //Not all json or text files will have file paths (raw data jsons don't for instance)
             {
                 Regex regex = new Regex(@"^\d$");//regex for multiple 0-9 digits
                 int start = 0;

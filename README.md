@@ -28,7 +28,7 @@ Limitations of the Demo  WebApp include:
     1. Details on how to create a SymLink are [here](https://www.shellhacks.com/symlink-create-symbolic-link-linux/).
             * A example command is as follows: 
             
-                    ```$ ln -s /path/to/original /path/to/symlink```
+                    $ ln -s /path/to/original /path/to/symlink
     
 1. Download and install the latest release of the .NET runtime from [here](https://dotnet.microsoft.com/download).
 

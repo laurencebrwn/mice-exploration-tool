@@ -185,49 +185,49 @@ namespace miceExplorationTool.Pages
         }
 
 
-        private List<Tags> FindList(string ID, List<List<Tags>> sortedTags)
+        private List<Tags> FindList(string ID, List<List<Tags>> sortedTags)//finds the list that matches the ID given
         {
             List<Tags> match = new List<Tags>();
-            foreach (List<Tags> TagList in sortedTags)
+            foreach (List<Tags> TagList in sortedTags)//iterates through the list of lists
             {
                 bool found = false;
-                foreach (Tags t in TagList)
+                foreach (Tags t in TagList)//searches through each Tag group in the list.
                 {
-                    if (t.download_file_path != null)
+                    if (t.download_file_path != null)//Not all of the JSON objects have this element.
                     {
-                        string TagID = GetID(t.download_file_path);
-                        if (TagID == ID)
+                        string TagID = GetID(t.download_file_path);//gets the ID and tries to match
+                        if (TagID == ID)//if it's a match
                         {
-                            found = true;
-                            break;
+                            found = true;//set to true
+                            break;//stop iteration
                         }
                     }
                 }
-                if (found == true)
+                if (found == true)//end of loop, if true, assign this list to the match list
                 {
                     match = TagList;
                     break;
                 }
             }
-            return match;
+            return match;//return list
         }
 
 
         public static string GetID(string filepath)//this method fetches the id from the filename.
         {
-            Regex regex = new Regex(@"^\d$");
+            Regex regex = new Regex(@"^\d$");//regex for multiple 0-9 digits
             int start = 0;
-            string FileName = Path.GetFileNameWithoutExtension(filepath);
-            for (int i = FileName.Length - 1; i >= 0; i--)
+            string FileName = Path.GetFileNameWithoutExtension(filepath);//retrieves the filenames with out the .extension
+            for (int i = FileName.Length - 1; i >= 0; i--)//iterates through the filename until it finds where the id ends
             {
                 if (!regex.IsMatch(FileName[i].ToString()))
                 {
-                    start = i + 1;
+                    start = i + 1;//sets the start point of the numbers
                     break;
                 }
             }
-            string ID = FileName.Substring(start);
-            return ID;
+            string ID = FileName.Substring(start);//gets the substring of the id
+            return ID;//returns the id;
         }
 
 
@@ -406,7 +406,7 @@ namespace miceExplorationTool.Pages
             }
 
 
-            public void populateMySqlDatabase()
+            public void populateMySqlDatabase()//creates a new record in the SQL database
             {
 
                 string image = GetID(download_file_path); //name of image in users folder

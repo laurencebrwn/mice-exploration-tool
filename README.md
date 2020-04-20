@@ -19,17 +19,19 @@ Limitations of the Demo  WebApp include:
 [The ExVi Full App](https://github.com/laurencebrwn/mice-exploration-tool/) is the full locally run solution to explore your own datasets from the IMPC. Please follow the instructions below on how to get it set up and running.
 
 ### Installation
-cd into directory
+1. Download the latest release from [here](https://github.com/laurencebrwn/mice-exploration-tool/releases).
 
-terminal - dotnet run
+1. ExVi requires a locally hosted MySQL database to operate.
+    1. Download MySQL Workbench from [here](https://dev.mysql.com/downloads/) and install.
+    1. You will need to create a user and password for your database. The default the details which ExVi uses are, ```'user=root'``` and ```'password=TSEGroup34'```. If these values change for the user then the program will need to be changed accordingly. These values are used to create a connection string to the local MySql database.
+    1. You will then be required to upload the miceSchema.sql file to create the database called 'MICE' with its associated tables and values.
+    
+1. Download and install the latest release of the .NET runtime from [here](https://dotnet.microsoft.com/download).
 
-visit localhost:5000   << This may show you an error due to HTTPS being required. 
-
-The database is in MySql and is hosted locally (i.e. a users machine). The user will need to install MySql for their machine and create a user and password. Currently, 'user=root' and 'password=TSEGroup34'. If these values change for the user then the program will need to be changed accordingly. These values are used to create a connection string to the local MySql database. 
-
-The user will then be required to upload the miceSchema.sql file to create the database called 'MICE' with its associated tables and values. A query will then be applied to this datbase using the c# program to find all female mice within the database and return their associated URLs. These URLs could be used to fetch the DICOM images ?
-
-Additional requirements for connection to MySql using Visual Studio .net core is adding a Nuget called 'MySql.Data'. This can be done by opening the miceDatabaseConnection.sln in VS (not VS Code), right clicking on 'dependencies > add NuGet > search MySql.Data > apply.
+1. Once the MySQL database is running and the .NET runtime is installed on your machine, you may then launch the ExVi.
+    1. Open up a terminal and navigate to ExVi's directory.
+    1. Run the command: ```dotnet run```.
+    1. Using your browser visit: ```localhost:5000```.
 
 # Acknowledgements
 * [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) - Microsoft's open source framework for building web apps and services with .NET and C#.

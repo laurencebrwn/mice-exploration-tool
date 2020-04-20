@@ -26,7 +26,9 @@ Limitations of the Demo  WebApp include:
     1. You will need to create a user and password for your database. The default the details which ExVi uses are, ```'user=root'``` and ```'password=TSEGroup34'```. If these values change for the user then the program will need to be changed accordingly. These values are used to create a connection string to the local MySql database.
     1. You will need to SymLink your data storage directory so that the program can retrieve your DICOM images and JSON metadata to populate the database. The name of the symlink dir needs to be 'dicomImages'. If these values change for the user then the program will need to be changed accordingly.
     1. Details on how to create a SymLink are [here](https://www.shellhacks.com/symlink-create-symbolic-link-linux/).
-            * A example command is as follows: ```$ ln -s /path/to/original /path/to/symlink```
+            * A example command is as follows: 
+            
+                    ```$ ln -s /path/to/original /path/to/symlink```
     
 1. Download and install the latest release of the .NET runtime from [here](https://dotnet.microsoft.com/download).
 

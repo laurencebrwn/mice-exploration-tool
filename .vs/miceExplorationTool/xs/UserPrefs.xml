@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Pages/gettingstarted.cshtml">
     <Files>
-      <File FileName="Pages/Index.cshtml" Line="172" Column="8" />
-      <File FileName="Pages/gettingstarted.cshtml" Line="61" Column="1" />
+      <File FileName="Pages/gettingstarted.cshtml" Line="103" Column="1" />
+      <File FileName="Pages/Index.cshtml" Line="1" Column="1" />
+      <File FileName="wwwroot/css/index.css" Line="22" Column="30" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

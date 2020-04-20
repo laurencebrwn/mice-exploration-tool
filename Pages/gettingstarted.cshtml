@@ -69,27 +69,31 @@
                 <h1 class="w3-xxxlarge w3-text-red"><b>Step by Step</b></h1>
 
                 <p>
-                    <span class="w3-xlarge">Step 1.</span> <br /><br />Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    <br /><span class="w3-xlarge">Step 1.</span> <br /><br />Download the latest release from <a style="color:blue;" href="https://github.com/laurencebrwn/mice-exploration-tool/releases">here</a>.
                 </p>
 
                 <p>
-                    <span class="w3-xlarge">Step 2.</span> <br /><br />Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    <span class="w3-xlarge">Step 2.</span> <br /><br />ExVi requires a locally hosted MySQL database to operate.
+                    <br /><br />Download MySQL Workbench from <a style="color:blue;" href="https://dev.mysql.com/downloads/">here</a> and install.
+                    <br /><br />You will need to create a user and password for your database. The default the details which ExVi uses are, <a style="font-family:'Courier New'">'database=MICE', 'user=root'</a> and <a style="font-family:'Courier New'">'password=TSEGroup34'</a>. If these values change for the user then the program will need to be changed accordingly. These values are used to create a connection string to the local MySql database.
+                    <br /><br />You will need to SymLink your data storage directory so that the program can retrieve your DICOM images and JSON metadata to populate the database. The name of the <a style="font-family:'Courier New'">symlink dir</a> needs to be <a style="font-family:'Courier New'">'dicomImages</a>. If these values change for the user then the program will need to be changed accordingly.
+                    <br /><br />Details on how to create a SymLink are <a style="color:blue;" href="https://en.wikipedia.org/wiki/Symbolic_link">here</a>. A example Linux command is as follows:
+                    <br /><br />&emsp;<a style="font-family:'Courier New'">•	$ ln -s /path/to/original /path/to/symlink</a>
+                    <br /><br /><i>If you don't have a set of images or associated meta data a sample set can be found <a style="color:blue;" href="https://www.dropbox.com/sh/tq2nsob6l05heg4/AAB9L1fSbfcOLDTgYpKeYPzQa?dl=0">here</a></i>.
                 </p>
 
                 <p>
-                    <span class="w3-xlarge">Step 3.</span> <br /><br />Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    <span class="w3-xlarge">Step 3.</span> <br /><br />Download and install the latest release of the .NET runtime from <a style="color:blue;" href="https://dotnet.microsoft.com/download">here</a>.
                 </p>
 
                 <p>
-                    <span class="w3-xlarge">Step 4.</span> <br /><br />Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    <span class="w3-xlarge">Step 4.</span> <br /><br />Once the MySQL database is running and the .NET runtime is installed on your machine, you may then launch ExVi.
+                    <br /><br />&emsp;i.	Open up a terminal and navigate to ExVi's directory.
+                    <br /><br />&emsp;ii.	Run the command:&emsp; <a style="font-family:'Courier New'">dotnet run</a>.
+                    <br /><br />&emsp;iii.	Using your browser visit:&emsp; <a style="font-family:'Courier New'">https://localhost:5001</a>.
                 </p>
                 <p>
-                    <span class="w3-xlarge">Step 5.</span> <br /><br />Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    <span class="w3-xlarge">Step 5.</span> <br /><br />Once the program is running in your browser you will need to populate the database. This is done automatically by clicking on the <b>UPDATE_DATABASE</b> menu option on the <b>HOME</b> page.
                 </p>
 
             </div>

@@ -219,19 +219,25 @@ namespace miceExplorationTool.Pages
 
         public static string GetID(string filepath)//this method fetches the id from the filename.
         {
-            Regex regex = new Regex(@"^\d$");//regex for multiple 0-9 digits
-            int start = 0;
-            string FileName = Path.GetFileNameWithoutExtension(filepath);//retrieves the filenames with out the .extension
-            for (int i = FileName.Length - 1; i >= 0; i--)//iterates through the filename until it finds where the id ends
+
+            if (filepath != null)
             {
-                if (!regex.IsMatch(FileName[i].ToString()))
+                Regex regex = new Regex(@"^\d$");//regex for multiple 0-9 digits
+                int start = 0;
+                string FileName = Path.GetFileNameWithoutExtension(filepath);//retrieves the filenames with out the .extension
+                for (int i = FileName.Length - 1; i >= 0; i--)//iterates through the filename until it finds where the id ends
                 {
-                    start = i + 1;//sets the start point of the numbers
-                    break;
+                    if (!regex.IsMatch(FileName[i].ToString()))
+                    {
+                        start = i + 1;//sets the start point of the numbers
+                        break;
+                    }
                 }
+                string ID = FileName.Substring(start);//gets the substring of the id
+                return ID;//returns the id;
             }
-            string ID = FileName.Substring(start);//gets the substring of the id
-            return ID;//returns the id;
+
+            return null;
         }
 
 
@@ -272,11 +278,11 @@ namespace miceExplorationTool.Pages
                 {
                     Tags t = Token.ToObject<Tags>();
                     TagLists.Add(t);
-                    t.writeout();
+                    //t.writeout();
 
                     t.populateMySqlDatabase(); //populates the database with the respective tags
 
-                    Console.WriteLine(); //a line for spacing during testing
+                    //Console.WriteLine(); //a line for spacing for each sample during testing
 
                 }
 
@@ -500,7 +506,7 @@ namespace miceExplorationTool.Pages
                 MySqlCommand cmd = new MySqlCommand(cmdText, conn);
                 cmd.ExecuteNonQuery(); //executes a non query and returns no data
 
-                Console.WriteLine("\nDatabase Created");
+                //Console.WriteLine("\nDatabase Entry Created");
 
             }
             catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)

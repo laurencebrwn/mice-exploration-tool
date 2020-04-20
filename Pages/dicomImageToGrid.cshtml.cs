@@ -124,7 +124,7 @@ namespace miceExplorationTool.Pages
 
         public IActionResult OnPostFilter(string optionId, string optionCenter, string optionDob, string optionSex, string optionAge, string optionWeight, string optionGeneSymb, string optionGeneAccId, string optionZygosity, string optionParameter, string optionObvsType, string optionCategory)
         {
-
+            string strId = "";
             string strSex = "";
             string strDob = "";
             string strAge = "";
@@ -135,6 +135,12 @@ namespace miceExplorationTool.Pages
             string strParameter = "";
             string strCenter = "";
             string strObvsType = "";
+
+            //biological_sampe_id check
+            if (optionId != "A")
+            {
+                strId = "biological_sample_id = '" + optionId + "' AND ";
+            }
 
             //sex check
             if (optionSex != "A")
@@ -197,9 +203,9 @@ namespace miceExplorationTool.Pages
             }
 
             //builds the MySql command from the dropdown options list by concantanating the strings togther
-            string whereClause = String.Concat(strSex, strDob, strAge, strWeight, strGeneSymb, strGeneAccId, strZygosity, strParameter, strCenter, strObvsType);
+            string whereClause = String.Concat(strId, strSex, strDob, strAge, strWeight, strGeneSymb, strGeneAccId, strZygosity, strParameter, strCenter, strObvsType);
 
-            Console.WriteLine("length: {0}", whereClause.Length);
+            Console.WriteLine("Length: {0}", whereClause.Length);
 
             //If ther query has no chosen options then all images are displayed else it displays the queried images
             if (whereClause.Length == 0)
@@ -214,7 +220,7 @@ namespace miceExplorationTool.Pages
                     whereClause = whereClause.Remove(whereClause.Length - 4);
                 }
 
-                Console.WriteLine(whereClause.Substring(whereClause.Length - 4));
+                //Console.WriteLine(whereClause.Substring(whereClause.Length - 4));
                 Console.WriteLine("Whereclause: {0}", whereClause);
 
                 //string command that is sent ot the MySql query
@@ -237,39 +243,39 @@ namespace miceExplorationTool.Pages
         public IActionResult OnPostDropDowns()
         {
 
-            Console.WriteLine("This is the dropdowns section");
+            //Console.WriteLine("This is the dropdowns section");
 
-            string DobText = "USE MICE; SELECT date_of_birth FROM mice;";
+            string DobText = "USE MICE; SELECT DISTINCT date_of_birth FROM mice WHERE date_of_birth IS NOT NULL AND date_of_birth !='';";
             ViewData["DobOption"] = HeadersMySqlConnection(DobText);
 
-            string sexText = "USE MICE; SELECT sex FROM mice;";
+            string sexText = "USE MICE; SELECT DISTINCT sex FROM mice WHERE sex IS NOT NULL AND sex !='';";
             ViewData["SexOption"] = HeadersMySqlConnection(sexText);
 
-            string AgeText = "USE MICE; SELECT age_in_weeks FROM mice;";
+            string AgeText = "USE MICE; SELECT DISTINCT age_in_weeks FROM mice WHERE age_in_weeks IS NOT NULL AND age_in_weeks !='';";
             ViewData["AgeOption"] = HeadersMySqlConnection(AgeText);
 
-            string WeightText = "USE MICE; SELECT weight FROM mice;";
+            string WeightText = "USE MICE; SELECT DISTINCT weight FROM mice WHERE weight IS NOT NULL AND weight !='';";
             ViewData["WeightOption"] = HeadersMySqlConnection(WeightText);
 
-            string IdText = "USE MICE; SELECT biological_sample_id FROM mice;";
+            string IdText = "USE MICE; SELECT DISTINCT biological_sample_id FROM mice WHERE biological_sample_id IS NOT NULL AND biological_sample_id !='';";
             ViewData["IdOption"] = HeadersMySqlConnection(IdText);
 
-            string GeneSymbText = "USE MICE; SELECT gene_symbol FROM mice;";
+            string GeneSymbText = "USE MICE; SELECT DISTINCT gene_symbol FROM mice WHERE gene_symbol IS NOT NULL AND gene_symbol !='';";
             ViewData["GeneSymbOption"] = HeadersMySqlConnection(GeneSymbText);
 
-            string GeneAccIdText = "USE MICE; SELECT gene_accession_id FROM mice;";
+            string GeneAccIdText = "USE MICE; SELECT DISTINCT gene_accession_id FROM mice WHERE gene_accession_id IS NOT NULL AND gene_accession_id !='';";
             ViewData["GeneAccIdOption"] = HeadersMySqlConnection(GeneAccIdText);
 
-            string ZygosityText = "USE MICE; SELECT zygosity FROM mice;";
+            string ZygosityText = "USE MICE; SELECT DISTINCT zygosity FROM mice WHERE zygosity IS NOT NULL AND zygosity !='';";
             ViewData["ZygosityOption"] = HeadersMySqlConnection(ZygosityText);
 
-            string ParameterText = "USE MICE; SELECT parameter_name FROM mice;";
+            string ParameterText = "USE MICE; SELECT DISTINCT parameter_name FROM mice WHERE parameter_name IS NOT NULL AND parameter_name !='';";
             ViewData["ParameterOption"] = HeadersMySqlConnection(ParameterText);
 
-            string CenterText = "USE MICE; SELECT phenotyping_center FROM mice;";
+            string CenterText = "USE MICE; SELECT DISTINCT phenotyping_center FROM mice WHERE phenotyping_center IS NOT NULL AND phenotyping_center !='';";
             ViewData["CenterOption"] = HeadersMySqlConnection(CenterText);
 
-            string ObvsTypeText = "USE MICE; SELECT observation_type FROM mice;";
+            string ObvsTypeText = "USE MICE; SELECT DISTINCT observation_type FROM mice WHERE observation_type IS NOT NULL AND observation_type !='';";
             ViewData["ObvsTypeOption"] = HeadersMySqlConnection(ObvsTypeText);
 
             return Page();
@@ -314,13 +320,13 @@ namespace miceExplorationTool.Pages
                     }
                     else
                     {
-                        Console.WriteLine("No URL string associated with image id");
+                        //Console.WriteLine("No URL string associated with image id");
                     }
 
                 }
 
 
-                Console.WriteLine(String.Join("\n", urlList)); //prints headers list to be passed to front end
+                //Console.WriteLine(String.Join("\n", urlList)); //prints headers list to be passed to front end
 
                 return urlList;
 
@@ -382,7 +388,7 @@ namespace miceExplorationTool.Pages
                     }
                     else
                     {
-                        Console.WriteLine("No URL string associated with image id");
+                        //Console.WriteLine("No URL string associated with image id");
                     }
 
                 }

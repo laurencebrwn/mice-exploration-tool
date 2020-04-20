@@ -24,14 +24,18 @@ Limitations of the Demo  WebApp include:
 1. ExVi requires a locally hosted MySQL database to operate.
     1. Download MySQL Workbench from [here](https://dev.mysql.com/downloads/) and install.
     1. You will need to create a user and password for your database. The default the details which ExVi uses are, ```'user=root'``` and ```'password=TSEGroup34'```. If these values change for the user then the program will need to be changed accordingly. These values are used to create a connection string to the local MySql database.
-    1. You will then be required to upload the miceSchema.sql file to create the database called 'MICE' with its associated tables and values.
+    1. You will need to SymLink your data storage directory so that the program can retrieve your DICOM images and JSON metadata to populate the database. The name of the symlink dir needs to be 'dicomImages'. If these values change for the user then the program will need to be changed accordingly.
+    1. Details on how to create a SymLink are [here](https://www.shellhacks.com/symlink-create-symbolic-link-linux/).
+            * A example command is as follows: ```$ ln -s /path/to/original /path/to/symlink```
     
 1. Download and install the latest release of the .NET runtime from [here](https://dotnet.microsoft.com/download).
 
 1. Once the MySQL database is running and the .NET runtime is installed on your machine, you may then launch ExVi.
     1. Open up a terminal and navigate to ExVi's directory.
-    1. Run the command: ```dotnet run```.
-    1. Using your browser visit: ```localhost:5000```.
+    1. Run the command: ```dotnet run```
+    1. Using your browser visit: ```localhost:5001```
+    
+1. Once the program is running in your browser you will need to populate the database. This is done automatically by clicking on the ```UPDATE-DATABASE``` menu option on the ```HOME``` page.
 
 # Acknowledgements
 * [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) - Microsoft's open source framework for building web apps and services with .NET and C#.

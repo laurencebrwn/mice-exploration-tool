@@ -28,7 +28,7 @@ Limitations of the Demo  WebApp include:
     
 1. Download and install the latest release of the .NET runtime from [here](https://dotnet.microsoft.com/download).
 
-1. Once the MySQL database is running and the .NET runtime is installed on your machine, you may then launch the ExVi.
+1. Once the MySQL database is running and the .NET runtime is installed on your machine, you may then launch ExVi.
     1. Open up a terminal and navigate to ExVi's directory.
     1. Run the command: ```dotnet run```.
     1. Using your browser visit: ```localhost:5000```.

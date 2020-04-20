@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{7691561D-69D2-4932-9441-BED436960B48}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Pages/base64ToImage.cshtml">
     <Files>
-      <File FileName="Pages/base64ToImage.cshtml" Line="12" Column="1" />
-      <File FileName="Pages/dicomImageToGrid.cshtml" Line="6" Column="1" />
+      <File FileName="Pages/base64ToImage.cshtml" Line="95" Column="1" />
+      <File FileName="wwwroot/css/base64ToImage.css" Line="46" Column="1" />
+      <File FileName="Pages/dicomImageToGrid.cshtml" Line="379" Column="1" />
       <File FileName="wwwroot/css/dicomImageToGrid.css" Line="91" Column="2" />
-      <File FileName="wwwroot/css/base64ToImage.css" Line="29" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

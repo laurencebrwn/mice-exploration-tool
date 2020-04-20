@@ -21,6 +21,10 @@ namespace miceExplorationTool.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
+        public static string warning;
+
+        public object ViewBag { get; }
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -92,7 +96,7 @@ namespace miceExplorationTool.Pages
 
                     }
 
-                    Console.WriteLine("\nNew Images added to database: {0}", count); //displays count for testing purposes
+                    //Console.WriteLine("\nNew Images added to database: {0}", count); //displays count for testing purposes
                 }
             }
             else
@@ -432,6 +436,7 @@ namespace miceExplorationTool.Pages
                     "WHERE NOT EXISTS (SELECT * FROM `url` " + 
                     "WHERE `id` = '" + id + "' LIMIT 1);";
 
+
                 CreateMySqlDatabase(populateDatabase);
 
             }
@@ -502,7 +507,8 @@ namespace miceExplorationTool.Pages
             }
             catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
             {
-                Console.WriteLine(errorMessage);
+                Console.WriteLine("You have not connected to the database: \n\n");
+
             }
             finally //Once the try-ctach block is complete the connection is closed
             {
@@ -511,7 +517,7 @@ namespace miceExplorationTool.Pages
                     conn.Close();
                 }
             }
-
+            
         }
 
 

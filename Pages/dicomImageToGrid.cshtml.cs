@@ -329,7 +329,7 @@ namespace miceExplorationTool.Pages
             }
             catch (MySqlException errorMessage) //Prints exception if the connection cannot be opened (wrong password etc)
             {
-                Console.WriteLine(errorMessage);
+                Console.WriteLine("You have not been able to connect to the database: \n {0}", errorMessage);
                 return null;
             }
             finally //Once the try-ctach block is complete the connection is closed

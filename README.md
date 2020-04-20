@@ -1,9 +1,9 @@
 # ExVi - mice-exploration-tool
-[![Build Status](https://travis-ci.com/laurencebrwn/mice-exploration-tool.svg?token=sX5CMpv3R8hjH5qNNqFT&branch=master)](https://travis-ci.com/laurencebrwn/mice-exploration-tool)
-
 ExVi is visual data exploration tool for musculoskeletal phenotyping in mice - built with ASP.NET, CornerstoneJS, MySQL and Json.NET.
 
 This repository is the work of University of Lincoln's, Level 2, TSE Group 34. Creating a data visualisation tool for DICOM images to support the work of the IMPC, for Assignment 2 of the Team Software Engineering module.
+
+[![Build Status](https://travis-ci.com/laurencebrwn/mice-exploration-tool.svg?token=sX5CMpv3R8hjH5qNNqFT&branch=master)](https://travis-ci.com/laurencebrwn/mice-exploration-tool)
 
 # ExVi - Demo WebApp
 [The ExVi Demo WebApp](https://github.com/laurencebrwn/mice-exploration-tool/tree/demo) is a lightweight version of ExVi for demo use. 

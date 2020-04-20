@@ -118,19 +118,21 @@
 
             <div class="filterSection">
                 <h4>Experiment</h4>
-                    <input type="text" id="optionId" placeholder="Biological Sample ID" name="optionId">
-                    <select id="optionGeneSymb" name="optionGeneSymb">
-                        <option value="A" selected hidden>Gene Symbol</option>
-                    </select>
-                    <select id="optionGeneAccId" name="optionGeneAccId">
-                        <option value="A" selected hidden>Gene Accession ID</option>
-                    </select>
-                    <select id="optionZygosity" name="optionZygosity">
-                        <option value="A" selected hidden>Zygosity</option>
-                    </select>
-                    <select id="optionParameter" name="optionParameter">
-                        <option value="A" selected hidden>Parameter Name</option>
-                    </select>
+                <select id="optionId" name="optionId">
+                    <option value="A" selected hidden>Biological Sample ID</option>
+                </select>
+                <select id="optionGeneSymb" name="optionGeneSymb">
+                    <option value="A" selected hidden>Gene Symbol</option>
+                </select>
+                <select id="optionGeneAccId" name="optionGeneAccId">
+                    <option value="A" selected hidden>Gene Accession ID</option>
+                </select>
+                <select id="optionZygosity" name="optionZygosity">
+                    <option value="A" selected hidden>Zygosity</option>
+                </select>
+                <select id="optionParameter" name="optionParameter">
+                    <option value="A" selected hidden>Parameter Name</option>
+                </select>
             </div>
 
                 <div class="filterSection">
@@ -236,20 +238,18 @@
     };
 
 
+    // biological_sample_id
 
-    // biological_sample_id is not a drop down
+    selectId = document.getElementById('optionId');
 
-    //selectId = document.getElementById('optionId');
+    var IdOption = @Html.Raw(Json.Serialize(ViewData["IdOption"]));
 
-    //var IdOption = @Html.Raw(Json.Serialize(ViewData["IdOption"]));
+    for (element in IdOption) {
 
-    //for (element in IdOption) {
+        selectId.add(new Option(IdOption[element]));
+        console.log("element");
 
-    //    selectId.add(new Option(IdOption[element]));
-    //    console.log("element");
-
-    //};
-
+    };
 
 
     // gene_symbol drop down
@@ -304,7 +304,7 @@
 
     };
 
-    // phenotyoing_center drop down
+    // phenotyping_center drop down
 
     selectCenter = document.getElementById('optionCenter');
 

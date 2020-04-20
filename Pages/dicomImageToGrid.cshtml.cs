@@ -133,6 +133,7 @@ namespace miceExplorationTool.Pages
             string strGeneAccId = "";
             string strZygosity = "";
             string strParameter = "";
+            string strCenter = "";
             string strObvsType = "";
 
             //sex check
@@ -156,7 +157,7 @@ namespace miceExplorationTool.Pages
             //Weight check
             if (optionWeight != "A")
             {
-                strWeight = "date_of_birth = '" + optionWeight + "' AND ";
+                strWeight = "weight = '" + optionWeight + "' AND ";
             }
 
             //Gene symbol check
@@ -183,6 +184,12 @@ namespace miceExplorationTool.Pages
                 strParameter = "parameter_name = '" + optionParameter + "' AND ";
             }
 
+            //Phenotyping_center check
+            if (optionCenter != "A")
+            {
+                strCenter = "phenotyping_center = '" + optionCenter + "' AND ";
+            }
+
             //Observation_type check
             if (optionObvsType != "A")
             {
@@ -190,7 +197,7 @@ namespace miceExplorationTool.Pages
             }
 
             //builds the MySql command from the dropdown options list by concantanating the strings togther
-            string whereClause = String.Concat(strSex, strDob, strAge, strWeight, strGeneSymb, strGeneAccId, strZygosity, strParameter, strObvsType);
+            string whereClause = String.Concat(strSex, strDob, strAge, strWeight, strGeneSymb, strGeneAccId, strZygosity, strParameter, strCenter, strObvsType);
 
             Console.WriteLine("length: {0}", whereClause.Length);
 
@@ -258,6 +265,9 @@ namespace miceExplorationTool.Pages
 
             string ParameterText = "USE MICE; SELECT parameter_name FROM mice;";
             ViewData["ParameterOption"] = HeadersMySqlConnection(ParameterText);
+
+            string CenterText = "USE MICE; SELECT phenotyping_center FROM mice;";
+            ViewData["CenterOption"] = HeadersMySqlConnection(CenterText);
 
             string ObvsTypeText = "USE MICE; SELECT observation_type FROM mice;";
             ViewData["ObvsTypeOption"] = HeadersMySqlConnection(ObvsTypeText);

@@ -131,7 +131,6 @@ namespace miceExplorationTool.Pages
             return filepaths;//returns list of filepaths.
         }
 
-
         ///////////////////////////////// Williams Implimentation /////////////////////////////////////////////////////////////
 
 

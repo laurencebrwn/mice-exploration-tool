@@ -24,6 +24,23 @@ body {
 .images {
     overflow: hidden;
     text-align: center;
+    align-items: center;
 }
 
+.imagegrid {
+    overflow: hidden;
+    text-align: center;
+    align-items: center;
+}
+
+.imageDiv {
+    width: 300px;
+    height: 300px;
+    border: thin solid white;
+    display: inline-flex;
+    overflow: hidden;
+    text-align: center;
+    margin: 5px;
+    position: relative;
+}
 

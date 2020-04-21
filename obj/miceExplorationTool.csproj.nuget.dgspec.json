@@ -1,27 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj": {}
+    "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj": {}
   },
   "projects": {
-    "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj": {
+    "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj",
+        "projectUniqueName": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj",
         "projectName": "miceExplorationTool",
-        "projectPath": "E:\\Documents\\GitHub\\mice-exploration-tool\\miceExplorationTool.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "E:\\Documents\\GitHub\\mice-exploration-tool\\obj\\",
+        "projectPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/miceExplorationTool.csproj",
+        "packagesPath": "/Users/garryclawson/.nuget/packages/",
+        "outputPath": "/Users/garryclawson/Documents/GitHub/mice-exploration-tool/obj/",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/garryclawson/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -77,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
         }
       }
     }

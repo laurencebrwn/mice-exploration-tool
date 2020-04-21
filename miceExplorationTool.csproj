@@ -49,5 +49,7 @@
     <Content Remove="DirectoryImportCode\bin\Debug\netcoreapp3.1\DirectoryImportCode.deps.json" />
     <Content Remove="DirectoryImportCode\bin\Debug\netcoreapp3.1\DirectoryImportCode.runtimeconfig.dev.json" />
     <Content Remove="Pages\Index %28copy%29.cshtml" />
+    <Content Remove="wwwroot\dicomImages\json\testImage.txt" />
+    <Content Remove="wwwroot\dicomImages\json\testData.json" />
   </ItemGroup>
 </Project>

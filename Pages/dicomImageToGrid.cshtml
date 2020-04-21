@@ -10,6 +10,8 @@
     <title>Grid</title>
     <link rel="stylesheet" href="css/dicomImageToGrid.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"></script>
 
     <!-- include the cornerstone library -->
     <script src="https://unpkg.com/cornerstone-wado-image-loader@3.0.6/dist/cornerstoneWADOImageLoader.min.js"></script>
@@ -18,7 +20,6 @@
     <script src="js/cornerstoneTools.min.js"></script>
     <script src="js/dicomParser.min.js"></script>
     <script src="js/cornerstoneWADOImageLoader.js"></script>
-
 </head>
 
 <body>
@@ -28,21 +29,21 @@
     <Section class="navBar">
         <header>
             <div class="container">
+                <a href="https://met.azurewebsites.net/"><img src="assets/logo.png" alt="My Logo" style="width:150px; height:75px; margin-top: 5px;"></a>
                 <h1 class="logo"></h1>
-
                 <nav>
                     <ul>
                         <li><a asp-page="/index">Home</a></li>
                         <li><a asp-page="/dicomImageToGrid">Search</a></li>
                         <li><a asp-page="/base64ToImage">Body Part</a></li>
                         <li><a asp-page="/charts">Charts</a></li>
-                        <li><a asp-page="/index">About</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
     </Section>
 
+    <hr style="border: 1px solid#F5F5F5;" />
 
     <!-- // place for any text-->
 
@@ -61,18 +62,102 @@
             <button type="submit" class="btn btn-success" asp-page-handler="Females">Females</button>
             <button type="submit" class="btn btn-primary" asp-page-handler="Males">Males</button>
             <button type="submit" class="btn btn-warning" asp-page-handler="Gene">Gene (Rab15)</button>
-            <button type="submit" class="btn btn-info" asp-page-handler="Centre">Centre (ICS)</button>
+            <button type="submit" class="btn btn-info" asp-page-handler="Centre">Centre (WTSI)</button>
         </form>
 
     </div>
 
-    <div class="header">
-        <form method="POST">
-            <label for="tagName"><font color="white" size="4">QUERY: </font></label>
-            <input type="text" id="tagName" placeholder="Centre: WTSI or ICS" name="centre">
-            <input type="text" id="tagName" placeholder="Sex: M or F" name="sex">
-            <input type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Name">
-        </form>
+
+    <!--New drop down tools -->
+
+    <form method="POST">
+
+        <div id="results">
+            <div id="resultsFlex">
+                <h3 id="filtersTitle">Filters:</h3>
+                <ul id="filterList" class="filterList"></ul>
+                <ul class="filterList">
+                    <li id="edit" onclick="showFilters()"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></li>
+                    <li id="clear"><button asp-page="/dicomImageToGrid" asp-page-handler="ViewAll"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></button></li>
+                </ul>
+
+            </div>
+            <div id="resultsFlex">
+                <h2 id="resultsFound"></h2>
+                <p>Results found</p>
+            </div>
+        </div>
+
+        <div id="filters">
+
+            <div class="filterSection">
+                <h4>Mouse</h4>
+                <div class="filterSubSection">
+                    <p>Date of Birth:</p>
+                    <select id="optionDob" name="optionDob">
+                        <option value="A" selected hidden>D.O.B</option>
+                    </select>
+                </div>
+                <div class="filterSubSection">
+                    <select id="optionSex" name="optionSex">
+                        <option value="A" selected hidden>Sex</option>
+                    </select>
+                </div>
+                <div class="filterSubSection">
+                    <p>Age (In Weeks):</p>
+                    <select id="optionAge" name="optionAge">
+                        <option value="A" selected hidden>Age</option>
+                    </select>
+                </div>
+                <div class="filterSubSection">
+                    <p>Weight (g):</p>
+                    <select id="optionWeight" name="optionWeight">
+                        <option value="A" selected hidden>Weight</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="filterSection">
+                <h4>Experiment</h4>
+                <select id="optionId" name="optionId">
+                    <option value="A" selected hidden>Biological Sample ID</option>
+                </select>
+                <select id="optionGeneSymb" name="optionGeneSymb">
+                    <option value="A" selected hidden>Gene Symbol</option>
+                </select>
+                <select id="optionGeneAccId" name="optionGeneAccId">
+                    <option value="A" selected hidden>Gene Accession ID</option>
+                </select>
+                <select id="optionZygosity" name="optionZygosity">
+                    <option value="A" selected hidden>Zygosity</option>
+                </select>
+                <select id="optionParameter" name="optionParameter">
+                    <option value="A" selected hidden>Parameter Name</option>
+                </select>
+            </div>
+
+            <div class="filterSection">
+                <h4>Other</h4>
+                <select id="optionCenter" name="optionCenter">
+                    <option value="A" selected hidden>Phenotyping Center</option>
+                </select>
+                <select id="optionObvsType" name="optionObvsType">
+                    <option value="A" selected hidden>Observation Type</option>
+                </select>
+            </div>
+
+            <input id="filterSubmit" type="submit" class="btn btn-light" asp-page="/dicomImageToGrid" asp-page-handler="Filter">
+
+        </div>
+    </form>
+
+
+    <div id="images">
+        <!-- Images are placed above this Div to create the grid -->
+        <div id="placeholderDiv"></div>
+    </div>
+    <div id="modalContainer">
+
     </div>
 
     <div class="images">
@@ -87,7 +172,178 @@
 <!-- javascript to show dicom image in grid -->
 <script>
 
+    ////////////////////////////////// Shows and callapses filters (green and reg buttons) ////////////////////////////////////////////////////////////
+
+    function showFilters() {
+        var x = document.getElementById("filters");
+        if (x.style.display === "none") {
+            x.style.display = "flex";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+
+    ////////////////// Populates the drop downs using records retreived from the database values /////////////////////////////////////////////////////////////////////
+
+    // Date of birth drop down
+
+    selectDob = document.getElementById('optionDob');
+
+    var DobOption = @Html.Raw(Json.Serialize(ViewData["DobOption"]));
+
+    for (element in DobOption) {
+
+        selectDob.add(new Option(DobOption[element]));
+        console.log("element");
+
+    };
+
+    // Sex drop down
+
+    selectSex = document.getElementById('optionSex');
+
+    var SexOption = @Html.Raw(Json.Serialize(ViewData["SexOption"]));
+
+    for (element in SexOption) {
+
+        selectSex.add(new Option(SexOption[element]));
+        console.log("element");
+
+    };
+
+    // Age in weeks drop down
+
+    selectAge = document.getElementById('optionAge');
+
+    var AgeOption = @Html.Raw(Json.Serialize(ViewData["AgeOption"]));
+
+    for (element in AgeOption) {
+
+        selectAge.add(new Option(AgeOption[element]));
+        console.log("element");
+
+    };
+
+    // Weight drop down
+
+    selectWeight = document.getElementById('optionWeight');
+
+    var WeightOption = @Html.Raw(Json.Serialize(ViewData["WeightOption"]));
+
+    for (element in WeightOption) {
+
+        selectWeight.add(new Option(WeightOption[element]));
+        console.log("element");
+
+    };
+
+
+    // biological_sample_id
+
+    selectId = document.getElementById('optionId');
+
+    var IdOption = @Html.Raw(Json.Serialize(ViewData["IdOption"]));
+
+    for (element in IdOption) {
+
+        selectId.add(new Option(IdOption[element]));
+        console.log("element");
+
+    };
+
+
+    // gene_symbol drop down
+
+    selectGeneSymb = document.getElementById('optionGeneSymb');
+
+    var GeneSymbOption = @Html.Raw(Json.Serialize(ViewData["GeneSymbOption"]));
+
+    for (element in GeneSymbOption) {
+
+        selectGeneSymb.add(new Option(GeneSymbOption[element]));
+        console.log("element");
+
+    };
+
+    // gene_accession_id drop down
+
+    selectGeneAccId = document.getElementById('optionGeneAccId');
+
+    var GeneAccIdOption = @Html.Raw(Json.Serialize(ViewData["GeneAccIdOption"]));
+
+    for (element in GeneAccIdOption) {
+
+        selectGeneAccId.add(new Option(GeneAccIdOption[element]));
+        console.log("element");
+
+    };
+
+    // zygosity drop down
+
+    selectZygosity = document.getElementById('optionZygosity');
+
+    var ZygosityOption = @Html.Raw(Json.Serialize(ViewData["ZygosityOption"]));
+
+    for (element in ZygosityOption) {
+
+        selectZygosity.add(new Option(ZygosityOption[element]));
+        console.log("element");
+
+    };
+
+    // Parameter_name drop down
+
+    selectParameter = document.getElementById('optionParameter');
+
+    var ParameterOption = @Html.Raw(Json.Serialize(ViewData["ParameterOption"]));
+
+    for (element in ParameterOption) {
+
+        selectParameter.add(new Option(ParameterOption[element]));
+        console.log("element");
+
+    };
+
+    // phenotyping_center drop down
+
+    selectCenter = document.getElementById('optionCenter');
+
+    var CenterOption = @Html.Raw(Json.Serialize(ViewData["CenterOption"]));
+
+    for (element in CenterOption) {
+
+        selectCenter.add(new Option(CenterOption[element]));
+        console.log("element");
+
+    };
+
+    // observation_type drop down
+
+    selectObvsType = document.getElementById('optionObvsType');
+
+    var ObvsTypeOption = @Html.Raw(Json.Serialize(ViewData["ObvsTypeOption"]));
+
+    for (element in ObvsTypeOption) {
+
+        selectObvsType.add(new Option(ObvsTypeOption[element]));
+        console.log("element");
+
+    };
+
+
+
+    /////////////////////////////////////// Load Cornerstone and display images ///////////////////////////////////////////////////////////////////////
+
     cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+
+
+    //onclick function when clicking on DICOM image - NOT USED
+
+    function showModal() {
+        console.log("Image clicked)")
+    }
+
 
     //Array of image addresses. This array could be populated by URLs (to a storage device of DICOMs) from a MySQL query depending on user selection?
 
@@ -95,10 +351,23 @@
     //console.log(ImageArray[1]);
     //console.log(ImageArray.length);
 
+
+    if(ImageArray.length == 0)
+    {
+        var element = document.getElementById("resultsFound");
+        element.innerHTML = (ImageArray.length);
+        //window.alert("There are no images in the database");
+    } else
+    {
     //Forloop through image set and appends image to end of previous image
 
     for (var i = 0; i < ImageArray.length; i++) {
-        console.log("Images", i+1, "of", ImageArray.length, "loaded");
+        console.log("Images", i + 1, "of", ImageArray.length, "loaded");
+
+
+        var element = document.getElementById("resultsFound");
+        element.innerHTML = (ImageArray.length);
+
         var imageNum = ImageArray[i];
 
         let imageId = "wadouri:" + imageNum;
@@ -107,9 +376,13 @@
         //Create new div element for each DICOM image and insert it befor the dicomImage div in body
 
         const imageDiv = document.createElement("div");
-        imageDiv.style = "width:20vw; height:20vw; border: thin solid transparent; display:inline-block";
+
+        imageDiv.className = "imageDiv";
+        imageDiv.onclick = function () { showModal(imageNum) };
+
         var currentDiv = document.getElementById("dicomImage");
         currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
+
         cornerstone.enable(imageDiv);
 
         //Load the DICOM image and allow supoprt tools for image zoom and contrast etc
@@ -128,6 +401,10 @@
         });
 
     }
+
+    }
+
+    /////////////////////////////////////// Use Jpeg images in grid instead of DICOMs ///////////////////////////////////////////////////////////////////////
 
     // //Forloop through jpg image set in assets folder and appends image to end of previous image
     // for (var i = 0; i < 3; i++) {

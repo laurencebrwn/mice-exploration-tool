@@ -10,6 +10,7 @@
 }
 
 
+
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +27,6 @@
     <script src="js/dicomParser.min.js"></script>
     <script src="js/cornerstoneWADOImageLoader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 </head>
 
 <body>
@@ -36,20 +36,23 @@
     <Section class="navBar">
         <header>
             <div class="container">
+                <a href="https://met.azurewebsites.net/"><img src="assets/logo.png" alt="My Logo" style="width:150px; height:75px; margin-top: 5px;"></a>
                 <h1 class="logo"></h1>
-
                 <nav>
                     <ul>
                         <li><a asp-page="/index">Home</a></li>
                         <li><a asp-page="/dicomImageToGrid">Search</a></li>
                         <li><a asp-page="/base64ToImage">Body Part</a></li>
                         <li><a asp-page="/charts">Charts</a></li>
-                        <li><a asp-page="/index">About</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
     </Section>
+
+
+    <hr style="border: 1px solid#F5F5F5;" />
+
 
     <!-- // Helper points  -->
 
@@ -61,16 +64,15 @@
 
     <div class="images">
         <!--Test IMageMap property -->
-        <img src="assets/mouse1.jpg" usemap="#mouseMap" class="map" width="400" height="400">
-
+        <img src="assets/mouse.jpg" usemap="#mouseMap" class="map" width="400" height="400">
 
     </div>
 
     <div class="images">
         <map name="mouseMap">
             <area shape="rect" coords="50,50,150,150" onmouseover="writeText('Mouse Paw')" href="#" onclick="myform1.submit()" alt="paw" />
-            <area shape="rect" coords="250,250,350,350" onmouseover="writeText('Mouse Body')" href="#" onclick="myform2.submit()" alt="body" />
-            <area shape="rect" coords="250,0,400,150" onmouseover="writeText('Mouse Head')" href="#" onclick="myform3.submit()" alt="head" />
+            <area shape="rect" coords="100,200,200,300" onmouseover="writeText('Mouse Body')" href="#" onclick="myform2.submit()" alt="body" />
+            <area shape="rect" coords="150,100,250,200" onmouseover="writeText('Mouse Head')" href="#" onclick="myform3.submit()" alt="head" />
         </map>
     </div>
 
@@ -78,23 +80,22 @@
     <form name="myform2" method="POST" asp-page="/base64ToImage" asp-page-handler="Body"></form>
     <form name="myform3" method="POST" asp-page="/base64ToImage" asp-page-handler="Head"></form>
 
+    <hr style="border: 1px solid#F5F5F5;" />
 
     <!--Div that DICOM images are dynamically appended to to show as a grid -->
-    <div class="images">
+    <div class="imagegrid">
+        <!-- Images are placed above this Div to create the grid -->
         <div id="dicomImage"></div>
     </div>
-
 
 </body>
 
 </html>
 
 
-
-
-<!-- javascript to convert base64 to jpg and jpeg to base64 -->
-
 <script>
+
+/////////////////////////////////////// Load Cornerstone and display images /////////////////////////////////////////////////////////////////////////////
 
 //Cornserstone Library to present DICOM images in grid
 
@@ -113,9 +114,12 @@
         var imageNum = ImageArray[i];
         let imageId = "wadouri:" + imageNum;
 
+
         //Create new div element for each DICOM image and insert it befor the dicomImage div in body
         const imageDiv = document.createElement("div");
-        imageDiv.style = "width:20vw; height:20vw; border: thin solid transparent; display:inline-block";
+
+        imageDiv.className = "imageDiv";
+        //imageDiv.style = "width:30vw; height:30vw; border: thin solid transparent; display:inline-block";
         var currentDiv = document.getElementById("dicomImage");
         currentDiv.parentNode.insertBefore(imageDiv, currentDiv);
         cornerstone.enable(imageDiv);
@@ -135,14 +139,14 @@
 
     }
 
-// >>>>>>> Shows image body part text upon hover over of image
+////////////////////////////////////// Shows image body part text upon hover over of image //////////////////////////////////////////////////////////////
 
     function writeText(txt) {
         document.getElementById("desc").style.color = 'black';
         document.getElementById("desc").innerHTML = txt;
     }
 
-// >>>>>>> Part A: Convert image to Base64
+/////////////////////////////////////// Part A: Convert image to Base64 ///////////////////////////////////////////////////////////////////////////////////
 
     //var imageURL = 'https://raw.githubusercontent.com/18685030/DicomTestImages/master/SampleTestImages/mouse.jpeg'
 
@@ -162,7 +166,7 @@
         console.log('base64 image loaded');
     })
 
-    // >>>>>>> Part B: Converts Base64 to image
+    ///////////////////////////////////// Part B: Converts Base64 to image  ///////////////////////////////////////////////////////////////////////////////
 
     //GETs image from location and converts to base64 using 'readAsDataURL' function
     function toDataURL(url, callback) {
@@ -178,6 +182,9 @@
         httpRequest.responseType = 'blob';
         httpRequest.send();
     }
+
+
+    /////////////////////////////////////// Use Jpeg images in grid instead of DICOMs ///////////////////////////////////////////////////////////////////////
 
     // //Forloop through jpg image set in assets folder and appends image to end of previous image
     // for (var i = 0; i < 3; i++) {

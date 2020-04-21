@@ -41,38 +41,51 @@ namespace miceExplorationTool.Pages
             return RedirectToPage("Index");
         }
 
-        //show only female samples
+        //show only images of the paw
         public IActionResult OnPostPaw()
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE parameter_name = 'paw');";
+                SELECT urlString FROM url WHERE id IN 
+                (SELECT id FROM mice WHERE parameter_name = 'XRay Images Skull Dorso Ventral Orientation');";
 
-            MySqlConnection(cmdText);
+            MySqlConnection(cmdText); 
 
             return Page();
         }
 
-        //show only male samples
+        //show only images of the body
         public IActionResult OnPostBody()
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE parameter_name = 'body');";
+                SELECT urlString FROM url WHERE id IN 
+                (SELECT id FROM mice WHERE parameter_name = 'XRay Images Whole Body Lateral Orientation');";
 
             MySqlConnection(cmdText);
 
             return Page();
         }
 
+        //show only images of the head
         public IActionResult OnPostHead()
         {
 
             string cmdText = @"
-                SELECT urlString FROM url WHERE patient_id IN 
-                (SELECT patient_id FROM mice WHERE parameter_name = 'head');";
+                SELECT urlString FROM url WHERE id IN 
+                (SELECT id FROM mice WHERE parameter_name = 'XRay Images Whole Body Dorso Ventral');";
+
+            MySqlConnection(cmdText);
+
+            return Page();
+        }
+
+        //show the full body image of a mouse with the user inputed ID
+        public IActionResult OnPostID(string ID)
+        {
+
+            string cmdText = @"
+                SELECT urlString FROM url WHERE id = '" + ID + "';"; 
 
             MySqlConnection(cmdText);
 

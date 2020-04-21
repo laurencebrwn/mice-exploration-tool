@@ -12,5 +12,10 @@ p {
     display: inline;
 }
 
+.charts {
+    display: block;
+    padding: 35px;
+}
+
 
 

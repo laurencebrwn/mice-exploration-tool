@@ -176,7 +176,7 @@ namespace miceExplorationTool.Pages
             foreach (string File in Filepaths)//iterates throught the image filepaths, and matches to the tags, and stores in an Image object
             {
                 List<string> files = new List<string>();
-                string id = GetID(Filepaths[0]);//gets the ID from the image
+                string id = GetID(File);//gets the ID from the image
                 files.Add(File);//adds the 
                 List<Tags> t = FindList(id, SortedTags);
                 Image Mouse = new Image(id);

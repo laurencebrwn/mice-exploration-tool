@@ -75,9 +75,13 @@ namespace miceExplorationTool.Pages
                         //removes the wwwroot/ element of the file path and replaces with nothing
                         string myfilePath = path;
                         myfilePath = myfilePath.Replace("wwwroot/", "");
+                        myfilePath = myfilePath.Replace("\\", "/");
 
                         //adds 'https://' to start of every item in the list so it can be found in the project root folder
-                        string newPath = "https://localhost:5001/" + myfilePath;
+                        //string newPath = "https://localhost:5001/" + myfilePath;
+
+                        string newPath = Path.Combine("https://localhost:5001/", myfilePath);
+
                         //Console.WriteLine(newPath);//prints
 
                         //take last part of file path without extension for search comparison

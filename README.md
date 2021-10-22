@@ -8,7 +8,7 @@ This repository is the work of University of Lincoln's, Level 2, TSE Group 34. C
 ## ExVi - Demo WebApp
 [The ExVi Demo WebApp](https://github.com/laurencebrwn/mice-exploration-tool/tree/demo) is a lightweight version of ExVi for demo use. 
 
-The ExVi Demo WebApp can be accessed from any device anywhere in the world [here](https://met.azurewebsites.net/).
+~~The ExVi Demo WebApp can be accessed from any device anywhere in the world [here](https://met.azurewebsites.net/).~~ <- Hosting ceased, if needed, please host your own WebApp.
 
 Limitations of the Demo  WebApp include:
 * No DICOM viewer.
